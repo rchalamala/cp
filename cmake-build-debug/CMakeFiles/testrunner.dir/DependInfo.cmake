@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/mnt/c/Users/Rahul/Documents/CLionProjects/cp/testrunner/main.cpp" "/mnt/c/Users/Rahul/Documents/CLionProjects/cp/cmake-build-debug/CMakeFiles/testrunner.dir/testrunner/main.cpp.o"
+  "/mnt/c/Users/Rahul/Documents/CLionProjects/CP/testrunner/main.cpp" "/mnt/c/Users/Rahul/Documents/CLionProjects/CP/cmake-build-debug/CMakeFiles/testrunner.dir/testrunner/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

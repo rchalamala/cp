@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/c/Users/Rahul/Documents/CLionProjects/cp
+CMAKE_SOURCE_DIR = /mnt/c/Users/Rahul/Documents/CLionProjects/CP
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Users/Rahul/Documents/CLionProjects/cp/cmake-build-debug
+CMAKE_BINARY_DIR = /mnt/c/Users/Rahul/Documents/CLionProjects/CP/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/test.dir/depend.make
@@ -62,6 +62,6 @@ CMakeFiles/test.dir/clean:
 .PHONY : CMakeFiles/test.dir/clean
 
 CMakeFiles/test.dir/depend:
-	cd /mnt/c/Users/Rahul/Documents/CLionProjects/cp/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/c/Users/Rahul/Documents/CLionProjects/cp /mnt/c/Users/Rahul/Documents/CLionProjects/cp /mnt/c/Users/Rahul/Documents/CLionProjects/cp/cmake-build-debug /mnt/c/Users/Rahul/Documents/CLionProjects/cp/cmake-build-debug /mnt/c/Users/Rahul/Documents/CLionProjects/cp/cmake-build-debug/CMakeFiles/test.dir/DependInfo.cmake --color=$(COLOR)
+	cd /mnt/c/Users/Rahul/Documents/CLionProjects/CP/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/c/Users/Rahul/Documents/CLionProjects/CP /mnt/c/Users/Rahul/Documents/CLionProjects/CP /mnt/c/Users/Rahul/Documents/CLionProjects/CP/cmake-build-debug /mnt/c/Users/Rahul/Documents/CLionProjects/CP/cmake-build-debug /mnt/c/Users/Rahul/Documents/CLionProjects/CP/cmake-build-debug/CMakeFiles/test.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/test.dir/depend
 
