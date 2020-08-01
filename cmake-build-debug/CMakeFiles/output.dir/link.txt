@@ -1,1 +1,0 @@
-/usr/bin/c++   -fsanitize=address -fsanitize=address -static-libasan -fsanitize=undefined -fno-sanitize-recover -fstack-protector -g   CMakeFiles/output.dir/output/main.cpp.o  -o output 

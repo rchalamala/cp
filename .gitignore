@@ -1,5 +1,5 @@
-/.idea/
-/cmake-build-debug/
-/output/*
-/tasks/*
-/testrunner/*
+.idea/
+cmake-build-debug/
+output/
+tasks/
+testrunner/
