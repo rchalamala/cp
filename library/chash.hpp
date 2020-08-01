@@ -1,3 +1,5 @@
+#ifndef CHASH_HPP
+#define CHASH_HPP
 #include <cstddef>
 #include <cstdint>
 #include <chrono>
@@ -31,3 +33,4 @@ struct chash
 		return splitmix64(x.first + FIXED_RANDOM) ^ (splitmix64(x.second + FIXED_RANDOM) >> 1ULL);
 	}
 };
+#endif

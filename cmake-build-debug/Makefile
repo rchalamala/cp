@@ -176,6 +176,33 @@ output/main.cpp.s:
 	$(MAKE) -f CMakeFiles/output.dir/build.make CMakeFiles/output.dir/output/main.cpp.s
 .PHONY : output/main.cpp.s
 
+tasks/FRemovingLeaves.o: tasks/FRemovingLeaves.cpp.o
+
+.PHONY : tasks/FRemovingLeaves.o
+
+# target to build an object file
+tasks/FRemovingLeaves.cpp.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/tasks/FRemovingLeaves.cpp.o
+.PHONY : tasks/FRemovingLeaves.cpp.o
+
+tasks/FRemovingLeaves.i: tasks/FRemovingLeaves.cpp.i
+
+.PHONY : tasks/FRemovingLeaves.i
+
+# target to preprocess a source file
+tasks/FRemovingLeaves.cpp.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/tasks/FRemovingLeaves.cpp.i
+.PHONY : tasks/FRemovingLeaves.cpp.i
+
+tasks/FRemovingLeaves.s: tasks/FRemovingLeaves.cpp.s
+
+.PHONY : tasks/FRemovingLeaves.s
+
+# target to generate assembly for a file
+tasks/FRemovingLeaves.cpp.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/tasks/FRemovingLeaves.cpp.s
+.PHONY : tasks/FRemovingLeaves.cpp.s
+
 testrunner/main.o: testrunner/main.cpp.o
 
 .PHONY : testrunner/main.o
@@ -217,6 +244,9 @@ help:
 	@echo "... output/main.o"
 	@echo "... output/main.i"
 	@echo "... output/main.s"
+	@echo "... tasks/FRemovingLeaves.o"
+	@echo "... tasks/FRemovingLeaves.i"
+	@echo "... tasks/FRemovingLeaves.s"
 	@echo "... testrunner/main.o"
 	@echo "... testrunner/main.i"
 	@echo "... testrunner/main.s"

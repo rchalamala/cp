@@ -1,3 +1,5 @@
+#ifndef DEBUG_HPP
+#define DEBUG_HPP
 #include <iostream>
 #include <string>
 
@@ -23,4 +25,5 @@ void debug()
 #define DEBUG(...) std::cerr << "LINE(" << __LINE__ << ") -> [" << #__VA_ARGS__ << "]: [", DBG(__VA_ARGS__)
 #else
 #define DEBUG(...) 0
+#endif
 #endif

@@ -1,3 +1,5 @@
+#ifndef TIMER_HPP
+#define TIMER_HPP
 #include <chrono>
 
 // https://www.learncpp.com/cpp-tutorial/8-16-timing-your-code/
@@ -21,3 +23,4 @@ public:
 				std::chrono::high_resolution_clock::now() - m_start).count();
 	}
 };
+#endif

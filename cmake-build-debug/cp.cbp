@@ -215,6 +215,9 @@
 		<Unit filename="/mnt/c/Users/Rahul/Documents/CLionProjects/CP/output/main.cpp">
 			<Option target="output"/>
 		</Unit>
+		<Unit filename="/mnt/c/Users/Rahul/Documents/CLionProjects/CP/tasks/FRemovingLeaves.cpp">
+			<Option target="test"/>
+		</Unit>
 		<Unit filename="/mnt/c/Users/Rahul/Documents/CLionProjects/CP/testrunner/main.cpp">
 			<Option target="testrunner"/>
 		</Unit>

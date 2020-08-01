@@ -24,5 +24,6 @@ int main()
 	%Input%
 	%Output%
 	%SolverCall%
+	std::fflush(stdout);
 	return 0;
 }
