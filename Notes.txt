@@ -1,3 +1,0 @@
-Check if three points are colinear: (x 2 - x 1)(y 3 - y 1) == (x 3 - x 1)(y 2 - y 1).
-Output / 2 while MOD: ANSWER * (MOD + 1) / 2 % MOD
-Sum of active bits between 1 and n: For n > 0, if n is written as 2^m + r with 0 <= r < 2^m, then a(n) = m*2^(m-1) + r + 1 + a(r).
