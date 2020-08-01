@@ -1,0 +1,7 @@
+/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /mnt/c/Users/Rahul/Documents/CLionProjects/cp
+-- Configuring done
+CMake Error: Cannot determine link language for target "test".
+CMake Error: CMake can not determine linker language for target: test
+-- Generating done
+CMake Generate step failed.  Build files cannot be regenerated correctly.
+Unable to determine product file path for target test. Running and debugging will be unavailable.

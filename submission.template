@@ -1,0 +1,28 @@
+/*
+ID: rchalam1
+LANG: C++14
+TASK:
+*/
+// For train.usaco.org, fill the template above.
+
+// Competitive Coding Template
+
+// GCC OPTIMIAZTION FLAGS
+#ifndef LOCAL
+#include <x86intrin.h>
+#pragma GCC optimize("fast-math,no-stack-protector,Ofast,omit-frame-pointer,unroll-loops,inline")
+#pragma GCC option("arch=native,no-zero-upper,tune=native")
+#pragma GCC target("abm,avx,avx2,bmi2,fma,mmx,popcnt,sse,sse2,sse3,sse4,ssse3")
+#endif
+
+%Code%
+
+int main()
+{
+	setIO();
+	%ClassName% solver;
+	%Input%
+	%Output%
+	%SolverCall%
+	return 0;
+}
