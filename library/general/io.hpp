@@ -1,5 +1,6 @@
 #ifndef IO_HPP
 #define IO_HPP
+
 #include <array>
 #include <bitset>
 #include <complex>
@@ -199,4 +200,5 @@ void setIO()
 	std::cout.tie(nullptr);
 	std::cin.exceptions(std::ios::eofbit | std::ios::failbit | std::ios::badbit);
 }
+
 #endif

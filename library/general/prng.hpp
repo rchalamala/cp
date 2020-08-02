@@ -1,5 +1,6 @@
 #ifndef PRNG_HPP
 #define PRNG_HPP
+
 #include <chrono>
 #include <random>
 
@@ -24,4 +25,5 @@ T getURD(const T& low, const T& high)
 {
 	return std::uniform_real_distribution<T>(low, high)(getPRNG());
 }
+
 #endif

@@ -1,5 +1,6 @@
 #ifndef GENERAL_HPP
 #define GENERAL_HPP
+
 #include <algorithm>
 #include <array>
 #include <bitset>
@@ -106,8 +107,4 @@ using vpcd = std::vector<std::pair<std::complex<long double>, std::complex<long 
 #define lb lower_bound
 #define ub upper_bound
 
-constexpr long long MAXN __attribute__((unused)) = static_cast<long long>(2 * 1e5 + 1);
-constexpr long long INF __attribute__((unused)) = static_cast<long long>(1e18 + 1);
-constexpr long long MOD __attribute__((unused)) = static_cast<long long>(1e9 + 7);
-constexpr long double EPS __attribute__((unused)) = static_cast<long double>(1e-7);
 #endif

@@ -1,10 +1,10 @@
 #ifndef DEBUG_HPP
 #define DEBUG_HPP
+
 #include <iostream>
 #include <string>
 
 // https://github.com/bqi343/USACO/blob/master/Implementations/content/contest/CppIO.h
-
 template<typename Arg, typename... Args> void debug(const Arg& first, const Args& ... rest);
 void debug();
 
@@ -26,4 +26,5 @@ void debug()
 #else
 #define DEBUG(...) 0
 #endif
+
 #endif

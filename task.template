@@ -1,11 +1,16 @@
-#include "../library/general.hpp"
-#include "../library/io.hpp"
+#include "../library/general/base.hpp"
+#include "../library/general/io.hpp"
 using namespace std;
+
+constexpr long long MAXN __attribute__((unused)) = static_cast<long long>(2 * 1e5 + 1);
+constexpr long long INF __attribute__((unused)) = static_cast<long long>(1e18 + 1);
+constexpr long long MOD __attribute__((unused)) = static_cast<long long>(1e9 + 7);
+constexpr long double EPS __attribute__((unused)) = static_cast<long double>(1e-7);
 
 class %ClassName%
 {
 public:
-    static void solve(std::istream &in, std::ostream &out)
+    static void solve(std::istream& in, std::ostream& out)
     {
 
     }
