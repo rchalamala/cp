@@ -17,43 +17,36 @@ namespace JHelper
 
 	bool check(std::string expected, std::string actual)
 	{
-		while (!expected.empty() && isspace(*--expected.end()))
-			expected.erase(--expected.end());
-		while (!actual.empty() && isspace(*--actual.end()))
-			actual.erase(--actual.end());
+		while(!expected.empty() && isspace(*--expected.end())) expected.erase(--expected.end());
+		while(!actual.empty() && isspace(*--actual.end())) actual.erase(--actual.end());
 		return expected == actual;
 	}
 }
 
 int main()
 {
-    std::string blue = "\x1B[34m";
-    std::string green = "\x1B[32m";
-    std::string red = "\x1B[31m";
-    std::string yellow = "\x1B[33m";
-    std::string original = "\033[0m";
+	std::string blue = "\x1B[34m", green = "\x1B[32m", red = "\x1B[31m", yellow = "\x1B[33m", original = "\033[0m";
 	std::vector<JHelper::Test> tests{%Tests%};
 	int testID = 0;
 	bool allOK = true;
 	std::cerr << std::fixed;
 	long double maxTime = 0.0L;
-	for (const JHelper::Test& test : tests)
+	for(const JHelper::Test& test : tests)
 	{
 		std::cerr << blue << "Test #" << ++testID << original << std::endl;
 		std::cerr << blue << "Input:" << std::endl << original << test.input << std::endl;
 		std::cerr << blue << "Expected output:" << std::endl << original << (test.has_output ? test.output : yellow + "N/A" + original) << std::endl;
-		if (test.active)
+		if(test.active)
 		{
 			std::istringstream in(test.input);
 			std::ostringstream out;
 			std::chrono::time_point<std::chrono::high_resolution_clock> start{std::chrono::high_resolution_clock::now()};
 			%ClassName% solver;
-		    %SolverCall%
-			long double currentTime = std::chrono::duration_cast<std::chrono::duration<long double, std::ratio<1> >>(
-                                      				std::chrono::high_resolution_clock::now() - start).count();
+			%SolverCall%
+			long double currentTime = std::chrono::duration_cast<std::chrono::duration<long double, std::ratio<1> >>(std::chrono::high_resolution_clock::now() - start).count();
 			maxTime = std::max(currentTime, maxTime);
 			std::cerr << blue << "Actual output:" << std::endl << original << out.str() << std::endl;
-			if (test.has_output)
+			if(test.has_output)
 			{
 				bool result = JHelper::check(test.output, out.str());
 				allOK &= result;

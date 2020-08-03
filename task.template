@@ -1,5 +1,6 @@
 #include "../library/general/base.hpp"
 #include "../library/general/io.hpp"
+
 using namespace std;
 
 constexpr long long MAXN __attribute__((unused)) = static_cast<long long>(2 * 1e5 + 1);
@@ -10,8 +11,8 @@ constexpr long double EPS __attribute__((unused)) = static_cast<long double>(1e-
 class %ClassName%
 {
 public:
-    static void solve(std::istream& in, std::ostream& out)
-    {
+	void solve(std::istream& in, std::ostream& out)
+	{
 
-    }
+	}
 };

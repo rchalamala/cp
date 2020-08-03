@@ -2,7 +2,7 @@
 #define DSU_HPP
 
 // Verification:
-// https://judge.yosupo.jp/submission/17527/
+//
 
 #include <cstddef>
 #include <numeric>
@@ -22,14 +22,14 @@ public:
 
 	std::size_t root(std::size_t i)
 	{
-		while (i != m_parent[i]) i = m_parent[i] = m_parent[m_parent[i]];
+		while(i != m_parent[i]) i = m_parent[i] = m_parent[m_parent[i]];
 		return i;
 	}
 
 	bool connect(std::size_t i, std::size_t j)
 	{
-		if ((i = root(i)) == (j = root(j))) return false;
-		if (m_sizes[i] >= m_sizes[j])
+		if((i = root(i)) == (j = root(j))) return false;
+		if(m_sizes[i] >= m_sizes[j])
 		{
 			m_sizes[i] += m_sizes[j];
 			m_parent[j] = i;

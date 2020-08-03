@@ -1,6 +1,9 @@
 #ifndef GENERAL_HPP
 #define GENERAL_HPP
 
+// Verification:
+//
+
 #include <algorithm>
 #include <array>
 #include <bitset>
@@ -51,11 +54,7 @@
 using namespace __gnu_pbds;
 using namespace __gnu_cxx;
 
-template<typename T> using ordered_set = __gnu_pbds::tree<T,
-														  __gnu_pbds::null_type,
-														  std::less<T>,
-														  __gnu_pbds::rb_tree_tag,
-														  __gnu_pbds::tree_order_statistics_node_update>;
+template<typename T> using ordered_set = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;
 
 using ui = unsigned int;
 using ul = unsigned long long;
