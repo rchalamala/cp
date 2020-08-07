@@ -7,52 +7,61 @@
 #include "base/graph.hpp"
 #include <cstddef>
 #include <queue>
+#include <utility>
 #include <vector>
 
-template<class T, class Edge> class Dijkstra
+template<typename Edge, typename T> std::pair<std::vector<T>, std::vector<std::size_t>> dijkstra(const Graph<Edge>& graph, const std::size_t& source)
 {
-	Graph<Edge> m_graph;
-	std::vector<T> m_costs;
-	std::vector<std::size_t> m_parents;
-	std::vector<bool> m_visited;
-	std::priority_queue<std::pair<T, std::size_t>, std::vector<std::pair<T, std::size_t>>, std::greater<std::pair<T, std::size_t>>> m_next;
-public:
-	explicit Dijkstra(const Graph<Edge>& graph) : m_graph{graph} { reset(); }
-
-	void explore(const std::size_t& source, const bool& clear = false)
+	std::vector<T> costs(graph.size(), std::numeric_limits<T>::max());
+	std::vector<std::size_t> parent(graph.size(), std::numeric_limits<std::size_t>::max());
+	std::priority_queue<std::pair<T, std::size_t>, std::vector<std::pair<T, std::size_t>>, std::greater<std::pair<T, std::size_t>>> next;
+	std::vector<bool> visited(graph.size(), false);
+	costs[source] = 0;
+	parent[source] = source;
+	next.emplace(costs[source], source);
+	while(!next.empty())
 	{
-		if(clear) reset();
-		m_costs[source] = 0;
-		m_parents[source] = source;
-		m_next.emplace(m_costs[source], source);
-		while(!m_next.empty())
+		std::size_t top = next.top().second;
+		next.pop();
+		if(!visited[top])
 		{
-			std::size_t top = m_next.top().second;
-			m_next.pop();
-			if(m_visited[top]) continue;
-			m_visited[top] = true;
-			for(const auto& neighbor : m_graph[top])
-				if(!m_visited[neighbor.to] && m_costs[neighbor.to] > m_costs[top] + neighbor.weight)
+			visited[top] = true;
+			for(const auto& neighbor : graph[top])
+				if(!visited[neighbor.to] && costs[neighbor.to] > costs[top] + neighbor.weight)
 				{
-					m_costs[neighbor.to] = m_costs[top] + neighbor.weight;
-					m_parents[neighbor.to] = top;
-					m_next.emplace(m_costs[neighbor.to], neighbor.to);
+					costs[neighbor.to] = costs[top] + neighbor.weight;
+					parent[neighbor.to] = top;
+					next.emplace(costs[neighbor.to], neighbor.to);
 				}
 		}
 	}
+	return std::make_pair(costs, parent);
+}
 
-	void reset()
+template<typename Edge, typename T> std::pair<std::vector<T>, std::vector<std::size_t>> dijkstra(const Graph<Edge>& graph, const std::size_t& source, std::vector<T>& costs, std::vector<std::size_t>& parent)
+{
+	std::priority_queue<std::pair<T, std::size_t>, std::vector<std::pair<T, std::size_t>>, std::greater<std::pair<T, std::size_t>>> next;
+	std::vector<bool> visited(graph.size(), false);
+	costs[source] = 0;
+	parent[source] = source;
+	next.emplace(costs[source], source);
+	while(!next.empty())
 	{
-		m_costs.assign(m_graph.size(), std::numeric_limits<T>::max());
-		m_parents.assign(m_graph.size(), std::numeric_limits<T>::max());
-		m_visited.assign(m_graph.size(), false);
+		std::size_t top = next.top().second;
+		next.pop();
+		if(!visited[top])
+		{
+			visited[top] = true;
+			for(const auto& neighbor : graph[top])
+				if(!visited[neighbor.to] && costs[neighbor.to] > costs[top] + neighbor.weight)
+				{
+					costs[neighbor.to] = costs[top] + neighbor.weight;
+					parent[neighbor.to] = top;
+					next.emplace(costs[neighbor.to], neighbor.to);
+				}
+		}
 	}
-
-	std::vector<T> costs() const { return m_costs; }
-
-	std::vector<std::size_t> parents() const { return m_parents; }
-
-	std::vector<bool> visited() const { return m_visited; }
-};
+	return std::make_pair(costs, parent);
+}
 
 #endif

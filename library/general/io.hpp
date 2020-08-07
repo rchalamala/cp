@@ -91,98 +91,98 @@ namespace std
 }
 
 // INPUT
-template<typename Arg, typename... Args> void read(std::istream& in, Arg& first, Args& ... rest);
+template<typename Arg, typename... Args> void inline read(std::istream& in, Arg& first, Args& ... rest);
 
-template<typename T1, typename T2> void read(std::istream& in, std::pair<T1, T2>& element);
+template<typename T1, typename T2> void inline read(std::istream& in, std::pair<T1, T2>& element);
 
-template<typename T, std::size_t Size> void read(std::istream& in, std::array<T, Size>& elements);
+template<typename T, std::size_t Size> void inline read(std::istream& in, std::array<T, Size>& elements);
 
-template<typename T> void read(std::istream& in, double& element);
+template<typename T> void inline read(std::istream& in, double& element);
 
-template<typename T> void read(std::istream& in, long double& element);
+template<typename T> void inline read(std::istream& in, long double& element);
 
-template<typename T> void read(std::istream& in, std::complex<T>& element);
+template<typename T> void inline read(std::istream& in, std::complex<T>& element);
 
-template<typename T> void read(std::istream& in, std::tuple<T, T, T, T, T, T>& element);
+template<typename T> void inline read(std::istream& in, std::tuple<T, T, T, T, T, T>& element);
 
-template<typename T> void read(std::istream& in, std::tuple<T, T, T, T, T>& element);
+template<typename T> void inline read(std::istream& in, std::tuple<T, T, T, T, T>& element);
 
-template<typename T> void read(std::istream& in, std::tuple<T, T, T, T>& element);
+template<typename T> void inline read(std::istream& in, std::tuple<T, T, T, T>& element);
 
-template<typename T> void read(std::istream& in, std::tuple<T, T, T>& element);
+template<typename T> void inline read(std::istream& in, std::tuple<T, T, T>& element);
 
-template<typename T> void read(std::istream& in, std::vector<T>& elements);
+template<typename T> void inline read(std::istream& in, std::vector<T>& elements);
 
-template<typename T> void read(std::istream& in, T& element);
+template<typename T> void inline read(std::istream& in, T& element);
 
-template<typename Arg, typename... Args> void read(std::istream& in, Arg& first, Args& ... rest)
+template<typename Arg, typename... Args> void inline read(std::istream& in, Arg& first, Args& ... rest)
 {
 	read(in, first);
 	read(in, rest...);
 }
 
-template<typename T1, typename T2> void read(std::istream& in, std::pair<T1, T2>& element) { read(in, element.first, element.second); }
+template<typename T1, typename T2> void inline read(std::istream& in, std::pair<T1, T2>& element) { read(in, element.first, element.second); }
 
-template<typename T, std::size_t Size> void read(std::istream& in, std::array<T, Size>& elements) { for(auto& element : elements) read(in, element); }
+template<typename T, std::size_t Size> void inline read(std::istream& in, std::array<T, Size>& elements) { for(auto& element : elements) read(in, element); }
 
-void read(std::istream& in, double& element)
+void inline read(std::istream& in, double& element)
 {
 	std::string convert;
 	read(in, convert);
 	element = std::stod(convert);
 }
 
-void read(std::istream& in, long double& element)
+void inline read(std::istream& in, long double& element)
 {
 	std::string convert;
 	read(in, convert);
 	element = std::stold(convert);
 }
 
-template<typename T> void read(std::istream& in, std::complex<T>& element)
+template<typename T> void inline read(std::istream& in, std::complex<T>& element)
 {
 	T first, second;
 	read(in, first, second);
 	element = std::complex<T>(first, second);
 }
 
-template<typename T> void read(std::istream& in, std::tuple<T, T, T, T, T, T>& element) { read(in, std::get<0>(element), std::get<1>(element), std::get<2>(element), std::get<3>(element), std::get<4>(element), std::get<5>(element)); }
+template<typename T> void inline read(std::istream& in, std::tuple<T, T, T, T, T, T>& element) { read(in, std::get<0>(element), std::get<1>(element), std::get<2>(element), std::get<3>(element), std::get<4>(element), std::get<5>(element)); }
 
-template<typename T> void read(std::istream& in, std::tuple<T, T, T, T, T>& element) { read(in, std::get<0>(element), std::get<1>(element), std::get<2>(element), std::get<3>(element), std::get<4>(element)); }
+template<typename T> void inline read(std::istream& in, std::tuple<T, T, T, T, T>& element) { read(in, std::get<0>(element), std::get<1>(element), std::get<2>(element), std::get<3>(element), std::get<4>(element)); }
 
-template<typename T> void read(std::istream& in, std::tuple<T, T, T, T>& element) { read(in, std::get<0>(element), std::get<1>(element), std::get<2>(element), std::get<3>(element)); }
+template<typename T> void inline read(std::istream& in, std::tuple<T, T, T, T>& element) { read(in, std::get<0>(element), std::get<1>(element), std::get<2>(element), std::get<3>(element)); }
 
-template<typename T> void read(std::istream& in, std::tuple<T, T, T>& element) { read(in, std::get<0>(element), std::get<1>(element), std::get<2>(element)); }
+template<typename T> void inline read(std::istream& in, std::tuple<T, T, T>& element) { read(in, std::get<0>(element), std::get<1>(element), std::get<2>(element)); }
 
-template<typename T> void read(std::istream& in, std::vector<T>& elements) { for(auto& element : elements) read(in, element); }
+template<typename T> void inline read(std::istream& in, std::vector<T>& elements) { for(auto& element : elements) read(in, element); }
 
-template<typename T> void read(std::istream& in, T& element) { in >> element; }
+template<typename T> void inline read(std::istream& in, T& element) { in >> element; }
 
 // OUTPUT
-template<typename Arg, typename... Args> void print(std::ostream& out, const Arg& first, const Args& ... rest);
+template<typename Arg, typename... Args> void inline print(std::ostream& out, const Arg& first, const Args& ... rest);
 
-template<typename Arg, typename... Args> void prints(std::ostream& out, const Arg& first, const Args& ... rest);
+template<typename Arg, typename... Args> void inline prints(std::ostream& out, const Arg& first, const Args& ... rest);
 
-template<typename T> void print(std::ostream& out, const T& element);
+template<typename T> void inline print(std::ostream& out, const T& element);
 
-void prints(std::ostream& out);
+void inline prints(std::ostream& out);
 
-template<typename Arg, typename... Args> void print(std::ostream& out, const Arg& first, const Args& ... rest)
+template<typename Arg, typename... Args> void inline print(std::ostream& out, const Arg& first, const Args& ... rest)
 {
 	print(out, first);
 	print(out, rest...);
 }
 
-template<typename Arg, typename... Args> void prints(std::ostream& out, const Arg& first, const Args& ... rest)
+template<typename Arg, typename... Args> void inline prints(std::ostream& out, const Arg& first, const Args& ... rest)
 {
 	print(out, first);
 	if(sizeof...(rest)) print(out, " ");
 	prints(out, rest...);
 }
 
-template<typename T> void print(std::ostream& out, const T& element) { out << std::to_string(element); }
+template<typename T> void inline print(std::ostream& out, const T& element) { out << std::to_string(element); }
 
-void prints(std::ostream& out) { print(out, '\n'); }
+void inline prints(std::ostream& out) { print(out, '\n'); }
 
 void setIO()
 {

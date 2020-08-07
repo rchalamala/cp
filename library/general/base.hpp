@@ -13,6 +13,7 @@
 #include <cmath>
 #include <complex>
 #include <cstdarg>
+#include <cstddef>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -56,30 +57,43 @@ using namespace __gnu_cxx;
 
 template<typename T> using ordered_set = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;
 
-using ui = unsigned int;
-using ul = unsigned long long;
-using ll = long long;
+using st = std::size_t;
+using ui = std::uint32_t;
+using ii = std::int32_t;
+using ul = std::uint64_t;
+using ll = std::int64_t;
 using ld = long double;
 using cd = std::complex<long double>;
 
-using pui = std::pair<unsigned int, unsigned int>;
-using pii = std::pair<int, int>;
-using pul = std::pair<unsigned long long, unsigned long long>;
-using pll = std::pair<long long, long long>;
+using pst = std::pair<std::size_t, std::size_t>;
+using pui = std::pair<std::uint32_t, std::uint32_t>;
+using pii = std::pair<std::int32_t, std::int32_t>;
+using pul = std::pair<std::uint64_t, std::uint64_t>;
+using pll = std::pair<std::int64_t, std::int64_t>;
 using pld = std::pair<long double, long double>;
 using pcd = std::pair<std::complex<long double>, std::complex<long double>>;
 
-using vui = std::vector<unsigned int>;
-using vii = std::vector<int>;
-using vul = std::vector<unsigned long long>;
-using vll = std::vector<long long>;
+using vst = std::vector<std::size_t>;
+using vui = std::vector<std::uint32_t>;
+using vii = std::vector<std::int32_t>;
+using vul = std::vector<std::uint64_t>;
+using vll = std::vector<std::int64_t>;
 using vld = std::vector<long double>;
 using vcd = std::vector<std::complex<long double>>;
 
-using vpui = std::vector<std::pair<unsigned int, unsigned int>>;
-using vpii = std::vector<std::pair<int, int>>;
-using vpul = std::vector<std::pair<unsigned long long, unsigned long long>>;
-using vpll = std::vector<std::pair<long long, long long>>;
+using vvst = std::vector<std::vector<std::size_t>>;
+using vvui = std::vector<std::vector<std::uint32_t>>;
+using vvii = std::vector<std::vector<std::int32_t>>;
+using vvul = std::vector<std::vector<std::uint64_t>>;
+using vvll = std::vector<std::vector<std::int64_t>>;
+using vvld = std::vector<std::vector<long double>>;
+using vvcd = std::vector<std::vector<std::complex<long double>>>;
+
+using vpst = std::vector<std::pair<std::size_t, std::size_t>>;
+using vpui = std::vector<std::pair<std::uint32_t, std::uint32_t>>;
+using vpii = std::vector<std::pair<std::int32_t, std::int32_t>>;
+using vpul = std::vector<std::pair<std::uint64_t, std::uint64_t>>;
+using vpll = std::vector<std::pair<std::int64_t, std::int64_t>>;
 using vpld = std::vector<std::pair<long double, long double>>;
 using vpcd = std::vector<std::pair<std::complex<long double>, std::complex<long double>>>;
 
@@ -96,6 +110,9 @@ using vpcd = std::vector<std::pair<std::complex<long double>, std::complex<long 
 
 #define ALL(set) (set).begin(), (set).end()
 #define RALL(set) (set).rbegin(), (set).rend()
+
+#define sc static_cast
+#define sz(set) static_cast<std::int32_t>((set).size())
 
 #define mp std::make_pair
 #define mt std::make_tuple
