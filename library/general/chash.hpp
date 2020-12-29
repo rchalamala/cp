@@ -21,13 +21,13 @@ struct chash
 		return x ^ (x >> 31ULL);
 	}
 
-	std::size_t inline operator()(std::uint64_t x) const
+	std::uint64_t inline operator()(std::uint64_t x) const
 	{
 		static const std::uint64_t FIXED_RANDOM = static_cast<std::uint64_t>(std::chrono::steady_clock::now().time_since_epoch().count());
 		return splitmix64(x + FIXED_RANDOM);
 	}
 
-	std::size_t inline operator()(std::pair<std::uint64_t, std::uint64_t> x) const
+	std::uint64_t inline operator()(std::pair<std::uint64_t, std::uint64_t> x) const
 	{
 		static const std::uint64_t FIXED_RANDOM = static_cast<std::uint64_t>(std::chrono::steady_clock::now().time_since_epoch().count());
 		return splitmix64(x.first + FIXED_RANDOM) ^ (splitmix64(x.second + FIXED_RANDOM) >> 1ULL);

@@ -38,7 +38,7 @@ template<typename Edge, typename T> std::pair<std::vector<T>, std::vector<std::s
 	return std::make_pair(costs, parent);
 }
 
-template<typename Edge, typename T> std::pair<std::vector<T>, std::vector<std::size_t>> dijkstra(const Graph<Edge>& graph, const std::size_t& source, std::vector<T>& costs, std::vector<std::size_t>& parent)
+template<typename Edge, typename T> void dijkstra(const Graph<Edge>& graph, const std::size_t& source, std::vector<T>& costs, std::vector<std::size_t>& parent)
 {
 	std::priority_queue<std::pair<T, std::size_t>, std::vector<std::pair<T, std::size_t>>, std::greater<std::pair<T, std::size_t>>> next;
 	std::vector<bool> visited(graph.size(), false);
@@ -61,7 +61,6 @@ template<typename Edge, typename T> std::pair<std::vector<T>, std::vector<std::s
 				}
 		}
 	}
-	return std::make_pair(costs, parent);
 }
 
 #endif

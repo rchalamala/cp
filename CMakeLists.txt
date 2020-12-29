@@ -8,16 +8,22 @@ add_executable(output output/main.cpp)
 add_executable(test ${TASKS} ${HEADERS})
 add_executable(testrunner testrunner/main.cpp)
 
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address -static-libasan")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=undefined -fno-sanitize-recover")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address -static-libasan")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=undefined -fno-sanitize-recover")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstack-protector")
+
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--stack,67108864") # 64MB
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--stack,134217728") # 128MB
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--stack,268435456") # 256MB
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--stack,536870912") # 512MB
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--stack,1073741824") # 1024MB
 
 add_definitions(-D_FORTIFY_SOURCE=2)
 add_definitions(-D_GLIBCXX_DEBUG)
 add_definitions(-D_GLIBCXX_DEBUG_PEDANTIC)
-# add_definitions(-DLOCAL)
+add_definitions(-DLOCAL)
 add_definitions(-pedantic)
 add_definitions(-Wall)
 add_definitions(-Wcast-align)

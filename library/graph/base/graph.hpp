@@ -16,7 +16,7 @@ template<class Edge> class Graph
 public:
 	Graph(const std::size_t& N) : graph{N, std::vector<Edge>()} {}
 
-	template<typename...Args> void addEdge(const std::size_t& from, const std::size_t& to, Args& ... args)
+	template<typename...Args> void add_edge(const std::size_t& from, const std::size_t& to, Args& ... args)
 	{
 		graph[from].emplace_back(to, args...);
 		if(Edge::reversable) graph[to].emplace_back(from, args...);

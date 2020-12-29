@@ -3,15 +3,18 @@
 
 #include "miller_rabin.hpp"
 #include "pollards_rho.hpp"
+#include <cmath>
 #include <cstdint>
+#include <type_traits>
 #include <vector>
 
-std::vector<std::uint64_t> factorize(const std::uint64_t& n)
+// https://github.com/yosupo06/library-checker-problems/blob/master/math/factorize/sol/correct.cpp
+template<typename T> std::vector<T> factorize(const T& n)
 {
-	if(n == 1) return std::vector<std::uint64_t>();
-	std::uint64_t factor = pollards_rho(n);
-	if(n == factor) return std::vector<std::uint64_t>{n};
-	std::vector<std::uint64_t> original{factorize(factor)}, divided{factorize(n / factor)};
+	if(n == 1) return std::vector<T>();
+	T factor = pollards_rho<T>(n);
+	if(n == factor) return std::vector<T>{n};
+	std::vector<T> original{factorize(factor)}, divided{factorize(n / factor)};
 	original.insert(original.end(), divided.begin(), divided.end());
 	return original;
 }

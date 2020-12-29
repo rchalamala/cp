@@ -1,4 +1,5 @@
 #include "%TaskFile%"
+#include <chrono>
 #include <ctime>
 #include <iostream>
 #include <sstream>
@@ -25,7 +26,7 @@ namespace JHelper
 
 int main()
 {
-	std::string blue = "\x1B[34m", green = "\x1B[32m", red = "\x1B[31m", yellow = "\x1B[33m", original = "\033[0m";
+	std::string blue = "\033[34m", green = "\033[32m", red = "\033[31m", yellow = "\033[33m", original = "\033[0m";
 	std::vector<JHelper::Test> tests{%Tests%};
 	int testID = 0;
 	bool allOK = true;

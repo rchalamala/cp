@@ -1,5 +1,5 @@
-#ifndef GENERAL_HPP
-#define GENERAL_HPP
+#ifndef BASE_HPP
+#define BASE_HPP
 
 // Verification:
 //
@@ -56,6 +56,7 @@ using namespace __gnu_pbds;
 using namespace __gnu_cxx;
 
 template<typename T> using ordered_set = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;
+template<typename T> using ordered_multiset = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::less_equal<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;
 
 using st = std::size_t;
 using ui = std::uint32_t;
@@ -103,13 +104,14 @@ using vpcd = std::vector<std::pair<std::complex<long double>, std::complex<long 
 #define R0F(i, a) ROF((i), (a), 0)
 #define ITR(i, begin, end) for (__typeof(end) i = (begin) - ((begin) > (end)); i != (end) - ((begin) > (end)); i += 1 - 2 * ((begin) > (end)))
 
-#define FSRT(set) std::sort((set).begin(),(set).end())
-#define RSRT(set) std::sort((set).rbegin(),(set).rend())
-#define CSRT(set, function) std::sort((set).begin(),(set).end(), (function))
-#define UNIQUE(set) std::sort((set).begin(), (set).end()), (set).erase(std::unique((set).begin(), (set.end())), (a).end())
+#define FSRT(set) std::sort(std::begin(set), std::end(set))
+#define RSRT(set) std::sort((set).rbegin(), (set).rend())
+#define CSRT(set, function) std::sort(std::begin(set), std::end(set), (function))
+#define UNIQUE(set) (set).erase(std::unique(std::begin(set), std::end(set)), std::end(set))
+#define CLR(set, element) memset((set), (element), sizeof((set)))
 
-#define ALL(set) (set).begin(), (set).end()
-#define RALL(set) (set).rbegin(), (set).rend()
+#define ALL(set) std::begin(set), std::end(set)
+#define RALL(set) std::rbegin(set), std::rend(set)
 
 #define sc static_cast
 #define sz(set) static_cast<std::int32_t>((set).size())
@@ -122,5 +124,26 @@ using vpcd = std::vector<std::pair<std::complex<long double>, std::complex<long 
 #define ss second
 #define lb lower_bound
 #define ub upper_bound
+
+#if __cplusplus >= 201402
+
+#include <functional>
+#include <utility>
+
+namespace std
+{
+	template<class Fun> class y_combinator_result
+	{
+		Fun fun_;
+	public:
+		template<class T> explicit y_combinator_result(T&& fun): fun_(std::forward<T>(fun)) {}
+
+		template<class ...Args> decltype(auto) operator()(Args&& ...args) { return fun_(std::ref(*this), std::forward<Args>(args)...); }
+	};
+
+	template<class Fun> decltype(auto) y_combinator(Fun&& fun) { return y_combinator_result<std::decay_t<Fun>>(std::forward<Fun>(fun)); }
+}
+
+#endif
 
 #endif
