@@ -1,0 +1,34 @@
+#ifndef SEGMENT_TREE_FUNCTION_HPP
+#define SEGMENT_TREE_FUNCTION_HPP
+
+template<typename T> struct FunctionNode
+{
+	FunctionNode()
+	{
+
+	}
+};
+
+template<typename T, class Node> struct Function
+{
+	Node identity = Node{};
+
+	T return_value(const Node& element)
+	{
+		return element.m_value;
+	}
+
+	Node value(const Node& lhs, const Node& rhs) { return operation(lhs, rhs); }
+
+	void update(Node& parent, const Node& leftChild, const Node& rightChild) { parent = value(leftChild, rightChild); }
+
+	void propagate_update(Node& parent, Node& leftChild, Node& rightChild, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& treeSize)
+	{
+        delta(leftChild) = delta(parent);
+        delta(rightChild) = delta(parent);
+        parent += delta(parent);
+		delta(parent) = 0;
+	}
+};
+
+#endif

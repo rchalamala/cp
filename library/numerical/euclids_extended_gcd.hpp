@@ -1,0 +1,6 @@
+#ifndef EUCLIDS_EXTENDED_GCD_HPP
+#define EUCLIDS_EXTENDED_GCD_HPP
+
+
+
+#endif

@@ -7,29 +7,32 @@ TASK:
 
 // Competitive Coding Template
 
-// GCC OPTIMIAZTION FLAGS
+/*
+// GCC OPTIMIZATION FLAGS
 #ifndef LOCAL
 
-#include <x86intrin.h>
+include <x86intrin.h>
 
-#pragma GCC optimize("fast-math,no-stack-protector,Ofast,omit-frame-pointer,unroll-loops,inline")
-#pragma GCC option("arch=native,no-zero-upper,tune=native")
-#pragma GCC target("abm,bmi2,mmx,popcnt,sse,sse2,sse3,sse4,ssse3")
+pragma GCC optimize("fast-math,no-stack-protector,Ofast,unroll-loops,inline")
+pragma GCC target("avx,avx2,abm,bmi2,fma,mmx,popcnt,sse,sse2,sse3,sse4,ssse3")
 
 #endif
+*/
+
+#include "../library/general/unused.hpp"
 
 #define NDEBUG
 
 %Code%
 
-int main()
+int main(int argc, char *argv[])
 {
-    #ifndef INTERACTIVE
-	setIO();
-	#endif
+	unused(argc, argv);
+	std::cin.tie(nullptr)->std::ios_base::sync_with_stdio(false);
 	%ClassName% solver;
 	%Input%
 	%Output%
+	solver.setup();
 	%SolverCall%
 	std::fflush(stdout);
 	return 0;
