@@ -10,18 +10,28 @@
 
 #include "../primality/prime.hpp"
 
-template<typename T> T pollards_rho(const T& n)
+template<typename T> T pollards_rho(const T& n, const T& c = 1)
 {
 	static_assert(std::is_integral_v<T>);
 	assert(n >= 0);
 	if(prime(n)) return n;
-	for(std::size_t i = 2; i * i <= n; ++i)
+	auto f = [&n, &c](const T& x) -> T { return (((x % n) * (x % n)) % n + c) % n; };
+	T x = 2, y = f(f(x));
+	while(x != y)
 	{
-		if(n % i == 0)
+		T divisor = gcd(abs(x - y), n);
+		if(divisor == n)
 		{
-			return i;
+			return pollards_rho(n, c + 1);
 		}
+		if(divisor != 1)
+		{
+			return divisor;
+		}
+		x = f(x);
+		y = f(f(y));
 	}
+	return pollards_rho(n, c + 1);
 }
 
 template<typename T> std::vector<T> pollards_rho_factorize(const T& n)

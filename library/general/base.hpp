@@ -162,6 +162,7 @@ using ull = unsigned long long;
 using pull = std::pair<unsigned long long, unsigned long long>;
 using vull = std::vector<unsigned long long>;
 
+/*
 #ifdef __SIZEOF_INT128__
 
 using li = __int128;
@@ -173,6 +174,7 @@ using puli = std::pair<unsigned __int128, unsigned __int128>;
 using vuli = std::vector<unsigned __int128>;
 
 #endif
+*/
 
 using ld = long double;
 using pld = std::pair<long double, long double>;
