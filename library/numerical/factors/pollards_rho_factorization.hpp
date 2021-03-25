@@ -1,49 +1,59 @@
 #ifndef POLLARDS_RHO_FACTORIZATION_HPP
 #define POLLARDS_RHO_FACTORIZATION_HPP
 
-// Verification:
-//
-
+#include <chrono>
 #include <cmath>
 #include <type_traits>
 #include <vector>
+#include <random>
 
-#include "../primality/prime.hpp"
+#include "../../general/base.hpp"
+#include "../../general/prng.hpp"
+#include "../primality/miller_rabin_primality_test.hpp"
 
-template<typename T> T pollards_rho(const T& n, const T& c = 1)
+namespace factors
 {
-	static_assert(std::is_integral_v<T>);
-	assert(n >= 0);
-	if(prime(n)) return n;
-	auto f = [&n, &c](const T& x) -> T { return (((x % n) * (x % n)) % n + c) % n; };
-	T x = 2, y = f(f(x));
-	while(x != y)
+	template<typename T> T pollards_rho(const T& n)
 	{
-		T divisor = gcd(abs(x - y), n);
-		if(divisor == n)
+		static_assert(std::is_integral_v<T>);
+		assert(n >= 0);
+		if(n & 1 ^ 1)
+		{ return 2; }
+		if(primality::miller_rabin(n))
+		{ return n; }
+		T c;
+		auto f = [&n, &c](const T& x) -> T
+		{ return (static_cast<uli>(x) * x + c) % n; };
+		for(T x0 = getUID<T>(static_cast<T>(0), n - 1);; x0 = getUID<T>(static_cast<T>(0), n - 1))
 		{
-			return pollards_rho(n, c + 1);
+			c = getUID<T>(static_cast<T>(0), n - 1);
+			T x = f(x0), y = f(x);
+			while(true)
+			{
+				T divisor = gcd(std::max(x, y) - std::min(x, y), n);
+				if(divisor == n)
+				{ break; }
+				if(divisor != 1)
+				{ return divisor; }
+				x = f(x);
+				y = f(f(y));
+			}
 		}
-		if(divisor != 1)
-		{
-			return divisor;
-		}
-		x = f(x);
-		y = f(f(y));
 	}
-	return pollards_rho(n, c + 1);
-}
 
-template<typename T> std::vector<T> pollards_rho_factorize(const T& n)
-{
-	static_assert(std::is_integral_v<T>);
-	assert(n >= 0);
-	if(n <= 1) return {};
-	T factor = pollards_rho<T>(n);
-	if(n == factor) return std::vector<T>{n};
-	std::vector<T> original{pollards_rho_factorize(factor)}, divided{pollards_rho_factorize(n / factor)};
-	original.insert(original.end(), divided.begin(), divided.end());
-	return original;
+	template<typename T> std::vector<T> pollards_rho_factorize(const T& n)
+	{
+		static_assert(std::is_integral_v<T>);
+		assert(n >= 0);
+		if(n <= 1)
+		{ return {}; }
+		T factor = pollards_rho<T>(n);
+		if(n == factor)
+		{ return std::vector<T>{ n }; }
+		std::vector<T> original{ pollards_rho_factorize(factor) }, divided{ pollards_rho_factorize(n / factor) };
+		original.insert(original.end(), divided.begin(), divided.end());
+		return original;
+	}
 }
 
 #endif

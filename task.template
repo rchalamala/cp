@@ -15,18 +15,21 @@ constexpr long double EPS = static_cast<long double>(1e-7);
 class %ClassName%
 {
 public:
-	static constexpr std::uint32_t stressTestIterations = 0;
+	static constexpr std::int64_t stressTestIterations = 0;
 	static constexpr bool bruteForceAllIterations = false;
-	static constexpr bool showTestingOutput = true;
+	static constexpr bool bruteForceEmptyTests = false;
+	static constexpr bool showTestingOutput = false;
+	static constexpr bool showAllTestingOutput = false;
 	static constexpr bool showFalseTestOutput = true;
 	static bool bruteForceSolveIteration;
 
-	void static generate_test(std::ostream& testOutput, const std::uint32_t& seed)
+	void static generate_test(std::ostream& testOutput, const std::int64_t& seed)
 	{
 		unused(testOutput);
 		std::srand(seed);
+		static std::mt19937_64 PRNG{ static_cast<const std::uint_fast64_t>(seed) };
 
- 	}
+	}
 
 	void brute_force(std::istream& in, std::ostream& out)
 	{
@@ -59,7 +62,9 @@ public:
 		#if defined(CODE_JAM) || defined(LIGHT_OJ)
 		%ClassName%::output_case(out);
 		#endif
-		if(%ClassName%::bruteForceAllIterations || %ClassName%::bruteForceSolveIteration)
+		if(%ClassName
+		%::bruteForceAllIterations || %ClassName
+		%::bruteForceSolveIteration)
 		{
 			brute_force(in, out);
 			return;
@@ -69,4 +74,6 @@ public:
 
 };
 
-bool %ClassName%::bruteForceSolveIteration{};
+bool %ClassName
+%::bruteForceSolveIteration{
+};

@@ -10,23 +10,24 @@ namespace JHelper
 {
 	static std::string trim(std::string data)
 	{
-	    for(std::size_t index = 1; index < data.size(); ++index)
-	    {
-	        if(data.at(index) == '\n')
-	        {
-                while(index && std::isblank(data.at(index - 1)))
-                {
-                    data.erase(data.begin() + index - 1);
-                    --index;
-                }
-            }
-        }
-        while(!data.empty() && std::isspace(data.back()))
-        {
-            data.pop_back();
-        }
-        return data;
-    }
+		for(std::size_t index = 1; index < data.size(); ++index)
+		{
+			if(data.at(index) == '\n')
+			{
+				while(index && std::isblank(data.at(index - 1)))
+				{
+					data.erase(data.begin() + index - 1);
+					--index;
+				}
+			}
+		}
+		while(!data.empty() && std::isspace(data.back()))
+		{
+			data.pop_back();
+		}
+		return data;
+	}
+
 	struct Test
 	{
 		std::string m_input, m_output;
@@ -37,9 +38,9 @@ namespace JHelper
 			m_output = trim(output);
 		}
 
-		Test(const std::string& input, const std::string& output, const bool& active, const bool& hasOutput) : m_input{input}, m_output{output}, m_active{active}, m_hasOutput{hasOutput}
+		Test(const std::string& input, const std::string& output, const bool& active, const bool& hasOutput) : m_input{ input }, m_output{ output }, m_active{ active }, m_hasOutput{ hasOutput }
 		{
-            m_input = trim(m_input);
+			m_input = trim(m_input);
 			m_output = trim(m_output);
 		}
 
@@ -50,18 +51,25 @@ namespace JHelper
 	};
 }
 
-std::string red{"\x1B[31m"}, green{"\x1B[32m"}, yellow{"\x1B[33m"}, blue{"\x1B[34m"}, original{"\033[0m"};
+std::string red{ "\x1B[31m" }, green{ "\x1B[32m" }, yellow{ "\x1B[33m" }, blue{ "\x1B[34m" }, original{ "\033[0m" };
 
 std::uint32_t testID{};
-long double testTime{};
+std::chrono::duration<long double, std::milli> testTime{};
 bool testOK{}, actualBruteForce{};
 std::string testOutput{};
 
-void run_test(JHelper::Test& test, const std::int32_t& stressTestIteration = 0, const bool& showTestingOutput = false)
+void run_test(JHelper::Test& test, const std::int64_t& stressTestIteration = 0, const bool& showTestingOutput = false, const bool& showAllTestingOutput = false)
 {
 	if(!stressTestIteration)
 	{
 		std::cerr << blue << "Test #" << ++testID << original << std::endl;
+	}
+	if(showAllTestingOutput)
+	{
+		std::cerr << blue << "Stress Test #" << stressTestIteration << original << std::endl;
+	}
+	if(!stressTestIteration || showAllTestingOutput)
+	{
 		std::cerr << blue << "Input:" << std::endl << original << test.m_input << std::endl;
 		std::cerr << blue << "Expected output:" << std::endl << original;
 		if(test.m_hasOutput)
@@ -78,19 +86,20 @@ void run_test(JHelper::Test& test, const std::int32_t& stressTestIteration = 0, 
 	{
 		std::istringstream in(test.m_input);
 		std::ostringstream out;
-		std::chrono::time_point<std::chrono::high_resolution_clock> start{std::chrono::high_resolution_clock::now()};
+		std::chrono::time_point<std::chrono::high_resolution_clock> start{ std::chrono::high_resolution_clock::now() };
 		%ClassName% solver;
 		solver.setup();
-		%SolverCall% testTime = std::chrono::duration_cast<std::chrono::duration<long double, std::ratio<1> >>(std::chrono::high_resolution_clock::now() - start).count();
-		string output{JHelper::trim(out.str())};
-		if(!stressTestIteration)
+		%SolverCall%
+		testTime = std::chrono::high_resolution_clock::now() - start;
+		std::string output{ JHelper::trim(out.str()) };
+		if(!stressTestIteration || showAllTestingOutput)
 		{
 			std::cerr << blue << "Actual output:" << std::endl << original << output << std::endl;
 		}
 		if(test.m_hasOutput)
 		{
 			testOK = test.check(output);
-			if(!stressTestIteration)
+			if(!stressTestIteration || showAllTestingOutput)
 			{
 				std::cerr << blue << "Result: " << original;
 				if(testOK)
@@ -104,84 +113,110 @@ void run_test(JHelper::Test& test, const std::int32_t& stressTestIteration = 0, 
 				std::cerr << original << std::endl;
 			}
 		}
-		testOutput = output;
-		if(!stressTestIteration)
+		else
 		{
-			std::cerr << blue << "Time: " << testTime << "s." << original << std::endl;
+			testOK = true;
 		}
-		if(test.m_hasOutput && !testOK && stressTestIteration)
+		testOutput = output;
+		if(!stressTestIteration || showAllTestingOutput)
 		{
-		    std::cerr << red << "Stress Test #" << stressTestIteration << original << std::endl;
-            if(%ClassName%::showFalseTestOutput)
-            {
-                std::cerr << blue << "Input:" << std::endl << original << test.m_input << std::endl;
-                std::cerr << blue << "Expected output:" << std::endl << original;
-                if(test.m_hasOutput)
-                {
-                    std::cerr << test.m_output;
-                }
-                else
-                {
-                    std::cerr << yellow << "N/A" << original;
-                }
-                std::cerr << std::endl;
-                std::cerr << blue << "Actual output:" << std::endl << original << output << std::endl;
-		    }
+			std::cerr << blue << "Time: " << testTime.count() << "ms." << original << std::endl;
+		}
+		if(test.m_hasOutput && !testOK && stressTestIteration && !showAllTestingOutput)
+		{
+			std::cerr << red << "Stress Test #" << stressTestIteration << original << std::endl;
+			if(%ClassName%::showFalseTestOutput)
+			{
+				std::cerr << blue << "Input:" << std::endl << original << test.m_input << std::endl;
+				std::cerr << blue << "Expected output:" << std::endl << original;
+				if(test.m_hasOutput)
+				{
+					std::cerr << test.m_output;
+				}
+				else
+				{
+					std::cerr << yellow << "N/A" << original;
+				}
+				std::cerr << std::endl;
+				std::cerr << blue << "Actual output:" << std::endl << original << output << std::endl;
+			}
 		}
 	}
 	else
 	{
 		std::cerr << yellow << "SKIPPED" << original << std::endl;
 	}
-	if(!stressTestIteration)
+	if(!stressTestIteration || showAllTestingOutput)
 	{
 		std::cerr << std::endl;
 	}
-	if(testOK && showTestingOutput)
+	if(testOK && showTestingOutput && !showAllTestingOutput)
 	{
 		std::cerr << (actualBruteForce ? green : yellow) << "Stress Test #" << stressTestIteration << original << std::endl;
 	}
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
-    static_assert(!%ClassName%::stressTestIterations || (%ClassName%::stressTestIterations && !%ClassName%::bruteForceAllIterations));
+	static_assert(!%ClassName%::stressTestIterations || (%ClassName%::stressTestIterations && !%ClassName%::bruteForceAllIterations));
 	unused(argc, argv);
-	std::vector<JHelper::Test> tests{%Tests%};
+	std::vector<JHelper::Test> tests{ %Tests% };
 	std::cerr << std::fixed;
-	long double solveMaximalTime{}, solveAverageTime{}, bruteForceMaximalTime{}, bruteForceAverageTime{};
+	std::chrono::duration<long double, std::milli> solveMaximalTime{}, solveAverageTime{}, bruteForceMaximalTime{}, bruteForceAverageTime{};
+	std::uint64_t bruteForceEmptyTestIterations{};
 	bool allOK = true;
 	%ClassName%::bruteForceSolveIteration = %ClassName%::bruteForceAllIterations;
 	for(JHelper::Test& test : tests)
 	{
-		run_test(test);
-		solveMaximalTime = std::max(solveMaximalTime, testTime);
-		solveAverageTime += testTime;
-		allOK &= (!test.m_hasOutput || testOK);
+		if(!test.m_hasOutput)
+		{ assert(!(%ClassName%::bruteForceEmptyTests && %ClassName%::bruteForceAllIterations)); }
+		if(!test.m_hasOutput && %ClassName%::bruteForceEmptyTests)
+		{
+			%ClassName%::bruteForceSolveIteration = true;
+			run_test(test, -1, false);
+			%ClassName%::bruteForceSolveIteration = false;
+			if(!testOutput.empty())
+			{
+				bruteForceMaximalTime = std::max(bruteForceMaximalTime, testTime);
+				bruteForceAverageTime += testTime;
+				test.set_output(testOutput);
+				test.m_hasOutput = true;
+				actualBruteForce = true;
+				++bruteForceEmptyTestIterations;
+			}
+		}
+		if(test.m_active)
+		{
+			run_test(test);
+			solveMaximalTime = std::max(solveMaximalTime, testTime);
+			solveAverageTime += testTime;
+			allOK &= (!test.m_hasOutput || testOK);
+		}
 	}
-	for(std::uint32_t stressTestIteration = 1; stressTestIteration <= %ClassName%::stressTestIterations && allOK; ++stressTestIteration)
+	std::int64_t stressTestIteration{ 1 };
+	for(; (stressTestIteration <= %ClassName%::stressTestIterations || %ClassName%::stressTestIterations == -1) && allOK; ++stressTestIteration)
 	{
 		std::ostringstream generatedTestInput;
 		%ClassName%::generate_test(generatedTestInput, stressTestIteration);
-		JHelper::Test generatedTest{JHelper::trim(generatedTestInput.str()), "", true, false};
+		JHelper::Test generatedTest{ JHelper::trim(generatedTestInput.str()), "", true, false };
 		%ClassName%::bruteForceSolveIteration = true;
 		run_test(generatedTest, -1, false);
-		bruteForceMaximalTime = std::max(bruteForceMaximalTime, testTime);
-		bruteForceAverageTime += testTime;
 		%ClassName%::bruteForceSolveIteration = false;
 		if(!testOutput.empty())
 		{
+			bruteForceMaximalTime = std::max(bruteForceMaximalTime, testTime);
+			bruteForceAverageTime += testTime;
 			generatedTest.set_output(testOutput);
 			generatedTest.m_hasOutput = true;
 			actualBruteForce = true;
 		}
-		run_test(generatedTest, stressTestIteration, %ClassName%::showTestingOutput);
+		run_test(generatedTest, stressTestIteration, %ClassName%::showTestingOutput, %ClassName%::showAllTestingOutput);
 		solveMaximalTime = std::max(solveMaximalTime, testTime);
 		solveAverageTime += testTime;
 		allOK &= testOK;
 	}
 	solveAverageTime /= (tests.size() + %ClassName%::stressTestIterations);
-	if(%ClassName%::stressTestIterations && (%ClassName%::showTestingOutput || %ClassName%::showFalseTestOutput))
+	if(stressTestIteration > 1 && (!allOK || (%ClassName%::showTestingOutput && !%ClassName%::showAllTestingOutput)))
 	{
 		std::cerr << std::endl;
 	}
@@ -194,12 +229,12 @@ int main(int argc, char *argv[])
 		std::cerr << red << "Some Wrong";
 	}
 	std::cerr << original << std::endl;
-	std::cerr << "Maximal solve() time: " << solveMaximalTime << "s." << original << std::endl;
-	std::cerr << "Average solve() time: " << solveAverageTime << "s." << original << std::endl;
-	if(%ClassName%::stressTestIterations && actualBruteForce)
+	std::cerr << "Maximal solve() time: " << solveMaximalTime.count() << "ms." << original << std::endl;
+	std::cerr << "Average solve() time: " << solveAverageTime.count() << "ms." << original << std::endl;
+	if(actualBruteForce)
 	{
-        bruteForceAverageTime /= %ClassName%::stressTestIterations;
-		std::cerr << "Maximal brute_force() time: " << bruteForceMaximalTime << "s." << original << std::endl;
-		std::cerr << "Average brute_force() time: " << bruteForceAverageTime << "s." << original << std::endl;
+		bruteForceAverageTime /=  (%ClassName%::stressTestIterations + bruteForceEmptyTestIterations);
+		std::cerr << "Maximal brute_force() time: " << bruteForceMaximalTime.count() << "ms." << original << std::endl;
+		std::cerr << "Average brute_force() time: " << bruteForceAverageTime.count() << "ms." << original << std::endl;
 	}
 }
