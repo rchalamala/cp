@@ -1,5 +1,5 @@
-#ifndef DEBUG_H
-#define DEBUG_H
+#ifndef DEBUG_HPP
+#define DEBUG_HPP
 
 // https://github.com/bqi343/USACO/blob/master/Implementations/content/contest/CppIO.h
 // Verification:

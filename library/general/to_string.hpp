@@ -1,5 +1,5 @@
-#ifndef TO_STRING_H
-#define TO_STRING_H
+#ifndef TO_STRING_HPP
+#define TO_STRING_HPP
 
 #include <bitset>
 #include <complex>

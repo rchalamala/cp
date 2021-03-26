@@ -118,7 +118,7 @@
 #include <latch>
 #include <numbers>
 #include <ranges>
-#inlclue <semaphore>
+#include <semaphore>
 #include <source_location>
 #include <span>
 #include <stop_token>
