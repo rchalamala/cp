@@ -10,7 +10,7 @@ template<typename T> T trailing_zero_bits(T element)
 {
 	static_assert(std::is_integral_v<T>);
 	T result = 0;
-	for(; element & 1 ^ 1; ++result)
+	for(; (element & 1) ^ 1; ++result)
 	{
 		element >>= 1;
 	}
