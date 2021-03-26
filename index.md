@@ -19,25 +19,25 @@ data:
       title: library/data_structures/segment_tree/segment_tree_functions/segment_tree_minimum.hpp
   - name: library/general
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/general/base.hpp
       title: library/general/base.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/general/input.hpp
       title: library/general/input.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/general/output.hpp
       title: library/general/output.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/general/prng.hpp
       title: library/general/prng.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/general/speed.hpp
       title: library/general/speed.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/general/to_string.hpp
       title: library/general/to_string.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/general/unused.hpp
       title: library/general/unused.hpp
   - name: library/misccellaneous
@@ -53,12 +53,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/numerical/factors/optimized_rho_factorization.hpp
       title: library/numerical/factors/optimized_rho_factorization.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/numerical/factors/pollards_rho_factorization.hpp
       title: library/numerical/factors/pollards_rho_factorization.hpp
   - name: library/numerical/primality
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/numerical/primality/miller_rabin_primality_test.hpp
       title: library/numerical/primality/miller_rabin_primality_test.hpp
     - icon: ':warning:'
@@ -72,7 +72,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/numerical/steins_gcd.hpp
       title: library/numerical/steins_gcd.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/numerical/trailing_zero_bits.hpp
       title: library/numerical/trailing_zero_bits.hpp
   verificationCategories:
@@ -81,7 +81,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verification/numerical/factors/optimized_rho_factorization.test.cpp
       title: verification/numerical/factors/optimized_rho_factorization.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verification/numerical/factors/pollards_rho_factorization.test.cpp
       title: verification/numerical/factors/pollards_rho_factorization.test.cpp
 layout: toppage
