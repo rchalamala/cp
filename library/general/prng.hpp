@@ -6,7 +6,7 @@
 
 inline std::mt19937_64& getPRNG()
 {
-	static std::mt19937_64 PRNG{ static_cast<std::uint_fast64_t>( std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now().time_since_epoch()).count()) };
+	static std::mt19937_64 PRNG{static_cast<std::uint_fast64_t>( std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now().time_since_epoch()).count())};
 	return PRNG;
 }
 

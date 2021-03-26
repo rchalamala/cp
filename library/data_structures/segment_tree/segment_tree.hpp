@@ -37,7 +37,8 @@ private:
 
 	template<typename... Arguments> void change(const std::size_t i, const std::size_t treeLeft, const std::size_t treeRight, const std::size_t& left, const std::size_t& right, const Arguments& ... rest)
 	{
-		if(left > treeRight || treeLeft > right) return;
+		if(left > treeRight || treeLeft > right)
+		{ return; }
 		propagate(i, treeLeft, treeRight);
 		if(left <= treeLeft && treeRight <= right)
 		{
@@ -53,21 +54,35 @@ private:
 
 	Node range(const std::size_t& i, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& left, const std::size_t& right)
 	{
-		if(left > treeRight || treeLeft > right) return f.identity;
+		if(left > treeRight || treeLeft > right)
+		{ return f.identity; }
 		propagate(i, treeLeft, treeRight);
-		if(left <= treeLeft && treeRight <= right) return tree[i];
+		if(left <= treeLeft && treeRight <= right)
+		{ return tree[i]; }
 		const std::size_t midpoint = treeLeft + (treeRight - treeLeft) / 2;
 		return f.value(range(2 * i, treeLeft, midpoint, left, right), range(2 * i + 1, midpoint + 1, treeRight, left, right));
 	}
 
 public:
-	explicit SegmentTree(const std::size_t& u_size) : size{u_size} { tree.assign(4 * size, f.identity); }
+	explicit SegmentTree(const std::size_t& u_size) : size{u_size}
+	{
+		tree.assign(4 * size, f.identity);
+	}
 
-	template<typename Iterable> void build(const Iterable& elements) { build(1, 0, elements.size() - 1, elements); }
+	template<typename Iterable> void build(const Iterable& elements)
+	{
+		build(1, 0, elements.size() - 1, elements);
+	}
 
-	template<typename... Arguments> void change(const std::size_t& left, const std::size_t& right, const Arguments& ... rest) { change(1, 0, tree.size() / 4 - 1, left, right, rest...); }
+	template<typename... Arguments> void change(const std::size_t& left, const std::size_t& right, const Arguments& ... rest)
+	{
+		change(1, 0, tree.size() / 4 - 1, left, right, rest...);
+	}
 
-	auto range(const std::size_t& left, const std::size_t& right) { return f.return_value(range(1, 0, tree.size() / 4 - 1, left, right)); }
+	auto range(const std::size_t& left, const std::size_t& right)
+	{
+		return f.return_value(range(1, 0, tree.size() / 4 - 1, left, right));
+	}
 };
 
 #endif

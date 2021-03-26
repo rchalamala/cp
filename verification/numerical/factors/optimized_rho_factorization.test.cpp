@@ -24,5 +24,4 @@ int main()
 		std::sort(std::begin(factors), std::end(factors));
 		prints(std::cout, std::size(factors), factors);
 	}
-	std::fflush(stdout);
 }

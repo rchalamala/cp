@@ -8,5 +8,4 @@ int main()
 {
 	speed();
 
-	std::fflush(stdout);
 }

@@ -1,16 +1,24 @@
 #ifndef SEGMENT_TREE_ADD_HPP
 #define SEGMENT_TREE_ADD_HPP
 
+#include "../../../general/unused.hpp"
+
 template<typename T> struct AddNode
 {
 	T m_value = 0, m_delta = 0, m_set = 0;
 	bool m_validSet = false;
 
-	AddNode(const T& value, const T& delta, const T& set, const bool& validSet) : m_value{value}, m_delta{delta}, m_set{set}, m_validSet{validSet} {}
+	AddNode(const T& value, const T& delta, const T& set, const bool& validSet) : m_value{value}, m_delta{delta}, m_set{set}, m_validSet{validSet}
+	{
+	}
 
-	AddNode(const T& value) : m_value{value}, m_delta{}, m_set{}, m_validSet{} {}
+	AddNode(const T& value) : m_value{value}, m_delta{}, m_set{}, m_validSet{}
+	{
+	}
 
-	AddNode() : m_value{}, m_delta{}, m_set{}, m_validSet{} {}
+	AddNode() : m_value{}, m_delta{}, m_set{}, m_validSet{}
+	{
+	}
 };
 
 template<typename T, typename Node> struct Add
