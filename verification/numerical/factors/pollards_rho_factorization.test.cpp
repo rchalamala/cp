@@ -9,7 +9,7 @@
 #include <iostream>
 #include <vector>
 
-#include "../../../library/numerical/factors/optimized_rho_factorization.hpp"
+#include "../../../library/numerical/factors/pollards_rho_factorization.hpp"
 
 int main()
 {
@@ -20,7 +20,7 @@ int main()
 	{
 		std::int_fast64_t a;
 		read(std::cin, a);
-		std::vector<std::int_fast64_t> factors = factors::optimized_rho_factorize<std::int_fast64_t>(a);
+		std::vector<std::int_fast64_t> factors = factors::pollards_rho_factorize<std::int_fast64_t>(a);
 		std::sort(std::begin(factors), std::end(factors));
 		prints(std::cout, std::size(factors), factors);
 	}

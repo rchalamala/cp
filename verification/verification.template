@@ -1,0 +1,12 @@
+#include "../../../library/general/input.hpp"
+#include "../../../library/general/output.hpp"
+#include "../../../library/general/speed.hpp"
+
+#define PROBLEM ""
+
+int main()
+{
+	speed();
+
+	std::fflush(stdout);
+}
