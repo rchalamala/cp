@@ -1,0 +1,6 @@
+/.idea/
+/.run/
+/cmake-build-debug/
+/output/
+/tasks/
+/testrunner/
