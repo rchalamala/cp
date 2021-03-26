@@ -19,6 +19,8 @@ pragma GCC target("avx,avx2,abm,bmi2,fma,mmx,popcnt,sse,sse2,sse3,sse4,ssse3")
 #endif
 */
 
+#include "../library/general/speed.hpp"
+
 #define NDEBUG
 
 %Code%
@@ -26,7 +28,7 @@ pragma GCC target("avx,avx2,abm,bmi2,fma,mmx,popcnt,sse,sse2,sse3,sse4,ssse3")
 int main(int argc, char* argv[])
 {
 	unused(argc, argv);
-	std::cin.tie(nullptr)->std::ios_base::sync_with_stdio(false);
+	speed();
 	%ClassName% solver;
 	%Input%
 	%Output%

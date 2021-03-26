@@ -1,3 +1,7 @@
+#include "../../../library/general/input.hpp"
+#include "../../../library/general/output.hpp"
+#include "../../../library/general/speed.hpp"
+
 #define PROBLEM "https://judge.yosupo.jp/problem/factorize"
 
 #include <algorithm>
@@ -5,13 +9,12 @@
 #include <iostream>
 #include <vector>
 
-#include "../../../library/general/input.hpp"
-#include "../../../library/general/output.hpp"
+
 #include "../../../library/numerical/factors/optimized_rho_factorization.hpp"
 
 int main()
 {
-	std::cin.tie(nullptr)->std::ios_base::sync_with_stdio(false);
+	speed();
 	std::int_fast16_t q;
 	read(std::cin, q);
 	while(q--)
