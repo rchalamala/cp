@@ -11,12 +11,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp
       title: library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp
-    - icon: ':warning:'
-      path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_maximum.hpp
-      title: library/data_structures/segment_tree/segment_tree_functions/segment_tree_maximum.hpp
-    - icon: ':warning:'
-      path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_minimum.hpp
-      title: library/data_structures/segment_tree/segment_tree_functions/segment_tree_minimum.hpp
   - name: library/general
     pages:
     - icon: ':heavy_check_mark:'

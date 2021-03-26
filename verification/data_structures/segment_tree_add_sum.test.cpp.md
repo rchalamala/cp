@@ -32,12 +32,12 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
     links:
     - https://judge.yosupo.jp/problem/point_add_range_sum
-  bundledCode: "#line 1 \"library/general/input.hpp\"\n\n\n\n// Verification:\n//\n\
-    #include <array>\n#include <complex>\n#include <istream>\n#include <tuple>\n#include\
-    \ <utility>\n#include <vector>\n\ninline bool read(std::istream& in, double& element);\n\
-    \ninline bool read(std::istream& in, long double& element);\n\ntemplate<typename\
-    \ Argument, typename... Arguments> bool read(std::istream& in, Argument& first,\
-    \ Arguments& ... rest);\n\ntemplate<typename T, std::size_t Size> bool read(std::istream&\
+  bundledCode: "#line 1 \"library/general/input.hpp\"\n\n\n\n#include <array>\n#include\
+    \ <complex>\n#include <istream>\n#include <tuple>\n#include <utility>\n#include\
+    \ <vector>\n\ninline bool read(std::istream& in, double& element);\n\ninline bool\
+    \ read(std::istream& in, long double& element);\n\ntemplate<typename Argument,\
+    \ typename... Arguments> bool read(std::istream& in, Argument& first, Arguments&\
+    \ ... rest);\n\ntemplate<typename T, std::size_t Size> bool read(std::istream&\
     \ in, std::array<T, Size>& elements);\n\ntemplate<typename T1, typename T2> bool\
     \ read(std::istream& in, std::pair<T1, T2>& element);\n\ntemplate<typename T>\
     \ bool read(std::istream& in, T& element);\n\ntemplate<typename T> bool read(std::istream&\
@@ -75,13 +75,13 @@ data:
     \ std::get<0>(element), std::get<1>(element), std::get<2>(element));\n}\n\ntemplate<typename\
     \ T> bool read(std::istream& in, std::vector<T>& elements)\n{\n\tbool result =\
     \ true;\n\tfor(T& element : elements)\n\t{ result &= read(in, element); }\n\t\
-    return result;\n}\n\n\n#line 1 \"library/general/output.hpp\"\n\n\n\n// Verification:\n\
-    //\n#line 1 \"library/general/to_string.hpp\"\n\n\n\n#include <bitset>\n#line\
-    \ 6 \"library/general/to_string.hpp\"\n#include <string>\n#line 9 \"library/general/to_string.hpp\"\
-    \n\nnamespace std\n{\n\tinline std::string to_string(const bool& element);\n\n\
-    \tinline std::string to_string(const char& element);\n\n\tinline std::string to_string(const\
-    \ char* element);\n\n\tinline std::string to_string(const std::string& element);\n\
-    \n\tinline std::string to_string(const std::vector<bool>& elements);\n\n\ttemplate<typename\
+    return result;\n}\n\n\n#line 1 \"library/general/output.hpp\"\n\n\n\n#line 1 \"\
+    library/general/to_string.hpp\"\n\n\n\n#include <bitset>\n#line 6 \"library/general/to_string.hpp\"\
+    \n#include <string>\n#line 9 \"library/general/to_string.hpp\"\n\nnamespace std\n\
+    {\n\tinline std::string to_string(const bool& element);\n\n\tinline std::string\
+    \ to_string(const char& element);\n\n\tinline std::string to_string(const char*\
+    \ element);\n\n\tinline std::string to_string(const std::string& element);\n\n\
+    \tinline std::string to_string(const std::vector<bool>& elements);\n\n\ttemplate<typename\
     \ T> std::string to_string(const T& elements);\n\n\ttemplate<std::size_t Size>\
     \ std::string to_string(const std::bitset<Size>& elements);\n\n\ttemplate<typename\
     \ T> std::string to_string(const std::complex<T>& element);\n\n\ttemplate<typename\
@@ -107,7 +107,7 @@ data:
     \ T1, typename T2> std::string std::to_string(std::pair<T1, T2> element)\n{\n\
     #ifdef LOCAL\n\treturn \"(\" + std::to_string(element.first) + \", \" + std::to_string(element.second)\
     \ + \")\";\n#else\n\treturn std::to_string(element.ff) + \" \" + std::to_string(element.ss);\n\
-    #endif\n}\n\n\n#line 7 \"library/general/output.hpp\"\n#include <ostream>\n\n\
+    #endif\n}\n\n\n#line 5 \"library/general/output.hpp\"\n#include <ostream>\n\n\
     template<typename Argument, typename... Arguments> void print(std::ostream& out,\
     \ const Argument& first, const Arguments& ... rest);\n\ntemplate<typename Argument,\
     \ typename... Arguments> void printn(std::ostream& out, const Argument& first,\
@@ -130,14 +130,15 @@ data:
     \ speed()\n{\n\tstd::cin.exceptions(std::cin.failbit);\n\treturn std::cin.tie(nullptr)\
     \ && std::ios_base::sync_with_stdio(false);\n}\n\n\n#line 4 \"verification/data_structures/segment_tree_add_sum.test.cpp\"\
     \n\n#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\n\
-    #include <cstdint>\n#line 10 \"verification/data_structures/segment_tree_add_sum.test.cpp\"\
+    #include <cstddef>\n#include <cstdint>\n#line 11 \"verification/data_structures/segment_tree_add_sum.test.cpp\"\
     \n\n#line 1 \"library/data_structures/segment_tree/segment_tree.hpp\"\n\n\n\n\
-    template<class F, class Node> class SegmentTree\n{\npublic:\n\tF f;\nprivate:\n\
-    \tconst std::size_t size;\n\tstd::vector<Node> tree;\n\n\tvoid propagate(const\
-    \ std::size_t& i, const std::size_t& treeLeft, const std::size_t& treeRight)\n\
-    \t{\n\t\tif(treeLeft != treeRight)\n\t\t{\n\t\t\tf.propagate_update(tree[i], tree[2\
-    \ * i], tree[2 * i + 1], treeLeft, treeRight, tree.size() / 4);\n\t\t\ttree[i]\
-    \ = f.value(tree[2 * i], tree[2 * i + 1]);\n\t\t}\n\t\telse\n\t\t{\n\t\t\tf.propagate_update(tree[i],\
+    #line 6 \"library/data_structures/segment_tree/segment_tree.hpp\"\n\ntemplate<class\
+    \ F, class Node> class SegmentTree\n{\npublic:\n\tF f;\nprivate:\n\tconst std::size_t\
+    \ size;\n\tstd::vector<Node> tree;\n\n\tvoid propagate(const std::size_t& i, const\
+    \ std::size_t& treeLeft, const std::size_t& treeRight)\n\t{\n\t\tif(treeLeft !=\
+    \ treeRight)\n\t\t{\n\t\t\tf.propagate_update(tree[i], tree[2 * i], tree[2 * i\
+    \ + 1], treeLeft, treeRight, tree.size() / 4);\n\t\t\ttree[i] = f.value(tree[2\
+    \ * i], tree[2 * i + 1]);\n\t\t}\n\t\telse\n\t\t{\n\t\t\tf.propagate_update(tree[i],\
     \ tree[i], tree[i], treeLeft, treeRight, tree.size() / 4);\n\t\t}\n\t}\n\n\ttemplate<typename\
     \ Iterable> void build(const std::size_t& i, const std::size_t& left, const std::size_t&\
     \ right, const Iterable& elements)\n\t{\n\t\tif(left == right)\n\t\t{\n\t\t\t\
@@ -169,17 +170,19 @@ data:
     \ rest...);\n\t}\n\n\tauto range(const std::size_t& left, const std::size_t& right)\n\
     \t{\n\t\treturn f.return_value(range(1, 0, tree.size() / 4 - 1, left, right));\n\
     \t}\n};\n\n\n#line 1 \"library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp\"\
-    \n\n\n\n#line 1 \"library/general/unused.hpp\"\n\n\n\ntemplate<class... T> void\
-    \ unused(T&& ...)\n{\n}\n\n\n#line 5 \"library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp\"\
-    \n\ntemplate<typename T> struct AddNode\n{\n\tT m_value = 0, m_delta = 0, m_set\
-    \ = 0;\n\tbool m_validSet = false;\n\n\tAddNode(const T& value, const T& delta,\
-    \ const T& set, const bool& validSet) : m_value{value}, m_delta{delta}, m_set{set},\
-    \ m_validSet{validSet}\n\t{\n\t}\n\n\tAddNode(const T& value) : m_value{value},\
-    \ m_delta{}, m_set{}, m_validSet{}\n\t{\n\t}\n\n\tAddNode() : m_value{}, m_delta{},\
-    \ m_set{}, m_validSet{}\n\t{\n\t}\n};\n\ntemplate<typename T, typename Node> struct\
-    \ Add\n{\n\tNode identity = Node{};\n\n\tT return_value(const Node& element)\n\
-    \t{\n\t\treturn element.m_value;\n\t}\n\n\tT value(const Node& lhs, const Node&\
-    \ rhs)\n\t{\n\t\treturn lhs.m_value + rhs.m_value;\n\t}\n\n\tvoid propagate_update(Node&\
+    \n\n\n\n#line 5 \"library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp\"\
+    \n#include <type_traits>\n\n#line 1 \"library/general/unused.hpp\"\n\n\n\ntemplate<class...\
+    \ T> void unused(T&& ...)\n{\n}\n\n\n#line 8 \"library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp\"\
+    \n\ntemplate<typename T> struct AddNode\n{\n\tstatic_assert(std::is_integral_v<T>);\n\
+    \n\tT m_value = 0, m_delta = 0, m_set = 0;\n\tbool m_validSet = false;\n\n\tAddNode(const\
+    \ T& value, const T& delta, const T& set, const bool& validSet) : m_value{value},\
+    \ m_delta{delta}, m_set{set}, m_validSet{validSet}\n\t{\n\t}\n\n\tAddNode(const\
+    \ T& value) : m_value{value}, m_delta{}, m_set{}, m_validSet{}\n\t{\n\t}\n\n\t\
+    AddNode() : m_value{}, m_delta{}, m_set{}, m_validSet{}\n\t{\n\t}\n};\n\ntemplate<typename\
+    \ T, typename Node> struct Add\n{\n\tstatic_assert(std::is_integral_v<T>);\n\n\
+    \tNode identity = Node{};\n\n\tT return_value(const Node& element)\n\t{\n\t\t\
+    return element.m_value;\n\t}\n\n\tT value(const Node& lhs, const Node& rhs)\n\t\
+    {\n\t\treturn lhs.m_value + rhs.m_value;\n\t}\n\n\tvoid propagate_update(Node&\
     \ parent, Node& leftChild, Node& rightChild, const std::size_t& treeLeft, const\
     \ std::size_t& treeRight, const std::size_t& treeSize)\n\t{\n\t\tunused(treeSize);\n\
     \t\tstd::size_t intervalLength = treeRight - treeLeft + 1;\n\t\tif(parent.m_validSet)\n\
@@ -193,7 +196,7 @@ data:
     \ delta)\n\t{\n\t\telement.m_value += delta;\n\t}\n\n\tvoid change(Node& element,\
     \ const T& set, const bool& notDelta)\n\t{\n\t\tunused(notDelta);\n\t\telement.m_delta\
     \ = 0;\n\t\telement.m_set = set;\n\t\telement.m_validSet = true;\n\t}\n};\n\n\n\
-    #line 13 \"verification/data_structures/segment_tree_add_sum.test.cpp\"\n\nint\
+    #line 14 \"verification/data_structures/segment_tree_add_sum.test.cpp\"\n\nint\
     \ main()\n{\n\tspeed();\n\tstd::size_t n;\n\tstd::int_fast32_t q;\n\tread(std::cin,\
     \ n, q);\n\tstd::vector<std::uint_fast64_t> a(n);\n\tread(std::cin, a);\n\tSegmentTree<Add<std::uint_fast64_t,\
     \ AddNode<std::uint_fast64_t>>, AddNode<std::uint_fast64_t>> segmentTree(n);\n\
@@ -204,8 +207,9 @@ data:
     \ p, x);\n\t\t\tsegmentTree.change(p, p, x);\n\t\t}\n\t}\n}\n"
   code: "#include \"../../library/general/input.hpp\"\n#include \"../../library/general/output.hpp\"\
     \n#include \"../../library/general/speed.hpp\"\n\n#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\
-    \n\n#include <cstdint>\n#include <iostream>\n#include <vector>\n\n#include \"\
-    ../../library/data_structures/segment_tree/segment_tree.hpp\"\n#include \"../../library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp\"\
+    \n\n#include <cstddef>\n#include <cstdint>\n#include <iostream>\n#include <vector>\n\
+    \n#include \"../../library/data_structures/segment_tree/segment_tree.hpp\"\n#include\
+    \ \"../../library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp\"\
     \n\nint main()\n{\n\tspeed();\n\tstd::size_t n;\n\tstd::int_fast32_t q;\n\tread(std::cin,\
     \ n, q);\n\tstd::vector<std::uint_fast64_t> a(n);\n\tread(std::cin, a);\n\tSegmentTree<Add<std::uint_fast64_t,\
     \ AddNode<std::uint_fast64_t>>, AddNode<std::uint_fast64_t>> segmentTree(n);\n\
@@ -225,7 +229,7 @@ data:
   isVerificationFile: true
   path: verification/data_structures/segment_tree_add_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-03-26 00:07:57-06:00'
+  timestamp: '2021-03-26 00:48:11-06:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verification/data_structures/segment_tree_add_sum.test.cpp

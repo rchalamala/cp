@@ -44,14 +44,14 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/numerical/trailing_zero_bits.hpp\"\n\n\n\n// Verification:\n\
-    //\n\n#include <type_traits>\n\ntemplate<typename T> T trailing_zero_bits(T element)\n\
-    {\n\tstatic_assert(std::is_integral_v<T>);\n\tT result = 0;\n\tfor(; (element\
-    \ & 1) ^ 1; ++result)\n\t{\n\t\telement >>= 1;\n\t}\n\treturn result;\n}\n\n\n"
-  code: "#ifndef TRAILING_ZERO_BITS_HPP\n#define TRAILING_ZERO_BITS_HPP\n\n// Verification:\n\
-    //\n\n#include <type_traits>\n\ntemplate<typename T> T trailing_zero_bits(T element)\n\
-    {\n\tstatic_assert(std::is_integral_v<T>);\n\tT result = 0;\n\tfor(; (element\
-    \ & 1) ^ 1; ++result)\n\t{\n\t\telement >>= 1;\n\t}\n\treturn result;\n}\n\n#endif"
+  bundledCode: "#line 1 \"library/numerical/trailing_zero_bits.hpp\"\n\n\n\n#include\
+    \ <type_traits>\n\ntemplate<typename T> T trailing_zero_bits(T element)\n{\n\t\
+    static_assert(std::is_integral_v<T>);\n\tT result = 0;\n\tfor(; (element & 1)\
+    \ ^ 1; ++result)\n\t{\n\t\telement >>= 1;\n\t}\n\treturn result;\n}\n\n\n"
+  code: "#ifndef TRAILING_ZERO_BITS_HPP\n#define TRAILING_ZERO_BITS_HPP\n\n#include\
+    \ <type_traits>\n\ntemplate<typename T> T trailing_zero_bits(T element)\n{\n\t\
+    static_assert(std::is_integral_v<T>);\n\tT result = 0;\n\tfor(; (element & 1)\
+    \ ^ 1; ++result)\n\t{\n\t\telement >>= 1;\n\t}\n\treturn result;\n}\n\n#endif"
   dependsOn: []
   isVerificationFile: false
   path: library/numerical/trailing_zero_bits.hpp
@@ -63,7 +63,7 @@ data:
   - library/numerical/factors/optimized_rho_factorization.hpp
   - library/numerical/factors/pollards_rho_factorization.hpp
   - library/numerical/factors/pollards_rho_factorization.hpp
-  timestamp: '2021-03-25 18:18:10-06:00'
+  timestamp: '2021-03-26 00:48:11-06:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verification/numerical/factors/pollards_rho_factorization.test.cpp
