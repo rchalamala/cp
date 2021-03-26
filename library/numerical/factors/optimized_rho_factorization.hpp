@@ -8,6 +8,7 @@
 #include <random>
 
 #include "../../general/base.hpp"
+#include "../../general/prng.hpp"
 #include "../steins_gcd.hpp"
 #include "../primality/miller_rabin_primality_test.hpp"
 #include "../trailing_zero_bits.hpp"
@@ -27,7 +28,7 @@ namespace factors
 		{
 			c = getUID<T>(static_cast<T>(0), n - 1);
 			T product = 1;
-			for(T x = f(x0), y = f(x), trials = 30; x != y && (trials % 40 || gcd(product, n) == 1); x = f(x), y = f(f(y)))
+			for(T x = f(x0), y = f(x), trials = 30; x != y && (trials % 40 || steins_gcd(product, n) == 1); x = f(x), y = f(f(y)))
 			{
 				T combined = static_cast<uli>(product) * (n + x - y) % n;
 				if(combined)

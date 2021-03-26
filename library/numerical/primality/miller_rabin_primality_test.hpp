@@ -62,7 +62,7 @@ namespace primality
 					{ break; }
 					x = static_cast<uli>(x) * x % n;
 				}
-				if(i == bits ^ x == 1)
+				if((i == bits) ^ (x == 1))
 				{ return false; }
 			}
 		}

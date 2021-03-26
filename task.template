@@ -1,7 +1,6 @@
 #include "../library/general/base.hpp"
-#include "../library/general/debug.h"
-#include "../library/general/input.h"
-#include "../library/general/output.h"
+#include "../library/general/input.hpp"
+#include "../library/general/output.hpp"
 
 using namespace std;
 
