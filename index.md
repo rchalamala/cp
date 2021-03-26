@@ -40,14 +40,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/general/unused.hpp
       title: library/general/unused.hpp
-  - name: library/misccellaneous
-    pages:
-    - icon: ':warning:'
-      path: library/misccellaneous/compress.hpp
-      title: library/misccellaneous/compress.hpp
-    - icon: ':warning:'
-      path: library/misccellaneous/distinctelements.hpp
-      title: library/misccellaneous/distinctelements.hpp
   - name: library/numerical/factors
     pages:
     - icon: ':heavy_check_mark:'
