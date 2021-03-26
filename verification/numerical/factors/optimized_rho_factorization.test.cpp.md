@@ -56,101 +56,99 @@ data:
   bundledCode: "#line 1 \"library/general/input.hpp\"\n\n\n\n// Verification:\n//\n\
     #include <array>\n#include <complex>\n#include <istream>\n#include <tuple>\n#include\
     \ <utility>\n#include <vector>\n\ninline bool read(std::istream& in, double& element);\n\
-    \ninline bool read(std::istream& in, long double& element);\n\ntemplate <typename\
-    \ Argument, typename... Arguments>\nbool read(std::istream& in, Argument& first,\
-    \ Arguments&... rest);\n\ntemplate <typename T, std::size_t Size>\nbool read(std::istream&\
-    \ in, std::array<T, Size>& elements);\n\ntemplate <typename T1, typename T2>\n\
-    bool read(std::istream& in, std::pair<T1, T2>& element);\n\ntemplate <typename\
-    \ T>\nbool read(std::istream& in, T& element);\n\ntemplate <typename T>\nbool\
-    \ read(std::istream& in, std::complex<T>& element);\n\ntemplate <typename T>\n\
-    bool read(std::istream& in, std::tuple<T, T, T, T, T, T>& element);\n\ntemplate\
-    \ <typename T>\nbool read(std::istream& in, std::tuple<T, T, T, T, T>& element);\n\
-    \ntemplate <typename T>\nbool read(std::istream& in, std::tuple<T, T, T, T>& element);\n\
-    \ntemplate <typename T>\nbool read(std::istream& in, std::tuple<T, T, T>& element);\n\
-    \ntemplate <typename T>\nbool read(std::istream& in, std::vector<T>& elements);\n\
-    \ninline bool read(std::istream& in, double& element) {\n\tbool result = true;\n\
-    \tstd::string convert;\n\tresult &= read(in, convert);\n\telement = std::stod(convert);\n\
-    \treturn result;\n}\n\ninline bool read(std::istream& in, long double& element)\
-    \ {\n\tbool result = true;\n\tstd::string convert;\n\tresult &= read(in, convert);\n\
-    \telement = std::stold(convert);\n\treturn result;\n}\n\ntemplate <typename Argument,\
-    \ typename... Arguments>\nbool read(std::istream& in, Argument& first, Arguments&...\
-    \ rest) {\n\tbool result = true;\n\tresult &= read(in, first);\n\tresult &= read(in,\
-    \ rest...);\n\treturn result;\n}\n\ntemplate <typename T, std::size_t Size>\n\
-    bool read(std::istream& in, std::array<T, Size>& elements) {\n\tbool result =\
-    \ true;\n\tfor (T& element : elements) result &= read(in, element);\n\treturn\
-    \ result;\n}\n\ntemplate <typename T1, typename T2>\nbool read(std::istream& in,\
-    \ std::pair<T1, T2>& element) {\n\treturn read(in, element.first, element.second);\n\
-    }\n\ntemplate <typename T>\nbool read(std::istream& in, T& element) {\n\treturn\
-    \ static_cast<bool>(in >> element);\n}\n\ntemplate <typename T>\nbool read(std::istream&\
-    \ in, std::complex<T>& element) {\n\tbool result = true;\n\tT first, second;\n\
-    \tresult &= read(in, first, second);\n\telement = std::complex<T>(first, second);\n\
-    \treturn result;\n}\n\ntemplate <typename T>\nbool read(std::istream& in, std::tuple<T,\
-    \ T, T, T, T, T>& element) {\n\treturn read(in, std::get<0>(element), std::get<1>(element),\n\
-    \t            std::get<2>(element), std::get<3>(element), std::get<4>(element),\n\
-    \t            std::get<5>(element));\n}\n\ntemplate <typename T>\nbool read(std::istream&\
-    \ in, std::tuple<T, T, T, T, T>& element) {\n\treturn read(in, std::get<0>(element),\
-    \ std::get<1>(element),\n\t            std::get<2>(element), std::get<3>(element),\
-    \ std::get<4>(element));\n}\n\ntemplate <typename T>\nbool read(std::istream&\
-    \ in, std::tuple<T, T, T, T>& element) {\n\treturn read(in, std::get<0>(element),\
-    \ std::get<1>(element),\n\t            std::get<2>(element), std::get<3>(element));\n\
-    }\n\ntemplate <typename T>\nbool read(std::istream& in, std::tuple<T, T, T>& element)\
-    \ {\n\treturn read(in, std::get<0>(element), std::get<1>(element),\n\t       \
-    \     std::get<2>(element));\n}\n\ntemplate <typename T>\nbool read(std::istream&\
-    \ in, std::vector<T>& elements) {\n\tbool result = true;\n\tfor (T& element :\
-    \ elements) result &= read(in, element);\n\treturn result;\n}\n\n\n#line 1 \"\
-    library/general/output.hpp\"\n\n\n\n// Verification:\n//\n#line 1 \"library/general/to_string.hpp\"\
-    \n\n\n\n#include <bitset>\n#line 6 \"library/general/to_string.hpp\"\n#include\
-    \ <string>\n#line 9 \"library/general/to_string.hpp\"\n\nnamespace std\n{\n\t\
-    inline std::string to_string(const bool& element);\n\n\tinline std::string to_string(const\
-    \ char& element);\n\n\tinline std::string to_string(const char *element);\n\n\t\
-    inline std::string to_string(const std::string& element);\n\n\tinline std::string\
-    \ to_string(const std::vector<bool>& elements);\n\n\ttemplate<typename T> std::string\
-    \ to_string(const T& elements);\n\n\ttemplate<std::size_t Size> std::string to_string(const\
-    \ std::bitset<Size>& elements);\n\n\ttemplate<typename T> std::string to_string(const\
-    \ std::complex<T>& element);\n\n\ttemplate<typename T1, typename T2> std::string\
-    \ to_string(std::pair<T1, T2> element);\n}  // namespace std\n\ninline std::string\
-    \ std::to_string(const bool& element)\n{\n#ifdef LOCAL\n\treturn element ? \"\
-    true\" : \"false\";\n#else\n\treturn std::string{static_cast<char>('0' + element)};\n\
-    #endif\n}\n\ninline std::string std::to_string(const char& element)\n{\n\treturn\
-    \ std::string(1, element);\n}\n\ninline std::string std::to_string(const char\
-    \ *element)\n{\n\treturn std::string(element);\n}\n\ninline std::string std::to_string(const\
+    \ninline bool read(std::istream& in, long double& element);\n\ntemplate<typename\
+    \ Argument, typename... Arguments> bool read(std::istream& in, Argument& first,\
+    \ Arguments& ... rest);\n\ntemplate<typename T, std::size_t Size> bool read(std::istream&\
+    \ in, std::array<T, Size>& elements);\n\ntemplate<typename T1, typename T2> bool\
+    \ read(std::istream& in, std::pair<T1, T2>& element);\n\ntemplate<typename T>\
+    \ bool read(std::istream& in, T& element);\n\ntemplate<typename T> bool read(std::istream&\
+    \ in, std::complex<T>& element);\n\ntemplate<typename T> bool read(std::istream&\
+    \ in, std::tuple<T, T, T, T, T, T>& element);\n\ntemplate<typename T> bool read(std::istream&\
+    \ in, std::tuple<T, T, T, T, T>& element);\n\ntemplate<typename T> bool read(std::istream&\
+    \ in, std::tuple<T, T, T, T>& element);\n\ntemplate<typename T> bool read(std::istream&\
+    \ in, std::tuple<T, T, T>& element);\n\ntemplate<typename T> bool read(std::istream&\
+    \ in, std::vector<T>& elements);\n\ninline bool read(std::istream& in, double&\
+    \ element)\n{\n\tbool result = true;\n\tstd::string convert;\n\tresult &= read(in,\
+    \ convert);\n\telement = std::stod(convert);\n\treturn result;\n}\n\ninline bool\
+    \ read(std::istream& in, long double& element)\n{\n\tbool result = true;\n\tstd::string\
+    \ convert;\n\tresult &= read(in, convert);\n\telement = std::stold(convert);\n\
+    \treturn result;\n}\n\ntemplate<typename Argument, typename... Arguments> bool\
+    \ read(std::istream& in, Argument& first, Arguments& ... rest)\n{\n\tbool result\
+    \ = true;\n\tresult &= read(in, first);\n\tresult &= read(in, rest...);\n\treturn\
+    \ result;\n}\n\ntemplate<typename T, std::size_t Size> bool read(std::istream&\
+    \ in, std::array<T, Size>& elements)\n{\n\tbool result = true;\n\tfor(T& element\
+    \ : elements)\n\t{ result &= read(in, element); }\n\treturn result;\n}\n\ntemplate<typename\
+    \ T1, typename T2> bool read(std::istream& in, std::pair<T1, T2>& element)\n{\n\
+    \treturn read(in, element.first, element.second);\n}\n\ntemplate<typename T> bool\
+    \ read(std::istream& in, T& element)\n{\n\treturn static_cast<bool>(in >> element);\n\
+    }\n\ntemplate<typename T> bool read(std::istream& in, std::complex<T>& element)\n\
+    {\n\tbool result = true;\n\tT first, second;\n\tresult &= read(in, first, second);\n\
+    \telement = std::complex<T>(first, second);\n\treturn result;\n}\n\ntemplate<typename\
+    \ T> bool read(std::istream& in, std::tuple<T, T, T, T, T, T>& element)\n{\n\t\
+    return read(in, std::get<0>(element), std::get<1>(element), std::get<2>(element),\
+    \ std::get<3>(element), std::get<4>(element), std::get<5>(element));\n}\n\ntemplate<typename\
+    \ T> bool read(std::istream& in, std::tuple<T, T, T, T, T>& element)\n{\n\treturn\
+    \ read(in, std::get<0>(element), std::get<1>(element), std::get<2>(element), std::get<3>(element),\
+    \ std::get<4>(element));\n}\n\ntemplate<typename T> bool read(std::istream& in,\
+    \ std::tuple<T, T, T, T>& element)\n{\n\treturn read(in, std::get<0>(element),\
+    \ std::get<1>(element), std::get<2>(element), std::get<3>(element));\n}\n\ntemplate<typename\
+    \ T> bool read(std::istream& in, std::tuple<T, T, T>& element)\n{\n\treturn read(in,\
+    \ std::get<0>(element), std::get<1>(element), std::get<2>(element));\n}\n\ntemplate<typename\
+    \ T> bool read(std::istream& in, std::vector<T>& elements)\n{\n\tbool result =\
+    \ true;\n\tfor(T& element : elements)\n\t{ result &= read(in, element); }\n\t\
+    return result;\n}\n\n\n#line 1 \"library/general/output.hpp\"\n\n\n\n// Verification:\n\
+    //\n#line 1 \"library/general/to_string.hpp\"\n\n\n\n#include <bitset>\n#line\
+    \ 6 \"library/general/to_string.hpp\"\n#include <string>\n#line 9 \"library/general/to_string.hpp\"\
+    \n\nnamespace std\n{\n\tinline std::string to_string(const bool& element);\n\n\
+    \tinline std::string to_string(const char& element);\n\n\tinline std::string to_string(const\
+    \ char* element);\n\n\tinline std::string to_string(const std::string& element);\n\
+    \n\tinline std::string to_string(const std::vector<bool>& elements);\n\n\ttemplate<typename\
+    \ T> std::string to_string(const T& elements);\n\n\ttemplate<std::size_t Size>\
+    \ std::string to_string(const std::bitset<Size>& elements);\n\n\ttemplate<typename\
+    \ T> std::string to_string(const std::complex<T>& element);\n\n\ttemplate<typename\
+    \ T1, typename T2> std::string to_string(std::pair<T1, T2> element);\n}  // namespace\
+    \ std\n\ninline std::string std::to_string(const bool& element)\n{\n#ifdef LOCAL\n\
+    \treturn element ? \"true\" : \"false\";\n#else\n\treturn std::string{static_cast<char>('0'\
+    \ + element)};\n#endif\n}\n\ninline std::string std::to_string(const char& element)\n\
+    {\n\treturn std::string(1, element);\n}\n\ninline std::string std::to_string(const\
+    \ char* element)\n{\n\treturn std::string(element);\n}\n\ninline std::string std::to_string(const\
     \ std::string& element)\n{\n\treturn element;\n}\n\ninline std::string std::to_string(const\
     \ std::vector<bool>& elements)\n{\n\tstd::string convert = \"{\";\n\tfor(const\
-    \ auto&& element : elements)\n\t\tconvert += static_cast<char>('0' + element);\n\
-    \treturn convert + \"}\";\n}\n\ntemplate<typename T> std::string std::to_string(const\
+    \ auto&& element : elements)\n\t{\n\t\tconvert += static_cast<char>('0' + element);\n\
+    \t}\n\treturn convert + \"}\";\n}\n\ntemplate<typename T> std::string std::to_string(const\
     \ T& elements)\n{\n\tstd::string convert;\n\tbool first = true;\n#ifdef LOCAL\n\
-    \tconvert += \"{\";\n  for (const auto& element : elements) {\n\tif (!first) convert\
-    \ += \", \";\n\tfirst = false;\n\tconvert += std::to_string(element);\n  }\n \
-    \ convert += \"}\";\n#else\n\tfor(const auto& element : elements)\n\t{\n\t\tif(!first)\
-    \ convert += \" \";\n\t\tfirst = false;\n\t\tconvert += std::to_string(element);\n\
+    \tconvert += \"{\";\n\tfor(const auto& element : elements)\n\t{\n\t\tif(!first)\n\
+    \t\t{ convert += \", \"; }\n\t\tfirst = false;\n\t\tconvert += std::to_string(element);\n\
+    \t}\n\tconvert += \"}\";\n#else\n\tfor(const auto& element : elements)\n\t{\n\t\
+    \tif(!first) convert += \" \";\n\t\tfirst = false;\n\t\tconvert += std::to_string(element);\n\
     \t}\n#endif\n\treturn convert;\n}\n\ntemplate<std::size_t Size> std::string std::to_string(const\
     \ std::bitset<Size>& elements)\n{\n\treturn elements.to_string();\n}\n\ntemplate<typename\
     \ T> std::string std::to_string(const std::complex<T>& element)\n{\n\tstd::stringstream\
     \ convert;\n\tconvert << element;\n\treturn convert.str();\n}\n\ntemplate<typename\
     \ T1, typename T2> std::string std::to_string(std::pair<T1, T2> element)\n{\n\
-    #ifdef LOCAL\n\treturn \"(\" + std::to_string(element.first) + \", \" +\n\t\t\
-    \ std::to_string(element.second) + \")\";\n#else\n\treturn std::to_string(element.ff)\
-    \ + \" \" + std::to_string(element.ss);\n#endif\n}\n\n\n#line 7 \"library/general/output.hpp\"\
-    \n#include <ostream>\n\ntemplate <typename Argument, typename... Arguments>\n\
-    void print(std::ostream& out, const Argument& first, const Arguments&... rest);\n\
-    \ntemplate <typename Argument, typename... Arguments>\nvoid printn(std::ostream&\
-    \ out, const Argument& first, const Arguments&... rest);\n\ntemplate <typename\
-    \ Argument, typename... Arguments>\nvoid prints(std::ostream& out, const Argument&\
-    \ first, const Arguments&... rest);\n\ntemplate <typename T>\nvoid print(std::ostream&\
-    \ out, const T& element);\n\ninline void printn(std::ostream& out);\n\ninline\
-    \ void prints(std::ostream& out);\n\ntemplate <typename T>\nvoid print(std::ostream&\
-    \ out, const T& element) {\n\tout << std::to_string(element);\n}\n\ninline void\
-    \ printn(std::ostream& out) { print(out, '\\n'); }\n\ninline void prints(std::ostream&\
-    \ out) { print(out, '\\n'); }\n\ntemplate <typename Argument, typename... Arguments>\n\
-    void print(std::ostream& out, const Argument& first, const Arguments&... rest)\
-    \ {\n\tprint(out, first);\n\tprint(out, rest...);\n}\n\ntemplate <typename Argument,\
-    \ typename... Arguments>\nvoid printn(std::ostream& out, const Argument& first,\
-    \ const Arguments&... rest) {\n\tprint(out, first);\n\tif (sizeof...(rest)) prints(out);\n\
-    \tprintn(out, rest...);\n}\n\ntemplate <typename Argument, typename... Arguments>\n\
-    void prints(std::ostream& out, const Argument& first, const Arguments&... rest)\
-    \ {\n\tprint(out, first);\n\tif (sizeof...(rest)) print(out, \" \");\n\tprints(out,\
-    \ rest...);\n}\n\n\n#line 1 \"library/general/speed.hpp\"\n\n\n\n#include <iostream>\n\
-    \ninline bool speed()\n{\n\tstd::cin.exceptions(std::cin.failbit);\n\treturn std::cin.tie(nullptr)\
+    #ifdef LOCAL\n\treturn \"(\" + std::to_string(element.first) + \", \" + std::to_string(element.second)\
+    \ + \")\";\n#else\n\treturn std::to_string(element.ff) + \" \" + std::to_string(element.ss);\n\
+    #endif\n}\n\n\n#line 7 \"library/general/output.hpp\"\n#include <ostream>\n\n\
+    template<typename Argument, typename... Arguments> void print(std::ostream& out,\
+    \ const Argument& first, const Arguments& ... rest);\n\ntemplate<typename Argument,\
+    \ typename... Arguments> void printn(std::ostream& out, const Argument& first,\
+    \ const Arguments& ... rest);\n\ntemplate<typename Argument, typename... Arguments>\
+    \ void prints(std::ostream& out, const Argument& first, const Arguments& ... rest);\n\
+    \ntemplate<typename T> void print(std::ostream& out, const T& element);\n\ninline\
+    \ void printn(std::ostream& out);\n\ninline void prints(std::ostream& out);\n\n\
+    template<typename T> void print(std::ostream& out, const T& element)\n{\n\tout\
+    \ << std::to_string(element);\n}\n\ninline void printn(std::ostream& out)\n{\n\
+    \tprint(out, '\\n');\n}\n\ninline void prints(std::ostream& out)\n{\n\tprint(out,\
+    \ '\\n');\n}\n\ntemplate<typename Argument, typename... Arguments> void print(std::ostream&\
+    \ out, const Argument& first, const Arguments& ... rest)\n{\n\tprint(out, first);\n\
+    \tprint(out, rest...);\n}\n\ntemplate<typename Argument, typename... Arguments>\
+    \ void printn(std::ostream& out, const Argument& first, const Arguments& ... rest)\n\
+    {\n\tprint(out, first);\n\tif(sizeof...(rest))\n\t{ prints(out); }\n\tprintn(out,\
+    \ rest...);\n}\n\ntemplate<typename Argument, typename... Arguments> void prints(std::ostream&\
+    \ out, const Argument& first, const Arguments& ... rest)\n{\n\tprint(out, first);\n\
+    \tif(sizeof...(rest))\n\t{ print(out, \" \"); }\n\tprints(out, rest...);\n}\n\n\
+    \n#line 1 \"library/general/speed.hpp\"\n\n\n\n#include <iostream>\n\ninline bool\
+    \ speed()\n{\n\tstd::cin.exceptions(std::cin.failbit);\n\treturn std::cin.tie(nullptr)\
     \ && std::ios_base::sync_with_stdio(false);\n}\n\n\n#line 4 \"verification/numerical/factors/optimized_rho_factorization.test.cpp\"\
     \n\n#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\n\n#include\
     \ <algorithm>\n#include <cstdint>\n#line 11 \"verification/numerical/factors/optimized_rho_factorization.test.cpp\"\
@@ -193,7 +191,7 @@ data:
     template<typename T> using ordered_multiset = __gnu_pbds::tree<T, __gnu_pbds::null_type,\
     \ std::less_equal<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
     \n#endif\n\n#line 1 \"library/general/unused.hpp\"\n\n\n\ntemplate<class... T>\
-    \ void unused(T&& ...) {}\n\n\n#line 144 \"library/general/base.hpp\"\n\n#define\
+    \ void unused(T&& ...)\n{\n}\n\n\n#line 144 \"library/general/base.hpp\"\n\n#define\
     \ ALL(set) std::begin(set), std::end(set)\n#define RALL(set) std::rbegin(set),\
     \ std::rend(set)\n\n#define mp std::make_pair\n#define mt std::make_tuple\n#define\
     \ pb push_back\n#define eb emplace_back\n#define ff first\n#define ss second\n\
@@ -207,11 +205,11 @@ data:
     \ __int128>;\n\n#endif\n\nusing ld = long double;\nusing pld = std::pair<long\
     \ double, long double>;\nusing vld = std::vector<long double>;\n\n\n#line 1 \"\
     library/general/prng.hpp\"\n\n\n\n#include <chrono>\n#include <random>\n\ninline\
-    \ std::mt19937_64& getPRNG()\n{\n\tstatic std::mt19937_64 PRNG{ static_cast<std::uint_fast64_t>(\
-    \ std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now().time_since_epoch()).count())\
-    \ };\n\treturn PRNG;\n}\n\ntemplate<typename T> T getUID(const T& low, const T&\
-    \ high)\n{\n\treturn std::uniform_int_distribution<T>(low, high)(getPRNG());\n\
-    }\n\ntemplate<typename T> T getURD(const T& low, const T& high)\n{\n\treturn std::uniform_real_distribution<T>(low,\
+    \ std::mt19937_64& getPRNG()\n{\n\tstatic std::mt19937_64 PRNG{static_cast<std::uint_fast64_t>(\
+    \ std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now().time_since_epoch()).count())};\n\
+    \treturn PRNG;\n}\n\ntemplate<typename T> T getUID(const T& low, const T& high)\n\
+    {\n\treturn std::uniform_int_distribution<T>(low, high)(getPRNG());\n}\n\ntemplate<typename\
+    \ T> T getURD(const T& low, const T& high)\n{\n\treturn std::uniform_real_distribution<T>(low,\
     \ high)(getPRNG());\n}\n\n\n#line 1 \"library/numerical/primality/miller_rabin_primality_test.hpp\"\
     \n\n\n\n#line 6 \"library/numerical/primality/miller_rabin_primality_test.hpp\"\
     \n\n#line 1 \"library/numerical/trailing_zero_bits.hpp\"\n\n\n\n// Verification:\n\
@@ -276,7 +274,7 @@ data:
     \t{\n\t\tstd::int_fast64_t a;\n\t\tread(std::cin, a);\n\t\tstd::vector<std::int_fast64_t>\
     \ factors = factors::optimized_rho_factorize<std::int_fast64_t>(a);\n\t\tstd::sort(std::begin(factors),\
     \ std::end(factors));\n\t\tprints(std::cout, std::size(factors), factors);\n\t\
-    }\n\tstd::fflush(stdout);\n}\n"
+    }\n}\n"
   code: "#include \"../../../library/general/input.hpp\"\n#include \"../../../library/general/output.hpp\"\
     \n#include \"../../../library/general/speed.hpp\"\n\n#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\
     \n\n#include <algorithm>\n#include <cstdint>\n#include <iostream>\n#include <vector>\n\
@@ -285,7 +283,7 @@ data:
     while(q--)\n\t{\n\t\tstd::int_fast64_t a;\n\t\tread(std::cin, a);\n\t\tstd::vector<std::int_fast64_t>\
     \ factors = factors::optimized_rho_factorize<std::int_fast64_t>(a);\n\t\tstd::sort(std::begin(factors),\
     \ std::end(factors));\n\t\tprints(std::cout, std::size(factors), factors);\n\t\
-    }\n\tstd::fflush(stdout);\n}\n"
+    }\n}\n"
   dependsOn:
   - library/general/input.hpp
   - library/general/output.hpp
@@ -304,7 +302,7 @@ data:
   isVerificationFile: true
   path: verification/numerical/factors/optimized_rho_factorization.test.cpp
   requiredBy: []
-  timestamp: '2021-03-25 19:06:09-06:00'
+  timestamp: '2021-03-26 00:07:57-06:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verification/numerical/factors/optimized_rho_factorization.test.cpp

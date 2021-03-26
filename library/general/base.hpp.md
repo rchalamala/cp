@@ -308,7 +308,11 @@ data:
 
 
 
-    template<class... T> void unused(T&& ...) {}
+    template<class... T> void unused(T&& ...)
+
+    {
+
+    }
 
 
 
@@ -724,7 +728,7 @@ data:
   - library/numerical/factors/optimized_rho_factorization.hpp
   - library/numerical/factors/pollards_rho_factorization.hpp
   - library/numerical/factors/pollards_rho_factorization.hpp
-  timestamp: '2021-03-25 18:03:40-06:00'
+  timestamp: '2021-03-26 00:07:57-06:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verification/numerical/factors/pollards_rho_factorization.test.cpp

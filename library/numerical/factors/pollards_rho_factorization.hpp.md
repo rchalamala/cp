@@ -73,7 +73,7 @@ data:
     template<typename T> using ordered_multiset = __gnu_pbds::tree<T, __gnu_pbds::null_type,\
     \ std::less_equal<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
     \n#endif\n\n#line 1 \"library/general/unused.hpp\"\n\n\n\ntemplate<class... T>\
-    \ void unused(T&& ...) {}\n\n\n#line 144 \"library/general/base.hpp\"\n\n#define\
+    \ void unused(T&& ...)\n{\n}\n\n\n#line 144 \"library/general/base.hpp\"\n\n#define\
     \ ALL(set) std::begin(set), std::end(set)\n#define RALL(set) std::rbegin(set),\
     \ std::rend(set)\n\n#define mp std::make_pair\n#define mt std::make_tuple\n#define\
     \ pb push_back\n#define eb emplace_back\n#define ff first\n#define ss second\n\
@@ -87,11 +87,11 @@ data:
     \ __int128>;\n\n#endif\n\nusing ld = long double;\nusing pld = std::pair<long\
     \ double, long double>;\nusing vld = std::vector<long double>;\n\n\n#line 1 \"\
     library/general/prng.hpp\"\n\n\n\n#include <chrono>\n#include <random>\n\ninline\
-    \ std::mt19937_64& getPRNG()\n{\n\tstatic std::mt19937_64 PRNG{ static_cast<std::uint_fast64_t>(\
-    \ std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now().time_since_epoch()).count())\
-    \ };\n\treturn PRNG;\n}\n\ntemplate<typename T> T getUID(const T& low, const T&\
-    \ high)\n{\n\treturn std::uniform_int_distribution<T>(low, high)(getPRNG());\n\
-    }\n\ntemplate<typename T> T getURD(const T& low, const T& high)\n{\n\treturn std::uniform_real_distribution<T>(low,\
+    \ std::mt19937_64& getPRNG()\n{\n\tstatic std::mt19937_64 PRNG{static_cast<std::uint_fast64_t>(\
+    \ std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now().time_since_epoch()).count())};\n\
+    \treturn PRNG;\n}\n\ntemplate<typename T> T getUID(const T& low, const T& high)\n\
+    {\n\treturn std::uniform_int_distribution<T>(low, high)(getPRNG());\n}\n\ntemplate<typename\
+    \ T> T getURD(const T& low, const T& high)\n{\n\treturn std::uniform_real_distribution<T>(low,\
     \ high)(getPRNG());\n}\n\n\n#line 1 \"library/numerical/primality/miller_rabin_primality_test.hpp\"\
     \n\n\n\n#line 6 \"library/numerical/primality/miller_rabin_primality_test.hpp\"\
     \n\n#line 1 \"library/numerical/trailing_zero_bits.hpp\"\n\n\n\n// Verification:\n\
@@ -176,7 +176,7 @@ data:
   isVerificationFile: false
   path: library/numerical/factors/pollards_rho_factorization.hpp
   requiredBy: []
-  timestamp: '2021-03-25 19:06:09-06:00'
+  timestamp: '2021-03-26 00:07:57-06:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verification/numerical/factors/pollards_rho_factorization.test.cpp

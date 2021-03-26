@@ -66,7 +66,7 @@ data:
     template<typename T> using ordered_multiset = __gnu_pbds::tree<T, __gnu_pbds::null_type,\
     \ std::less_equal<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
     \n#endif\n\n#line 1 \"library/general/unused.hpp\"\n\n\n\ntemplate<class... T>\
-    \ void unused(T&& ...) {}\n\n\n#line 144 \"library/general/base.hpp\"\n\n#define\
+    \ void unused(T&& ...)\n{\n}\n\n\n#line 144 \"library/general/base.hpp\"\n\n#define\
     \ ALL(set) std::begin(set), std::end(set)\n#define RALL(set) std::rbegin(set),\
     \ std::rend(set)\n\n#define mp std::make_pair\n#define mt std::make_tuple\n#define\
     \ pb push_back\n#define eb emplace_back\n#define ff first\n#define ss second\n\
@@ -136,7 +136,7 @@ data:
   requiredBy:
   - library/numerical/factors/optimized_rho_factorization.hpp
   - library/numerical/factors/pollards_rho_factorization.hpp
-  timestamp: '2021-03-25 18:18:10-06:00'
+  timestamp: '2021-03-26 00:07:57-06:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verification/numerical/factors/pollards_rho_factorization.test.cpp

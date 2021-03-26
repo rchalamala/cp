@@ -3,12 +3,12 @@ data:
   libraryCategories:
   - name: library/data_structures/segment_tree
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/data_structures/segment_tree/segment_tree.hpp
       title: library/data_structures/segment_tree/segment_tree.hpp
   - name: library/data_structures/segment_tree/segment_tree_functions
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp
       title: library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp
     - icon: ':warning:'
@@ -40,6 +40,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/general/unused.hpp
       title: library/general/unused.hpp
+  - name: library/graph
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: library/graph/heavy_light_decomposition.hpp
+      title: library/graph/heavy_light_decomposition.hpp
   - name: library/numerical/factors
     pages:
     - icon: ':heavy_check_mark:'
@@ -53,12 +58,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/numerical/primality/miller_rabin_primality_test.hpp
       title: library/numerical/primality/miller_rabin_primality_test.hpp
-    - icon: ':warning:'
-      path: library/numerical/primality/optimized_trial_division_primality_test.hpp
-      title: library/numerical/primality/optimized_trial_division_primality_test.hpp
-    - icon: ':warning:'
-      path: library/numerical/primality/trial_division_primality_test.hpp
-      title: library/numerical/primality/trial_division_primality_test.hpp
   - name: library/numerical
     pages:
     - icon: ':heavy_check_mark:'
@@ -68,6 +67,19 @@ data:
       path: library/numerical/trailing_zero_bits.hpp
       title: library/numerical/trailing_zero_bits.hpp
   verificationCategories:
+  - name: verification/data_structures
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: verification/data_structures/segment_tree_add_sum.test.cpp
+      title: verification/data_structures/segment_tree_add_sum.test.cpp
+  - name: verification/graph
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: verification/graph/heavy_light_decomposition_path.test.cpp
+      title: verification/graph/heavy_light_decomposition_path.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verification/graph/heavy_light_decomposition_subtree.test.cpp
+      title: verification/graph/heavy_light_decomposition_subtree.test.cpp
   - name: verification/numerical/factors
     pages:
     - icon: ':heavy_check_mark:'
