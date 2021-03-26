@@ -1,15 +1,14 @@
 #ifndef POLLARDS_RHO_FACTORIZATION_HPP
 #define POLLARDS_RHO_FACTORIZATION_HPP
 
-#include <chrono>
-#include <cmath>
+#include <algorithm>
 #include <type_traits>
 #include <vector>
-#include <random>
 
 #include "../../general/base.hpp"
 #include "../../general/prng.hpp"
 #include "../primality/miller_rabin_primality_test.hpp"
+#include "../steins_gcd.hpp"
 
 namespace factors
 {
@@ -17,7 +16,7 @@ namespace factors
 	{
 		static_assert(std::is_integral_v<T>);
 		assert(n >= 0);
-		if(n & 1 ^ 1)
+		if((n & 1) ^ 1)
 		{ return 2; }
 		if(primality::miller_rabin(n))
 		{ return n; }
@@ -30,7 +29,7 @@ namespace factors
 			T x = f(x0), y = f(x);
 			while(true)
 			{
-				T divisor = gcd(std::max(x, y) - std::min(x, y), n);
+				T divisor = steins_gcd(std::max(x, y) - std::min(x, y), n);
 				if(divisor == n)
 				{ break; }
 				if(divisor != 1)

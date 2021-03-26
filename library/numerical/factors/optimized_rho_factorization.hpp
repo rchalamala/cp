@@ -1,16 +1,13 @@
 #ifndef OPTIMIZED_RHO_FACTORIZATION_HPP
 #define OPTIMIZED_RHO_FACTORIZATION_HPP
 
-#include <chrono>
-#include <cmath>
 #include <type_traits>
 #include <vector>
-#include <random>
 
 #include "../../general/base.hpp"
 #include "../../general/prng.hpp"
-#include "../steins_gcd.hpp"
 #include "../primality/miller_rabin_primality_test.hpp"
+#include "../steins_gcd.hpp"
 #include "../trailing_zero_bits.hpp"
 
 namespace factors
