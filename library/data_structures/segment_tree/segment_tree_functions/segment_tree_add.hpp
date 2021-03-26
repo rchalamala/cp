@@ -1,10 +1,15 @@
 #ifndef SEGMENT_TREE_ADD_HPP
 #define SEGMENT_TREE_ADD_HPP
 
+#include <cstddef>
+#include <type_traits>
+
 #include "../../../general/unused.hpp"
 
 template<typename T> struct AddNode
 {
+	static_assert(std::is_integral_v<T>);
+
 	T m_value = 0, m_delta = 0, m_set = 0;
 	bool m_validSet = false;
 
@@ -23,6 +28,8 @@ template<typename T> struct AddNode
 
 template<typename T, typename Node> struct Add
 {
+	static_assert(std::is_integral_v<T>);
+
 	Node identity = Node{};
 
 	T return_value(const Node& element)

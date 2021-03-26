@@ -48,8 +48,8 @@ namespace factors
 		{ return {}; }
 		T factor = pollards_rho<T>(n);
 		if(n == factor)
-		{ return std::vector<T>{ n }; }
-		std::vector<T> original{ pollards_rho_factorize(factor) }, divided{ pollards_rho_factorize(n / factor) };
+		{ return std::vector<T>{n}; }
+		std::vector<T> original{pollards_rho_factorize(factor)}, divided{pollards_rho_factorize(n / factor)};
 		original.insert(original.end(), divided.begin(), divided.end());
 		return original;
 	}

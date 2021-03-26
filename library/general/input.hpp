@@ -1,8 +1,6 @@
 #ifndef INPUT_HPP
 #define INPUT_HPP
 
-// Verification:
-//
 #include <array>
 #include <complex>
 #include <istream>

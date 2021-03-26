@@ -25,7 +25,7 @@ namespace primality
 		return result;
 	}
 
-	template<typename T> bool miller_rabin(const T& n, const bool& checkBaseCases = true, const std::vector<T>& A = { 2, 325, 9375, 28178, 450775, 9780504, 1795265022 })
+	template<typename T> bool miller_rabin(const T& n, const bool& checkBaseCases = true, const std::vector<T>& A = {2, 325, 9375, 28178, 450775, 9780504, 1795265022})
 	{
 		static_assert(std::is_integral_v<T>);
 		if(checkBaseCases)
@@ -34,7 +34,7 @@ namespace primality
 			{ return false; }
 			if(n <= 2)
 			{ return true; }
-			for(const auto& a : { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97 })
+			for(const auto& a : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97})
 			{
 				if(a > n)
 				{ break; }

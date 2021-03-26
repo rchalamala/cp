@@ -1,6 +1,9 @@
 #ifndef SEGMENT_TREE_HPP
 #define SEGMENT_TREE_HPP
 
+#include <cstddef>
+#include <vector>
+
 template<class F, class Node> class SegmentTree
 {
 public:

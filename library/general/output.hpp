@@ -1,8 +1,6 @@
 #ifndef OUTPUT_HPP
 #define OUTPUT_HPP
 
-// Verification:
-//
 #include "to_string.hpp"
 #include <ostream>
 
