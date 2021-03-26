@@ -7,7 +7,7 @@
 
 #include "../../../library/general/input.hpp"
 #include "../../../library/general/output.hpp"
-#include "../../../library/numerical/factors/optimized_rho_factorize.hpp"
+#include "../../../library/numerical/factors/optimized_rho_factorization.hpp"
 
 int main()
 {
