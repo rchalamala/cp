@@ -12,7 +12,7 @@
 int main()
 {
 	std::cin.tie(nullptr)->std::ios_base::sync_with_stdio(false);
-	std::int_fast8_t q;
+	std::int_fast16_t q;
 	read(std::cin, q);
 	while(q--)
 	{

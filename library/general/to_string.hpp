@@ -73,7 +73,7 @@ template<typename T> std::string std::to_string(const T& elements)
   }
   convert += "}";
 #else
-	for(const T& element : elements)
+	for(const auto& element : elements)
 	{
 		if(!first) convert += " ";
 		first = false;
