@@ -18,6 +18,15 @@ data:
     path: library/numerical/factors/pollards_rho_factorization.hpp
     title: library/numerical/factors/pollards_rho_factorization.hpp
   - icon: ':heavy_check_mark:'
+    path: library/numerical/factors/pollards_rho_factorization.hpp
+    title: library/numerical/factors/pollards_rho_factorization.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/montgomery.hpp
+    title: library/numerical/montgomery.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/primality/miller_rabin_primality_test.hpp
+    title: library/numerical/primality/miller_rabin_primality_test.hpp
+  - icon: ':heavy_check_mark:'
     path: library/numerical/primality/miller_rabin_primality_test.hpp
     title: library/numerical/primality/miller_rabin_primality_test.hpp
   - icon: ':heavy_check_mark:'
@@ -39,33 +48,44 @@ data:
   - icon: ':heavy_check_mark:'
     path: verification/numerical/factors/pollards_rho_factorization.test.cpp
     title: verification/numerical/factors/pollards_rho_factorization.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verification/numerical/factors/pollards_rho_factorization.test.cpp
+    title: verification/numerical/factors/pollards_rho_factorization.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/numerical/trailing_zero_bits.hpp\"\n\n\n\n#include\
-    \ <type_traits>\n\ntemplate<typename T> T trailing_zero_bits(T element)\n{\n\t\
-    static_assert(std::is_integral_v<T>);\n\tT result = 0;\n\tfor(; (element & 1)\
-    \ ^ 1; ++result)\n\t{\n\t\telement >>= 1;\n\t}\n\treturn result;\n}\n\n\n"
+    \ <cstdint>\n#include <type_traits>\n\ntemplate<typename T> std::uint64_t trailing_zero_bits(const\
+    \ T& element)\n{\n\tstatic_assert(std::is_integral_v<T>);\n\treturn __builtin_ctzll(element);\n\
+    }\n\n/*\ntemplate<typename T> T trailing_zero_bits(T element)\n{\n\tstatic_assert(std::is_integral_v<T>);\n\
+    \tT result{};\n\tfor(; (element & 1) ^ 1; ++result)\n\t{\n\t\telement >>= 1;\n\
+    \t}\n\treturn result;\n}\n*/\n\n\n"
   code: "#ifndef TRAILING_ZERO_BITS_HPP\n#define TRAILING_ZERO_BITS_HPP\n\n#include\
-    \ <type_traits>\n\ntemplate<typename T> T trailing_zero_bits(T element)\n{\n\t\
-    static_assert(std::is_integral_v<T>);\n\tT result = 0;\n\tfor(; (element & 1)\
-    \ ^ 1; ++result)\n\t{\n\t\telement >>= 1;\n\t}\n\treturn result;\n}\n\n#endif"
+    \ <cstdint>\n#include <type_traits>\n\ntemplate<typename T> std::uint64_t trailing_zero_bits(const\
+    \ T& element)\n{\n\tstatic_assert(std::is_integral_v<T>);\n\treturn __builtin_ctzll(element);\n\
+    }\n\n/*\ntemplate<typename T> T trailing_zero_bits(T element)\n{\n\tstatic_assert(std::is_integral_v<T>);\n\
+    \tT result{};\n\tfor(; (element & 1) ^ 1; ++result)\n\t{\n\t\telement >>= 1;\n\
+    \t}\n\treturn result;\n}\n*/\n\n#endif"
   dependsOn: []
   isVerificationFile: false
   path: library/numerical/trailing_zero_bits.hpp
   requiredBy:
+  - library/numerical/montgomery.hpp
   - library/numerical/steins_gcd.hpp
+  - library/numerical/primality/miller_rabin_primality_test.hpp
   - library/numerical/primality/miller_rabin_primality_test.hpp
   - library/numerical/factors/optimized_rho_factorization.hpp
   - library/numerical/factors/optimized_rho_factorization.hpp
   - library/numerical/factors/optimized_rho_factorization.hpp
   - library/numerical/factors/pollards_rho_factorization.hpp
   - library/numerical/factors/pollards_rho_factorization.hpp
-  timestamp: '2021-03-26 00:48:11-06:00'
+  - library/numerical/factors/pollards_rho_factorization.hpp
+  timestamp: '2021-03-28 23:42:17-06:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verification/numerical/factors/pollards_rho_factorization.test.cpp
   - verification/numerical/factors/pollards_rho_factorization.test.cpp
   - verification/numerical/factors/pollards_rho_factorization.test.cpp
   - verification/numerical/factors/optimized_rho_factorization.test.cpp

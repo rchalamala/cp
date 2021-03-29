@@ -31,6 +31,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/general/to_string.hpp
       title: library/general/to_string.hpp
+    - icon: ':warning:'
+      path: library/general/type_traits.hpp
+      title: library/general/type_traits.hpp
     - icon: ':heavy_check_mark:'
       path: library/general/unused.hpp
       title: library/general/unused.hpp
@@ -47,19 +50,25 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/numerical/factors/pollards_rho_factorization.hpp
       title: library/numerical/factors/pollards_rho_factorization.hpp
-  - name: library/numerical/primality
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: library/numerical/primality/miller_rabin_primality_test.hpp
-      title: library/numerical/primality/miller_rabin_primality_test.hpp
   - name: library/numerical
     pages:
+    - icon: ':heavy_check_mark:'
+      path: library/numerical/list_of_primes.hpp
+      title: library/numerical/list_of_primes.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/numerical/montgomery.hpp
+      title: library/numerical/montgomery.hpp
     - icon: ':heavy_check_mark:'
       path: library/numerical/steins_gcd.hpp
       title: library/numerical/steins_gcd.hpp
     - icon: ':heavy_check_mark:'
       path: library/numerical/trailing_zero_bits.hpp
       title: library/numerical/trailing_zero_bits.hpp
+  - name: library/numerical/primality
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: library/numerical/primality/miller_rabin_primality_test.hpp
+      title: library/numerical/primality/miller_rabin_primality_test.hpp
   verificationCategories:
   - name: verification/data_structures
     pages:

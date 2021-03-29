@@ -22,37 +22,37 @@ data:
     links: []
   bundledCode: "#line 1 \"library/general/prng.hpp\"\n\n\n\n#include <chrono>\n#include\
     \ <type_traits>\n#include <random>\n\ninline std::mt19937_64& getPRNG()\n{\n\t\
-    static std::mt19937_64 PRNG{static_cast<std::uint_fast64_t>( std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now().time_since_epoch()).count())};\n\
-    \treturn PRNG;\n}\n\ntemplate<typename T1, typename T2> typename std::common_type<T1,\
-    \ T2>::type getUID(const T1& u_low, const T2& u_high)\n{\n\tstatic_assert(std::is_integral_v<T1>);\n\
-    \tstatic_assert(std::is_integral_v<T2>);\n\ttypename std::common_type<T1, T2>::type\
-    \ low{u_low}, high{u_high};\n\treturn std::uniform_int_distribution<typename std::common_type<T1,\
-    \ T2>::type>(low, high)(getPRNG());\n}\n\ntemplate<typename T1, typename T2> typename\
-    \ std::common_type<T1, T2>::type getURD(const T1& u_low, const T2& u_high)\n{\n\
-    \tstatic_assert(std::is_floating_point_v<T1>);\n\tstatic_assert(std::is_floating_point_v<T2>);\n\
-    \ttypename std::common_type<T1, T2>::type low{u_low}, high{u_high};\n\treturn\
-    \ std::uniform_real_distribution<typename std::common_type<T1, T2>::type>(low,\
-    \ high)(getPRNG());\n}\n\n\n"
-  code: "#ifndef PRNG_HPP\n#define PRNG_HPP\n\n#include <chrono>\n#include <type_traits>\n\
-    #include <random>\n\ninline std::mt19937_64& getPRNG()\n{\n\tstatic std::mt19937_64\
+    #ifdef LOCAL\n\tstatic std::mt19937_64 PRNG{0};\n\t#else\n\tstatic std::mt19937_64\
     \ PRNG{static_cast<std::uint_fast64_t>( std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now().time_since_epoch()).count())};\n\
-    \treturn PRNG;\n}\n\ntemplate<typename T1, typename T2> typename std::common_type<T1,\
-    \ T2>::type getUID(const T1& u_low, const T2& u_high)\n{\n\tstatic_assert(std::is_integral_v<T1>);\n\
+    \t#endif\n\treturn PRNG;\n}\n\ntemplate<typename T1, typename T2> typename std::common_type<T1,\
+    \ T2>::type getUID(const T1& uLow, const T2& uHigh)\n{\n\tstatic_assert(std::is_integral_v<T1>);\n\
     \tstatic_assert(std::is_integral_v<T2>);\n\ttypename std::common_type<T1, T2>::type\
-    \ low{u_low}, high{u_high};\n\treturn std::uniform_int_distribution<typename std::common_type<T1,\
+    \ low{uLow}, high{uHigh};\n\treturn std::uniform_int_distribution<typename std::common_type<T1,\
     \ T2>::type>(low, high)(getPRNG());\n}\n\ntemplate<typename T1, typename T2> typename\
-    \ std::common_type<T1, T2>::type getURD(const T1& u_low, const T2& u_high)\n{\n\
-    \tstatic_assert(std::is_floating_point_v<T1>);\n\tstatic_assert(std::is_floating_point_v<T2>);\n\
-    \ttypename std::common_type<T1, T2>::type low{u_low}, high{u_high};\n\treturn\
-    \ std::uniform_real_distribution<typename std::common_type<T1, T2>::type>(low,\
-    \ high)(getPRNG());\n}\n\n#endif"
+    \ std::common_type<T1, T2>::type getURD(const T1& uLow, const T2& uHigh)\n{\n\t\
+    static_assert(std::is_floating_point_v<T1>);\n\tstatic_assert(std::is_floating_point_v<T2>);\n\
+    \ttypename std::common_type<T1, T2>::type low{uLow}, high{uHigh};\n\treturn std::uniform_real_distribution<typename\
+    \ std::common_type<T1, T2>::type>(low, high)(getPRNG());\n}\n\n\n"
+  code: "#ifndef PRNG_HPP\n#define PRNG_HPP\n\n#include <chrono>\n#include <type_traits>\n\
+    #include <random>\n\ninline std::mt19937_64& getPRNG()\n{\n\t#ifdef LOCAL\n\t\
+    static std::mt19937_64 PRNG{0};\n\t#else\n\tstatic std::mt19937_64 PRNG{static_cast<std::uint_fast64_t>(\
+    \ std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now().time_since_epoch()).count())};\n\
+    \t#endif\n\treturn PRNG;\n}\n\ntemplate<typename T1, typename T2> typename std::common_type<T1,\
+    \ T2>::type getUID(const T1& uLow, const T2& uHigh)\n{\n\tstatic_assert(std::is_integral_v<T1>);\n\
+    \tstatic_assert(std::is_integral_v<T2>);\n\ttypename std::common_type<T1, T2>::type\
+    \ low{uLow}, high{uHigh};\n\treturn std::uniform_int_distribution<typename std::common_type<T1,\
+    \ T2>::type>(low, high)(getPRNG());\n}\n\ntemplate<typename T1, typename T2> typename\
+    \ std::common_type<T1, T2>::type getURD(const T1& uLow, const T2& uHigh)\n{\n\t\
+    static_assert(std::is_floating_point_v<T1>);\n\tstatic_assert(std::is_floating_point_v<T2>);\n\
+    \ttypename std::common_type<T1, T2>::type low{uLow}, high{uHigh};\n\treturn std::uniform_real_distribution<typename\
+    \ std::common_type<T1, T2>::type>(low, high)(getPRNG());\n}\n\n#endif"
   dependsOn: []
   isVerificationFile: false
   path: library/general/prng.hpp
   requiredBy:
   - library/numerical/factors/optimized_rho_factorization.hpp
   - library/numerical/factors/pollards_rho_factorization.hpp
-  timestamp: '2021-03-26 00:48:11-06:00'
+  timestamp: '2021-03-28 23:42:17-06:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verification/numerical/factors/pollards_rho_factorization.test.cpp
