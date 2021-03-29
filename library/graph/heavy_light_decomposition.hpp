@@ -1,15 +1,14 @@
 #ifndef HEAVY_LIGHT_DECOMPOSITION_HPP
 #define HEAVY_LIGHT_DECOMPOSITION_HPP
 
+#include <cassert>
 #include <cstddef>
 #include <type_traits>
 #include <utility>
 #include <vector>
 
-template<class T, class Tree> class HeavyLightDecomposition
+template<class Tree> class HeavyLightDecomposition
 {
-	static_assert(std::is_integral_v<T>);
-
 	std::vector<std::size_t> sizes, parent, depths, head;
 	std::vector<std::pair<std::size_t, std::size_t>> times;
 	Tree tree;
@@ -60,7 +59,8 @@ template<class T, class Tree> class HeavyLightDecomposition
 		operation(times[u].first, times[v].first);
 	}
 
-	void initialize(std::vector<std::vector<std::size_t>>& graph, const std::size_t& root)
+public:
+	explicit HeavyLightDecomposition(std::vector<std::vector<std::size_t>>& graph, const std::size_t& root = 0) : sizes(graph.size()), parent(graph.size()), depths(graph.size()), head(graph.size()), times(graph.size()), tree{graph.size()}
 	{
 		parent[root] = root;
 		depths[root] = 0;
@@ -69,19 +69,13 @@ template<class T, class Tree> class HeavyLightDecomposition
 		decompose(graph, root);
 	}
 
-public:
-	HeavyLightDecomposition(std::vector<std::vector<std::size_t>>& graph, const std::vector<T> elements, const std::size_t& root = 0) : sizes(graph.size()), parent(graph.size()), depths(graph.size()), head(graph.size()), times(graph.size()), tree{graph.size()}
+	template<typename Iterable> void build(const Iterable& elements)
 	{
-		initialize(graph, root);
-		std::vector<T> positionedElements(graph.size());
-		for(std::size_t i = 0; i < graph.size(); ++i)
+		assert(elements.size() && elements.size() <= std::size(sizes));
+		Iterable positionedElements(elements.size());
+		for(std::size_t i = 0; i < positionedElements.size(); ++i)
 		{ positionedElements[times[i].first] = elements[i]; }
 		tree.build(positionedElements);
-	}
-
-	HeavyLightDecomposition(std::vector<std::vector<std::size_t>>& graph, const std::size_t& root = 0) : sizes(graph.size()), parent(graph.size()), depths(graph.size()), head(graph.size()), times(graph.size()), tree{graph.size()}
-	{
-		initialize(graph, root);
 	}
 
 	template<typename... Arguments> void update_sub_tree(const std::size_t& i, const Arguments& ... rest)
@@ -102,7 +96,7 @@ public:
 
 	auto range(const std::size_t& u, const std::size_t& v)
 	{
-		auto result = tree.f.identity;
+		auto result{tree.f.identity};
 		path(u, v, [this, &result](const std::size_t& left, const std::size_t& right)
 		{ result = tree.f.value(result, tree.range(left, right)); });
 		return tree.f.return_value(result);

@@ -18,9 +18,9 @@ int main()
 	read(std::cin, q);
 	while(q--)
 	{
-		std::int_fast64_t a;
+		std::uint_fast64_t a;
 		read(std::cin, a);
-		std::vector<std::int_fast64_t> factors = factors::optimized_rho_factorize<std::int_fast64_t>(a);
+		std::vector<std::uint_fast64_t> factors = factors::optimized_rho_factorize<std::uint_fast64_t>(a);
 		std::sort(std::begin(factors), std::end(factors));
 		prints(std::cout, std::size(factors), factors);
 	}

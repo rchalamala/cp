@@ -53,7 +53,7 @@ namespace JHelper
 
 std::string red{ "\x1B[31m" }, green{ "\x1B[32m" }, yellow{ "\x1B[33m" }, blue{ "\x1B[34m" }, original{ "\033[0m" };
 
-std::uint32_t testID{};
+std::uint_fast32_t testID{};
 std::chrono::duration<long double, std::milli> testTime{};
 bool testOK{}, actualBruteForce{};
 std::string testOutput{};
@@ -156,14 +156,15 @@ void run_test(JHelper::Test& test, const std::int64_t& stressTestIteration = 0, 
 	}
 }
 
-int main(int argc, char* argv[])
+int main(int argc, char** argv)
 {
 	static_assert(!%ClassName%::stressTestIterations || (%ClassName%::stressTestIterations && !%ClassName%::bruteForceAllIterations));
 	unused(argc, argv);
+	std::chrono::time_point<std::chrono::high_resolution_clock> start{ std::chrono::high_resolution_clock::now() };
 	std::vector<JHelper::Test> tests{ %Tests% };
 	std::cerr << std::fixed;
 	std::chrono::duration<long double, std::milli> solveMaximalTime{}, solveAverageTime{}, bruteForceMaximalTime{}, bruteForceAverageTime{};
-	std::uint64_t bruteForceEmptyTestIterations{};
+	std::uint_fast64_t bruteForceEmptyTestIterations{};
 	bool allOK = true;
 	%ClassName%::bruteForceSolveIteration = %ClassName%::bruteForceAllIterations;
 	for(JHelper::Test& test : tests)
@@ -193,11 +194,11 @@ int main(int argc, char* argv[])
 			allOK &= (!test.m_hasOutput || testOK);
 		}
 	}
-	std::int64_t stressTestIteration{ 1 };
+	std::int_fast64_t stressTestIteration{ 1 };
 	for(; (stressTestIteration <= %ClassName%::stressTestIterations || %ClassName%::stressTestIterations == -1) && allOK; ++stressTestIteration)
 	{
 		std::ostringstream generatedTestInput;
-		%ClassName%::generate_test(generatedTestInput, stressTestIteration);
+		%ClassName%::generate_test(generatedTestInput, static_cast<std::uint_fast64_t>(stressTestIteration));
 		JHelper::Test generatedTest{ JHelper::trim(generatedTestInput.str()), "", true, false };
 		%ClassName%::bruteForceSolveIteration = true;
 		run_test(generatedTest, -1, false);
@@ -229,6 +230,8 @@ int main(int argc, char* argv[])
 		std::cerr << red << "Some Wrong";
 	}
 	std::cerr << original << std::endl;
+	std::chrono::duration<long double> totalExecutionTime{std::chrono::high_resolution_clock::now() - start};
+	std::cerr << "Total execution time: " << totalExecutionTime.count() << "s." << original << std::endl;
 	std::cerr << "Maximal solve() time: " << solveMaximalTime.count() << "ms." << original << std::endl;
 	std::cerr << "Average solve() time: " << solveAverageTime.count() << "ms." << original << std::endl;
 	if(actualBruteForce)

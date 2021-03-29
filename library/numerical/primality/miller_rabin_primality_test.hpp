@@ -1,40 +1,58 @@
 #ifndef MILLER_RABIN_PRIMALITY_TEST_HPP
 #define MILLER_RABIN_PRIMALITY_TEST_HPP
 
+#include <limits>
 #include <type_traits>
 #include <vector>
 
 #include "../../general/base.hpp"
+#include "../list_of_primes.hpp"
+#include "../montgomery.hpp"
 #include "../trailing_zero_bits.hpp"
+
+std::uint_fast64_t multiply_modulo(const std::uint_fast64_t& x, const std::uint_fast64_t& y, const std::uint_fast64_t& modulus)
+{
+	std::int_fast64_t result = x * y - modulus * static_cast<std::uint_fast64_t>(static_cast<long double>(x) * y / modulus);
+	if(result < 0)
+	{
+		result += modulus;
+	}
+	if(result >= static_cast<std::int_fast64_t>(modulus))
+	{
+		result -= modulus;
+	}
+	return result;
+}
 
 namespace primality
 {
-	template<typename T> T power(T base, T exponent, const T& modulus)
+
+	template<typename T> Montgomery power(const T& base, T exponent)
 	{
-		base %= modulus;
-		T result = 1;
+		static_assert(std::is_integral_v<T>);
+		static_assert(std::is_unsigned_v<T>);
+		Montgomery mBase(base), result(1);
 		while(exponent)
 		{
 			if(exponent & 1)
 			{
-				result = static_cast<uli>(result) * base % modulus;
+				result *= mBase;
 			}
-			base = static_cast<uli>(base) * base % modulus;
+			mBase *= mBase;
 			exponent >>= 1;
 		}
 		return result;
 	}
 
-	template<typename T> bool miller_rabin(const T& n, const bool& checkBaseCases = true, const std::vector<T>& A = {2, 325, 9375, 28178, 450775, 9780504, 1795265022})
+	template<typename T, std::size_t BasesSize = 7> bool miller_rabin(const T& n, const bool& checkBaseCases = true, const std::array<T, BasesSize>& A = {2, 325, 9375, 28178, 450775, 9780504, 1795265022})
 	{
 		static_assert(std::is_integral_v<T>);
+		static_assert(std::is_unsigned_v<T>);
 		if(checkBaseCases)
 		{
 			if(n <= 1)
 			{ return false; }
-			if(n <= 2)
-			{ return true; }
-			for(const auto& a : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97})
+			for(const auto& a : largePrimes)
 			{
 				if(a > n)
 				{ break; }
@@ -46,29 +64,31 @@ namespace primality
 				{ return false; }
 			}
 		}
-		T bits = trailing_zero_bits(n - 1), d = (n - 1) >> bits, negativeOne = n - 1;
+		if(Montgomery::modulus != n) Montgomery::set_modulus(n);
+		T bits{trailing_zero_bits(n - 1)}, d{(n - 1) >> bits};
+		Montgomery one{1}, negativeOne{n - 1};
 		for(const T& a : A)
 		{
 			if(a % n)
 			{
-				T x = power(a, d, n), i = 0;
-				if(x == 1 || x == negativeOne)
+				T i{};
+				Montgomery x{power(a, d)};
+				if(x.n == one.n || x.n == negativeOne.n)
 				{ continue; }
-				for(; x != 1 && x != negativeOne && i < bits; ++i)
+				for(; x.n != one.n && x.n != negativeOne.n && i < bits; ++i)
 				{
-					if(x == 1)
+					if(x.n == one.n)
 					{ return false; }
-					if(x == negativeOne)
+					if(x.n == negativeOne.n)
 					{ break; }
-					x = static_cast<uli>(x) * x % n;
+					x *= x;
 				}
-				if((i == bits) ^ (x == 1))
+				if((i == bits) ^ (x.n == one.n))
 				{ return false; }
 			}
 		}
 		return true;
 	}
-
 }
 
 #endif

@@ -29,7 +29,8 @@ int main()
 		graph[u].push_back(v);
 		graph[v].push_back(u);
 	}
-	HeavyLightDecomposition<std::uint_fast64_t, SegmentTree<Add<std::uint_fast64_t, AddNode<std::uint_fast64_t>>, AddNode<std::uint_fast64_t>>> hld(graph, a);
+	HeavyLightDecomposition<SegmentTree<Add<std::uint_fast64_t, AddNode<std::uint_fast64_t>>, AddNode<std::uint_fast64_t>>> hld(graph);
+	hld.build(a);
 	while(q--)
 	{
 		bool queryType;

@@ -3,32 +3,16 @@ ID: rchalam1
 LANG: C++14
 TASK:
 */
-// For train.usaco.org, fill the template above.
-
-// Competitive Coding Template
-
-/*
-// GCC OPTIMIZATION FLAGS
-#ifndef LOCAL
-
-include <x86intrin.h>
-
-pragma GCC optimize("fast-math,no-stack-protector,Ofast,unroll-loops,inline")
-pragma GCC target("avx,avx2,abm,bmi2,fma,mmx,popcnt,sse,sse2,sse3,sse4,ssse3")
-
-#endif
-*/
-
-#include "../library/general/speed.hpp"
-
 #define NDEBUG
 
 %Code%
 
-int main(int argc, char* argv[])
+int main(int argc, char** argv)
 {
 	unused(argc, argv);
+	#ifndef INTERACTIVE
 	speed();
+	#endif
 	%ClassName% solver;
 	%Input%
 	%Output%

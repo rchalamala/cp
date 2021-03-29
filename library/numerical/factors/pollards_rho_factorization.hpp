@@ -15,27 +15,26 @@ namespace factors
 	template<typename T> T pollards_rho(const T& n)
 	{
 		static_assert(std::is_integral_v<T>);
+		static_assert(std::is_unsigned_v<T>);
 		assert(n >= 0);
 		if((n & 1) ^ 1)
 		{ return 2; }
 		if(primality::miller_rabin(n))
 		{ return n; }
-		T c;
-		auto f = [&n, &c](const T& x) -> T
-		{ return (static_cast<uli>(x) * x + c) % n; };
-		for(T x0 = getUID<T>(static_cast<T>(0), n - 1);; x0 = getUID<T>(static_cast<T>(0), n - 1))
+		auto f{[&n](const T& x, const T& c) -> T
+		       { return (multiply_modulo(x, x, n) + c) % n; }};
+		for(T x0{getUID<T>(0, n - 1)};; x0 = getUID<T>(0, n - 1))
 		{
-			c = getUID<T>(static_cast<T>(0), n - 1);
-			T x = f(x0), y = f(x);
+			T c = getUID<T>(0, n - 1), x{f(x0, c)}, y{f(x, c)};
 			while(true)
 			{
-				T divisor = steins_gcd(std::max(x, y) - std::min(x, y), n);
+				T divisor{steins_gcd(std::max(x, y) - std::min(x, y), n)};
 				if(divisor == n)
 				{ break; }
 				if(divisor != 1)
 				{ return divisor; }
-				x = f(x);
-				y = f(f(y));
+				x = f(x, c);
+				y = f(f(y, c), c);
 			}
 		}
 	}
@@ -46,11 +45,11 @@ namespace factors
 		assert(n >= 0);
 		if(n <= 1)
 		{ return {}; }
-		T factor = pollards_rho<T>(n);
+		T factor{pollards_rho<T>(n)};
 		if(n == factor)
 		{ return std::vector<T>{n}; }
 		std::vector<T> original{pollards_rho_factorize(factor)}, divided{pollards_rho_factorize(n / factor)};
-		original.insert(original.end(), divided.begin(), divided.end());
+		std::move(std::begin(divided), std::end(divided), std::back_inserter(original));
 		return original;
 	}
 }

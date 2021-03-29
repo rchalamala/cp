@@ -29,7 +29,10 @@ private:
 	{
 		if(left == right)
 		{
-			tree[i] = Node{elements[left]};
+			if(left < elements.size())
+			{
+				tree[i] = Node{elements[left]};
+			}
 			return;
 		}
 		const std::size_t midpoint = left + (right - left) / 2;
@@ -74,17 +77,17 @@ public:
 
 	template<typename Iterable> void build(const Iterable& elements)
 	{
-		build(1, 0, elements.size() - 1, elements);
+		build(1, 0, size - 1, elements);
 	}
 
 	template<typename... Arguments> void change(const std::size_t& left, const std::size_t& right, const Arguments& ... rest)
 	{
-		change(1, 0, tree.size() / 4 - 1, left, right, rest...);
+		change(1, 0, size - 1, left, right, rest...);
 	}
 
 	auto range(const std::size_t& left, const std::size_t& right)
 	{
-		return f.return_value(range(1, 0, tree.size() / 4 - 1, left, right));
+		return f.return_value(range(1, 0, size - 1, left, right));
 	}
 };
 

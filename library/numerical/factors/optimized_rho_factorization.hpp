@@ -6,6 +6,8 @@
 
 #include "../../general/base.hpp"
 #include "../../general/prng.hpp"
+#include "../list_of_primes.hpp"
+#include "../montgomery.hpp"
 #include "../primality/miller_rabin_primality_test.hpp"
 #include "../steins_gcd.hpp"
 #include "../trailing_zero_bits.hpp"
@@ -16,25 +18,33 @@ namespace factors
 	{
 		static_assert(std::is_integral_v<T>);
 		assert(n >= 0);
-		if(primality::miller_rabin(n, true))
+		if(primality::miller_rabin(n, false))
 		{ return n; }
-		T c;
-		auto f = [&n, &c](const T& x) -> T
-		{ return (static_cast<uli>(x) * x + c) % n; };
-		for(T x0 = getUID<T>(static_cast<T>(0), n - 1);; x0 = getUID<T>(static_cast<T>(0), n - 1))
+		auto f{[&n](const Montgomery& x, const T& c) -> Montgomery
+		       {
+			       Montgomery result = x;
+			       (result *= result) += c;
+			       return result;
+		       }};
+		T factor, c{getUID<T>(1, n - 1)};
+		Montgomery x{getUID<T>(1, n - 1)}, y{f(x, c)}, product{1};
+		for(T trials{}; trials % 100 || (factor = steins_gcd(product.value(), n)) == 1; x = f(x, c), y = f(f(y, c), c))
 		{
-			c = getUID<T>(static_cast<T>(0), n - 1);
-			T product = 1;
-			for(T x = f(x0), y = f(x), trials = 30; x != y && (trials % 40 || steins_gcd(product, n) == 1); x = f(x), y = f(f(y)))
+			if(x.n == y.n)
 			{
-				T combined = static_cast<uli>(product) * (n + x - y) % n;
-				if(combined)
-				{ ++trials, product = combined; }
+				c = getUID<T>(1, n - 1);
+				x = Montgomery(getUID<T>(1, n - 1));
+				y = f(x, c);
 			}
-			T factor = steins_gcd(product, n);
-			if(factor != 1 && factor != n)
-			{ return factor; }
+			Montgomery combined{product};
+			combined *= (std::max(x.n, y.n) - std::min(x.n, y.n));
+			if(combined.n && combined.n != product.n)
+			{
+				++trials;
+				product = combined;
+			}
 		}
+		return factor;
 	}
 
 	template<typename T> std::vector<T> optimized_rho_factorize(const T& n, const bool& checkBaseCases = true)
@@ -45,9 +55,9 @@ namespace factors
 		{ return {}; }
 		if(checkBaseCases)
 		{
-			T start = n;
+			T start{n};
 			std::vector<T> original{};
-			for(const auto& a : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97})
+			for(const auto& a : largePrimes)
 			{
 				if(a > start)
 				{ break; }
@@ -58,14 +68,14 @@ namespace factors
 				}
 			}
 			std::vector<T> divided{optimized_rho_factorize(start, false)};
-			original.insert(original.end(), divided.begin(), divided.end());
+			std::move(std::begin(divided), std::end(divided), std::back_inserter(original));
 			return original;
 		}
 		T factor = optimized_rho<T>(n);
 		if(n == factor)
 		{ return std::vector<T>{n}; }
 		std::vector<T> original{optimized_rho_factorize(factor, false)}, divided{optimized_rho_factorize(n / factor, false)};
-		original.insert(original.end(), divided.begin(), divided.end());
+		std::move(std::begin(divided), std::end(divided), std::back_inserter(original));
 		return original;
 	}
 }

@@ -1,13 +1,14 @@
 #include "../library/general/base.hpp"
 #include "../library/general/input.hpp"
 #include "../library/general/output.hpp"
+#include "../library/general/speed.hpp"
 
 using namespace std;
 
 constexpr long long MAXN = static_cast<long long>(2 * 1e5 + 1);
 constexpr long long INF = static_cast<long long>(1e18 + 1);
-constexpr long double EPS = static_cast<long double>(1e-7);
 
+//#define INTERACTIVE
 //#define CODE_JAM
 //#define LIGHT_OJ
 
@@ -22,11 +23,11 @@ public:
 	static constexpr bool showFalseTestOutput = true;
 	static bool bruteForceSolveIteration;
 
-	void static generate_test(std::ostream& testOutput, const std::int64_t& seed)
+	void static generate_test(std::ostream& testOutput, const std::uint_fast64_t& seed)
 	{
 		unused(testOutput);
 		std::srand(seed);
-		static std::mt19937_64 PRNG{ static_cast<const std::uint_fast64_t>(seed) };
+		std::mt19937_64 prng{seed};
 
 	}
 
@@ -61,9 +62,7 @@ public:
 		#if defined(CODE_JAM) || defined(LIGHT_OJ)
 		%ClassName%::output_case(out);
 		#endif
-		if(%ClassName
-		%::bruteForceAllIterations || %ClassName
-		%::bruteForceSolveIteration)
+		if(%ClassName%::bruteForceAllIterations || %ClassName%::bruteForceSolveIteration)
 		{
 			brute_force(in, out);
 			return;
@@ -73,6 +72,4 @@ public:
 
 };
 
-bool %ClassName
-%::bruteForceSolveIteration{
-};
+bool %ClassName%::bruteForceSolveIteration{};
