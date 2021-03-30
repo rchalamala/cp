@@ -23,21 +23,24 @@ namespace factors
 		auto f{[&n](const Montgomery& x, const T& c) -> Montgomery
 		       {
 			       Montgomery result = x;
-			       (result *= result) += c;
+			       (result *= result);
+			       result.n += c;
+			       if(result.n >= n)
+			       { result.n -= n; }
 			       return result;
 		       }};
-		T factor, c{getUID<T>(1, n - 1)};
-		Montgomery x{getUID<T>(1, n - 1)}, y{f(x, c)}, product{1};
-		for(T trials{}; trials % 100 || (factor = steins_gcd(product.value(), n)) == 1; x = f(x, c), y = f(f(y, c), c))
+		T factor, c{getUID<T>(0, n - 1)};
+		Montgomery x{getUID<T>(0, n - 1)}, y{f(x, c)}, product{1};
+		for(T trials{}; trials % 128 || (factor = steins_gcd(product.value(), n)) == 1; x = f(x, c), y = f(f(y, c), c))
 		{
 			if(x.n == y.n)
 			{
-				c = getUID<T>(1, n - 1);
-				x = Montgomery(getUID<T>(1, n - 1));
+				c = getUID<T>(0, n - 1);
+				x = Montgomery(getUID<T>(0, n - 1));
 				y = f(x, c);
 			}
 			Montgomery combined{product};
-			combined *= (std::max(x.n, y.n) - std::min(x.n, y.n));
+			combined *= Montgomery{std::max(x.n, y.n) - std::min(x.n, y.n)};
 			if(combined.n && combined.n != product.n)
 			{
 				++trials;

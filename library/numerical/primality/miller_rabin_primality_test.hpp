@@ -10,34 +10,18 @@
 #include "../montgomery.hpp"
 #include "../trailing_zero_bits.hpp"
 
-std::uint_fast64_t multiply_modulo(const std::uint_fast64_t& x, const std::uint_fast64_t& y, const std::uint_fast64_t& modulus)
-{
-	std::int_fast64_t result = x * y - modulus * static_cast<std::uint_fast64_t>(static_cast<long double>(x) * y / modulus);
-	if(result < 0)
-	{
-		result += modulus;
-	}
-	if(result >= static_cast<std::int_fast64_t>(modulus))
-	{
-		result -= modulus;
-	}
-	return result;
-}
-
 namespace primality
 {
 
-	template<typename T> Montgomery power(const T& base, T exponent)
+	template<typename T> Montgomery power(const Montgomery& base, T exponent)
 	{
 		static_assert(std::is_integral_v<T>);
 		static_assert(std::is_unsigned_v<T>);
-		Montgomery mBase(base), result(1);
+		Montgomery mBase = base, result(1);
 		while(exponent)
 		{
 			if(exponent & 1)
-			{
-				result *= mBase;
-			}
+			{ result *= mBase; }
 			mBase *= mBase;
 			exponent >>= 1;
 		}
@@ -64,15 +48,17 @@ namespace primality
 				{ return false; }
 			}
 		}
-		if(Montgomery::modulus != n) Montgomery::set_modulus(n);
+		if(Montgomery::modulus != n)
+		{ Montgomery::set_modulus(n); }
 		T bits{trailing_zero_bits(n - 1)}, d{(n - 1) >> bits};
 		Montgomery one{1}, negativeOne{n - 1};
 		for(const T& a : A)
 		{
-			if(a % n)
+			Montgomery mA{a};
+			if(mA.n)
 			{
 				T i{};
-				Montgomery x{power(a, d)};
+				Montgomery x{power(mA, d)};
 				if(x.n == one.n || x.n == negativeOne.n)
 				{ continue; }
 				for(; x.n != one.n && x.n != negativeOne.n && i < bits; ++i)
@@ -86,6 +72,8 @@ namespace primality
 				if((i == bits) ^ (x.n == one.n))
 				{ return false; }
 			}
+			else
+			{ return true; }
 		}
 		return true;
 	}

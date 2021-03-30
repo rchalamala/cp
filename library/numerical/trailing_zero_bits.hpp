@@ -14,6 +14,7 @@ template<typename T> std::uint64_t trailing_zero_bits(const T& element)
 template<typename T> T trailing_zero_bits(T element)
 {
 	static_assert(std::is_integral_v<T>);
+	static_assert(std::is_unsigned_v<T>);
 	T result{};
 	for(; (element & 1) ^ 1; ++result)
 	{

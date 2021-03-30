@@ -1,6 +1,7 @@
 #include "../library/general/base.hpp"
 #include "../library/general/input.hpp"
 #include "../library/general/output.hpp"
+#include "../library/general/prng.hpp"
 #include "../library/general/speed.hpp"
 
 using namespace std;
@@ -23,10 +24,9 @@ public:
 	static constexpr bool showFalseTestOutput = true;
 	static bool bruteForceSolveIteration;
 
-	void static generate_test(std::ostream& testOutput, const std::uint_fast64_t& seed)
+	void static generate_test(std::ostream& testOutput, const std::uint64_t& seed)
 	{
-		unused(testOutput);
-		std::srand(seed);
+		unused(testOutput, seed);
 		std::mt19937_64 prng{seed};
 
 	}
@@ -69,7 +69,6 @@ public:
 		}
 
 	}
-
 };
 
 bool %ClassName%::bruteForceSolveIteration{};

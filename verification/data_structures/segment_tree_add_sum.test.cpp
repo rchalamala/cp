@@ -18,9 +18,9 @@ int main()
 	std::size_t n;
 	std::int_fast32_t q;
 	read(std::cin, n, q);
-	std::vector<std::uint_fast64_t> a(n);
+	std::vector<std::uint64_t> a(n);
 	read(std::cin, a);
-	SegmentTree<Add<std::uint_fast64_t, AddNode<std::uint_fast64_t>>, AddNode<std::uint_fast64_t>> segmentTree(n);
+	SegmentTree<Add<std::uint64_t, AddNode<std::uint64_t>>, AddNode<std::uint64_t>> segmentTree(n);
 	segmentTree.build(a);
 	while(q--)
 	{
@@ -35,7 +35,7 @@ int main()
 		else
 		{
 			std::size_t p;
-			std::uint_fast64_t x;
+			std::uint64_t x;
 			read(std::cin, p, x);
 			segmentTree.change(p, p, x);
 		}

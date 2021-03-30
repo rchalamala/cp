@@ -1,11 +1,6 @@
 // Verification:
 //
 
-#define DIR #ProjectDir
-#define PATH lib/y_combinator.h
-#define DIRPATH \"DIR/PATH\"
-
-#include DIRPATH
 
 #include <functional>
 #include <type_traits>

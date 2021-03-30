@@ -19,7 +19,7 @@ int main()
 	std::size_t n;
 	std::int_fast32_t q;
 	read(std::cin, n, q);
-	std::vector<std::uint_fast64_t> a(n);
+	std::vector<std::uint64_t> a(n);
 	read(std::cin, a);
 	std::vector<std::vector<std::size_t>> graph(n);
 	for(std::size_t i = 1; i < n; ++i)
@@ -29,7 +29,7 @@ int main()
 		graph[i].push_back(p);
 		graph[p].push_back(i);
 	}
-	HeavyLightDecomposition<SegmentTree<Add<std::uint_fast64_t, AddNode<std::uint_fast64_t>>, AddNode<std::uint_fast64_t>>> hld(graph);
+	HeavyLightDecomposition<SegmentTree<Add<std::uint64_t, AddNode<std::uint64_t>>, AddNode<std::uint64_t>>> hld(graph);
 	hld.build(a);
 	while(q--)
 	{
@@ -44,7 +44,7 @@ int main()
 		else
 		{
 			std::size_t u;
-			std::uint_fast64_t x;
+			std::uint64_t x;
 			read(std::cin, u, x);
 			hld.update_path(u, u, x);
 		}

@@ -164,7 +164,7 @@ int main(int argc, char** argv)
 	std::vector<JHelper::Test> tests{ %Tests% };
 	std::cerr << std::fixed;
 	std::chrono::duration<long double, std::milli> solveMaximalTime{}, solveAverageTime{}, bruteForceMaximalTime{}, bruteForceAverageTime{};
-	std::uint_fast64_t bruteForceEmptyTestIterations{};
+	std::uint64_t bruteForceEmptyTestIterations{};
 	bool allOK = true;
 	%ClassName%::bruteForceSolveIteration = %ClassName%::bruteForceAllIterations;
 	for(JHelper::Test& test : tests)
@@ -198,7 +198,7 @@ int main(int argc, char** argv)
 	for(; (stressTestIteration <= %ClassName%::stressTestIterations || %ClassName%::stressTestIterations == -1) && allOK; ++stressTestIteration)
 	{
 		std::ostringstream generatedTestInput;
-		%ClassName%::generate_test(generatedTestInput, static_cast<std::uint_fast64_t>(stressTestIteration));
+		%ClassName%::generate_test(generatedTestInput, static_cast<std::uint64_t>(stressTestIteration));
 		JHelper::Test generatedTest{ JHelper::trim(generatedTestInput.str()), "", true, false };
 		%ClassName%::bruteForceSolveIteration = true;
 		run_test(generatedTest, -1, false);

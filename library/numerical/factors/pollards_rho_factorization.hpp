@@ -22,7 +22,7 @@ namespace factors
 		if(primality::miller_rabin(n))
 		{ return n; }
 		auto f{[&n](const T& x, const T& c) -> T
-		       { return (multiply_modulo(x, x, n) + c) % n; }};
+		       { return static_cast<T>((static_cast<unsigned __int128>(x) * x + c) % n);; }};
 		for(T x0{getUID<T>(0, n - 1)};; x0 = getUID<T>(0, n - 1))
 		{
 			T c = getUID<T>(0, n - 1), x{f(x0, c)}, y{f(x, c)};
