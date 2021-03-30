@@ -2,25 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verification/data_structures/segment_tree_add_sum.test.cpp
-    title: verification/data_structures/segment_tree_add_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verification/graph/heavy_light_decomposition_path.test.cpp
-    title: verification/graph/heavy_light_decomposition_path.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verification/graph/heavy_light_decomposition_subtree.test.cpp
-    title: verification/graph/heavy_light_decomposition_subtree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verification/numerical/factors/optimized_rho_factorization.test.cpp
-    title: verification/numerical/factors/optimized_rho_factorization.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verification/numerical/factors/pollards_rho_factorization.test.cpp
-    title: verification/numerical/factors/pollards_rho_factorization.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/general/speed.hpp\"\n\n\n\n#include <iostream>\n\
@@ -33,14 +18,9 @@ data:
   isVerificationFile: false
   path: library/general/speed.hpp
   requiredBy: []
-  timestamp: '2021-03-25 18:54:38-06:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verification/data_structures/segment_tree_add_sum.test.cpp
-  - verification/graph/heavy_light_decomposition_path.test.cpp
-  - verification/graph/heavy_light_decomposition_subtree.test.cpp
-  - verification/numerical/factors/pollards_rho_factorization.test.cpp
-  - verification/numerical/factors/optimized_rho_factorization.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: library/general/speed.hpp
 layout: document
 redirect_from:

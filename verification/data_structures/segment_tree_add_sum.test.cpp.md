@@ -1,37 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: library/data_structures/segment_tree/segment_tree.hpp
-    title: library/data_structures/segment_tree/segment_tree.hpp
-  - icon: ':heavy_check_mark:'
-    path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp
-    title: library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp
-  - icon: ':heavy_check_mark:'
-    path: library/general/input.hpp
-    title: library/general/input.hpp
-  - icon: ':heavy_check_mark:'
-    path: library/general/output.hpp
-    title: library/general/output.hpp
-  - icon: ':heavy_check_mark:'
-    path: library/general/speed.hpp
-    title: library/general/speed.hpp
-  - icon: ':heavy_check_mark:'
-    path: library/general/to_string.hpp
-    title: library/general/to_string.hpp
-  - icon: ':heavy_check_mark:'
-    path: library/general/unused.hpp
-    title: library/general/unused.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
-    links:
-    - https://judge.yosupo.jp/problem/point_add_range_sum
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"library/general/input.hpp\"\n\n\n\n#include <array>\n#include\
     \ <complex>\n#include <istream>\n#include <string>\n#include <utility>\n#include\
     \ <vector>\n\ntemplate<typename Argument, typename... Arguments> bool read(std::istream&\
@@ -169,39 +144,32 @@ data:
     \ = 0;\n\t\telement.m_set = set;\n\t\telement.m_validSet = true;\n\t}\n};\n\n\n\
     #line 14 \"verification/data_structures/segment_tree_add_sum.test.cpp\"\n\nint\
     \ main()\n{\n\tspeed();\n\tstd::size_t n;\n\tstd::int_fast32_t q;\n\tread(std::cin,\
-    \ n, q);\n\tstd::vector<std::uint_fast64_t> a(n);\n\tread(std::cin, a);\n\tSegmentTree<Add<std::uint_fast64_t,\
-    \ AddNode<std::uint_fast64_t>>, AddNode<std::uint_fast64_t>> segmentTree(n);\n\
-    \tsegmentTree.build(a);\n\twhile(q--)\n\t{\n\t\tbool queryType;\n\t\tread(std::cin,\
-    \ queryType);\n\t\tif(queryType)\n\t\t{\n\t\t\tstd::size_t l, r;\n\t\t\tread(std::cin,\
-    \ l, r);\n\t\t\tprintn(std::cout, segmentTree.range(l, r - 1));\n\t\t}\n\t\telse\n\
-    \t\t{\n\t\t\tstd::size_t p;\n\t\t\tstd::uint_fast64_t x;\n\t\t\tread(std::cin,\
-    \ p, x);\n\t\t\tsegmentTree.change(p, p, x);\n\t\t}\n\t}\n}\n"
+    \ n, q);\n\tstd::vector<std::uint64_t> a(n);\n\tread(std::cin, a);\n\tSegmentTree<Add<std::uint64_t,\
+    \ AddNode<std::uint64_t>>, AddNode<std::uint64_t>> segmentTree(n);\n\tsegmentTree.build(a);\n\
+    \twhile(q--)\n\t{\n\t\tbool queryType;\n\t\tread(std::cin, queryType);\n\t\tif(queryType)\n\
+    \t\t{\n\t\t\tstd::size_t l, r;\n\t\t\tread(std::cin, l, r);\n\t\t\tprintn(std::cout,\
+    \ segmentTree.range(l, r - 1));\n\t\t}\n\t\telse\n\t\t{\n\t\t\tstd::size_t p;\n\
+    \t\t\tstd::uint64_t x;\n\t\t\tread(std::cin, p, x);\n\t\t\tsegmentTree.change(p,\
+    \ p, x);\n\t\t}\n\t}\n}\n"
   code: "#include \"../../library/general/input.hpp\"\n#include \"../../library/general/output.hpp\"\
     \n#include \"../../library/general/speed.hpp\"\n\n#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\
     \n\n#include <cstddef>\n#include <cstdint>\n#include <iostream>\n#include <vector>\n\
     \n#include \"../../library/data_structures/segment_tree/segment_tree.hpp\"\n#include\
     \ \"../../library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp\"\
     \n\nint main()\n{\n\tspeed();\n\tstd::size_t n;\n\tstd::int_fast32_t q;\n\tread(std::cin,\
-    \ n, q);\n\tstd::vector<std::uint_fast64_t> a(n);\n\tread(std::cin, a);\n\tSegmentTree<Add<std::uint_fast64_t,\
-    \ AddNode<std::uint_fast64_t>>, AddNode<std::uint_fast64_t>> segmentTree(n);\n\
-    \tsegmentTree.build(a);\n\twhile(q--)\n\t{\n\t\tbool queryType;\n\t\tread(std::cin,\
-    \ queryType);\n\t\tif(queryType)\n\t\t{\n\t\t\tstd::size_t l, r;\n\t\t\tread(std::cin,\
-    \ l, r);\n\t\t\tprintn(std::cout, segmentTree.range(l, r - 1));\n\t\t}\n\t\telse\n\
-    \t\t{\n\t\t\tstd::size_t p;\n\t\t\tstd::uint_fast64_t x;\n\t\t\tread(std::cin,\
-    \ p, x);\n\t\t\tsegmentTree.change(p, p, x);\n\t\t}\n\t}\n}\n"
-  dependsOn:
-  - library/general/input.hpp
-  - library/general/output.hpp
-  - library/general/to_string.hpp
-  - library/general/speed.hpp
-  - library/data_structures/segment_tree/segment_tree.hpp
-  - library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp
-  - library/general/unused.hpp
+    \ n, q);\n\tstd::vector<std::uint64_t> a(n);\n\tread(std::cin, a);\n\tSegmentTree<Add<std::uint64_t,\
+    \ AddNode<std::uint64_t>>, AddNode<std::uint64_t>> segmentTree(n);\n\tsegmentTree.build(a);\n\
+    \twhile(q--)\n\t{\n\t\tbool queryType;\n\t\tread(std::cin, queryType);\n\t\tif(queryType)\n\
+    \t\t{\n\t\t\tstd::size_t l, r;\n\t\t\tread(std::cin, l, r);\n\t\t\tprintn(std::cout,\
+    \ segmentTree.range(l, r - 1));\n\t\t}\n\t\telse\n\t\t{\n\t\t\tstd::size_t p;\n\
+    \t\t\tstd::uint64_t x;\n\t\t\tread(std::cin, p, x);\n\t\t\tsegmentTree.change(p,\
+    \ p, x);\n\t\t}\n\t}\n}\n"
+  dependsOn: []
   isVerificationFile: true
   path: verification/data_structures/segment_tree_add_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-03-28 23:42:17-06:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verification/data_structures/segment_tree_add_sum.test.cpp
 layout: document

@@ -30,7 +30,7 @@ data:
   isVerificationFile: false
   path: library/general/type_traits.hpp
   requiredBy: []
-  timestamp: '2021-03-28 23:42:17-06:00'
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/general/type_traits.hpp
