@@ -1,11 +1,26 @@
 ---
 data:
-  _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/trailing_zero_bits.hpp
+    title: library/numerical/trailing_zero_bits.hpp
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/factors/optimized_rho_factorization.hpp
+    title: library/numerical/factors/optimized_rho_factorization.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/factors/pollards_rho_factorization.hpp
+    title: library/numerical/factors/pollards_rho_factorization.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verification/numerical/factors/optimized_rho_factorization.test.cpp
+    title: verification/numerical/factors/optimized_rho_factorization.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verification/numerical/factors/pollards_rho_factorization.test.cpp
+    title: verification/numerical/factors/pollards_rho_factorization.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/numerical/steins_gcd.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -38,13 +53,18 @@ data:
     if(x < y)\n\t\t{\n\t\t\tstd::swap(x, y);\n\t\t}\n\t\tx -= y;\n\t\tif(!x)\n\t\t\
     {\n\t\t\treturn y << std::min(a, b);\n\t\t}\n\t\tx >>= trailing_zero_bits(x);\n\
     \t}\n}\n\n#endif"
-  dependsOn: []
+  dependsOn:
+  - library/numerical/trailing_zero_bits.hpp
   isVerificationFile: false
   path: library/numerical/steins_gcd.hpp
-  requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - library/numerical/factors/optimized_rho_factorization.hpp
+  - library/numerical/factors/pollards_rho_factorization.hpp
+  timestamp: '2021-03-30 13:00:21-06:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verification/numerical/factors/pollards_rho_factorization.test.cpp
+  - verification/numerical/factors/optimized_rho_factorization.test.cpp
 documentation_of: library/numerical/steins_gcd.hpp
 layout: document
 redirect_from:

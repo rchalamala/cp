@@ -2,10 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verification/data_structures/segment_tree_add_sum.test.cpp
+    title: verification/data_structures/segment_tree_add_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verification/graph/heavy_light_decomposition_path.test.cpp
+    title: verification/graph/heavy_light_decomposition_path.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verification/graph/heavy_light_decomposition_subtree.test.cpp
+    title: verification/graph/heavy_light_decomposition_subtree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/data_structures/segment_tree/segment_tree.hpp\"\n\
@@ -89,9 +98,12 @@ data:
   isVerificationFile: false
   path: library/data_structures/segment_tree/segment_tree.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2021-03-28 23:42:17-06:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verification/data_structures/segment_tree_add_sum.test.cpp
+  - verification/graph/heavy_light_decomposition_path.test.cpp
+  - verification/graph/heavy_light_decomposition_subtree.test.cpp
 documentation_of: library/data_structures/segment_tree/segment_tree.hpp
 layout: document
 redirect_from:

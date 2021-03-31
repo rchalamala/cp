@@ -1,11 +1,53 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: library/general/base.hpp
+    title: library/general/base.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/general/base.hpp
+    title: library/general/base.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/general/prng.hpp
+    title: library/general/prng.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/general/unused.hpp
+    title: library/general/unused.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/list_of_primes.hpp
+    title: library/numerical/list_of_primes.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/list_of_primes.hpp
+    title: library/numerical/list_of_primes.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/montgomery.hpp
+    title: library/numerical/montgomery.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/montgomery.hpp
+    title: library/numerical/montgomery.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/primality/miller_rabin_primality_test.hpp
+    title: library/numerical/primality/miller_rabin_primality_test.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/steins_gcd.hpp
+    title: library/numerical/steins_gcd.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/trailing_zero_bits.hpp
+    title: library/numerical/trailing_zero_bits.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/trailing_zero_bits.hpp
+    title: library/numerical/trailing_zero_bits.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/trailing_zero_bits.hpp
+    title: library/numerical/trailing_zero_bits.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verification/numerical/factors/optimized_rho_factorization.test.cpp
+    title: verification/numerical/factors/optimized_rho_factorization.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/numerical/factors/optimized_rho_factorization.hpp\"\
@@ -216,13 +258,27 @@ data:
     \ }\n\t\tstd::vector<T> original{optimized_rho_factorize(factor, false)}, divided{optimized_rho_factorize(n\
     \ / factor, false)};\n\t\tstd::move(std::begin(divided), std::end(divided), std::back_inserter(original));\n\
     \t\treturn original;\n\t}\n}\n\n#endif"
-  dependsOn: []
+  dependsOn:
+  - library/general/base.hpp
+  - library/general/unused.hpp
+  - library/general/prng.hpp
+  - library/numerical/list_of_primes.hpp
+  - library/numerical/montgomery.hpp
+  - library/numerical/trailing_zero_bits.hpp
+  - library/numerical/primality/miller_rabin_primality_test.hpp
+  - library/general/base.hpp
+  - library/numerical/list_of_primes.hpp
+  - library/numerical/montgomery.hpp
+  - library/numerical/trailing_zero_bits.hpp
+  - library/numerical/steins_gcd.hpp
+  - library/numerical/trailing_zero_bits.hpp
   isVerificationFile: false
   path: library/numerical/factors/optimized_rho_factorization.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2021-03-30 13:00:21-06:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verification/numerical/factors/optimized_rho_factorization.test.cpp
 documentation_of: library/numerical/factors/optimized_rho_factorization.hpp
 layout: document
 redirect_from:

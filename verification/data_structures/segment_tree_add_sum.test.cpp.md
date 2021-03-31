@@ -1,12 +1,37 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: library/data_structures/segment_tree/segment_tree.hpp
+    title: library/data_structures/segment_tree/segment_tree.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp
+    title: library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/general/input.hpp
+    title: library/general/input.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/general/output.hpp
+    title: library/general/output.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/general/speed.hpp
+    title: library/general/speed.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/general/to_string.hpp
+    title: library/general/to_string.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/general/unused.hpp
+    title: library/general/unused.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
+    links:
+    - https://judge.yosupo.jp/problem/point_add_range_sum
   bundledCode: "#line 1 \"library/general/input.hpp\"\n\n\n\n#include <array>\n#include\
     \ <complex>\n#include <istream>\n#include <string>\n#include <utility>\n#include\
     \ <vector>\n\ntemplate<typename Argument, typename... Arguments> bool read(std::istream&\
@@ -164,12 +189,19 @@ data:
     \ segmentTree.range(l, r - 1));\n\t\t}\n\t\telse\n\t\t{\n\t\t\tstd::size_t p;\n\
     \t\t\tstd::uint64_t x;\n\t\t\tread(std::cin, p, x);\n\t\t\tsegmentTree.change(p,\
     \ p, x);\n\t\t}\n\t}\n}\n"
-  dependsOn: []
+  dependsOn:
+  - library/general/input.hpp
+  - library/general/output.hpp
+  - library/general/to_string.hpp
+  - library/general/speed.hpp
+  - library/data_structures/segment_tree/segment_tree.hpp
+  - library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp
+  - library/general/unused.hpp
   isVerificationFile: true
   path: verification/data_structures/segment_tree_add_sum.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-03-30 13:00:21-06:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verification/data_structures/segment_tree_add_sum.test.cpp
 layout: document

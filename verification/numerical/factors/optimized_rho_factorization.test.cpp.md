@@ -1,12 +1,70 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: library/general/base.hpp
+    title: library/general/base.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/general/base.hpp
+    title: library/general/base.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/general/input.hpp
+    title: library/general/input.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/general/output.hpp
+    title: library/general/output.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/general/prng.hpp
+    title: library/general/prng.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/general/speed.hpp
+    title: library/general/speed.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/general/to_string.hpp
+    title: library/general/to_string.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/general/unused.hpp
+    title: library/general/unused.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/factors/optimized_rho_factorization.hpp
+    title: library/numerical/factors/optimized_rho_factorization.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/list_of_primes.hpp
+    title: library/numerical/list_of_primes.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/list_of_primes.hpp
+    title: library/numerical/list_of_primes.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/montgomery.hpp
+    title: library/numerical/montgomery.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/montgomery.hpp
+    title: library/numerical/montgomery.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/primality/miller_rabin_primality_test.hpp
+    title: library/numerical/primality/miller_rabin_primality_test.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/steins_gcd.hpp
+    title: library/numerical/steins_gcd.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/trailing_zero_bits.hpp
+    title: library/numerical/trailing_zero_bits.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/trailing_zero_bits.hpp
+    title: library/numerical/trailing_zero_bits.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/numerical/trailing_zero_bits.hpp
+    title: library/numerical/trailing_zero_bits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/factorize
+    links:
+    - https://judge.yosupo.jp/problem/factorize
   bundledCode: "#line 1 \"library/general/input.hpp\"\n\n\n\n#include <array>\n#include\
     \ <complex>\n#include <istream>\n#include <string>\n#include <utility>\n#include\
     \ <vector>\n\ntemplate<typename Argument, typename... Arguments> bool read(std::istream&\
@@ -269,12 +327,30 @@ data:
     \ factors = factors::optimized_rho_factorize<std::uint64_t>(a);\n\t\tstd::sort(std::begin(factors),\
     \ std::end(factors));\n\t\tprints(std::cout, std::size(factors), factors);\n\t\
     }\n}\n"
-  dependsOn: []
+  dependsOn:
+  - library/general/input.hpp
+  - library/general/output.hpp
+  - library/general/to_string.hpp
+  - library/general/speed.hpp
+  - library/numerical/factors/optimized_rho_factorization.hpp
+  - library/general/base.hpp
+  - library/general/unused.hpp
+  - library/general/prng.hpp
+  - library/numerical/list_of_primes.hpp
+  - library/numerical/montgomery.hpp
+  - library/numerical/trailing_zero_bits.hpp
+  - library/numerical/primality/miller_rabin_primality_test.hpp
+  - library/general/base.hpp
+  - library/numerical/list_of_primes.hpp
+  - library/numerical/montgomery.hpp
+  - library/numerical/trailing_zero_bits.hpp
+  - library/numerical/steins_gcd.hpp
+  - library/numerical/trailing_zero_bits.hpp
   isVerificationFile: true
   path: verification/numerical/factors/optimized_rho_factorization.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-03-30 13:00:21-06:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verification/numerical/factors/optimized_rho_factorization.test.cpp
 layout: document

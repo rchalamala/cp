@@ -36,7 +36,7 @@ data:
   isVerificationFile: false
   path: library/numerical/power.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2021-03-30 13:00:21-06:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/numerical/power.hpp
