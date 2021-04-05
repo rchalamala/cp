@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verification/numerical/factors/optimized_rho_factorization.test.cpp
     title: verification/numerical/factors/optimized_rho_factorization.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verification/numerical/factors/pollards_rho_factorization.test.cpp
     title: verification/numerical/factors/pollards_rho_factorization.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/general/input.hpp\"\n\n\n\n#include <array>\n#include\
@@ -65,7 +65,7 @@ data:
   path: library/general/input.hpp
   requiredBy: []
   timestamp: '2021-03-28 23:42:17-06:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verification/numerical/factors/pollards_rho_factorization.test.cpp
   - verification/numerical/factors/optimized_rho_factorization.test.cpp

@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/factors/optimized_rho_factorization.hpp
     title: library/numerical/factors/optimized_rho_factorization.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/factors/optimized_rho_factorization.hpp
     title: library/numerical/factors/optimized_rho_factorization.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/factors/pollards_rho_factorization.hpp
     title: library/numerical/factors/pollards_rho_factorization.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/primality/miller_rabin_primality_test.hpp
     title: library/numerical/primality/miller_rabin_primality_test.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verification/numerical/factors/optimized_rho_factorization.test.cpp
     title: verification/numerical/factors/optimized_rho_factorization.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verification/numerical/factors/optimized_rho_factorization.test.cpp
     title: verification/numerical/factors/optimized_rho_factorization.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verification/numerical/factors/pollards_rho_factorization.test.cpp
     title: verification/numerical/factors/pollards_rho_factorization.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://cp-algorithms.com/algebra/montgomery_multiplication.html
@@ -154,7 +154,7 @@ data:
   - library/numerical/factors/optimized_rho_factorization.hpp
   - library/numerical/factors/optimized_rho_factorization.hpp
   timestamp: '2021-03-30 13:00:21-06:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verification/numerical/factors/pollards_rho_factorization.test.cpp
   - verification/numerical/factors/optimized_rho_factorization.test.cpp

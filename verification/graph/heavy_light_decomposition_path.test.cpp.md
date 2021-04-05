@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp
     title: library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/general/speed.hpp
     title: library/general/speed.hpp
   - icon: ':heavy_check_mark:'

@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_arithmetic_progression.hpp
+    title: library/data_structures/segment_tree/segment_tree_functions/segment_tree_arithmetic_progression.hpp
   - icon: ':heavy_check_mark:'
     path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_maximum.hpp
     title: library/data_structures/segment_tree/segment_tree_functions/segment_tree_maximum.hpp
@@ -82,6 +85,7 @@ data:
   isVerificationFile: false
   path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp
   requiredBy:
+  - library/data_structures/segment_tree/segment_tree_functions/segment_tree_arithmetic_progression.hpp
   - library/data_structures/segment_tree/segment_tree_functions/segment_tree_minimum.hpp
   - library/data_structures/segment_tree/segment_tree_functions/segment_tree_maximum.hpp
   timestamp: '2021-04-05 00:55:31-06:00'
