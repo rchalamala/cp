@@ -3,15 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verification/graph/heavy_light_decomposition_path.test.cpp
-    title: verification/graph/heavy_light_decomposition_path.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verification/graph/heavy_light_decomposition_subtree.test.cpp
-    title: verification/graph/heavy_light_decomposition_subtree.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: verification/graph/heavy_light_decomposition.test.cpp
+    title: verification/graph/heavy_light_decomposition.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/graph/heavy_light_decomposition.hpp\"\n\n\n\n#include\
@@ -97,10 +94,9 @@ data:
   path: library/graph/heavy_light_decomposition.hpp
   requiredBy: []
   timestamp: '2021-03-28 23:42:17-06:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verification/graph/heavy_light_decomposition_path.test.cpp
-  - verification/graph/heavy_light_decomposition_subtree.test.cpp
+  - verification/graph/heavy_light_decomposition.test.cpp
 documentation_of: library/graph/heavy_light_decomposition.hpp
 layout: document
 redirect_from:

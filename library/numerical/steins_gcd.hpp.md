@@ -1,26 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: library/numerical/factors/optimized_rho_factorization.hpp
-    title: library/numerical/factors/optimized_rho_factorization.hpp
-  - icon: ':heavy_check_mark:'
-    path: library/numerical/factors/pollards_rho_factorization.hpp
-    title: library/numerical/factors/pollards_rho_factorization.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verification/numerical/factors/optimized_rho_factorization.test.cpp
-    title: verification/numerical/factors/optimized_rho_factorization.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verification/numerical/factors/pollards_rho_factorization.test.cpp
-    title: verification/numerical/factors/pollards_rho_factorization.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/numerical/steins_gcd.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -57,14 +45,10 @@ data:
   - library/numerical/trailing_zero_bits.hpp
   isVerificationFile: false
   path: library/numerical/steins_gcd.hpp
-  requiredBy:
-  - library/numerical/factors/optimized_rho_factorization.hpp
-  - library/numerical/factors/pollards_rho_factorization.hpp
+  requiredBy: []
   timestamp: '2021-03-30 13:00:21-06:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verification/numerical/factors/pollards_rho_factorization.test.cpp
-  - verification/numerical/factors/optimized_rho_factorization.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: library/numerical/steins_gcd.hpp
 layout: document
 redirect_from:

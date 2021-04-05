@@ -3,24 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verification/data_structures/segment_tree_add_sum.test.cpp
-    title: verification/data_structures/segment_tree_add_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verification/graph/heavy_light_decomposition_path.test.cpp
-    title: verification/graph/heavy_light_decomposition_path.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verification/graph/heavy_light_decomposition_subtree.test.cpp
-    title: verification/graph/heavy_light_decomposition_subtree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verification/numerical/factors/optimized_rho_factorization.test.cpp
-    title: verification/numerical/factors/optimized_rho_factorization.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verification/numerical/factors/pollards_rho_factorization.test.cpp
-    title: verification/numerical/factors/pollards_rho_factorization.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: verification/graph/heavy_light_decomposition.test.cpp
+    title: verification/graph/heavy_light_decomposition.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/general/speed.hpp\"\n\n\n\n#include <iostream>\n\
@@ -34,13 +22,9 @@ data:
   path: library/general/speed.hpp
   requiredBy: []
   timestamp: '2021-03-25 18:54:38-06:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verification/data_structures/segment_tree_add_sum.test.cpp
-  - verification/graph/heavy_light_decomposition_path.test.cpp
-  - verification/graph/heavy_light_decomposition_subtree.test.cpp
-  - verification/numerical/factors/pollards_rho_factorization.test.cpp
-  - verification/numerical/factors/optimized_rho_factorization.test.cpp
+  - verification/graph/heavy_light_decomposition.test.cpp
 documentation_of: library/general/speed.hpp
 layout: document
 redirect_from:
