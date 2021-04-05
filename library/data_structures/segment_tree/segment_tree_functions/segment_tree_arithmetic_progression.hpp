@@ -3,7 +3,7 @@
 
 #include <cstddef>
 #include <type_traits>
-#include "segment_tree_add.hpp
+#include "segment_tree_add.hpp"
 
 template<typename uT, std::enable_if_t<std::is_arithmetic_v<uT>, bool> = true> struct ArithmeticProgressionNode
 {
