@@ -4,7 +4,6 @@
 #include <algorithm>
 #include <iterator>
 
-template <typename Iterator, typename Comparator>
-void binary_insertion_sort(Iterator first, Iterator last, Comparator compare);
+template<typename Iterator, typename Comparator> void binary_insertion_sort(Iterator first, Iterator last, Comparator compare);
 
 #endif

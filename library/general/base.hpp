@@ -66,8 +66,6 @@
 
 #endif
 
-#include "unused.hpp"
-
 #define ALL(set) std::begin(set), std::end(set)
 #define RALL(set) std::rbegin(set), std::rend(set)
 
@@ -77,8 +75,6 @@
 #define eb emplace_back
 #define ff first
 #define ss second
-#define lb lower_bound
-#define ub upper_bound
 
 using ll = long long;
 using pll = std::pair<long long, long long>;
@@ -103,18 +99,6 @@ using namespace __gnu_cxx;
 
 template<typename T> using orderedSet = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;
 template<typename T> using orderedMultiset = __gnu_pbds::tree<T, __gnu_pbds::null_type, std::less_equal<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;
-
-#endif
-
-#ifdef __SIZEOF_INT128__
-
-using li = __int128;
-using pli = std::pair<__int128, __int128>;
-using vli = std::vector<__int128>;
-
-using uli = unsigned __int128;
-using puli = std::pair<unsigned __int128, unsigned __int128>;
-using vuli = std::vector<unsigned __int128>;
 
 #endif
 

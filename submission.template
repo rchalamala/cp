@@ -9,7 +9,6 @@ TASK:
 
 int main(int argc, char** argv)
 {
-	unused(argc, argv);
 	#ifndef INTERACTIVE
 	speed();
 	#endif

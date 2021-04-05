@@ -1,11 +1,10 @@
 #ifndef HEAVY_LIGHT_DECOMPOSITION_HPP
 #define HEAVY_LIGHT_DECOMPOSITION_HPP
 
-#include <cassert>
 #include <cstddef>
 #include <type_traits>
 #include <utility>
-#include <vector>
+#include <array>
 
 template<class Tree> class HeavyLightDecomposition
 {
@@ -30,11 +29,11 @@ template<class Tree> class HeavyLightDecomposition
 		}
 	}
 
-	std::size_t currentTime = 0;
+	int currentTime = -1;
 
 	void decompose(std::vector<std::vector<std::size_t>>& graph, const std::size_t& i)
 	{
-		times[i].first = currentTime++;
+		times[i].first = ++currentTime;
 		for(const auto& child : graph[i])
 		{
 			if(child != parent[i])
@@ -43,7 +42,7 @@ template<class Tree> class HeavyLightDecomposition
 				decompose(graph, child);
 			}
 		}
-		times[i].second = currentTime - 1;
+		times[i].second = currentTime;
 	}
 
 	template<typename Operation> void path(std::size_t u, std::size_t v, const Operation operation)
@@ -71,7 +70,6 @@ public:
 
 	template<typename Iterable> void build(const Iterable& elements)
 	{
-		assert(elements.size() && elements.size() <= std::size(sizes));
 		Iterable positionedElements(elements.size());
 		for(std::size_t i = 0; i < positionedElements.size(); ++i)
 		{ positionedElements[times[i].first] = elements[i]; }
@@ -98,7 +96,7 @@ public:
 	{
 		auto result{tree.f.identity};
 		path(u, v, [this, &result](const std::size_t& left, const std::size_t& right)
-		{ result = tree.f.value(result, tree.range(left, right)); });
+		{ result = tree.f.merge(result, tree.range(left, right)); });
 		return tree.f.return_value(result);
 	}
 };

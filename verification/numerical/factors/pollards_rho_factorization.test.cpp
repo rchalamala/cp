@@ -14,7 +14,7 @@
 int main()
 {
 	speed();
-	std::int_fast16_t q;
+	std::int16_t q;
 	read(std::cin, q);
 	while(q--)
 	{
@@ -22,6 +22,9 @@ int main()
 		read(std::cin, a);
 		std::vector<std::uint64_t> factors = factors::pollards_rho_factorize<std::uint64_t>(a);
 		std::sort(std::begin(factors), std::end(factors));
-		prints(std::cout, std::size(factors), factors);
+		std::cout << std::size(factors);
+		for(const auto& factor : factors)
+		{ std::cout << ' ' << factor; }
+		std::cout << '\n';
 	}
 }

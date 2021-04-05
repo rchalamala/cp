@@ -3,46 +3,30 @@
 
 #include <algorithm>
 #include <cstddef>
+#include <limits>
 #include <type_traits>
 
-#include "../../../general/unused.hpp"
+#include "segment_tree_add.hpp"
 
-template<typename uT, std::enable_if_t<std::is_arithmetic_v<uT>, bool> = true> struct MinimumNode
+template<typename uT, std::enable_if_t<std::is_arithmetic_v<uT>, bool> = true> struct MinimumNode : AddNode<uT>
 {
-	using T = uT;
-
-	T value{}, delta{}, set{};
-	bool validSet{};
-
-	MinimumNode(const T& uValue, const T& uDelta, const T& uSet, const bool& uValidSet) : value{uValue}, delta{uDelta}, set{uSet}, validSet{uValidSet}
-	{
-	}
-
-	MinimumNode(const T& uValue) : value{uValue}
-	{
-	}
+	using AddNode<uT>::AddNode;
 };
 
-template<class uNode> struct Minimum
+template<class uNode> struct Minimum : Add<uNode>
 {
 	using Node = uNode;
 	using T = typename Node::T;
 
-	Node identity{};
+	Node identity{std::numeric_limits<T>::max()};
 
-	T return_value(const Node& element)
+	Node merge(const Node& lhs, const Node& rhs)
 	{
-		return element.value;
+		return std::min(lhs.value, rhs.value);
 	}
 
-	T value(const Node& lhs, const Node& rhs)
+	void propagate_update(Node& parent, Node& leftChild, Node& rightChild, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize)
 	{
-		return std::max(lhs.value, rhs.value);
-	}
-
-	void propagate_update(Node& parent, Node& leftChild, Node& rightChild, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& treeSize)
-	{
-		unused(treeSize);
 		std::size_t intervalLength{treeRight - treeLeft + 1};
 		if(parent.validSet)
 		{
@@ -51,32 +35,19 @@ template<class uNode> struct Minimum
 				leftChild.set = rightChild.set = parent.set;
 				leftChild.delta = rightChild.delta = 0;
 			}
-			parent.value = intervalLength * parent.set;
+			parent.value = parent.set;
 			parent.validSet = false;
 		}
-		else if(parent.delta)
+		if(parent.delta)
 		{
 			if(intervalLength > 1)
 			{
 				leftChild.delta += parent.delta;
 				rightChild.delta += parent.delta;
 			}
-			parent.value += intervalLength * parent.delta;
+			parent.value += parent.delta;
 			parent.delta = 0;
 		}
-	}
-
-	void change(Node& element, const T& delta)
-	{
-		element.value += delta;
-	}
-
-	void change(Node& element, const T& set, const bool& notDelta)
-	{
-		unused(notDelta);
-		element.delta = 0;
-		element.set = set;
-		element.validSet = true;
 	}
 };
 

@@ -1,5 +1,3 @@
-#include "../../library/general/input.hpp"
-#include "../../library/general/output.hpp"
 #include "../../library/general/speed.hpp"
 
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_path_sum"
@@ -17,35 +15,36 @@ int main()
 {
 	speed();
 	std::size_t n;
-	std::int_fast32_t q;
-	read(std::cin, n, q);
+	std::int32_t q;
+	std::cin >> n >> q;
 	std::vector<std::uint64_t> a(n);
-	read(std::cin, a);
+	for(auto& ai : a)
+	{ std::cin >> ai; }
 	std::vector<std::vector<std::size_t>> graph(n);
 	for(std::size_t i = 1; i < n; ++i)
 	{
 		std::size_t u, v;
-		read(std::cin, u, v);
+		std::cin >> u >> v;
 		graph[u].push_back(v);
 		graph[v].push_back(u);
 	}
-	HeavyLightDecomposition<SegmentTree<Add<std::uint64_t, AddNode<std::uint64_t>>, AddNode<std::uint64_t>>> hld(graph);
+	HeavyLightDecomposition<SegmentTree<Add<AddNode<std::uint64_t>>>> hld(graph);
 	hld.build(a);
 	while(q--)
 	{
 		bool queryType;
-		read(std::cin, queryType);
+		std::cin >> queryType;
 		if(queryType)
 		{
 			std::size_t u, v;
-			read(std::cin, u, v);
-			printn(std::cout, hld.range(u, v));
+			std::cin >> u >> v;
+			std::cout << hld.range(u, v) << '\n';
 		}
 		else
 		{
 			std::size_t p;
 			std::uint64_t x;
-			read(std::cin, p, x);
+			std::cin >> p >> x;
 			hld.update_path(p, p, x);
 		}
 	}

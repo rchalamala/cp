@@ -1,34 +1,44 @@
-#ifndef SEGMENT_TREE_FUNCTION_HPP
-#define SEGMENT_TREE_FUNCTION_HPP
+#include <cstddef>
 
-template<typename T> struct FunctionNode
+template<typename uT> struct FunctionNode
 {
+	using T = uT;
+
 	FunctionNode()
 	{
 
 	}
 };
 
-template<typename T, class Node> struct Function
+template<class uNode> struct Function
 {
-	Node identity = Node{};
+	using Node = uNode;
+	using T = typename Node::T;
+
+	Node identity{};
 
 	T return_value(const Node& element)
 	{
-		return element.m_value;
+		return element.value;
 	}
 
-	Node value(const Node& lhs, const Node& rhs) { return operation(lhs, rhs); }
-
-	void update(Node& parent, const Node& leftChild, const Node& rightChild) { parent = value(leftChild, rightChild); }
-
-	void propagate_update(Node& parent, Node& leftChild, Node& rightChild, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& treeSize)
+	Node merge(const Node& lhs, const Node& rhs)
 	{
-        delta(leftChild) = delta(parent);
-        delta(rightChild) = delta(parent);
-        parent += delta(parent);
+		return operation(lhs, rhs);
+	}
+
+	void propagate_update(Node& parent, Node& leftChild, Node& rightChild, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize)
+	{
+		delta(leftChild) = delta(parent);
+		delta(rightChild) = delta(parent);
+		parent += delta(parent);
 		delta(parent) = 0;
+	}
+
+	void change(Node& element, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize)
+	{
+
 	}
 };
 
-#endif
+// segment_tree_functions are built off of segment_tree_add.hpp if possible

@@ -1,5 +1,3 @@
-#include "../../library/general/input.hpp"
-#include "../../library/general/output.hpp"
 #include "../../library/general/speed.hpp"
 
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
@@ -16,27 +14,28 @@ int main()
 {
 	speed();
 	std::size_t n;
-	std::int_fast32_t q;
-	read(std::cin, n, q);
+	std::int32_t q;
+	std::cin >> n >> q;
 	std::vector<std::uint64_t> a(n);
-	read(std::cin, a);
-	SegmentTree<Add<std::uint64_t, AddNode<std::uint64_t>>, AddNode<std::uint64_t>> segmentTree(n);
+	for(auto& ai : a)
+	{ std::cin >> ai; }
+	SegmentTree<Add<AddNode<std::uint64_t>>> segmentTree(n);
 	segmentTree.build(a);
 	while(q--)
 	{
 		bool queryType;
-		read(std::cin, queryType);
+		std::cin >> queryType;
 		if(queryType)
 		{
 			std::size_t l, r;
-			read(std::cin, l, r);
-			printn(std::cout, segmentTree.range(l, r - 1));
+			std::cin >> l >> r;
+			std::cout << segmentTree.range(l, r - 1) << '\n';
 		}
 		else
 		{
 			std::size_t p;
 			std::uint64_t x;
-			read(std::cin, p, x);
+			std::cin >> p >> x;
 			segmentTree.change(p, p, x);
 		}
 	}

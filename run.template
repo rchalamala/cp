@@ -159,7 +159,6 @@ void run_test(JHelper::Test& test, const std::int64_t& stressTestIteration = 0, 
 int main(int argc, char** argv)
 {
 	static_assert(!%ClassName%::stressTestIterations || (%ClassName%::stressTestIterations && !%ClassName%::bruteForceAllIterations));
-	unused(argc, argv);
 	std::chrono::time_point<std::chrono::high_resolution_clock> start{ std::chrono::high_resolution_clock::now() };
 	std::vector<JHelper::Test> tests{ %Tests% };
 	std::cerr << std::fixed;

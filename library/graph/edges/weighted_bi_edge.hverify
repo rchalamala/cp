@@ -3,12 +3,12 @@
 
 #include "bi_edge.h"
 
-template <typename T>
-struct WeightedBiEdge : BiEdge {
-  static constexpr bool reversable = true;
-  T weight;
+template<typename T> struct WeightedBiEdge : BiEdge
+{
+	static constexpr bool reversable = true;
+	T weight;
 
-  explicit WeightedBiEdge(const std::size_t& u_to, const T& u_weight);
+	explicit WeightedBiEdge(const std::size_t& u_to, const T& u_weight);
 };
 
 #endif

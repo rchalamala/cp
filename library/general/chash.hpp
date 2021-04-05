@@ -4,6 +4,7 @@
 // http://xorshift.di.unimi.it/splitmix64.c
 
 #include <chrono>
+#include <cstddef>
 #include <cstdint>
 #include <utility>
 

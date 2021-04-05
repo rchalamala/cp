@@ -4,80 +4,75 @@
 #include <cstddef>
 #include <vector>
 
-template<class F, class Node> class SegmentTree
+template<class uF> class SegmentTree
 {
 public:
+	using F = uF;
+	using Node = typename F::Node;
 	F f;
 private:
+
 	const std::size_t size;
 	std::vector<Node> tree;
 
-	void propagate(const std::size_t& i, const std::size_t& treeLeft, const std::size_t& treeRight)
+	void propagate(const std::size_t& i, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& left, const std::size_t& right)
 	{
 		if(treeLeft != treeRight)
-		{
-			f.propagate_update(tree[i], tree[2 * i], tree[2 * i + 1], treeLeft, treeRight, tree.size() / 4);
-			tree[i] = f.value(tree[2 * i], tree[2 * i + 1]);
-		}
+		{ f.propagate_update(tree[i], tree[i << 1], tree[(i << 1) ^ 1], treeLeft, treeRight, left, right, size); }
 		else
-		{
-			f.propagate_update(tree[i], tree[i], tree[i], treeLeft, treeRight, tree.size() / 4);
-		}
+		{ f.propagate_update(tree[i], tree[i], tree[i], treeLeft, treeRight, left, right, size); }
 	}
 
 	template<typename Iterable> void build(const std::size_t& i, const std::size_t& left, const std::size_t& right, const Iterable& elements)
 	{
 		if(left == right)
 		{
-			if(left < elements.size())
-			{
-				tree[i] = Node{elements[left]};
-			}
+			tree[i] = Node{elements[left]};
 			return;
 		}
-		const std::size_t midpoint = left + (right - left) / 2;
-		build(2 * i, left, midpoint, elements);
-		build(2 * i + 1, midpoint + 1, right, elements);
-		tree[i] = f.value(tree[2 * i], tree[2 * i + 1]);
+		const std::size_t midpoint = left + ((right - left) >> 1);
+		build(i << 1, left, midpoint, elements);
+		build((i << 1) ^ 1, midpoint + 1, right, elements);
+		tree[i] = f.merge(tree[i << 1], tree[(i << 1) ^ 1]);
 	}
 
-	template<typename... Arguments> void change(const std::size_t i, const std::size_t treeLeft, const std::size_t treeRight, const std::size_t& left, const std::size_t& right, const Arguments& ... rest)
+	template<typename... Arguments> void change(const std::size_t& i, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& left, const std::size_t& right, const Arguments& ... rest)
 	{
+		propagate(i, treeLeft, treeRight, left, right);
 		if(left > treeRight || treeLeft > right)
 		{ return; }
-		propagate(i, treeLeft, treeRight);
 		if(left <= treeLeft && treeRight <= right)
 		{
-			f.change(tree[i], rest...);
-			propagate(i, treeLeft, treeRight);
+			f.change(tree[i], treeLeft, treeRight, left, right, size, rest...);
+			propagate(i, treeLeft, treeRight, left, right);
 			return;
 		}
-		const std::size_t midpoint = treeLeft + (treeRight - treeLeft) / 2;
-		change(2 * i, treeLeft, midpoint, left, right, rest...);
-		change(2 * i + 1, midpoint + 1, treeRight, left, right, rest...);
-		tree[i] = f.value(tree[2 * i], tree[2 * i + 1]);
+		const std::size_t midpoint = treeLeft + ((treeRight - treeLeft) >> 1);
+		change(i << 1, treeLeft, midpoint, left, right, rest...);
+		change((i << 1) ^ 1, midpoint + 1, treeRight, left, right, rest...);
+		tree[i] = f.merge(tree[i << 1], tree[(i << 1) ^ 1]);
 	}
 
 	Node range(const std::size_t& i, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& left, const std::size_t& right)
 	{
 		if(left > treeRight || treeLeft > right)
 		{ return f.identity; }
-		propagate(i, treeLeft, treeRight);
+		propagate(i, treeLeft, treeRight, left, right);
 		if(left <= treeLeft && treeRight <= right)
 		{ return tree[i]; }
-		const std::size_t midpoint = treeLeft + (treeRight - treeLeft) / 2;
-		return f.value(range(2 * i, treeLeft, midpoint, left, right), range(2 * i + 1, midpoint + 1, treeRight, left, right));
+		const std::size_t midpoint = treeLeft + ((treeRight - treeLeft) >> 1);
+		return f.merge(range(i << 1, treeLeft, midpoint, left, right), range((i << 1) ^ 1, midpoint + 1, treeRight, left, right));
 	}
 
 public:
-	explicit SegmentTree(const std::size_t& u_size) : size{u_size}
+	explicit SegmentTree(const std::size_t& uSize) : size{uSize}
 	{
-		tree.assign(4 * size, f.identity);
+		tree.assign(size << 2, Node{});
 	}
 
-	template<typename Iterable> void build(const Iterable& elements)
+	template<typename Iterable> void build(const Iterable& uElements)
 	{
-		build(1, 0, size - 1, elements);
+		build(1, 0, size - 1, uElements);
 	}
 
 	template<typename... Arguments> void change(const std::size_t& left, const std::size_t& right, const Arguments& ... rest)

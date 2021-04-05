@@ -15,18 +15,14 @@ inline std::mt19937_64& get_rng()
 	return rng;
 }
 
-template<typename T1, typename T2> typename std::common_type_t<T1, T2> getUID(const T1& uLow, const T2& uHigh, std::mt19937_64& device = get_rng())
+template<typename T1, typename T2, std::enable_if_t<std::is_integral_v<T1> && std::is_integral_v<T2>, bool> = true> typename std::common_type_t<T1, T2> getUID(const T1& uLow, const T2& uHigh, std::mt19937_64& device = get_rng())
 {
-	static_assert(std::is_integral_v<T1>);
-	static_assert(std::is_integral_v<T2>);
 	typename std::common_type_t<T1, T2> low{uLow}, high{uHigh};
 	return std::uniform_int_distribution<typename std::common_type<T1, T2>::type>(low, high)(device);
 }
 
-template<typename T1, typename T2> typename std::common_type_t<T1, T2> getURD(const T1& uLow, const T2& uHigh, std::mt19937_64& device = get_rng())
+template<typename T1, typename T2, std::enable_if_t<std::is_floating_point_v<T1> && std::is_floating_point_v<T2>, bool> = true> typename std::common_type_t<T1, T2> getURD(const T1& uLow, const T2& uHigh, std::mt19937_64& device = get_rng())
 {
-	static_assert(std::is_floating_point_v<T1>);
-	static_assert(std::is_floating_point_v<T2>);
 	typename std::common_type_t<T1, T2> low{uLow}, high{uHigh};
 	return std::uniform_real_distribution<typename std::common_type<T1, T2>::type>(low, high)(device);
 }

@@ -2,71 +2,110 @@
 #define SEGMENT_TREE_MAXIMUM_HPP
 
 #include <algorithm>
+#include <cstddef>
+#include <limits>
+#include <type_traits>
 
-template<typename T> struct MaximumNode
+#include "segment_tree_add.hpp"
+
+template<typename uT, std::enable_if_t<std::is_arithmetic_v<uT>, bool> = true> struct MaximumNode : AddNode<uT>
 {
-	T m_value, m_delta, m_set;
-	bool m_validSet;
-
-	MaximumNode(const T& value, const T& delta, const T& set, const bool& validSet) : m_value{value}, m_delta{delta}, m_set{set}, m_validSet{validSet} {}
-
-	MaximumNode(const T& value) : m_value{value}, m_delta{}, m_set{}, m_validSet{} {}
-
-	MaximumNode() : m_value{}, m_delta{}, m_set{}, m_validSet{} {}
+	using AddNode<uT>::AddNode;
 };
 
-template<typename T, typename Node> struct Maximum
+template<class uNode> struct Maximum : Add<uNode>
 {
-	Node identity = Node{std::numeric_limits<T>::min()};
+	using Node = uNode;
+	using T = typename Node::T;
+
+	Node identity{std::numeric_limits<T>::min()};
+
+	Node merge(const Node& lhs, const Node& rhs)
+	{
+		return std::max(lhs.value, rhs.value);
+	}
+
+	void propagate_update(Node& parent, Node& leftChild, Node& rightChild, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize)
+	{
+		std::size_t intervalLength{treeRight - treeLeft + 1};
+		if(parent.validSet)
+		{
+			if(intervalLength > 1)
+			{
+				leftChild.set = rightChild.set = parent.set;
+				leftChild.delta = rightChild.delta = 0;
+			}
+			parent.value = parent.set;
+			parent.validSet = false;
+		}
+		if(parent.delta)
+		{
+			if(intervalLength > 1)
+			{
+				leftChild.delta += parent.delta;
+				rightChild.delta += parent.delta;
+			}
+			parent.value += parent.delta;
+			parent.delta = 0;
+		}
+	}
+};
+
+/*
+template<class uNode> struct Maximum
+{
+	using Node = uNode;
+	using T = typename Node::T;
+
+	Node identity{std::numeric_limits<T>::min()};
 
 	T return_value(const Node& element)
 	{
-		return element.m_value;
+		return element.value;
 	}
 
 	T value(const Node& lhs, const Node& rhs)
 	{
-		return std::max(lhs.m_value, rhs.m_value);
+		return std::max(lhs.value, rhs.value);
 	}
 
-	void propagate_update(Node& parent, Node& leftChild, Node& rightChild, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& treeSize)
+	void propagate_update(Node& parent, Node& leftChild, Node& rightChild, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize)
 	{
-		unused(treeSize);
-		std::size_t intervalLength = treeRight - treeLeft + 1;
-		if(parent.m_validSet)
+		std::size_t intervalLength{treeRight - treeLeft + 1};
+		if(parent.validSet)
 		{
 			if(intervalLength > 1)
 			{
-				leftChild.m_set = rightChild.m_set = parent.m_set;
-				leftChild.m_delta = rightChild.m_delta = 0;
+				leftChild.set = rightChild.set = parent.set;
+				leftChild.delta = rightChild.delta = 0;
 			}
-			parent.m_value = parent.m_set;
-			parent.m_validSet = false;
+			parent.value = parent.set;
+			parent.validSet = false;
 		}
-		else if(parent.m_delta)
+		if(parent.delta)
 		{
 			if(intervalLength > 1)
 			{
-				leftChild.m_delta += parent.m_delta;
-				rightChild.m_delta += parent.m_delta;
+				leftChild.delta += parent.delta;
+				rightChild.delta += parent.delta;
 			}
-			parent.m_value += parent.m_delta;
-			parent.m_delta = 0;
+			parent.value += parent.delta;
+			parent.delta = 0;
 		}
 	}
 
-	void change(Node& element, const T& delta)
+	void change(Node& element, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize, const T& delta)
 	{
-		element.m_value += delta;
+		element.delta += delta;
 	}
 
-	void change(Node& element, const T& set, const bool& notDelta)
+	void change(Node& element, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize, const T& set, const bool& notDelta)
 	{
-		unused(notDelta);
-		element.m_delta = 0;
-		element.m_set = set;
-		element.m_validSet = true;
+		element.delta = 0;
+		element.set = set;
+		element.validSet = true;
 	}
 };
+*/
 
 #endif

@@ -3,12 +3,12 @@
 
 #include "edge.h"
 
-template <typename T>
-struct WeightedEdge : Edge {
-  static constexpr bool reversable = true;
-  T weight;
+template<typename T> struct WeightedEdge : Edge
+{
+	static constexpr bool reversable = true;
+	T weight;
 
-  explicit WeightedEdge(const std::size_t& u_to, const T& u_weight);
+	explicit WeightedEdge(const std::size_t& u_to, const T& u_weight);
 };
 
 #endif

@@ -4,81 +4,74 @@
 #include <cstddef>
 #include <type_traits>
 
-#include "../../../general/unused.hpp"
-
-template<typename T> struct AddNode
+template<typename uT, std::enable_if_t<std::is_arithmetic_v<uT>, bool> = true> struct AddNode
 {
-	static_assert(std::is_arithmetic_v<T>);
+	using T = uT;
 
-	T m_value{}, m_delta{}, m_set{};
-	bool m_validSet = false;
+	T value{}, delta{}, set{};
+	bool validSet{};
 
-	AddNode(const T& value, const T& delta, const T& set, const bool& validSet) : m_value{value}, m_delta{delta}, m_set{set}, m_validSet{validSet}
+	AddNode(const T& uValue) : value{uValue}
 	{
 	}
 
-	AddNode(const T& value) : m_value{value}, m_delta{}, m_set{}, m_validSet{}
-	{
-	}
-
-	AddNode() : m_value{}, m_delta{}, m_set{}, m_validSet{}
+	AddNode()
 	{
 	}
 };
 
-template<typename T, typename Node> struct Add
+template<class uNode> struct Add
 {
-	static_assert(std::is_arithmetic_v<T>);
+	using Node = uNode;
+	using T = typename Node::T;
 
 	Node identity{};
 
-	T return_value(const Node& element)
+	virtual T return_value(const Node& element)
 	{
-		return element.m_value;
+		return element.value;
 	}
 
-	T value(const Node& lhs, const Node& rhs)
+	virtual Node merge(const Node& lhs, const Node& rhs)
 	{
-		return lhs.m_value + rhs.m_value;
+		return lhs.value + rhs.value;
 	}
 
-	void propagate_update(Node& parent, Node& leftChild, Node& rightChild, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& treeSize)
+	virtual void propagate_update(Node& parent, Node& leftChild, Node& rightChild, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize)
 	{
-		unused(treeSize);
 		std::size_t intervalLength{treeRight - treeLeft + 1};
-		if(parent.m_validSet)
+		if(parent.validSet)
 		{
 			if(intervalLength > 1)
 			{
-				leftChild.m_set = rightChild.m_set = parent.m_set;
-				leftChild.m_delta = rightChild.m_delta = 0;
+				leftChild.set = rightChild.set = parent.set;
+				leftChild.delta = rightChild.delta = 0;
 			}
-			parent.m_value = intervalLength * parent.m_set;
-			parent.m_validSet = false;
+			parent.value = intervalLength * parent.set;
+			parent.validSet = false;
 		}
-		else if(parent.m_delta)
+		if(parent.delta)
 		{
 			if(intervalLength > 1)
 			{
-				leftChild.m_delta += parent.m_delta;
-				rightChild.m_delta += parent.m_delta;
+				leftChild.delta += parent.delta;
+				rightChild.delta += parent.delta;
 			}
-			parent.m_value += intervalLength * parent.m_delta;
-			parent.m_delta = 0;
+			parent.value += intervalLength * parent.delta;
+			parent.delta = 0;
 		}
 	}
 
-	void change(Node& element, const T& delta)
+	virtual void change(Node& element, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize, const T& delta)
 	{
-		element.m_value += delta;
+		element.delta += delta;
 	}
 
-	void change(Node& element, const T& set, const bool& notDelta)
+	virtual void change(Node& element, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize, const T& set, const bool& notDelta)
 	{
-		unused(notDelta);
-		element.m_delta = 0;
-		element.m_set = set;
-		element.m_validSet = true;
+		element.delta = 0;
+		element.set = set;
+		element.validSet = true;
 	}
 };
 
