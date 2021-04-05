@@ -7,8 +7,11 @@ data:
     title: library/general/output.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: verification/graph/heavy_light_decomposition.test.cpp
-    title: verification/graph/heavy_light_decomposition.test.cpp
+    path: verification/numerical/factors/optimized_rho_factorization.test.cpp
+    title: verification/numerical/factors/optimized_rho_factorization.test.cpp
+  - icon: ':x:'
+    path: verification/numerical/factors/pollards_rho_factorization.test.cpp
+    title: verification/numerical/factors/pollards_rho_factorization.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -70,7 +73,8 @@ data:
   timestamp: '2021-03-28 23:42:17-06:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verification/graph/heavy_light_decomposition.test.cpp
+  - verification/numerical/factors/pollards_rho_factorization.test.cpp
+  - verification/numerical/factors/optimized_rho_factorization.test.cpp
 documentation_of: library/general/to_string.hpp
 layout: document
 redirect_from:

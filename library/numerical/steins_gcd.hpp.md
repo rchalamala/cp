@@ -1,14 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: library/numerical/factors/optimized_rho_factorization.hpp
+    title: library/numerical/factors/optimized_rho_factorization.hpp
+  - icon: ':x:'
+    path: library/numerical/factors/pollards_rho_factorization.hpp
+    title: library/numerical/factors/pollards_rho_factorization.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verification/numerical/factors/optimized_rho_factorization.test.cpp
+    title: verification/numerical/factors/optimized_rho_factorization.test.cpp
+  - icon: ':x:'
+    path: verification/numerical/factors/pollards_rho_factorization.test.cpp
+    title: verification/numerical/factors/pollards_rho_factorization.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/numerical/steins_gcd.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -45,10 +57,14 @@ data:
   - library/numerical/trailing_zero_bits.hpp
   isVerificationFile: false
   path: library/numerical/steins_gcd.hpp
-  requiredBy: []
+  requiredBy:
+  - library/numerical/factors/pollards_rho_factorization.hpp
+  - library/numerical/factors/optimized_rho_factorization.hpp
   timestamp: '2021-03-30 13:00:21-06:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verification/numerical/factors/pollards_rho_factorization.test.cpp
+  - verification/numerical/factors/optimized_rho_factorization.test.cpp
 documentation_of: library/numerical/steins_gcd.hpp
 layout: document
 redirect_from:

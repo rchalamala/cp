@@ -2,16 +2,58 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
+    path: library/numerical/factors/optimized_rho_factorization.hpp
+    title: library/numerical/factors/optimized_rho_factorization.hpp
+  - icon: ':x:'
+    path: library/numerical/factors/optimized_rho_factorization.hpp
+    title: library/numerical/factors/optimized_rho_factorization.hpp
+  - icon: ':x:'
+    path: library/numerical/factors/optimized_rho_factorization.hpp
+    title: library/numerical/factors/optimized_rho_factorization.hpp
+  - icon: ':x:'
+    path: library/numerical/factors/pollards_rho_factorization.hpp
+    title: library/numerical/factors/pollards_rho_factorization.hpp
+  - icon: ':x:'
+    path: library/numerical/factors/pollards_rho_factorization.hpp
+    title: library/numerical/factors/pollards_rho_factorization.hpp
+  - icon: ':x:'
+    path: library/numerical/factors/pollards_rho_factorization.hpp
+    title: library/numerical/factors/pollards_rho_factorization.hpp
+  - icon: ':x:'
     path: library/numerical/montgomery.hpp
     title: library/numerical/montgomery.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
+    path: library/numerical/primality/miller_rabin_primality_test.hpp
+    title: library/numerical/primality/miller_rabin_primality_test.hpp
+  - icon: ':x:'
+    path: library/numerical/primality/miller_rabin_primality_test.hpp
+    title: library/numerical/primality/miller_rabin_primality_test.hpp
+  - icon: ':x:'
     path: library/numerical/steins_gcd.hpp
     title: library/numerical/steins_gcd.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verification/numerical/factors/optimized_rho_factorization.test.cpp
+    title: verification/numerical/factors/optimized_rho_factorization.test.cpp
+  - icon: ':x:'
+    path: verification/numerical/factors/optimized_rho_factorization.test.cpp
+    title: verification/numerical/factors/optimized_rho_factorization.test.cpp
+  - icon: ':x:'
+    path: verification/numerical/factors/optimized_rho_factorization.test.cpp
+    title: verification/numerical/factors/optimized_rho_factorization.test.cpp
+  - icon: ':x:'
+    path: verification/numerical/factors/pollards_rho_factorization.test.cpp
+    title: verification/numerical/factors/pollards_rho_factorization.test.cpp
+  - icon: ':x:'
+    path: verification/numerical/factors/pollards_rho_factorization.test.cpp
+    title: verification/numerical/factors/pollards_rho_factorization.test.cpp
+  - icon: ':x:'
+    path: verification/numerical/factors/pollards_rho_factorization.test.cpp
+    title: verification/numerical/factors/pollards_rho_factorization.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/numerical/trailing_zero_bits.hpp\"\n\n\n\n#include\
@@ -32,9 +74,23 @@ data:
   requiredBy:
   - library/numerical/montgomery.hpp
   - library/numerical/steins_gcd.hpp
+  - library/numerical/primality/miller_rabin_primality_test.hpp
+  - library/numerical/primality/miller_rabin_primality_test.hpp
+  - library/numerical/factors/pollards_rho_factorization.hpp
+  - library/numerical/factors/pollards_rho_factorization.hpp
+  - library/numerical/factors/pollards_rho_factorization.hpp
+  - library/numerical/factors/optimized_rho_factorization.hpp
+  - library/numerical/factors/optimized_rho_factorization.hpp
+  - library/numerical/factors/optimized_rho_factorization.hpp
   timestamp: '2021-03-30 13:00:21-06:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verification/numerical/factors/pollards_rho_factorization.test.cpp
+  - verification/numerical/factors/pollards_rho_factorization.test.cpp
+  - verification/numerical/factors/pollards_rho_factorization.test.cpp
+  - verification/numerical/factors/optimized_rho_factorization.test.cpp
+  - verification/numerical/factors/optimized_rho_factorization.test.cpp
+  - verification/numerical/factors/optimized_rho_factorization.test.cpp
 documentation_of: library/numerical/trailing_zero_bits.hpp
 layout: document
 redirect_from:

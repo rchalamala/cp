@@ -1,14 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: library/numerical/factors/optimized_rho_factorization.hpp
+    title: library/numerical/factors/optimized_rho_factorization.hpp
+  - icon: ':x:'
+    path: library/numerical/factors/optimized_rho_factorization.hpp
+    title: library/numerical/factors/optimized_rho_factorization.hpp
+  - icon: ':x:'
+    path: library/numerical/factors/pollards_rho_factorization.hpp
+    title: library/numerical/factors/pollards_rho_factorization.hpp
+  - icon: ':x:'
+    path: library/numerical/primality/miller_rabin_primality_test.hpp
+    title: library/numerical/primality/miller_rabin_primality_test.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verification/numerical/factors/optimized_rho_factorization.test.cpp
+    title: verification/numerical/factors/optimized_rho_factorization.test.cpp
+  - icon: ':x:'
+    path: verification/numerical/factors/optimized_rho_factorization.test.cpp
+    title: verification/numerical/factors/optimized_rho_factorization.test.cpp
+  - icon: ':x:'
+    path: verification/numerical/factors/pollards_rho_factorization.test.cpp
+    title: verification/numerical/factors/pollards_rho_factorization.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://cp-algorithms.com/algebra/montgomery_multiplication.html
@@ -127,10 +148,17 @@ data:
   - library/numerical/trailing_zero_bits.hpp
   isVerificationFile: false
   path: library/numerical/montgomery.hpp
-  requiredBy: []
+  requiredBy:
+  - library/numerical/primality/miller_rabin_primality_test.hpp
+  - library/numerical/factors/pollards_rho_factorization.hpp
+  - library/numerical/factors/optimized_rho_factorization.hpp
+  - library/numerical/factors/optimized_rho_factorization.hpp
   timestamp: '2021-03-30 13:00:21-06:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verification/numerical/factors/pollards_rho_factorization.test.cpp
+  - verification/numerical/factors/optimized_rho_factorization.test.cpp
+  - verification/numerical/factors/optimized_rho_factorization.test.cpp
 documentation_of: library/numerical/montgomery.hpp
 layout: document
 redirect_from:
