@@ -182,23 +182,9 @@ data:
 
     using ll = long long;
 
-    using pll = std::pair<long long, long long>;
-
-    using vll = std::vector<long long>;
-
-
     using ull = unsigned long long;
 
-    using pull = std::pair<unsigned long long, unsigned long long>;
-
-    using vull = std::vector<unsigned long long>;
-
-
     using ld = long double;
-
-    using pld = std::pair<long double, long double>;
-
-    using vld = std::vector<long double>;
 
 
     #ifdef __GNUC__
@@ -375,23 +361,9 @@ data:
 
     using ll = long long;
 
-    using pll = std::pair<long long, long long>;
-
-    using vll = std::vector<long long>;
-
-
     using ull = unsigned long long;
 
-    using pull = std::pair<unsigned long long, unsigned long long>;
-
-    using vull = std::vector<unsigned long long>;
-
-
     using ld = long double;
-
-    using pld = std::pair<long double, long double>;
-
-    using vld = std::vector<long double>;
 
 
     #ifdef __GNUC__
@@ -419,9 +391,7 @@ data:
     #endif
 
 
-    #endif
-
-    '
+    #endif'
   dependsOn: []
   isVerificationFile: false
   path: library/general/base.hpp
@@ -431,7 +401,7 @@ data:
   - library/numerical/factors/pollards_rho_factorization.hpp
   - library/numerical/factors/optimized_rho_factorization.hpp
   - library/numerical/factors/optimized_rho_factorization.hpp
-  timestamp: '2021-04-05 00:55:31-06:00'
+  timestamp: '2021-04-07 22:54:37-06:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verification/numerical/factors/pollards_rho_factorization.test.cpp

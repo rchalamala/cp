@@ -29,14 +29,14 @@ data:
     \ Size> bool read(std::istream& in, std::array<T, Size>& elements)\n{\n\tbool\
     \ result = true;\n\tfor(T& element : elements)\n\t{ result &= read(in, element);\
     \ }\n\treturn result;\n}\n\ntemplate<typename T1, typename T2> bool read(std::istream&\
-    \ in, std::pair<T1, T2>& element)\n{\n\treturn read(in, element.first, element.second);\n\
-    }\n\ntemplate<typename T> bool read(std::istream& in, T& element)\n{\n\treturn\
-    \ static_cast<bool>(in >> element);\n}\n\ntemplate<typename T> bool read(std::istream&\
-    \ in, std::complex<T>& element)\n{\n\tbool result = true;\n\tT first, second;\n\
-    \tresult &= read(in, first, second);\n\telement = std::complex<T>(first, second);\n\
-    \treturn result;\n}\n\ntemplate<typename T> bool read(std::istream& in, std::vector<T>&\
-    \ elements)\n{\n\tbool result = true;\n\tfor(T& element : elements)\n\t{ result\
-    \ &= read(in, element); }\n\treturn result;\n}\n\n\n"
+    \ in, std::pair<T1, T2>& element) { return read(in, element.first, element.second);\
+    \ }\n\ntemplate<typename T> bool read(std::istream& in, T& element) { return static_cast<bool>(in\
+    \ >> element); }\n\ntemplate<typename T> bool read(std::istream& in, std::complex<T>&\
+    \ element)\n{\n\tbool result = true;\n\tT first, second;\n\tresult &= read(in,\
+    \ first, second);\n\telement = std::complex<T>(first, second);\n\treturn result;\n\
+    }\n\ntemplate<typename T> bool read(std::istream& in, std::vector<T>& elements)\n\
+    {\n\tbool result = true;\n\tfor(T& element : elements)\n\t{ result &= read(in,\
+    \ element); }\n\treturn result;\n}\n\n\n"
   code: "#ifndef INPUT_HPP\n#define INPUT_HPP\n\n#include <array>\n#include <complex>\n\
     #include <istream>\n#include <string>\n#include <utility>\n#include <vector>\n\
     \ntemplate<typename Argument, typename... Arguments> bool read(std::istream& in,\
@@ -52,19 +52,19 @@ data:
     \ Size> bool read(std::istream& in, std::array<T, Size>& elements)\n{\n\tbool\
     \ result = true;\n\tfor(T& element : elements)\n\t{ result &= read(in, element);\
     \ }\n\treturn result;\n}\n\ntemplate<typename T1, typename T2> bool read(std::istream&\
-    \ in, std::pair<T1, T2>& element)\n{\n\treturn read(in, element.first, element.second);\n\
-    }\n\ntemplate<typename T> bool read(std::istream& in, T& element)\n{\n\treturn\
-    \ static_cast<bool>(in >> element);\n}\n\ntemplate<typename T> bool read(std::istream&\
-    \ in, std::complex<T>& element)\n{\n\tbool result = true;\n\tT first, second;\n\
-    \tresult &= read(in, first, second);\n\telement = std::complex<T>(first, second);\n\
-    \treturn result;\n}\n\ntemplate<typename T> bool read(std::istream& in, std::vector<T>&\
-    \ elements)\n{\n\tbool result = true;\n\tfor(T& element : elements)\n\t{ result\
-    \ &= read(in, element); }\n\treturn result;\n}\n\n#endif"
+    \ in, std::pair<T1, T2>& element) { return read(in, element.first, element.second);\
+    \ }\n\ntemplate<typename T> bool read(std::istream& in, T& element) { return static_cast<bool>(in\
+    \ >> element); }\n\ntemplate<typename T> bool read(std::istream& in, std::complex<T>&\
+    \ element)\n{\n\tbool result = true;\n\tT first, second;\n\tresult &= read(in,\
+    \ first, second);\n\telement = std::complex<T>(first, second);\n\treturn result;\n\
+    }\n\ntemplate<typename T> bool read(std::istream& in, std::vector<T>& elements)\n\
+    {\n\tbool result = true;\n\tfor(T& element : elements)\n\t{ result &= read(in,\
+    \ element); }\n\treturn result;\n}\n\n#endif"
   dependsOn: []
   isVerificationFile: false
   path: library/general/input.hpp
   requiredBy: []
-  timestamp: '2021-03-28 23:42:17-06:00'
+  timestamp: '2021-04-07 22:54:37-06:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verification/numerical/factors/pollards_rho_factorization.test.cpp

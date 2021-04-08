@@ -1,18 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/data_structures/segment_tree/segment_tree.hpp
     title: library/data_structures/segment_tree/segment_tree.hpp
   - icon: ':heavy_check_mark:'
     path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_composite.hpp
     title: library/data_structures/segment_tree/segment_tree_functions/segment_tree_composite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/general/speed.hpp
     title: library/general/speed.hpp
-  - icon: ':heavy_check_mark:'
-    path: library/numerical/modular.hpp
-    title: library/numerical/modular.hpp
+  - icon: ':question:'
+    path: library/numerical/modulo.hpp
+    title: library/numerical/modulo.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -31,7 +31,7 @@ data:
     \n#include <vector>\n\n#line 1 \"library/data_structures/segment_tree/segment_tree.hpp\"\
     \n\n\n\n#line 6 \"library/data_structures/segment_tree/segment_tree.hpp\"\n\n\
     template<class uF> class SegmentTree\n{\npublic:\n\tusing F = uF;\n\tusing Node\
-    \ = typename F::Node;\n\tF f;\nprivate:\n\n\tconst std::size_t size;\n\tstd::vector<Node>\
+    \ = typename F::Node;\n\tF f;\nprivate:\n\tconst std::size_t size;\n\tstd::vector<Node>\
     \ tree;\n\n\tvoid propagate(const std::size_t& i, const std::size_t& treeLeft,\
     \ const std::size_t& treeRight, const std::size_t& left, const std::size_t& right)\n\
     \t{\n\t\tif(treeLeft != treeRight)\n\t\t{ f.propagate_update(tree[i], tree[i <<\
@@ -61,43 +61,44 @@ data:
     \ = treeLeft + ((treeRight - treeLeft) >> 1);\n\t\treturn f.merge(range(i << 1,\
     \ treeLeft, midpoint, left, right), range((i << 1) ^ 1, midpoint + 1, treeRight,\
     \ left, right));\n\t}\n\npublic:\n\texplicit SegmentTree(const std::size_t& uSize)\
-    \ : size{uSize}\n\t{\n\t\ttree.assign(size << 2, Node{});\n\t}\n\n\ttemplate<typename\
-    \ Iterable> void build(const Iterable& uElements)\n\t{\n\t\tbuild(1, 0, size -\
-    \ 1, uElements);\n\t}\n\n\ttemplate<typename... Arguments> void change(const std::size_t&\
-    \ left, const std::size_t& right, const Arguments& ... rest)\n\t{\n\t\tchange(1,\
-    \ 0, size - 1, left, right, rest...);\n\t}\n\n\tauto range(const std::size_t&\
-    \ left, const std::size_t& right)\n\t{\n\t\treturn f.return_value(range(1, 0,\
-    \ size - 1, left, right));\n\t}\n};\n\n\n#line 1 \"library/data_structures/segment_tree/segment_tree_functions/segment_tree_composite.hpp\"\
+    \ : size{uSize} { tree.assign(size << 2, Node{}); }\n\n\ttemplate<typename Iterable>\
+    \ void build(const Iterable& uElements) { build(1, 0, size - 1, uElements); }\n\
+    \n\ttemplate<typename... Arguments> void change(const std::size_t& left, const\
+    \ std::size_t& right, const Arguments& ... rest) { change(1, 0, size - 1, left,\
+    \ right, rest...); }\n\n\tauto range(const std::size_t& left, const std::size_t&\
+    \ right) { return f.return_value(range(1, 0, size - 1, left, right)); }\n};\n\n\
+    \n#line 1 \"library/data_structures/segment_tree/segment_tree_functions/segment_tree_composite.hpp\"\
     \n\n\n\n#line 5 \"library/data_structures/segment_tree/segment_tree_functions/segment_tree_composite.hpp\"\
     \n\ntemplate<typename T1, typename T2> T1 power(T1 base, T2 exponent)\n{\n\tT1\
     \ result{1};\n\twhile(exponent)\n\t{\n\t\tif(exponent & 1)\n\t\t{ result *= base;\
     \ }\n\t\tbase *= base;\n\t\texponent >>= 1;\n\t}\n\treturn result;\n}\n\ntemplate<typename\
     \ uT> struct CompositeNode\n{\n\tusing T = uT;\n\n\tT a{1}, b{};\n\tbool validSet{};\n\
-    \n\tCompositeNode(const T& uA, const T& uB) : a{uA}, b{uB}\n\t{\n\t}\n\n\tCompositeNode()\n\
-    \t{\n\t}\n};\n\ntemplate<class uNode, bool ORDERED> struct Composite\n{\n\tusing\
-    \ Node = uNode;\n\tusing T = typename Node::T;\n\n\tNode identity{};\n\n\tNode\
-    \ return_value(const Node& element)\n\t{\n\t\treturn element;\n\t}\n\n\tNode merge(const\
-    \ Node& lhs, const Node& rhs)\n\t{\n\t\treturn ORDERED ? Node{lhs.a * rhs.a, lhs.a\
-    \ * rhs.b + lhs.b} : Node{rhs.a * lhs.a, rhs.a * lhs.b + rhs.b};\n\t}\n\n\tvoid\
-    \ propagate_update(Node& parent, Node& leftChild, Node& rightChild, const std::size_t&\
-    \ treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft, const\
-    \ std::size_t& queryRight, const std::size_t& treeSize)\n\t{\n\t\tstd::size_t\
-    \ intervalLength{treeRight - treeLeft + 1};\n\t\tif(parent.validSet)\n\t\t{\n\t\
-    \t\tif(intervalLength > 1)\n\t\t\t{\n\t\t\t\tleftChild.a = rightChild.a = parent.a;\n\
-    \t\t\t\tleftChild.b = rightChild.b = parent.b;\n\t\t\t\tleftChild.validSet = rightChild.validSet\
-    \ = true;\n\t\t\t}\n\t\t\tT a = parent.a;\n\t\t\tif(parent.a > 1)\n\t\t\t{\n\t\
-    \t\t\tparent.a = power(a, intervalLength);\n\t\t\t\tparent.b *= (parent.a - 1);\n\
-    \t\t\t\tparent.b /= (a - 1);\n\t\t\t}\n\t\t\telse if(parent.a == 1)\n\t\t\t{ parent.b\
-    \ *= intervalLength; }\n\t\t\tparent.validSet = false;\n\t\t}\n\t}\n\n\tvoid change(Node&\
-    \ element, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t&\
+    \n\tCompositeNode(const T& uA, const T& uB) : a{uA}, b{uB} {}\n\n\tCompositeNode()\
+    \ {}\n};\n\ntemplate<class uNode, bool ORDERED> struct Composite\n{\n\tusing Node\
+    \ = uNode;\n\tusing T = typename Node::T;\n\n\tNode identity{};\n\n\tNode return_value(const\
+    \ Node& element) { return element; }\n\n\tNode merge(const Node& lhs, const Node&\
+    \ rhs) { return ORDERED ? Node{lhs.a * rhs.a, lhs.a * rhs.b + lhs.b} : Node{rhs.a\
+    \ * lhs.a, rhs.a * lhs.b + rhs.b}; }\n\n\tvoid propagate_update(Node& parent,\
+    \ Node& leftChild, Node& rightChild, const std::size_t& treeLeft, const std::size_t&\
+    \ treeRight, const std::size_t& queryLeft, const std::size_t& queryRight, const\
+    \ std::size_t& treeSize)\n\t{\n\t\tstd::size_t intervalLength{treeRight - treeLeft\
+    \ + 1};\n\t\tif(parent.validSet)\n\t\t{\n\t\t\tif(intervalLength > 1)\n\t\t\t\
+    {\n\t\t\t\tleftChild.a = rightChild.a = parent.a;\n\t\t\t\tleftChild.b = rightChild.b\
+    \ = parent.b;\n\t\t\t\tleftChild.validSet = rightChild.validSet = true;\n\t\t\t\
+    }\n\t\t\tT a = parent.a;\n\t\t\tif(parent.a > 1)\n\t\t\t{\n\t\t\t\tparent.a =\
+    \ power(a, intervalLength);\n\t\t\t\tparent.b *= (parent.a - 1);\n\t\t\t\tparent.b\
+    \ /= (a - 1);\n\t\t\t}\n\t\t\telse if(parent.a == 1)\n\t\t\t{ parent.b *= intervalLength;\
+    \ }\n\t\t\tparent.validSet = false;\n\t\t}\n\t}\n\n\tvoid change(Node& element,\
+    \ const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t&\
     \ queryLeft, const std::size_t& queryRight, const std::size_t& treeSize, const\
     \ T& a, const T& b)\n\t{\n\t\telement.a = a;\n\t\telement.b = b;\n\t\telement.validSet\
-    \ = true;\n\t}\n};\n\n\n#line 1 \"library/numerical/modular.hpp\"\n\n\n\n#include\
-    \ <algorithm>\n#include <type_traits>\n\ntemplate<typename T> T inverse(T a, T\
-    \ m)\n{\n\tif(a == 1)\n\t{ return 1; }\n\tT u = 0, v = 1;\n\twhile(a != 0)\n\t\
-    {\n\t\tT t = m / a;\n\t\tm -= t * a;\n\t\tstd::swap(a, m);\n\t\tu -= t * v;\n\t\
-    \tstd::swap(u, v);\n\t}\n\treturn u;\n}\n\n// https://github.com/the-tourist/algo/blob/master/numeric/mint.cpp\n\
-    template<typename MODULUS, std::enable_if_t<std::is_integral_v<std::decay_t<decltype(MODULUS::value)>>\
+    \ = true;\n\t}\n};\n\n\n#line 1 \"library/numerical/modulo.hpp\"\n\n\n\n#include\
+    \ <algorithm>\n#line 6 \"library/numerical/modulo.hpp\"\n#include <type_traits>\n\
+    \ntemplate<typename T> T inverse(T a, T m)\n{\n\tif(a == 1)\n\t{ return 1; }\n\
+    \tT u = 0, v = 1;\n\twhile(a != 0)\n\t{\n\t\tT t = m / a;\n\t\tm -= t * a;\n\t\
+    \tstd::swap(a, m);\n\t\tu -= t * v;\n\t\tstd::swap(u, v);\n\t}\n\treturn u;\n\
+    }\n\n// https://github.com/the-tourist/algo/blob/master/numeric/mint.cpp\ntemplate<typename\
+    \ MODULUS, std::enable_if_t<std::is_integral_v<std::decay_t<decltype(MODULUS::value)>>\
     \ && std::is_signed_v<std::decay_t<decltype(MODULUS::value)>>, bool> = true> class\
     \ Modulo\n{\n\tusing Type = typename std::decay_t<decltype(MODULUS::value)>;\n\
     \n\tType value{};\n\n\ttemplate<typename T> static T normalize(const T& element)\n\
@@ -167,10 +168,14 @@ data:
     \ { return Modulo<T1>{lhs} /= rhs; }\ntemplate<typename T1, typename T2> Modulo<T2>\
     \ operator/(const T1& lhs, const Modulo<T2>& rhs) { return Modulo<T2>{lhs} /=\
     \ rhs; }\n\ntemplate<typename T> std::istream& operator>>(std::istream& in, Modulo<T>&\
-    \ element)\n{\n\tin >> element.value;\n\telement.value = Modulo<T>::normalize(element.value);\n\
+    \ element)\n{\n\tstd::intmax_t value;\n\tin >> value;\n\tvalue %= T::value;\n\t\
+    if(value < 0)\n\t{ value += T::value; }\n\telement.value = static_cast<decltype(T::value)>(value);\n\
     \treturn in;\n}\n\ntemplate<typename T> std::ostream& operator<<(std::ostream&\
-    \ out, const Modulo<T>& element) { return out << element(); }\n\n// DIVISION AND\
-    \ FIX UP GCD WHEN NOT LAZY AND STATIC ASSERTIONS\n\n\n#line 13 \"verification/data_structures/segment_tree_composite.test.cpp\"\
+    \ out, const Modulo<T>& element) { return out << element(); }\n\nnamespace std\n\
+    {\n\ttemplate<typename T> std::string to_string(const Modulo<T>& element);\n}\
+    \  // namespace std\n\ntemplate<typename T> std::string std::to_string(const Modulo<T>&\
+    \ element) { return std::to_string(element()); }\n\n// DIVISION AND FIX UP GCD\
+    \ WHEN NOT LAZY AND STATIC ASSERTIONS\n\n\n#line 13 \"verification/data_structures/segment_tree_composite.test.cpp\"\
     \n\nint main()\n{\n\tspeed();\n\tstd::size_t n;\n\tstd::int32_t q;\n\tstd::cin\
     \ >> n >> q;\n\tstd::vector<CompositeNode<Modulo<std::integral_constant<std::decay_t<decltype(998244353)>,\
     \ 998244353>>>> elements(n);\n\tfor(std::size_t i = 0; i < n; ++i)\n\t{ std::cin\
@@ -186,7 +191,7 @@ data:
     \n\n#include <cstddef>\n#include <cstdint>\n#include <iostream>\n#include <vector>\n\
     \n#include \"../../library/data_structures/segment_tree/segment_tree.hpp\"\n#include\
     \ \"../../library/data_structures/segment_tree/segment_tree_functions/segment_tree_composite.hpp\"\
-    \n#include \"../../library/numerical/modular.hpp\"\n\nint main()\n{\n\tspeed();\n\
+    \n#include \"../../library/numerical/modulo.hpp\"\n\nint main()\n{\n\tspeed();\n\
     \tstd::size_t n;\n\tstd::int32_t q;\n\tstd::cin >> n >> q;\n\tstd::vector<CompositeNode<Modulo<std::integral_constant<std::decay_t<decltype(998244353)>,\
     \ 998244353>>>> elements(n);\n\tfor(std::size_t i = 0; i < n; ++i)\n\t{ std::cin\
     \ >> elements[i].a >> elements[i].b; }\n\tSegmentTree<Composite<CompositeNode<Modulo<std::integral_constant<std::decay_t<decltype(998244353)>,\
@@ -201,11 +206,11 @@ data:
   - library/general/speed.hpp
   - library/data_structures/segment_tree/segment_tree.hpp
   - library/data_structures/segment_tree/segment_tree_functions/segment_tree_composite.hpp
-  - library/numerical/modular.hpp
+  - library/numerical/modulo.hpp
   isVerificationFile: true
   path: verification/data_structures/segment_tree_composite.test.cpp
   requiredBy: []
-  timestamp: '2021-04-05 00:55:31-06:00'
+  timestamp: '2021-04-07 22:54:37-06:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verification/data_structures/segment_tree_composite.test.cpp

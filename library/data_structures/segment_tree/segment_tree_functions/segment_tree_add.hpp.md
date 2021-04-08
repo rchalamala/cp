@@ -32,25 +32,25 @@ data:
   bundledCode: "#line 1 \"library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp\"\
     \n\n\n\n#include <cstddef>\n#include <type_traits>\n\ntemplate<typename uT, std::enable_if_t<std::is_arithmetic_v<uT>,\
     \ bool> = true> struct AddNode\n{\n\tusing T = uT;\n\n\tT value{}, delta{}, set{};\n\
-    \tbool validSet{};\n\n\tAddNode(const T& uValue) : value{uValue}\n\t{\n\t}\n\n\
-    \tAddNode()\n\t{\n\t}\n};\n\ntemplate<class uNode> struct Add\n{\n\tusing Node\
-    \ = uNode;\n\tusing T = typename Node::T;\n\n\tNode identity{};\n\n\tvirtual T\
-    \ return_value(const Node& element)\n\t{\n\t\treturn element.value;\n\t}\n\n\t\
-    virtual Node merge(const Node& lhs, const Node& rhs)\n\t{\n\t\treturn lhs.value\
-    \ + rhs.value;\n\t}\n\n\tvirtual void propagate_update(Node& parent, Node& leftChild,\
-    \ Node& rightChild, const std::size_t& treeLeft, const std::size_t& treeRight,\
-    \ const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t&\
-    \ treeSize)\n\t{\n\t\tstd::size_t intervalLength{treeRight - treeLeft + 1};\n\t\
-    \tif(parent.validSet)\n\t\t{\n\t\t\tif(intervalLength > 1)\n\t\t\t{\n\t\t\t\t\
-    leftChild.set = rightChild.set = parent.set;\n\t\t\t\tleftChild.delta = rightChild.delta\
-    \ = 0;\n\t\t\t}\n\t\t\tparent.value = intervalLength * parent.set;\n\t\t\tparent.validSet\
-    \ = false;\n\t\t}\n\t\tif(parent.delta)\n\t\t{\n\t\t\tif(intervalLength > 1)\n\
-    \t\t\t{\n\t\t\t\tleftChild.delta += parent.delta;\n\t\t\t\trightChild.delta +=\
-    \ parent.delta;\n\t\t\t}\n\t\t\tparent.value += intervalLength * parent.delta;\n\
-    \t\t\tparent.delta = 0;\n\t\t}\n\t}\n\n\tvirtual void change(Node& element, const\
-    \ std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft,\
-    \ const std::size_t& queryRight, const std::size_t& treeSize, const T& delta)\n\
-    \t{\n\t\telement.delta += delta;\n\t}\n\n\tvirtual void change(Node& element,\
+    \tbool validSet{};\n\n\tAddNode(const T& uValue) : value{uValue} {}\n\n\tAddNode()\
+    \ {}\n};\n\ntemplate<class uNode> struct Add\n{\n\tusing Node = uNode;\n\tusing\
+    \ T = typename Node::T;\n\n\tNode identity{};\n\n\tvirtual T return_value(const\
+    \ Node& element) { return element.value; }\n\n\tvirtual Node merge(const Node&\
+    \ lhs, const Node& rhs) { return lhs.value + rhs.value; }\n\n\tvirtual void propagate_update(Node&\
+    \ parent, Node& leftChild, Node& rightChild, const std::size_t& treeLeft, const\
+    \ std::size_t& treeRight, const std::size_t& queryLeft, const std::size_t& queryRight,\
+    \ const std::size_t& treeSize)\n\t{\n\t\tstd::size_t intervalLength{treeRight\
+    \ - treeLeft + 1};\n\t\tif(parent.validSet)\n\t\t{\n\t\t\tif(intervalLength >\
+    \ 1)\n\t\t\t{\n\t\t\t\tleftChild.set = rightChild.set = parent.set;\n\t\t\t\t\
+    leftChild.validSet = rightChild.validSet = true;\n\t\t\t\tleftChild.delta = rightChild.delta\
+    \ = 0;\n\t\t\t}\n\t\t\tparent.value = static_cast<T>(intervalLength) * parent.set;\n\
+    \t\t\tparent.validSet = false;\n\t\t}\n\t\tif(parent.delta)\n\t\t{\n\t\t\tif(intervalLength\
+    \ > 1)\n\t\t\t{\n\t\t\t\tleftChild.delta += parent.delta;\n\t\t\t\trightChild.delta\
+    \ += parent.delta;\n\t\t\t}\n\t\t\tparent.value += static_cast<T>(intervalLength)\
+    \ * parent.delta;\n\t\t\tparent.delta = 0;\n\t\t}\n\t}\n\n\tvirtual void change(Node&\
+    \ element, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t&\
+    \ queryLeft, const std::size_t& queryRight, const std::size_t& treeSize, const\
+    \ T& delta) { element.delta += delta; }\n\n\tvirtual void change(Node& element,\
     \ const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t&\
     \ queryLeft, const std::size_t& queryRight, const std::size_t& treeSize, const\
     \ T& set, const bool& notDelta)\n\t{\n\t\telement.delta = 0;\n\t\telement.set\
@@ -58,25 +58,25 @@ data:
   code: "#ifndef SEGMENT_TREE_ADD_HPP\n#define SEGMENT_TREE_ADD_HPP\n\n#include <cstddef>\n\
     #include <type_traits>\n\ntemplate<typename uT, std::enable_if_t<std::is_arithmetic_v<uT>,\
     \ bool> = true> struct AddNode\n{\n\tusing T = uT;\n\n\tT value{}, delta{}, set{};\n\
-    \tbool validSet{};\n\n\tAddNode(const T& uValue) : value{uValue}\n\t{\n\t}\n\n\
-    \tAddNode()\n\t{\n\t}\n};\n\ntemplate<class uNode> struct Add\n{\n\tusing Node\
-    \ = uNode;\n\tusing T = typename Node::T;\n\n\tNode identity{};\n\n\tvirtual T\
-    \ return_value(const Node& element)\n\t{\n\t\treturn element.value;\n\t}\n\n\t\
-    virtual Node merge(const Node& lhs, const Node& rhs)\n\t{\n\t\treturn lhs.value\
-    \ + rhs.value;\n\t}\n\n\tvirtual void propagate_update(Node& parent, Node& leftChild,\
-    \ Node& rightChild, const std::size_t& treeLeft, const std::size_t& treeRight,\
-    \ const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t&\
-    \ treeSize)\n\t{\n\t\tstd::size_t intervalLength{treeRight - treeLeft + 1};\n\t\
-    \tif(parent.validSet)\n\t\t{\n\t\t\tif(intervalLength > 1)\n\t\t\t{\n\t\t\t\t\
-    leftChild.set = rightChild.set = parent.set;\n\t\t\t\tleftChild.delta = rightChild.delta\
-    \ = 0;\n\t\t\t}\n\t\t\tparent.value = intervalLength * parent.set;\n\t\t\tparent.validSet\
-    \ = false;\n\t\t}\n\t\tif(parent.delta)\n\t\t{\n\t\t\tif(intervalLength > 1)\n\
-    \t\t\t{\n\t\t\t\tleftChild.delta += parent.delta;\n\t\t\t\trightChild.delta +=\
-    \ parent.delta;\n\t\t\t}\n\t\t\tparent.value += intervalLength * parent.delta;\n\
-    \t\t\tparent.delta = 0;\n\t\t}\n\t}\n\n\tvirtual void change(Node& element, const\
-    \ std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft,\
-    \ const std::size_t& queryRight, const std::size_t& treeSize, const T& delta)\n\
-    \t{\n\t\telement.delta += delta;\n\t}\n\n\tvirtual void change(Node& element,\
+    \tbool validSet{};\n\n\tAddNode(const T& uValue) : value{uValue} {}\n\n\tAddNode()\
+    \ {}\n};\n\ntemplate<class uNode> struct Add\n{\n\tusing Node = uNode;\n\tusing\
+    \ T = typename Node::T;\n\n\tNode identity{};\n\n\tvirtual T return_value(const\
+    \ Node& element) { return element.value; }\n\n\tvirtual Node merge(const Node&\
+    \ lhs, const Node& rhs) { return lhs.value + rhs.value; }\n\n\tvirtual void propagate_update(Node&\
+    \ parent, Node& leftChild, Node& rightChild, const std::size_t& treeLeft, const\
+    \ std::size_t& treeRight, const std::size_t& queryLeft, const std::size_t& queryRight,\
+    \ const std::size_t& treeSize)\n\t{\n\t\tstd::size_t intervalLength{treeRight\
+    \ - treeLeft + 1};\n\t\tif(parent.validSet)\n\t\t{\n\t\t\tif(intervalLength >\
+    \ 1)\n\t\t\t{\n\t\t\t\tleftChild.set = rightChild.set = parent.set;\n\t\t\t\t\
+    leftChild.validSet = rightChild.validSet = true;\n\t\t\t\tleftChild.delta = rightChild.delta\
+    \ = 0;\n\t\t\t}\n\t\t\tparent.value = static_cast<T>(intervalLength) * parent.set;\n\
+    \t\t\tparent.validSet = false;\n\t\t}\n\t\tif(parent.delta)\n\t\t{\n\t\t\tif(intervalLength\
+    \ > 1)\n\t\t\t{\n\t\t\t\tleftChild.delta += parent.delta;\n\t\t\t\trightChild.delta\
+    \ += parent.delta;\n\t\t\t}\n\t\t\tparent.value += static_cast<T>(intervalLength)\
+    \ * parent.delta;\n\t\t\tparent.delta = 0;\n\t\t}\n\t}\n\n\tvirtual void change(Node&\
+    \ element, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t&\
+    \ queryLeft, const std::size_t& queryRight, const std::size_t& treeSize, const\
+    \ T& delta) { element.delta += delta; }\n\n\tvirtual void change(Node& element,\
     \ const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t&\
     \ queryLeft, const std::size_t& queryRight, const std::size_t& treeSize, const\
     \ T& set, const bool& notDelta)\n\t{\n\t\telement.delta = 0;\n\t\telement.set\
@@ -88,7 +88,7 @@ data:
   - library/data_structures/segment_tree/segment_tree_functions/segment_tree_arithmetic_progression.hpp
   - library/data_structures/segment_tree/segment_tree_functions/segment_tree_minimum.hpp
   - library/data_structures/segment_tree/segment_tree_functions/segment_tree_maximum.hpp
-  timestamp: '2021-04-05 00:55:31-06:00'
+  timestamp: '2021-04-07 22:54:37-06:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verification/data_structures/segment_tree_add_sum.test.cpp

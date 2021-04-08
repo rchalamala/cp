@@ -76,22 +76,22 @@ data:
     \ T1 Montgomery<T1, T2, Bits>::modulus{};\ntemplate<typename T1, typename T2,\
     \ std::size_t Bits> T1 Montgomery<T1, T2, Bits>::inverse{};*/\n\n// https://judge.yosupo.jp/submission/38126\n\
     struct Montgomery\n{\n\tuint64_t n;\n\tstatic uint64_t modulus, inverse, r2;\n\
-    \n\tMontgomery() : n{}\n\t{\n\t}\n\n\tMontgomery(const uint64_t& uN) : n{redc(__uint128_t(uN)\
-    \ * r2)}\n\t{\n\t}\n\n\tstatic void set_modulus(const uint64_t& uModulus)\n\t\
-    {\n\t\tassert(uModulus >= 1 && uModulus - 1 < (std::numeric_limits<uint64_t>::max()\
-    \ >> 1));\n\t\tmodulus = uModulus;\n\t\tinverse = 1;\n\t\tfor(int i = 0; i < 6;\
-    \ i++)\n\t\t{ inverse *= 2 - inverse * modulus; }\n\t\tr2 = -__uint128_t(modulus)\
-    \ % modulus;\n\t}\n\n\tstatic uint64_t redc(const __uint128_t& x)\n\t{\n\t\tuint64_t\
-    \ y{uint64_t(x >> 64)}, l{uint64_t((__uint128_t(uint64_t(x) * inverse) * modulus)\
-    \ >> 64)};\n\t\treturn y < l ? y + modulus - l : y - l;\n\t}\n\n\tMontgomery&\
-    \ operator+=(const Montgomery& other)\n\t{\n\t\tn += other.n;\n\t\tif(n >= modulus)\n\
-    \t\t{ n -= modulus; }\n\t\treturn *this;\n\t}\n\n\tMontgomery& operator+(const\
-    \ Montgomery& other) const\n\t{\n\t\treturn Montgomery(*this) += other;\n\t}\n\
-    \n\tMontgomery& operator*=(const Montgomery& other)\n\t{\n\t\tn = redc(__uint128_t(n)\
-    \ * other.n);\n\t\treturn *this;\n\t}\n\n\tMontgomery& operator*(const Montgomery&\
-    \ other) const\n\t{\n\t\treturn Montgomery(*this) *= other;\n\t}\n\n\tuint64_t\
-    \ value() const\n\t{\n\t\treturn redc(n);\n\t}\n};\n\nuint64_t Montgomery::modulus{1},\
-    \ Montgomery::inverse, Montgomery::r2;\n\n\n"
+    \n\tMontgomery() : n{} {}\n\n\tMontgomery(const uint64_t& uN) : n{redc(__uint128_t(uN)\
+    \ * r2)} {}\n\n\tstatic void set_modulus(const uint64_t& uModulus)\n\t{\n\t\t\
+    assert(uModulus >= 1 && uModulus - 1 < (std::numeric_limits<uint64_t>::max() >>\
+    \ 1));\n\t\tmodulus = uModulus;\n\t\tinverse = 1;\n\t\tfor(int i = 0; i < 6; i++)\n\
+    \t\t{ inverse *= 2 - inverse * modulus; }\n\t\tr2 = -__uint128_t(modulus) % modulus;\n\
+    \t}\n\n\tstatic uint64_t redc(const __uint128_t& x)\n\t{\n\t\tuint64_t y{uint64_t(x\
+    \ >> 64)}, l{uint64_t((__uint128_t(uint64_t(x) * inverse) * modulus) >> 64)};\n\
+    \t\treturn y < l ? y + modulus - l : y - l;\n\t}\n\n\tMontgomery& operator+=(const\
+    \ Montgomery& other)\n\t{\n\t\tn += other.n;\n\t\tif(n >= modulus)\n\t\t{ n -=\
+    \ modulus; }\n\t\treturn *this;\n\t}\n\n\tMontgomery& operator+(const Montgomery&\
+    \ other) const { return Montgomery(*this) += other; }\n\n\tMontgomery& operator*=(const\
+    \ Montgomery& other)\n\t{\n\t\tn = redc(__uint128_t(n) * other.n);\n\t\treturn\
+    \ *this;\n\t}\n\n\tMontgomery& operator*(const Montgomery& other) const { return\
+    \ Montgomery(*this) *= other; }\n\n\tuint64_t value() const { return redc(n);\
+    \ }\n};\n\nuint64_t Montgomery::modulus{1}, Montgomery::inverse, Montgomery::r2;\n\
+    \n\n"
   code: "#ifndef MONTGOMERY_HPP\n#define MONTGOMERY_HPP\n\n#include <cstdint>\n#include\
     \ <limits>\n#include <type_traits>\n\n#include \"trailing_zero_bits.hpp\"\n\n\
     /*//https://cp-algorithms.com/algebra/montgomery_multiplication.html\ntemplate<typename\
@@ -128,22 +128,22 @@ data:
     \ T1 Montgomery<T1, T2, Bits>::modulus{};\ntemplate<typename T1, typename T2,\
     \ std::size_t Bits> T1 Montgomery<T1, T2, Bits>::inverse{};*/\n\n// https://judge.yosupo.jp/submission/38126\n\
     struct Montgomery\n{\n\tuint64_t n;\n\tstatic uint64_t modulus, inverse, r2;\n\
-    \n\tMontgomery() : n{}\n\t{\n\t}\n\n\tMontgomery(const uint64_t& uN) : n{redc(__uint128_t(uN)\
-    \ * r2)}\n\t{\n\t}\n\n\tstatic void set_modulus(const uint64_t& uModulus)\n\t\
-    {\n\t\tassert(uModulus >= 1 && uModulus - 1 < (std::numeric_limits<uint64_t>::max()\
-    \ >> 1));\n\t\tmodulus = uModulus;\n\t\tinverse = 1;\n\t\tfor(int i = 0; i < 6;\
-    \ i++)\n\t\t{ inverse *= 2 - inverse * modulus; }\n\t\tr2 = -__uint128_t(modulus)\
-    \ % modulus;\n\t}\n\n\tstatic uint64_t redc(const __uint128_t& x)\n\t{\n\t\tuint64_t\
-    \ y{uint64_t(x >> 64)}, l{uint64_t((__uint128_t(uint64_t(x) * inverse) * modulus)\
-    \ >> 64)};\n\t\treturn y < l ? y + modulus - l : y - l;\n\t}\n\n\tMontgomery&\
-    \ operator+=(const Montgomery& other)\n\t{\n\t\tn += other.n;\n\t\tif(n >= modulus)\n\
-    \t\t{ n -= modulus; }\n\t\treturn *this;\n\t}\n\n\tMontgomery& operator+(const\
-    \ Montgomery& other) const\n\t{\n\t\treturn Montgomery(*this) += other;\n\t}\n\
-    \n\tMontgomery& operator*=(const Montgomery& other)\n\t{\n\t\tn = redc(__uint128_t(n)\
-    \ * other.n);\n\t\treturn *this;\n\t}\n\n\tMontgomery& operator*(const Montgomery&\
-    \ other) const\n\t{\n\t\treturn Montgomery(*this) *= other;\n\t}\n\n\tuint64_t\
-    \ value() const\n\t{\n\t\treturn redc(n);\n\t}\n};\n\nuint64_t Montgomery::modulus{1},\
-    \ Montgomery::inverse, Montgomery::r2;\n\n#endif"
+    \n\tMontgomery() : n{} {}\n\n\tMontgomery(const uint64_t& uN) : n{redc(__uint128_t(uN)\
+    \ * r2)} {}\n\n\tstatic void set_modulus(const uint64_t& uModulus)\n\t{\n\t\t\
+    assert(uModulus >= 1 && uModulus - 1 < (std::numeric_limits<uint64_t>::max() >>\
+    \ 1));\n\t\tmodulus = uModulus;\n\t\tinverse = 1;\n\t\tfor(int i = 0; i < 6; i++)\n\
+    \t\t{ inverse *= 2 - inverse * modulus; }\n\t\tr2 = -__uint128_t(modulus) % modulus;\n\
+    \t}\n\n\tstatic uint64_t redc(const __uint128_t& x)\n\t{\n\t\tuint64_t y{uint64_t(x\
+    \ >> 64)}, l{uint64_t((__uint128_t(uint64_t(x) * inverse) * modulus) >> 64)};\n\
+    \t\treturn y < l ? y + modulus - l : y - l;\n\t}\n\n\tMontgomery& operator+=(const\
+    \ Montgomery& other)\n\t{\n\t\tn += other.n;\n\t\tif(n >= modulus)\n\t\t{ n -=\
+    \ modulus; }\n\t\treturn *this;\n\t}\n\n\tMontgomery& operator+(const Montgomery&\
+    \ other) const { return Montgomery(*this) += other; }\n\n\tMontgomery& operator*=(const\
+    \ Montgomery& other)\n\t{\n\t\tn = redc(__uint128_t(n) * other.n);\n\t\treturn\
+    \ *this;\n\t}\n\n\tMontgomery& operator*(const Montgomery& other) const { return\
+    \ Montgomery(*this) *= other; }\n\n\tuint64_t value() const { return redc(n);\
+    \ }\n};\n\nuint64_t Montgomery::modulus{1}, Montgomery::inverse, Montgomery::r2;\n\
+    \n#endif"
   dependsOn:
   - library/numerical/trailing_zero_bits.hpp
   isVerificationFile: false
@@ -153,7 +153,7 @@ data:
   - library/numerical/factors/pollards_rho_factorization.hpp
   - library/numerical/factors/optimized_rho_factorization.hpp
   - library/numerical/factors/optimized_rho_factorization.hpp
-  timestamp: '2021-03-30 13:00:21-06:00'
+  timestamp: '2021-04-07 22:54:37-06:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verification/numerical/factors/pollards_rho_factorization.test.cpp

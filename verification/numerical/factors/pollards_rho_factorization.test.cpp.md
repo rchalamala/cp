@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/general/prng.hpp
     title: library/general/prng.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/general/speed.hpp
     title: library/general/speed.hpp
   - icon: ':heavy_check_mark:'
@@ -71,14 +71,14 @@ data:
     \ Size> bool read(std::istream& in, std::array<T, Size>& elements)\n{\n\tbool\
     \ result = true;\n\tfor(T& element : elements)\n\t{ result &= read(in, element);\
     \ }\n\treturn result;\n}\n\ntemplate<typename T1, typename T2> bool read(std::istream&\
-    \ in, std::pair<T1, T2>& element)\n{\n\treturn read(in, element.first, element.second);\n\
-    }\n\ntemplate<typename T> bool read(std::istream& in, T& element)\n{\n\treturn\
-    \ static_cast<bool>(in >> element);\n}\n\ntemplate<typename T> bool read(std::istream&\
-    \ in, std::complex<T>& element)\n{\n\tbool result = true;\n\tT first, second;\n\
-    \tresult &= read(in, first, second);\n\telement = std::complex<T>(first, second);\n\
-    \treturn result;\n}\n\ntemplate<typename T> bool read(std::istream& in, std::vector<T>&\
-    \ elements)\n{\n\tbool result = true;\n\tfor(T& element : elements)\n\t{ result\
-    \ &= read(in, element); }\n\treturn result;\n}\n\n\n#line 1 \"library/general/output.hpp\"\
+    \ in, std::pair<T1, T2>& element) { return read(in, element.first, element.second);\
+    \ }\n\ntemplate<typename T> bool read(std::istream& in, T& element) { return static_cast<bool>(in\
+    \ >> element); }\n\ntemplate<typename T> bool read(std::istream& in, std::complex<T>&\
+    \ element)\n{\n\tbool result = true;\n\tT first, second;\n\tresult &= read(in,\
+    \ first, second);\n\telement = std::complex<T>(first, second);\n\treturn result;\n\
+    }\n\ntemplate<typename T> bool read(std::istream& in, std::vector<T>& elements)\n\
+    {\n\tbool result = true;\n\tfor(T& element : elements)\n\t{ result &= read(in,\
+    \ element); }\n\treturn result;\n}\n\n\n#line 1 \"library/general/output.hpp\"\
     \n\n\n\n#line 1 \"library/general/to_string.hpp\"\n\n\n\n#include <bitset>\n#line\
     \ 9 \"library/general/to_string.hpp\"\n\nnamespace std\n{\n\tinline std::string\
     \ to_string(const bool& element);\n\n\tinline std::string to_string(const char&\
@@ -88,33 +88,33 @@ data:
     \ to_string(const std::bitset<Size>& elements);\n\n\ttemplate<typename T> std::string\
     \ to_string(const std::complex<T>& element);\n\n\ttemplate<typename T1, typename\
     \ T2> std::string to_string(std::pair<T1, T2> element);\n}  // namespace std\n\
-    \ninline std::string std::to_string(const bool& element)\n{\n\treturn std::string{static_cast<char>('0'\
-    \ + element)};\n}\n\ninline std::string std::to_string(const char& element)\n\
-    {\n\treturn std::string(1, element);\n}\n\ninline std::string std::to_string(const\
-    \ char* element)\n{\n\treturn std::string(element);\n}\n\ninline std::string std::to_string(const\
-    \ std::string& element)\n{\n\treturn element;\n}\n\ntemplate<typename T> std::string\
+    \ninline std::string std::to_string(const bool& element) { return std::string{static_cast<char>('0'\
+    \ + element)}; }\n\ninline std::string std::to_string(const char& element) { return\
+    \ std::string(1, element); }\n\ninline std::string std::to_string(const char*\
+    \ element) { return std::string(element); }\n\ninline std::string std::to_string(const\
+    \ std::string& element) { return element; }\n\ntemplate<typename T> std::string\
     \ std::to_string(const T& elements)\n{\n\tstd::string convert;\n\tbool first =\
     \ true;\n\tfor(const auto& element : elements)\n\t{\n\t\tif(!first)\n\t\t{ convert\
     \ += \" \"; }\n\t\tfirst = false;\n\t\tconvert += std::to_string(element);\n\t\
     }\n\treturn convert;\n}\n\ntemplate<std::size_t Size> std::string std::to_string(const\
-    \ std::bitset<Size>& elements)\n{\n\treturn elements.to_string();\n}\n\ntemplate<typename\
+    \ std::bitset<Size>& elements) { return elements.to_string(); }\n\ntemplate<typename\
     \ T> std::string std::to_string(const std::complex<T>& element)\n{\n\tstd::stringstream\
     \ convert;\n\tconvert << element;\n\treturn convert.str();\n}\n\ntemplate<typename\
-    \ T1, typename T2> std::string std::to_string(std::pair<T1, T2> element)\n{\n\t\
-    return std::to_string(element.ff) + \" \" + std::to_string(element.ss);\n}\n\n\
-    \n#line 5 \"library/general/output.hpp\"\n#include <ostream>\n\ntemplate<typename\
-    \ Argument, typename... Arguments> void print(std::ostream& out, const Argument&\
-    \ first, const Arguments& ... rest);\n\ntemplate<typename Argument, typename...\
-    \ Arguments> void printn(std::ostream& out, const Argument& first, const Arguments&\
-    \ ... rest);\n\ntemplate<typename Argument, typename... Arguments> void prints(std::ostream&\
+    \ T1, typename T2> std::string std::to_string(std::pair<T1, T2> element) { return\
+    \ std::to_string(element.ff) + \" \" + std::to_string(element.ss); }\n\n\n#line\
+    \ 5 \"library/general/output.hpp\"\n#include <ostream>\n\ntemplate<typename Argument,\
+    \ typename... Arguments> void print(std::ostream& out, const Argument& first,\
+    \ const Arguments& ... rest);\n\ntemplate<typename Argument, typename... Arguments>\
+    \ void printn(std::ostream& out, const Argument& first, const Arguments& ... rest);\n\
+    \ntemplate<typename Argument, typename... Arguments> void prints(std::ostream&\
     \ out, const Argument& first, const Arguments& ... rest);\n\ntemplate<typename\
     \ T> void print(std::ostream& out, const T& element);\n\ninline void printn(std::ostream&\
     \ out);\n\ninline void prints(std::ostream& out);\n\ntemplate<typename T> void\
-    \ print(std::ostream& out, const T& element)\n{\n\tout << std::to_string(element);\n\
-    }\n\ninline void printn(std::ostream& out)\n{\n\tprint(out, '\\n');\n}\n\ninline\
-    \ void prints(std::ostream& out)\n{\n\tprint(out, '\\n');\n}\n\ntemplate<typename\
-    \ Argument, typename... Arguments> void print(std::ostream& out, const Argument&\
-    \ first, const Arguments& ... rest)\n{\n\tprint(out, first);\n\tprint(out, rest...);\n\
+    \ print(std::ostream& out, const T& element) { out << std::to_string(element);\
+    \ }\n\ninline void printn(std::ostream& out) { print(out, '\\n'); }\n\ninline\
+    \ void prints(std::ostream& out) { print(out, '\\n'); }\n\ntemplate<typename Argument,\
+    \ typename... Arguments> void print(std::ostream& out, const Argument& first,\
+    \ const Arguments& ... rest)\n{\n\tprint(out, first);\n\tprint(out, rest...);\n\
     }\n\ntemplate<typename Argument, typename... Arguments> void printn(std::ostream&\
     \ out, const Argument& first, const Arguments& ... rest)\n{\n\tprint(out, first);\n\
     \tif(sizeof...(rest))\n\t{ prints(out); }\n\tprintn(out, rest...);\n}\n\ntemplate<typename\
@@ -148,15 +148,11 @@ data:
     #include <mutex>\n\n#endif\n\n#define ALL(set) std::begin(set), std::end(set)\n\
     #define RALL(set) std::rbegin(set), std::rend(set)\n\n#define mp std::make_pair\n\
     #define mt std::make_tuple\n#define pb push_back\n#define eb emplace_back\n#define\
-    \ ff first\n#define ss second\n\nusing ll = long long;\nusing pll = std::pair<long\
-    \ long, long long>;\nusing vll = std::vector<long long>;\n\nusing ull = unsigned\
-    \ long long;\nusing pull = std::pair<unsigned long long, unsigned long long>;\n\
-    using vull = std::vector<unsigned long long>;\n\nusing ld = long double;\nusing\
-    \ pld = std::pair<long double, long double>;\nusing vld = std::vector<long double>;\n\
-    \n#ifdef __GNUC__\n\n#include <ext/pb_ds/assoc_container.hpp>\n#include <ext/pb_ds/tree_policy.hpp>\n\
-    #include <ext/rope>\n\nusing namespace __gnu_pbds;\nusing namespace __gnu_cxx;\n\
-    \ntemplate<typename T> using orderedSet = __gnu_pbds::tree<T, __gnu_pbds::null_type,\
-    \ std::less<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
+    \ ff first\n#define ss second\n\nusing ll = long long;\nusing ull = unsigned long\
+    \ long;\nusing ld = long double;\n\n#ifdef __GNUC__\n\n#include <ext/pb_ds/assoc_container.hpp>\n\
+    #include <ext/pb_ds/tree_policy.hpp>\n#include <ext/rope>\n\nusing namespace __gnu_pbds;\n\
+    using namespace __gnu_cxx;\n\ntemplate<typename T> using orderedSet = __gnu_pbds::tree<T,\
+    \ __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
     template<typename T> using orderedMultiset = __gnu_pbds::tree<T, __gnu_pbds::null_type,\
     \ std::less_equal<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
     \n#endif\n\n\n#line 1 \"library/general/prng.hpp\"\n\n\n\n#include <chrono>\n\
@@ -225,23 +221,23 @@ data:
     \ T1 Montgomery<T1, T2, Bits>::modulus{};\ntemplate<typename T1, typename T2,\
     \ std::size_t Bits> T1 Montgomery<T1, T2, Bits>::inverse{};*/\n\n// https://judge.yosupo.jp/submission/38126\n\
     struct Montgomery\n{\n\tuint64_t n;\n\tstatic uint64_t modulus, inverse, r2;\n\
-    \n\tMontgomery() : n{}\n\t{\n\t}\n\n\tMontgomery(const uint64_t& uN) : n{redc(__uint128_t(uN)\
-    \ * r2)}\n\t{\n\t}\n\n\tstatic void set_modulus(const uint64_t& uModulus)\n\t\
-    {\n\t\tassert(uModulus >= 1 && uModulus - 1 < (std::numeric_limits<uint64_t>::max()\
-    \ >> 1));\n\t\tmodulus = uModulus;\n\t\tinverse = 1;\n\t\tfor(int i = 0; i < 6;\
-    \ i++)\n\t\t{ inverse *= 2 - inverse * modulus; }\n\t\tr2 = -__uint128_t(modulus)\
-    \ % modulus;\n\t}\n\n\tstatic uint64_t redc(const __uint128_t& x)\n\t{\n\t\tuint64_t\
-    \ y{uint64_t(x >> 64)}, l{uint64_t((__uint128_t(uint64_t(x) * inverse) * modulus)\
-    \ >> 64)};\n\t\treturn y < l ? y + modulus - l : y - l;\n\t}\n\n\tMontgomery&\
-    \ operator+=(const Montgomery& other)\n\t{\n\t\tn += other.n;\n\t\tif(n >= modulus)\n\
-    \t\t{ n -= modulus; }\n\t\treturn *this;\n\t}\n\n\tMontgomery& operator+(const\
-    \ Montgomery& other) const\n\t{\n\t\treturn Montgomery(*this) += other;\n\t}\n\
-    \n\tMontgomery& operator*=(const Montgomery& other)\n\t{\n\t\tn = redc(__uint128_t(n)\
-    \ * other.n);\n\t\treturn *this;\n\t}\n\n\tMontgomery& operator*(const Montgomery&\
-    \ other) const\n\t{\n\t\treturn Montgomery(*this) *= other;\n\t}\n\n\tuint64_t\
-    \ value() const\n\t{\n\t\treturn redc(n);\n\t}\n};\n\nuint64_t Montgomery::modulus{1},\
-    \ Montgomery::inverse, Montgomery::r2;\n\n\n#line 12 \"library/numerical/primality/miller_rabin_primality_test.hpp\"\
-    \n\nnamespace primality\n{\n\n\ttemplate<typename T> Montgomery power(const Montgomery&\
+    \n\tMontgomery() : n{} {}\n\n\tMontgomery(const uint64_t& uN) : n{redc(__uint128_t(uN)\
+    \ * r2)} {}\n\n\tstatic void set_modulus(const uint64_t& uModulus)\n\t{\n\t\t\
+    assert(uModulus >= 1 && uModulus - 1 < (std::numeric_limits<uint64_t>::max() >>\
+    \ 1));\n\t\tmodulus = uModulus;\n\t\tinverse = 1;\n\t\tfor(int i = 0; i < 6; i++)\n\
+    \t\t{ inverse *= 2 - inverse * modulus; }\n\t\tr2 = -__uint128_t(modulus) % modulus;\n\
+    \t}\n\n\tstatic uint64_t redc(const __uint128_t& x)\n\t{\n\t\tuint64_t y{uint64_t(x\
+    \ >> 64)}, l{uint64_t((__uint128_t(uint64_t(x) * inverse) * modulus) >> 64)};\n\
+    \t\treturn y < l ? y + modulus - l : y - l;\n\t}\n\n\tMontgomery& operator+=(const\
+    \ Montgomery& other)\n\t{\n\t\tn += other.n;\n\t\tif(n >= modulus)\n\t\t{ n -=\
+    \ modulus; }\n\t\treturn *this;\n\t}\n\n\tMontgomery& operator+(const Montgomery&\
+    \ other) const { return Montgomery(*this) += other; }\n\n\tMontgomery& operator*=(const\
+    \ Montgomery& other)\n\t{\n\t\tn = redc(__uint128_t(n) * other.n);\n\t\treturn\
+    \ *this;\n\t}\n\n\tMontgomery& operator*(const Montgomery& other) const { return\
+    \ Montgomery(*this) *= other; }\n\n\tuint64_t value() const { return redc(n);\
+    \ }\n};\n\nuint64_t Montgomery::modulus{1}, Montgomery::inverse, Montgomery::r2;\n\
+    \n\n#line 12 \"library/numerical/primality/miller_rabin_primality_test.hpp\"\n\
+    \nnamespace primality\n{\n\n\ttemplate<typename T> Montgomery power(const Montgomery&\
     \ base, T exponent)\n\t{\n\t\tstatic_assert(std::is_integral_v<T>);\n\t\tstatic_assert(std::is_unsigned_v<T>);\n\
     \t\tMontgomery mBase = base, result(1);\n\t\twhile(exponent)\n\t\t{\n\t\t\tif(exponent\
     \ & 1)\n\t\t\t{ result *= mBase; }\n\t\t\tmBase *= mBase;\n\t\t\texponent >>=\
@@ -267,12 +263,12 @@ data:
     \ T2> constexpr typename std::common_type<T1, T2>::type steins_gcd(const T1& u_x,\
     \ const T2& u_y)\n{\n\tstatic_assert(std::is_integral_v<T1>);\n\tstatic_assert(std::is_unsigned_v<T1>);\n\
     \tstatic_assert(std::is_integral_v<T2>);\n\tstatic_assert(std::is_unsigned_v<T2>);\n\
-    \ttypename std::common_type<T1, T2>::type x{u_x}, y{u_y};\n\tif(x == 0)\n\t{\n\
-    \t\treturn y;\n\t}\n\tif(y == 0)\n\t{\n\t\treturn x;\n\t}\n\ttypename std::common_type<T1,\
-    \ T2>::type a{trailing_zero_bits(x)}, b{trailing_zero_bits(y)};\n\tx >>= a;\n\t\
-    y >>= b;\n\twhile(true)\n\t{\n\t\tif(x < y)\n\t\t{\n\t\t\tstd::swap(x, y);\n\t\
-    \t}\n\t\tx -= y;\n\t\tif(!x)\n\t\t{\n\t\t\treturn y << std::min(a, b);\n\t\t}\n\
-    \t\tx >>= trailing_zero_bits(x);\n\t}\n}\n\n\n#line 12 \"library/numerical/factors/pollards_rho_factorization.hpp\"\
+    \ttypename std::common_type<T1, T2>::type x{u_x}, y{u_y};\n\tif(x == 0)\n\t{ return\
+    \ y; }\n\tif(y == 0)\n\t{ return x; }\n\ttypename std::common_type<T1, T2>::type\
+    \ a{trailing_zero_bits(x)}, b{trailing_zero_bits(y)};\n\tx >>= a;\n\ty >>= b;\n\
+    \twhile(true)\n\t{\n\t\tif(x < y)\n\t\t{ std::swap(x, y); }\n\t\tx -= y;\n\t\t\
+    if(!x)\n\t\t{ return y << std::min(a, b); }\n\t\tx >>= trailing_zero_bits(x);\n\
+    \t}\n}\n\n\n#line 12 \"library/numerical/factors/pollards_rho_factorization.hpp\"\
     \n\nnamespace factors\n{\n\ttemplate<typename T> T pollards_rho(const T& n)\n\t\
     {\n\t\tstatic_assert(std::is_integral_v<T>);\n\t\tstatic_assert(std::is_unsigned_v<T>);\n\
     \t\tassert(n >= 0);\n\t\tif((n & 1) ^ 1)\n\t\t{ return 2; }\n\t\tif(primality::miller_rabin(n))\n\
@@ -325,7 +321,7 @@ data:
   isVerificationFile: true
   path: verification/numerical/factors/pollards_rho_factorization.test.cpp
   requiredBy: []
-  timestamp: '2021-04-05 00:55:31-06:00'
+  timestamp: '2021-04-07 22:54:37-06:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verification/numerical/factors/pollards_rho_factorization.test.cpp
