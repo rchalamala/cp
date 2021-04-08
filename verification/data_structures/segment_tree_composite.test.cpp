@@ -9,7 +9,7 @@
 
 #include "../../library/data_structures/segment_tree/segment_tree.hpp"
 #include "../../library/data_structures/segment_tree/segment_tree_functions/segment_tree_composite.hpp"
-#include "../../library/numerical/modular.hpp"
+#include "../../library/numerical/modulo.hpp"
 
 int main()
 {

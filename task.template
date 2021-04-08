@@ -16,38 +16,37 @@ constexpr long long INF = static_cast<long long>(1e18 + 1);
 class %ClassName%
 {
 public:
-	static constexpr std::int64_t stressTestIterations = 0;
-	static constexpr bool bruteForceAllIterations = false;
-	static constexpr bool bruteForceEmptyTests = false;
-	static constexpr bool showTestingOutput = false;
-	static constexpr bool showAllTestingOutput = false;
-	static constexpr bool showFalseTestOutput = true;
+	static constexpr std::int64_t stressTestIterations{};
+	static constexpr bool bruteForceAllIterations{};
+	static constexpr bool bruteForceEmptyTests{};
+	static constexpr bool showTestingOutput{};
+	static constexpr bool showAllTestingOutput{};
+	static constexpr bool showFalseTestOutput{true};
 	static bool bruteForceSolveIteration;
 
-	void static generate_test(std::ostream& testOutput, const std::uint64_t& seed)
+	void static generate_test(std::ostream& out, const std::uint64_t& seed)
 	{
-		unused(testOutput, seed);
 		std::mt19937_64 prng{seed};
 
 	}
 
 	void brute_force(std::istream& in, std::ostream& out)
 	{
-		unused(in, out);
 
-		return;
 	}
 
 	void setup()
 	{
+		testCase = {};
 
 	}
 
 private:
 
+	static std::uint64_t testCase;
+	
 	static void output_case(std::ostream& out)
 	{
-		static std::uint64_t testCase = 0;
 		out << "Case ";
 		#ifdef CODE_JAM
 		out << '#';
@@ -71,4 +70,5 @@ public:
 	}
 };
 
+std::uint64_t %ClassName%::testCase{};
 bool %ClassName%::bruteForceSolveIteration{};

@@ -77,16 +77,8 @@
 #define ss second
 
 using ll = long long;
-using pll = std::pair<long long, long long>;
-using vll = std::vector<long long>;
-
 using ull = unsigned long long;
-using pull = std::pair<unsigned long long, unsigned long long>;
-using vull = std::vector<unsigned long long>;
-
 using ld = long double;
-using pld = std::pair<long double, long double>;
-using vld = std::vector<long double>;
 
 #ifdef __GNUC__
 

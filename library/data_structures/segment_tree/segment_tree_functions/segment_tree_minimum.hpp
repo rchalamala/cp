@@ -20,10 +20,7 @@ template<class uNode> struct Minimum : Add<uNode>
 
 	Node identity{std::numeric_limits<T>::max()};
 
-	Node merge(const Node& lhs, const Node& rhs)
-	{
-		return std::min(lhs.value, rhs.value);
-	}
+	Node merge(const Node& lhs, const Node& rhs) { return std::min(lhs.value, rhs.value); }
 
 	void propagate_update(Node& parent, Node& leftChild, Node& rightChild, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize)
 	{
@@ -33,6 +30,7 @@ template<class uNode> struct Minimum : Add<uNode>
 			if(intervalLength > 1)
 			{
 				leftChild.set = rightChild.set = parent.set;
+				leftChild.validSet = rightChild.validSet = true;
 				leftChild.delta = rightChild.delta = 0;
 			}
 			parent.value = parent.set;

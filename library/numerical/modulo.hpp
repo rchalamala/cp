@@ -2,6 +2,7 @@
 #define MODULAR_HPP
 
 #include <algorithm>
+#include <cstdint>
 #include <type_traits>
 
 template<typename T> T inverse(T a, T m)
@@ -158,12 +159,23 @@ template<typename T1, typename T2> Modulo<T2> operator/(const T1& lhs, const Mod
 
 template<typename T> std::istream& operator>>(std::istream& in, Modulo<T>& element)
 {
-	in >> element.value;
-	element.value = Modulo<T>::normalize(element.value);
+	std::intmax_t value;
+	in >> value;
+	value %= T::value;
+	if(value < 0)
+	{ value += T::value; }
+	element.value = static_cast<decltype(T::value)>(value);
 	return in;
 }
 
 template<typename T> std::ostream& operator<<(std::ostream& out, const Modulo<T>& element) { return out << element(); }
+
+namespace std
+{
+	template<typename T> std::string to_string(const Modulo<T>& element);
+}  // namespace std
+
+template<typename T> std::string std::to_string(const Modulo<T>& element) { return std::to_string(element()); }
 
 // DIVISION AND FIX UP GCD WHEN NOT LAZY AND STATIC ASSERTIONS
 

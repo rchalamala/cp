@@ -3,7 +3,7 @@ ID: rchalam1
 LANG: C++14
 TASK:
 */
-#define NDEBUG
+//#define NDEBUG
 
 %Code%
 

@@ -16,20 +16,11 @@ inline void printn(std::ostream& out);
 
 inline void prints(std::ostream& out);
 
-template<typename T> void print(std::ostream& out, const T& element)
-{
-	out << std::to_string(element);
-}
+template<typename T> void print(std::ostream& out, const T& element) { out << std::to_string(element); }
 
-inline void printn(std::ostream& out)
-{
-	print(out, '\n');
-}
+inline void printn(std::ostream& out) { print(out, '\n'); }
 
-inline void prints(std::ostream& out)
-{
-	print(out, '\n');
-}
+inline void prints(std::ostream& out) { print(out, '\n'); }
 
 template<typename Argument, typename... Arguments> void print(std::ostream& out, const Argument& first, const Arguments& ... rest)
 {

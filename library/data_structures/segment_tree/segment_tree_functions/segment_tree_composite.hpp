@@ -23,13 +23,9 @@ template<typename uT> struct CompositeNode
 	T a{1}, b{};
 	bool validSet{};
 
-	CompositeNode(const T& uA, const T& uB) : a{uA}, b{uB}
-	{
-	}
+	CompositeNode(const T& uA, const T& uB) : a{uA}, b{uB} {}
 
-	CompositeNode()
-	{
-	}
+	CompositeNode() {}
 };
 
 template<class uNode, bool ORDERED> struct Composite
@@ -39,15 +35,9 @@ template<class uNode, bool ORDERED> struct Composite
 
 	Node identity{};
 
-	Node return_value(const Node& element)
-	{
-		return element;
-	}
+	Node return_value(const Node& element) { return element; }
 
-	Node merge(const Node& lhs, const Node& rhs)
-	{
-		return ORDERED ? Node{lhs.a * rhs.a, lhs.a * rhs.b + lhs.b} : Node{rhs.a * lhs.a, rhs.a * lhs.b + rhs.b};
-	}
+	Node merge(const Node& lhs, const Node& rhs) { return ORDERED ? Node{lhs.a * rhs.a, lhs.a * rhs.b + lhs.b} : Node{rhs.a * lhs.a, rhs.a * lhs.b + rhs.b}; }
 
 	void propagate_update(Node& parent, Node& leftChild, Node& rightChild, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize)
 	{

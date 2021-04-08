@@ -26,25 +26,13 @@ namespace std
 	template<typename T1, typename T2> std::string to_string(std::pair<T1, T2> element);
 }  // namespace std
 
-inline std::string std::to_string(const bool& element)
-{
-	return std::string{static_cast<char>('0' + element)};
-}
+inline std::string std::to_string(const bool& element) { return std::string{static_cast<char>('0' + element)}; }
 
-inline std::string std::to_string(const char& element)
-{
-	return std::string(1, element);
-}
+inline std::string std::to_string(const char& element) { return std::string(1, element); }
 
-inline std::string std::to_string(const char* element)
-{
-	return std::string(element);
-}
+inline std::string std::to_string(const char* element) { return std::string(element); }
 
-inline std::string std::to_string(const std::string& element)
-{
-	return element;
-}
+inline std::string std::to_string(const std::string& element) { return element; }
 
 template<typename T> std::string std::to_string(const T& elements)
 {
@@ -60,10 +48,7 @@ template<typename T> std::string std::to_string(const T& elements)
 	return convert;
 }
 
-template<std::size_t Size> std::string std::to_string(const std::bitset<Size>& elements)
-{
-	return elements.to_string();
-}
+template<std::size_t Size> std::string std::to_string(const std::bitset<Size>& elements) { return elements.to_string(); }
 
 template<typename T> std::string std::to_string(const std::complex<T>& element)
 {
@@ -72,9 +57,6 @@ template<typename T> std::string std::to_string(const std::complex<T>& element)
 	return convert.str();
 }
 
-template<typename T1, typename T2> std::string std::to_string(std::pair<T1, T2> element)
-{
-	return std::to_string(element.ff) + " " + std::to_string(element.ss);
-}
+template<typename T1, typename T2> std::string std::to_string(std::pair<T1, T2> element) { return std::to_string(element.ff) + " " + std::to_string(element.ss); }
 
 #endif

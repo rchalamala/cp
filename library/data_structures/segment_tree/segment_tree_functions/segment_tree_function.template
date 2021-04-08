@@ -4,10 +4,7 @@ template<typename uT> struct FunctionNode
 {
 	using T = uT;
 
-	FunctionNode()
-	{
-
-	}
+	FunctionNode() {}
 };
 
 template<class uNode> struct Function
@@ -17,15 +14,9 @@ template<class uNode> struct Function
 
 	Node identity{};
 
-	T return_value(const Node& element)
-	{
-		return element.value;
-	}
+	T return_value(const Node& element) { return element.value; }
 
-	Node merge(const Node& lhs, const Node& rhs)
-	{
-		return operation(lhs, rhs);
-	}
+	Node merge(const Node& lhs, const Node& rhs) { return operation(lhs, rhs); }
 
 	void propagate_update(Node& parent, Node& leftChild, Node& rightChild, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize)
 	{
@@ -35,10 +26,7 @@ template<class uNode> struct Function
 		delta(parent) = 0;
 	}
 
-	void change(Node& element, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize)
-	{
-
-	}
+	void change(Node& element, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize) {}
 };
 
 // segment_tree_functions are built off of segment_tree_add.hpp if possible

@@ -29,11 +29,11 @@ template<class Tree> class HeavyLightDecomposition
 		}
 	}
 
-	int currentTime = -1;
+	std::size_t currentTime = 0;
 
 	void decompose(std::vector<std::vector<std::size_t>>& graph, const std::size_t& i)
 	{
-		times[i].first = ++currentTime;
+		times[i].first = currentTime++;
 		for(const auto& child : graph[i])
 		{
 			if(child != parent[i])
@@ -42,20 +42,20 @@ template<class Tree> class HeavyLightDecomposition
 				decompose(graph, child);
 			}
 		}
-		times[i].second = currentTime;
+		times[i].second = currentTime - 1;
 	}
 
-	template<typename Operation> void path(std::size_t u, std::size_t v, const Operation operation)
+	template<typename F> void path(std::size_t u, std::size_t v, const F f)
 	{
 		for(; head[u] != head[v]; v = parent[head[v]])
 		{
 			if(depths[head[u]] > depths[head[v]])
 			{ std::swap(u, v); }
-			operation(times[head[v]].first, times[v].first);
+			f(times[head[v]].first, times[v].first);
 		}
 		if(depths[u] > depths[v])
 		{ std::swap(u, v); }
-		operation(times[u].first, times[v].first);
+		f(times[u].first, times[v].first);
 	}
 
 public:
@@ -76,10 +76,7 @@ public:
 		tree.build(positionedElements);
 	}
 
-	template<typename... Arguments> void update_sub_tree(const std::size_t& i, const Arguments& ... rest)
-	{
-		tree.change(times[i].first, times[i].second, rest...);
-	}
+	template<typename... Arguments> void update_sub_tree(const std::size_t& i, const Arguments& ... rest) { tree.change(times[i].first, times[i].second, rest...); }
 
 	template<typename... Arguments> void update_path(std::size_t u, std::size_t v, const Arguments& ... rest)
 	{
@@ -87,10 +84,7 @@ public:
 		{ tree.change(low, high, rest...); });
 	}
 
-	auto range(const std::size_t& i)
-	{
-		return tree.range(times[i].first, times[i].second);
-	}
+	auto range(const std::size_t& i) { return tree.range(times[i].first, times[i].second); }
 
 	auto range(const std::size_t& u, const std::size_t& v)
 	{

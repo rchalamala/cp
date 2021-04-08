@@ -36,15 +36,9 @@ template<typename T, std::size_t Size> bool read(std::istream& in, std::array<T,
 	return result;
 }
 
-template<typename T1, typename T2> bool read(std::istream& in, std::pair<T1, T2>& element)
-{
-	return read(in, element.first, element.second);
-}
+template<typename T1, typename T2> bool read(std::istream& in, std::pair<T1, T2>& element) { return read(in, element.first, element.second); }
 
-template<typename T> bool read(std::istream& in, T& element)
-{
-	return static_cast<bool>(in >> element);
-}
+template<typename T> bool read(std::istream& in, T& element) { return static_cast<bool>(in >> element); }
 
 template<typename T> bool read(std::istream& in, std::complex<T>& element)
 {

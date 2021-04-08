@@ -116,13 +116,9 @@ struct Montgomery
 	uint64_t n;
 	static uint64_t modulus, inverse, r2;
 
-	Montgomery() : n{}
-	{
-	}
+	Montgomery() : n{} {}
 
-	Montgomery(const uint64_t& uN) : n{redc(__uint128_t(uN) * r2)}
-	{
-	}
+	Montgomery(const uint64_t& uN) : n{redc(__uint128_t(uN) * r2)} {}
 
 	static void set_modulus(const uint64_t& uModulus)
 	{
@@ -148,10 +144,7 @@ struct Montgomery
 		return *this;
 	}
 
-	Montgomery& operator+(const Montgomery& other) const
-	{
-		return Montgomery(*this) += other;
-	}
+	Montgomery& operator+(const Montgomery& other) const { return Montgomery(*this) += other; }
 
 	Montgomery& operator*=(const Montgomery& other)
 	{
@@ -159,15 +152,9 @@ struct Montgomery
 		return *this;
 	}
 
-	Montgomery& operator*(const Montgomery& other) const
-	{
-		return Montgomery(*this) *= other;
-	}
+	Montgomery& operator*(const Montgomery& other) const { return Montgomery(*this) *= other; }
 
-	uint64_t value() const
-	{
-		return redc(n);
-	}
+	uint64_t value() const { return redc(n); }
 };
 
 uint64_t Montgomery::modulus{1}, Montgomery::inverse, Montgomery::r2;

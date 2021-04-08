@@ -11,13 +11,9 @@ template<typename uT, std::enable_if_t<std::is_arithmetic_v<uT>, bool> = true> s
 	T value{}, delta{}, set{};
 	bool validSet{};
 
-	AddNode(const T& uValue) : value{uValue}
-	{
-	}
+	AddNode(const T& uValue) : value{uValue} {}
 
-	AddNode()
-	{
-	}
+	AddNode() {}
 };
 
 template<class uNode> struct Add
@@ -27,15 +23,9 @@ template<class uNode> struct Add
 
 	Node identity{};
 
-	virtual T return_value(const Node& element)
-	{
-		return element.value;
-	}
+	virtual T return_value(const Node& element) { return element.value; }
 
-	virtual Node merge(const Node& lhs, const Node& rhs)
-	{
-		return lhs.value + rhs.value;
-	}
+	virtual Node merge(const Node& lhs, const Node& rhs) { return lhs.value + rhs.value; }
 
 	virtual void propagate_update(Node& parent, Node& leftChild, Node& rightChild, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize)
 	{
@@ -45,9 +35,10 @@ template<class uNode> struct Add
 			if(intervalLength > 1)
 			{
 				leftChild.set = rightChild.set = parent.set;
+				leftChild.validSet = rightChild.validSet = true;
 				leftChild.delta = rightChild.delta = 0;
 			}
-			parent.value = intervalLength * parent.set;
+			parent.value = static_cast<T>(intervalLength) * parent.set;
 			parent.validSet = false;
 		}
 		if(parent.delta)
@@ -57,15 +48,12 @@ template<class uNode> struct Add
 				leftChild.delta += parent.delta;
 				rightChild.delta += parent.delta;
 			}
-			parent.value += intervalLength * parent.delta;
+			parent.value += static_cast<T>(intervalLength) * parent.delta;
 			parent.delta = 0;
 		}
 	}
 
-	virtual void change(Node& element, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize, const T& delta)
-	{
-		element.delta += delta;
-	}
+	virtual void change(Node& element, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize, const T& delta) { element.delta += delta; }
 
 	virtual void change(Node& element, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize, const T& set, const bool& notDelta)
 	{

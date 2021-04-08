@@ -11,30 +11,21 @@ template<typename uT, std::enable_if_t<std::is_arithmetic_v<uT>, bool> = true> s
 
 	T value{}, delta{}, deltaAP{};
 
-	ArithmeticProgressionNode(const T& uValue, const T& uDelta, const T& uDeltaAP) : value{uValue}, delta{uDelta}, deltaAP{uDeltaAP}
-	{
-	}
+	ArithmeticProgressionNode(const T& uValue, const T& uDelta, const T& uDeltaAP) : value{uValue}, delta{uDelta}, deltaAP{uDeltaAP} {}
 
-	ArithmeticProgressionNode(const T& uValue) : value{uValue}
-	{
-	}
+	ArithmeticProgressionNode(const T& uValue) : value{uValue} {}
 
-	ArithmeticProgressionNode()
-	{
-	}
+	ArithmeticProgressionNode() {}
 };
 
-template<class uNode> struct ArithmeticProgression
+template<class uNode, bool ZEROINDEXED> struct ArithmeticProgression
 {
 	using Node = uNode;
 	using T = typename Node::T;
 
 	Node identity{};
 
-	T return_value(const Node& element)
-	{
-		return element.value;
-	}
+	T return_value(const Node& element) { return element.value; }
 
 	Node merge(const Node& lhs, const Node& rhs)
 	{
@@ -62,15 +53,12 @@ template<class uNode> struct ArithmeticProgression
 				rightChild.deltaAP += parent.deltaAP;
 				rightChild.delta += parent.deltaAP * ((intervalLength + 1) >> 1);
 			}
-			parent.value += ((intervalLength * (intervalLength + 1)) >> 1) * parent.deltaAP;
+			parent.value += (((intervalLength * (intervalLength + 1)) >> 1) - ZEROINDEXED) * parent.deltaAP;
 			parent.deltaAP = 0;
 		}
 	}
 
-	void change(Node& element, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize, const T& value)
-	{
-		element.delta += value;
-	}
+	void change(Node& element, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize, const T& value) { element.delta += value; }
 
 	void change(Node& element, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize, const T& k, const bool& isAP)
 	{

@@ -11,7 +11,6 @@ public:
 	using Node = typename F::Node;
 	F f;
 private:
-
 	const std::size_t size;
 	std::vector<Node> tree;
 
@@ -65,25 +64,13 @@ private:
 	}
 
 public:
-	explicit SegmentTree(const std::size_t& uSize) : size{uSize}
-	{
-		tree.assign(size << 2, Node{});
-	}
+	explicit SegmentTree(const std::size_t& uSize) : size{uSize} { tree.assign(size << 2, Node{}); }
 
-	template<typename Iterable> void build(const Iterable& uElements)
-	{
-		build(1, 0, size - 1, uElements);
-	}
+	template<typename Iterable> void build(const Iterable& uElements) { build(1, 0, size - 1, uElements); }
 
-	template<typename... Arguments> void change(const std::size_t& left, const std::size_t& right, const Arguments& ... rest)
-	{
-		change(1, 0, size - 1, left, right, rest...);
-	}
+	template<typename... Arguments> void change(const std::size_t& left, const std::size_t& right, const Arguments& ... rest) { change(1, 0, size - 1, left, right, rest...); }
 
-	auto range(const std::size_t& left, const std::size_t& right)
-	{
-		return f.return_value(range(1, 0, size - 1, left, right));
-	}
+	auto range(const std::size_t& left, const std::size_t& right) { return f.return_value(range(1, 0, size - 1, left, right)); }
 };
 
 #endif
