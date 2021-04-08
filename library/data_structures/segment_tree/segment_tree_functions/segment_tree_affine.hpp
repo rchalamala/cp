@@ -3,29 +3,31 @@
 
 #include <cstddef>
 
-template<class uT> struct Affine
+
+template<typename uT> struct AffineNode
 {
+	using T = uT;
+
+	T value{}, b{1}, c{};
+
+	AffineNode(const T& uValue, const T& uB, const T& uC) : value{uValue}, b{uB}, c{uC} {}
+
+	AffineNode(const T& uValue) : value{uValue} {}
+
+	AffineNode() {}
+};
+
+
+template<class uNode> struct Affine
+{
+	using Node = uNode;
 	using T = typename Node::T;
-
-	struct Node
-	{
-		T value{}, b{1}, c{};
-
-		AffineNode(const T& uValue, const T& uB, const T& uC) : value{uValue}, b{uB}, c{uC} {}
-
-		AffineNode(const T& uValue) : value{uValue} {}
-
-		AffineNode() {}
-	};
 
 	Node identity{};
 
 	T return_value(const Node& element) { return element.value; }
 
-	Node merge(const Node& lhs, const Node& rhs)
-	{
-		return lhs.value + rhs.value;
-	}
+	Node merge(const Node& lhs, const Node& rhs) { return lhs.value + rhs.value; }
 
 	void propagate_update(Node& parent, Node& leftChild, Node& rightChild, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft, const std::size_t& queryRight, const std::size_t& treeSize)
 	{
