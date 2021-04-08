@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/data_structures/segment_tree/segment_tree.hpp
     title: library/data_structures/segment_tree/segment_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_affine.hpp
     title: library/data_structures/segment_tree/segment_tree_functions/segment_tree_affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/general/speed.hpp
     title: library/general/speed.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/modulo.hpp
     title: library/numerical/modulo.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -69,20 +69,21 @@ data:
     \ right) { return f.return_value(range(1, 0, size - 1, left, right)); }\n};\n\n\
     \n#line 1 \"library/data_structures/segment_tree/segment_tree_functions/segment_tree_affine.hpp\"\
     \n\n\n\n#line 5 \"library/data_structures/segment_tree/segment_tree_functions/segment_tree_affine.hpp\"\
-    \n\ntemplate<class uT> struct Affine\n{\n\tusing T = typename Node::T;\n\n\tstruct\
-    \ Node\n\t{\n\t\tT value{}, b{1}, c{};\n\n\t\tAffineNode(const T& uValue, const\
-    \ T& uB, const T& uC) : value{uValue}, b{uB}, c{uC} {}\n\n\t\tAffineNode(const\
-    \ T& uValue) : value{uValue} {}\n\n\t\tAffineNode() {}\n\t};\n\n\tNode identity{};\n\
-    \n\tT return_value(const Node& element) { return element.value; }\n\n\tNode merge(const\
-    \ Node& lhs, const Node& rhs)\n\t{\n\t\treturn lhs.value + rhs.value;\n\t}\n\n\
-    \tvoid propagate_update(Node& parent, Node& leftChild, Node& rightChild, const\
-    \ std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& queryLeft,\
-    \ const std::size_t& queryRight, const std::size_t& treeSize)\n\t{\n\t\tstd::size_t\
-    \ intervalLength{treeRight - treeLeft + 1};\n\t\tif(parent.b)\n\t\t{\n\t\t\tif(intervalLength\
-    \ > 1)\n\t\t\t{\n\t\t\t\tleftChild.b *= parent.b;\n\t\t\t\t(leftChild.c *= parent.b)\
-    \ += parent.c;\n\t\t\t\trightChild.b *= parent.b;\n\t\t\t\t(rightChild.c *= parent.b)\
-    \ += parent.c;\n\t\t\t}\n\t\t\t((parent.value *= parent.b) += (parent.c * intervalLength));\n\
-    \t\t\tparent.b = 1;\n\t\t\tparent.c = 0;\n\t\t}\n\t}\n\n\tvoid change(Node& element,\
+    \n\n\ntemplate<typename uT> struct AffineNode\n{\n\tusing T = uT;\n\n\tT value{},\
+    \ b{1}, c{};\n\n\tAffineNode(const T& uValue, const T& uB, const T& uC) : value{uValue},\
+    \ b{uB}, c{uC} {}\n\n\tAffineNode(const T& uValue) : value{uValue} {}\n\n\tAffineNode()\
+    \ {}\n};\n\n\ntemplate<class uNode> struct Affine\n{\n\tusing Node = uNode;\n\t\
+    using T = typename Node::T;\n\n\tNode identity{};\n\n\tT return_value(const Node&\
+    \ element) { return element.value; }\n\n\tNode merge(const Node& lhs, const Node&\
+    \ rhs) { return lhs.value + rhs.value; }\n\n\tvoid propagate_update(Node& parent,\
+    \ Node& leftChild, Node& rightChild, const std::size_t& treeLeft, const std::size_t&\
+    \ treeRight, const std::size_t& queryLeft, const std::size_t& queryRight, const\
+    \ std::size_t& treeSize)\n\t{\n\t\tstd::size_t intervalLength{treeRight - treeLeft\
+    \ + 1};\n\t\tif(parent.b)\n\t\t{\n\t\t\tif(intervalLength > 1)\n\t\t\t{\n\t\t\t\
+    \tleftChild.b *= parent.b;\n\t\t\t\t(leftChild.c *= parent.b) += parent.c;\n\t\
+    \t\t\trightChild.b *= parent.b;\n\t\t\t\t(rightChild.c *= parent.b) += parent.c;\n\
+    \t\t\t}\n\t\t\t((parent.value *= parent.b) += (parent.c * intervalLength));\n\t\
+    \t\tparent.b = 1;\n\t\t\tparent.c = 0;\n\t\t}\n\t}\n\n\tvoid change(Node& element,\
     \ const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t&\
     \ queryLeft, const std::size_t& queryRight, const std::size_t& treeSize, const\
     \ T& b, const T& c)\n\t{\n\t\telement.b *= b;\n\t\t(element.c *= b) += c;\n\t\
@@ -199,8 +200,8 @@ data:
   isVerificationFile: true
   path: verification/data_structures/segment_tree_affine.test.cpp
   requiredBy: []
-  timestamp: '2021-04-07 22:54:37-06:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-04-07 23:26:06-06:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verification/data_structures/segment_tree_affine.test.cpp
 layout: document

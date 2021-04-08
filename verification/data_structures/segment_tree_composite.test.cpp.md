@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/data_structures/segment_tree/segment_tree.hpp
     title: library/data_structures/segment_tree/segment_tree.hpp
   - icon: ':heavy_check_mark:'
     path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_composite.hpp
     title: library/data_structures/segment_tree/segment_tree_functions/segment_tree_composite.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/general/speed.hpp
     title: library/general/speed.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/modulo.hpp
     title: library/numerical/modulo.hpp
   _extendedRequiredBy: []

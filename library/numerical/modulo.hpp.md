@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verification/data_structures/segment_tree_affine.test.cpp
     title: verification/data_structures/segment_tree_affine.test.cpp
   - icon: ':heavy_check_mark:'
     path: verification/data_structures/segment_tree_composite.test.cpp
     title: verification/data_structures/segment_tree_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/the-tourist/algo/blob/master/numeric/mint.cpp
@@ -186,7 +186,7 @@ data:
   path: library/numerical/modulo.hpp
   requiredBy: []
   timestamp: '2021-04-07 22:54:37-06:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verification/data_structures/segment_tree_affine.test.cpp
   - verification/data_structures/segment_tree_composite.test.cpp

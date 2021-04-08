@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: library/data_structures/segment_tree
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/data_structures/segment_tree/segment_tree.hpp
       title: library/data_structures/segment_tree/segment_tree.hpp
   - name: library/data_structures/segment_tree/segment_tree_functions
@@ -11,7 +11,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp
       title: library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_affine.hpp
       title: library/data_structures/segment_tree/segment_tree_functions/segment_tree_affine.hpp
     - icon: ':warning:'
@@ -46,7 +46,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/general/prng.hpp
       title: library/general/prng.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/general/speed.hpp
       title: library/general/speed.hpp
     - icon: ':heavy_check_mark:'
@@ -73,7 +73,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/numerical/list_of_primes.hpp
       title: library/numerical/list_of_primes.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/numerical/modulo.hpp
       title: library/numerical/modulo.hpp
     - icon: ':heavy_check_mark:'
@@ -99,7 +99,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verification/data_structures/segment_tree_add_sum.test.cpp
       title: verification/data_structures/segment_tree_add_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: verification/data_structures/segment_tree_affine.test.cpp
       title: verification/data_structures/segment_tree_affine.test.cpp
     - icon: ':heavy_check_mark:'
