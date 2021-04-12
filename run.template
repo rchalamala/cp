@@ -16,15 +16,13 @@ namespace JHelper
 			{
 				while(index && std::isblank(data.at(index - 1)))
 				{
-					data.erase(data.begin() + index - 1);
+					data.erase(index - 1, 1);
 					--index;
 				}
 			}
 		}
 		while(!data.empty() && std::isspace(data.back()))
-		{
-			data.pop_back();
-		}
+		{ data.pop_back(); }
 		return data;
 	}
 
@@ -33,25 +31,15 @@ namespace JHelper
 		std::string m_input, m_output;
 		bool m_active, m_hasOutput;
 
-		void set_output(const std::string& output)
-		{
-			m_output = trim(output);
-		}
+		void set_output(const std::string& output) { m_output = trim(output); }
 
-		Test(const std::string& input, const std::string& output, const bool& active, const bool& hasOutput) : m_input{ input }, m_output{ output }, m_active{ active }, m_hasOutput{ hasOutput }
-		{
-			m_input = trim(m_input);
-			m_output = trim(m_output);
-		}
+		Test(const std::string& input, const std::string& output, const bool& active, const bool& hasOutput) : m_input{trim(input)}, m_output{trim(output)}, m_active{active}, m_hasOutput{hasOutput} {}
 
-		bool check(const std::string& output) const
-		{
-			return trim(output) == m_output;
-		}
+		bool check(const std::string& output) const { return trim(output) == m_output; }
 	};
 }
 
-std::string red{ "\x1B[31m" }, green{ "\x1B[32m" }, yellow{ "\x1B[33m" }, blue{ "\x1B[34m" }, original{ "\033[0m" };
+std::string red{"\x1B[31m"}, green{"\x1B[32m"}, yellow{"\x1B[33m"}, blue{"\x1B[34m"}, original{"\033[0m"};
 
 std::uint_fast32_t testID{};
 std::chrono::duration<long double, std::milli> testTime{};
@@ -61,41 +49,33 @@ std::string testOutput{};
 void run_test(JHelper::Test& test, const std::int64_t& stressTestIteration = 0, const bool& showTestingOutput = false, const bool& showAllTestingOutput = false)
 {
 	if(!stressTestIteration)
-	{
-		std::cerr << blue << "Test #" << ++testID << original << std::endl;
-	}
+	{ std::cerr << blue << "Test #" << ++testID << original << std::endl; }
 	if(showAllTestingOutput)
-	{
-		std::cerr << blue << "Stress Test #" << stressTestIteration << original << std::endl;
-	}
+	{ std::cerr << blue << "Stress Test #" << stressTestIteration << original << std::endl; }
 	if(!stressTestIteration || showAllTestingOutput)
 	{
 		std::cerr << blue << "Input:" << std::endl << original << test.m_input << std::endl;
 		std::cerr << blue << "Expected output:" << std::endl << original;
 		if(test.m_hasOutput)
-		{
-			std::cerr << test.m_output;
-		}
+		{ std::cerr << test.m_output; }
 		else
-		{
-			std::cerr << yellow << "N/A" << original;
-		}
+		{ std::cerr << yellow << "N/A" << original; }
 		std::cerr << std::endl;
 	}
 	if(test.m_active)
 	{
 		std::istringstream in(test.m_input);
+		std::cin.rdbuf(in.rdbuf());
 		std::ostringstream out;
-		std::chrono::time_point<std::chrono::high_resolution_clock> start{ std::chrono::high_resolution_clock::now() };
+		std::cout.rdbuf(out.rdbuf());
+		std::chrono::time_point<std::chrono::high_resolution_clock> start{std::chrono::high_resolution_clock::now()};
 		%ClassName% solver;
 		solver.setup();
 		%SolverCall%
 		testTime = std::chrono::high_resolution_clock::now() - start;
-		std::string output{ JHelper::trim(out.str()) };
+		std::string output{JHelper::trim(out.str())};
 		if(!stressTestIteration || showAllTestingOutput)
-		{
-			std::cerr << blue << "Actual output:" << std::endl << original << output << std::endl;
-		}
+		{ std::cerr << blue << "Actual output:" << std::endl << original << output << std::endl; }
 		if(test.m_hasOutput)
 		{
 			testOK = test.check(output);
@@ -103,25 +83,17 @@ void run_test(JHelper::Test& test, const std::int64_t& stressTestIteration = 0, 
 			{
 				std::cerr << blue << "Result: " << original;
 				if(testOK)
-				{
-					std::cerr << green << "Right answer";
-				}
+				{ std::cerr << green << "Right answer"; }
 				else
-				{
-					std::cerr << red << "Wrong answer";
-				}
+				{ std::cerr << red << "Wrong answer"; }
 				std::cerr << original << std::endl;
 			}
 		}
 		else
-		{
-			testOK = true;
-		}
+		{ testOK = true; }
 		testOutput = output;
 		if(!stressTestIteration || showAllTestingOutput)
-		{
-			std::cerr << blue << "Time: " << testTime.count() << "ms." << original << std::endl;
-		}
+		{ std::cerr << blue << "Time: " << testTime.count() << "ms." << original << std::endl; }
 		if(test.m_hasOutput && !testOK && stressTestIteration && !showAllTestingOutput)
 		{
 			std::cerr << red << "Stress Test #" << stressTestIteration << original << std::endl;
@@ -130,46 +102,36 @@ void run_test(JHelper::Test& test, const std::int64_t& stressTestIteration = 0, 
 				std::cerr << blue << "Input:" << std::endl << original << test.m_input << std::endl;
 				std::cerr << blue << "Expected output:" << std::endl << original;
 				if(test.m_hasOutput)
-				{
-					std::cerr << test.m_output;
-				}
+				{ std::cerr << test.m_output; }
 				else
-				{
-					std::cerr << yellow << "N/A" << original;
-				}
+				{ std::cerr << yellow << "N/A" << original; }
 				std::cerr << std::endl;
 				std::cerr << blue << "Actual output:" << std::endl << original << output << std::endl;
 			}
 		}
 	}
 	else
-	{
-		std::cerr << yellow << "SKIPPED" << original << std::endl;
-	}
+	{ std::cerr << yellow << "SKIPPED" << original << std::endl; }
 	if(!stressTestIteration || showAllTestingOutput)
-	{
-		std::cerr << std::endl;
-	}
+	{ std::cerr << std::endl; }
 	if(testOK && showTestingOutput && !showAllTestingOutput)
-	{
-		std::cerr << (actualBruteForce ? green : yellow) << "Stress Test #" << stressTestIteration << original << std::endl;
-	}
+	{ std::cerr << (actualBruteForce ? green : yellow) << "Stress Test #" << stressTestIteration << original << std::endl; }
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
-	static_assert(!%ClassName%::stressTestIterations || (%ClassName%::stressTestIterations && !%ClassName%::bruteForceAllIterations));
-	std::chrono::time_point<std::chrono::high_resolution_clock> start{ std::chrono::high_resolution_clock::now() };
-	std::vector<JHelper::Test> tests{ %Tests% };
+	static_assert(!%ClassName%::stressTestIterations || (%ClassName%::stressTestIterations && ! %ClassName%::bruteForceAllIterations));
+	std::chrono::time_point<std::chrono::high_resolution_clock> start{std::chrono::high_resolution_clock::now()};
+	std::vector<JHelper::Test> tests{%Tests%};
 	std::cerr << std::fixed;
 	std::chrono::duration<long double, std::milli> solveMaximalTime{}, solveAverageTime{}, bruteForceMaximalTime{}, bruteForceAverageTime{};
 	std::uint64_t bruteForceEmptyTestIterations{};
-	bool allOK = true;
+	bool allOK{true};
 	%ClassName%::bruteForceSolveIteration = %ClassName%::bruteForceAllIterations;
 	for(JHelper::Test& test : tests)
 	{
 		if(!test.m_hasOutput)
-		{ assert(!(%ClassName%::bruteForceEmptyTests && %ClassName%::bruteForceAllIterations)); }
+		{ assert(!(%ClassName%::bruteForceEmptyTests && %ClassName%::bruteForceAllIterations));	}
 		if(!test.m_hasOutput && %ClassName%::bruteForceEmptyTests)
 		{
 			%ClassName%::bruteForceSolveIteration = true;
@@ -193,12 +155,12 @@ int main(int argc, char** argv)
 			allOK &= (!test.m_hasOutput || testOK);
 		}
 	}
-	std::int_fast64_t stressTestIteration{ 1 };
+	std::int_fast64_t stressTestIteration{1};
 	for(; (stressTestIteration <= %ClassName%::stressTestIterations || %ClassName%::stressTestIterations == -1) && allOK; ++stressTestIteration)
 	{
 		std::ostringstream generatedTestInput;
 		%ClassName%::generate_test(generatedTestInput, static_cast<std::uint64_t>(stressTestIteration));
-		JHelper::Test generatedTest{ JHelper::trim(generatedTestInput.str()), "", true, false };
+		JHelper::Test generatedTest{JHelper::trim(generatedTestInput.str()), "", true, false};
 		%ClassName%::bruteForceSolveIteration = true;
 		run_test(generatedTest, -1, false);
 		%ClassName%::bruteForceSolveIteration = false;
@@ -216,18 +178,12 @@ int main(int argc, char** argv)
 		allOK &= testOK;
 	}
 	solveAverageTime /= (tests.size() + %ClassName%::stressTestIterations);
-	if(stressTestIteration > 1 && (!allOK || (%ClassName%::showTestingOutput && !%ClassName%::showAllTestingOutput)))
-	{
-		std::cerr << std::endl;
-	}
+	if(stressTestIteration > 1 && (!allOK ||(%ClassName%::showTestingOutput && ! %ClassName%::showAllTestingOutput)))
+	{ std::cerr << std::endl; }
 	if(allOK)
-	{
-		std::cerr << green << "All Right";
-	}
+	{ std::cerr << green << "All Right"; }
 	else
-	{
-		std::cerr << red << "Some Wrong";
-	}
+	{ std::cerr << red << "Some Wrong"; }
 	std::cerr << original << std::endl;
 	std::chrono::duration<long double> totalExecutionTime{std::chrono::high_resolution_clock::now() - start};
 	std::cerr << "Total execution time: " << totalExecutionTime.count() << "s." << original << std::endl;

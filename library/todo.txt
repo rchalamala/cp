@@ -1,0 +1,12 @@
+numbers:
+
+binomial coefficients
+derangements
+efficient factorials
+factorial inverses
+matrices
+big integers
+
+convert all others to new format and find problems to verify on
+
+also add anything string based cause nothing there
