@@ -4,7 +4,5 @@
 "verification/data_structures/segment_tree_composite.test.cpp": "2021-04-07 22:54:37 -0600",
 "verification/graph/heavy_light_decomposition.test.cpp": "2021-04-07 22:54:37 -0600",
 "verification/graph/heavy_light_decomposition_path.test.cpp": "2021-04-07 22:54:37 -0600",
-"verification/graph/heavy_light_decomposition_subtree.test.cpp": "2021-04-07 22:54:37 -0600",
-"verification/numerical/factors/optimized_rho_factorization.test.cpp": "2021-04-07 22:54:37 -0600",
-"verification/numerical/factors/pollards_rho_factorization.test.cpp": "2021-04-07 22:54:37 -0600"
+"verification/graph/heavy_light_decomposition_subtree.test.cpp": "2021-04-07 22:54:37 -0600"
 }
