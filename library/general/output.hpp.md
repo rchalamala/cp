@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/general/to_string.hpp
     title: library/general/to_string.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verification/numerical/factors/optimized_rho_factorization.test.cpp
     title: verification/numerical/factors/optimized_rho_factorization.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verification/numerical/factors/pollards_rho_factorization.test.cpp
     title: verification/numerical/factors/pollards_rho_factorization.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/general/output.hpp\"\n\n\n\n#line 1 \"library/general/to_string.hpp\"\
@@ -42,51 +42,45 @@ data:
     \ T2> std::string std::to_string(std::pair<T1, T2> element) { return std::to_string(element.ff)\
     \ + \" \" + std::to_string(element.ss); }\n\n\n#line 5 \"library/general/output.hpp\"\
     \n#include <ostream>\n\ntemplate<typename Argument, typename... Arguments> void\
-    \ print(std::ostream& out, const Argument& first, const Arguments& ... rest);\n\
-    \ntemplate<typename Argument, typename... Arguments> void printn(std::ostream&\
-    \ out, const Argument& first, const Arguments& ... rest);\n\ntemplate<typename\
-    \ Argument, typename... Arguments> void prints(std::ostream& out, const Argument&\
-    \ first, const Arguments& ... rest);\n\ntemplate<typename T> void print(std::ostream&\
-    \ out, const T& element);\n\ninline void printn(std::ostream& out);\n\ninline\
-    \ void prints(std::ostream& out);\n\ntemplate<typename T> void print(std::ostream&\
-    \ out, const T& element) { out << std::to_string(element); }\n\ninline void printn(std::ostream&\
-    \ out) { print(out, '\\n'); }\n\ninline void prints(std::ostream& out) { print(out,\
-    \ '\\n'); }\n\ntemplate<typename Argument, typename... Arguments> void print(std::ostream&\
-    \ out, const Argument& first, const Arguments& ... rest)\n{\n\tprint(out, first);\n\
-    \tprint(out, rest...);\n}\n\ntemplate<typename Argument, typename... Arguments>\
-    \ void printn(std::ostream& out, const Argument& first, const Arguments& ... rest)\n\
-    {\n\tprint(out, first);\n\tif(sizeof...(rest))\n\t{ prints(out); }\n\tprintn(out,\
-    \ rest...);\n}\n\ntemplate<typename Argument, typename... Arguments> void prints(std::ostream&\
-    \ out, const Argument& first, const Arguments& ... rest)\n{\n\tprint(out, first);\n\
-    \tif(sizeof...(rest))\n\t{ print(out, \" \"); }\n\tprints(out, rest...);\n}\n\n\
-    \n"
+    \ print(const Argument& first, const Arguments& ... rest);\n\ntemplate<typename\
+    \ Argument, typename... Arguments> void printn(const Argument& first, const Arguments&\
+    \ ... rest);\n\ntemplate<typename Argument, typename... Arguments> void prints(const\
+    \ Argument& first, const Arguments& ... rest);\n\ntemplate<typename T> void print(const\
+    \ T& element);\n\ninline void printn();\n\ninline void prints();\n\ntemplate<typename\
+    \ T> void print(const T& element) { std::cout << std::to_string(element); }\n\n\
+    inline void printn() { print('\\n'); }\n\ninline void prints() { print('\\n');\
+    \ }\n\ntemplate<typename Argument, typename... Arguments> void print(const Argument&\
+    \ first, const Arguments& ... rest)\n{\n\tprint(first);\n\tprint(rest...);\n}\n\
+    \ntemplate<typename Argument, typename... Arguments> void printn(const Argument&\
+    \ first, const Arguments& ... rest)\n{\n\tprint(first);\n\tif(sizeof...(rest))\n\
+    \t{ prints(); }\n\tprintn(rest...);\n}\n\ntemplate<typename Argument, typename...\
+    \ Arguments> void prints(const Argument& first, const Arguments& ... rest)\n{\n\
+    \tprint(first);\n\tif(sizeof...(rest))\n\t{ print(\" \"); }\n\tprints(rest...);\n\
+    }\n\n\n"
   code: "#ifndef OUTPUT_HPP\n#define OUTPUT_HPP\n\n#include \"to_string.hpp\"\n#include\
-    \ <ostream>\n\ntemplate<typename Argument, typename... Arguments> void print(std::ostream&\
-    \ out, const Argument& first, const Arguments& ... rest);\n\ntemplate<typename\
-    \ Argument, typename... Arguments> void printn(std::ostream& out, const Argument&\
-    \ first, const Arguments& ... rest);\n\ntemplate<typename Argument, typename...\
-    \ Arguments> void prints(std::ostream& out, const Argument& first, const Arguments&\
-    \ ... rest);\n\ntemplate<typename T> void print(std::ostream& out, const T& element);\n\
-    \ninline void printn(std::ostream& out);\n\ninline void prints(std::ostream& out);\n\
-    \ntemplate<typename T> void print(std::ostream& out, const T& element) { out <<\
-    \ std::to_string(element); }\n\ninline void printn(std::ostream& out) { print(out,\
-    \ '\\n'); }\n\ninline void prints(std::ostream& out) { print(out, '\\n'); }\n\n\
-    template<typename Argument, typename... Arguments> void print(std::ostream& out,\
-    \ const Argument& first, const Arguments& ... rest)\n{\n\tprint(out, first);\n\
-    \tprint(out, rest...);\n}\n\ntemplate<typename Argument, typename... Arguments>\
-    \ void printn(std::ostream& out, const Argument& first, const Arguments& ... rest)\n\
-    {\n\tprint(out, first);\n\tif(sizeof...(rest))\n\t{ prints(out); }\n\tprintn(out,\
-    \ rest...);\n}\n\ntemplate<typename Argument, typename... Arguments> void prints(std::ostream&\
-    \ out, const Argument& first, const Arguments& ... rest)\n{\n\tprint(out, first);\n\
-    \tif(sizeof...(rest))\n\t{ print(out, \" \"); }\n\tprints(out, rest...);\n}\n\n\
-    #endif"
+    \ <ostream>\n\ntemplate<typename Argument, typename... Arguments> void print(const\
+    \ Argument& first, const Arguments& ... rest);\n\ntemplate<typename Argument,\
+    \ typename... Arguments> void printn(const Argument& first, const Arguments& ...\
+    \ rest);\n\ntemplate<typename Argument, typename... Arguments> void prints(const\
+    \ Argument& first, const Arguments& ... rest);\n\ntemplate<typename T> void print(const\
+    \ T& element);\n\ninline void printn();\n\ninline void prints();\n\ntemplate<typename\
+    \ T> void print(const T& element) { std::cout << std::to_string(element); }\n\n\
+    inline void printn() { print('\\n'); }\n\ninline void prints() { print('\\n');\
+    \ }\n\ntemplate<typename Argument, typename... Arguments> void print(const Argument&\
+    \ first, const Arguments& ... rest)\n{\n\tprint(first);\n\tprint(rest...);\n}\n\
+    \ntemplate<typename Argument, typename... Arguments> void printn(const Argument&\
+    \ first, const Arguments& ... rest)\n{\n\tprint(first);\n\tif(sizeof...(rest))\n\
+    \t{ prints(); }\n\tprintn(rest...);\n}\n\ntemplate<typename Argument, typename...\
+    \ Arguments> void prints(const Argument& first, const Arguments& ... rest)\n{\n\
+    \tprint(first);\n\tif(sizeof...(rest))\n\t{ print(\" \"); }\n\tprints(rest...);\n\
+    }\n\n#endif"
   dependsOn:
   - library/general/to_string.hpp
   isVerificationFile: false
   path: library/general/output.hpp
   requiredBy: []
-  timestamp: '2021-04-07 22:54:37-06:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-04-12 14:19:14-06:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verification/numerical/factors/pollards_rho_factorization.test.cpp
   - verification/numerical/factors/optimized_rho_factorization.test.cpp

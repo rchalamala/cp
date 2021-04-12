@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_maximum.hpp
     title: library/data_structures/segment_tree/segment_tree_functions/segment_tree_maximum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/general/speed.hpp
     title: library/general/speed.hpp
   - icon: ':heavy_check_mark:'

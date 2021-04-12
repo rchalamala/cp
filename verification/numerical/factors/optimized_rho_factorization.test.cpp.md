@@ -1,62 +1,62 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/general/base.hpp
     title: library/general/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/general/base.hpp
     title: library/general/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/general/input.hpp
     title: library/general/input.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/general/output.hpp
     title: library/general/output.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/general/prng.hpp
     title: library/general/prng.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/general/speed.hpp
     title: library/general/speed.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/general/to_string.hpp
     title: library/general/to_string.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/numerical/factors/optimized_rho_factorization.hpp
     title: library/numerical/factors/optimized_rho_factorization.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/numerical/list_of_primes.hpp
     title: library/numerical/list_of_primes.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/numerical/list_of_primes.hpp
     title: library/numerical/list_of_primes.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/numerical/montgomery.hpp
     title: library/numerical/montgomery.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/numerical/montgomery.hpp
     title: library/numerical/montgomery.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/numerical/primality/miller_rabin_primality_test.hpp
     title: library/numerical/primality/miller_rabin_primality_test.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/numerical/steins_gcd.hpp
     title: library/numerical/steins_gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/factorize
@@ -64,27 +64,24 @@ data:
     - https://judge.yosupo.jp/problem/factorize
   bundledCode: "#line 1 \"library/general/input.hpp\"\n\n\n\n#include <array>\n#include\
     \ <complex>\n#include <istream>\n#include <string>\n#include <utility>\n#include\
-    \ <vector>\n\ntemplate<typename Argument, typename... Arguments> bool read(std::istream&\
-    \ in, Argument& first, Arguments& ... rest);\n\ntemplate<typename T, std::size_t\
-    \ N> bool read(std::istream& in, std::array<T, N>& elements);\n\ntemplate<typename\
-    \ T1, typename T2> bool read(std::istream& in, std::pair<T1, T2>& element);\n\n\
-    template<typename T> bool read(std::istream& in, T& element);\n\ntemplate<typename\
-    \ T> bool read(std::istream& in, std::complex<T>& element);\n\ntemplate<typename\
-    \ T> bool read(std::istream& in, std::vector<T>& elements);\n\ntemplate<typename\
-    \ Argument, typename... Arguments> bool read(std::istream& in, Argument& first,\
-    \ Arguments& ... rest)\n{\n\tbool result = true;\n\tresult &= read(in, first);\n\
-    \tresult &= read(in, rest...);\n\treturn result;\n}\n\ntemplate<typename T, std::size_t\
-    \ Size> bool read(std::istream& in, std::array<T, Size>& elements)\n{\n\tbool\
-    \ result = true;\n\tfor(T& element : elements)\n\t{ result &= read(in, element);\
-    \ }\n\treturn result;\n}\n\ntemplate<typename T1, typename T2> bool read(std::istream&\
-    \ in, std::pair<T1, T2>& element) { return read(in, element.first, element.second);\
-    \ }\n\ntemplate<typename T> bool read(std::istream& in, T& element) { return static_cast<bool>(in\
-    \ >> element); }\n\ntemplate<typename T> bool read(std::istream& in, std::complex<T>&\
-    \ element)\n{\n\tbool result = true;\n\tT first, second;\n\tresult &= read(in,\
-    \ first, second);\n\telement = std::complex<T>(first, second);\n\treturn result;\n\
-    }\n\ntemplate<typename T> bool read(std::istream& in, std::vector<T>& elements)\n\
-    {\n\tbool result = true;\n\tfor(T& element : elements)\n\t{ result &= read(in,\
-    \ element); }\n\treturn result;\n}\n\n\n#line 1 \"library/general/output.hpp\"\
+    \ <vector>\n\ntemplate<typename Argument, typename... Arguments> bool read(Argument&\
+    \ first, Arguments& ... rest);\n\ntemplate<typename T, std::size_t N> bool read(std::array<T,\
+    \ N>& elements);\n\ntemplate<typename T1, typename T2> bool read(std::pair<T1,\
+    \ T2>& element);\n\ntemplate<typename T> bool read(T& element);\n\ntemplate<typename\
+    \ T> bool read(std::complex<T>& element);\n\ntemplate<typename T> bool read(std::vector<T>&\
+    \ elements);\n\ntemplate<typename Argument, typename... Arguments> bool read(Argument&\
+    \ first, Arguments& ... rest)\n{\n\tbool result{true};\n\tresult &= read(first);\n\
+    \tresult &= read(rest...);\n\treturn result;\n}\n\ntemplate<typename T, std::size_t\
+    \ Size> bool read(std::array<T, Size>& elements)\n{\n\tbool result{true};\n\t\
+    for(T& element : elements)\n\t{ result &= read(element); }\n\treturn result;\n\
+    }\n\ntemplate<typename T1, typename T2> bool read(std::pair<T1, T2>& element)\
+    \ { return read(element.first, element.second); }\n\ntemplate<typename T> bool\
+    \ read(T& element) { return static_cast<bool>(std::cin >> element); }\n\ntemplate<typename\
+    \ T> bool read(std::complex<T>& element)\n{\n\tbool result{true};\n\tT first,\
+    \ second;\n\tresult &= read(first, second);\n\telement = std::complex<T>(first,\
+    \ second);\n\treturn result;\n}\n\ntemplate<typename T> bool read(std::vector<T>&\
+    \ elements)\n{\n\tbool result{true};\n\tfor(T& element : elements)\n\t{ result\
+    \ &= read(element); }\n\treturn result;\n}\n\n\n#line 1 \"library/general/output.hpp\"\
     \n\n\n\n#line 1 \"library/general/to_string.hpp\"\n\n\n\n#include <bitset>\n#line\
     \ 9 \"library/general/to_string.hpp\"\n\nnamespace std\n{\n\tinline std::string\
     \ to_string(const bool& element);\n\n\tinline std::string to_string(const char&\
@@ -109,24 +106,21 @@ data:
     \ T1, typename T2> std::string std::to_string(std::pair<T1, T2> element) { return\
     \ std::to_string(element.ff) + \" \" + std::to_string(element.ss); }\n\n\n#line\
     \ 5 \"library/general/output.hpp\"\n#include <ostream>\n\ntemplate<typename Argument,\
-    \ typename... Arguments> void print(std::ostream& out, const Argument& first,\
-    \ const Arguments& ... rest);\n\ntemplate<typename Argument, typename... Arguments>\
-    \ void printn(std::ostream& out, const Argument& first, const Arguments& ... rest);\n\
-    \ntemplate<typename Argument, typename... Arguments> void prints(std::ostream&\
-    \ out, const Argument& first, const Arguments& ... rest);\n\ntemplate<typename\
-    \ T> void print(std::ostream& out, const T& element);\n\ninline void printn(std::ostream&\
-    \ out);\n\ninline void prints(std::ostream& out);\n\ntemplate<typename T> void\
-    \ print(std::ostream& out, const T& element) { out << std::to_string(element);\
-    \ }\n\ninline void printn(std::ostream& out) { print(out, '\\n'); }\n\ninline\
-    \ void prints(std::ostream& out) { print(out, '\\n'); }\n\ntemplate<typename Argument,\
-    \ typename... Arguments> void print(std::ostream& out, const Argument& first,\
-    \ const Arguments& ... rest)\n{\n\tprint(out, first);\n\tprint(out, rest...);\n\
-    }\n\ntemplate<typename Argument, typename... Arguments> void printn(std::ostream&\
-    \ out, const Argument& first, const Arguments& ... rest)\n{\n\tprint(out, first);\n\
-    \tif(sizeof...(rest))\n\t{ prints(out); }\n\tprintn(out, rest...);\n}\n\ntemplate<typename\
-    \ Argument, typename... Arguments> void prints(std::ostream& out, const Argument&\
-    \ first, const Arguments& ... rest)\n{\n\tprint(out, first);\n\tif(sizeof...(rest))\n\
-    \t{ print(out, \" \"); }\n\tprints(out, rest...);\n}\n\n\n#line 1 \"library/general/speed.hpp\"\
+    \ typename... Arguments> void print(const Argument& first, const Arguments& ...\
+    \ rest);\n\ntemplate<typename Argument, typename... Arguments> void printn(const\
+    \ Argument& first, const Arguments& ... rest);\n\ntemplate<typename Argument,\
+    \ typename... Arguments> void prints(const Argument& first, const Arguments& ...\
+    \ rest);\n\ntemplate<typename T> void print(const T& element);\n\ninline void\
+    \ printn();\n\ninline void prints();\n\ntemplate<typename T> void print(const\
+    \ T& element) { std::cout << std::to_string(element); }\n\ninline void printn()\
+    \ { print('\\n'); }\n\ninline void prints() { print('\\n'); }\n\ntemplate<typename\
+    \ Argument, typename... Arguments> void print(const Argument& first, const Arguments&\
+    \ ... rest)\n{\n\tprint(first);\n\tprint(rest...);\n}\n\ntemplate<typename Argument,\
+    \ typename... Arguments> void printn(const Argument& first, const Arguments& ...\
+    \ rest)\n{\n\tprint(first);\n\tif(sizeof...(rest))\n\t{ prints(); }\n\tprintn(rest...);\n\
+    }\n\ntemplate<typename Argument, typename... Arguments> void prints(const Argument&\
+    \ first, const Arguments& ... rest)\n{\n\tprint(first);\n\tif(sizeof...(rest))\n\
+    \t{ print(\" \"); }\n\tprints(rest...);\n}\n\n\n#line 1 \"library/general/speed.hpp\"\
     \n\n\n\n#include <iostream>\n\ninline bool speed()\n{\n\tstd::cin.exceptions(std::cin.failbit);\n\
     \treturn std::cin.tie(nullptr) && std::ios_base::sync_with_stdio(false);\n}\n\n\
     \n#line 4 \"verification/numerical/factors/optimized_rho_factorization.test.cpp\"\
@@ -338,8 +332,8 @@ data:
   isVerificationFile: true
   path: verification/numerical/factors/optimized_rho_factorization.test.cpp
   requiredBy: []
-  timestamp: '2021-04-07 22:54:37-06:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-04-12 14:19:14-06:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verification/numerical/factors/optimized_rho_factorization.test.cpp
 layout: document
