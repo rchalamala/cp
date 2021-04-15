@@ -1,5 +1,3 @@
-#include "../../../library/general/input.hpp"
-#include "../../../library/general/output.hpp"
 #include "../../../library/general/speed.hpp"
 
 #define PROBLEM "https://judge.yosupo.jp/problem/factorize"
