@@ -1,20 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: library/general/to_string.hpp
     title: library/general/to_string.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: verification/numerical/factors/optimized_rho_factorization.test.cpp
-    title: verification/numerical/factors/optimized_rho_factorization.test.cpp
-  - icon: ':x:'
-    path: verification/numerical/factors/pollards_rho_factorization.test.cpp
-    title: verification/numerical/factors/pollards_rho_factorization.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/general/output.hpp\"\n\n\n\n#line 1 \"library/general/to_string.hpp\"\
@@ -80,10 +74,8 @@ data:
   path: library/general/output.hpp
   requiredBy: []
   timestamp: '2021-04-12 14:19:14-06:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - verification/numerical/factors/pollards_rho_factorization.test.cpp
-  - verification/numerical/factors/optimized_rho_factorization.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: library/general/output.hpp
 layout: document
 redirect_from:

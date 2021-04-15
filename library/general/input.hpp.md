@@ -2,16 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: verification/numerical/factors/optimized_rho_factorization.test.cpp
-    title: verification/numerical/factors/optimized_rho_factorization.test.cpp
-  - icon: ':x:'
-    path: verification/numerical/factors/pollards_rho_factorization.test.cpp
-    title: verification/numerical/factors/pollards_rho_factorization.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/general/input.hpp\"\n\n\n\n#include <array>\n#include\
@@ -59,10 +53,8 @@ data:
   path: library/general/input.hpp
   requiredBy: []
   timestamp: '2021-04-12 14:19:14-06:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - verification/numerical/factors/pollards_rho_factorization.test.cpp
-  - verification/numerical/factors/optimized_rho_factorization.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: library/general/input.hpp
 layout: document
 redirect_from:

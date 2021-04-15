@@ -1,157 +1,89 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/general/base.hpp
     title: library/general/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/general/base.hpp
     title: library/general/base.hpp
-  - icon: ':x:'
-    path: library/general/input.hpp
-    title: library/general/input.hpp
-  - icon: ':x:'
-    path: library/general/output.hpp
-    title: library/general/output.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/general/prng.hpp
     title: library/general/prng.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/general/speed.hpp
     title: library/general/speed.hpp
-  - icon: ':x:'
-    path: library/general/to_string.hpp
-    title: library/general/to_string.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/factors/optimized_rho_factorization.hpp
     title: library/numerical/factors/optimized_rho_factorization.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/list_of_primes.hpp
     title: library/numerical/list_of_primes.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/list_of_primes.hpp
     title: library/numerical/list_of_primes.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/montgomery.hpp
     title: library/numerical/montgomery.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/montgomery.hpp
     title: library/numerical/montgomery.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/primality/miller_rabin_primality_test.hpp
     title: library/numerical/primality/miller_rabin_primality_test.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/steins_gcd.hpp
     title: library/numerical/steins_gcd.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/factorize
     links:
     - https://judge.yosupo.jp/problem/factorize
-  bundledCode: "#line 1 \"library/general/input.hpp\"\n\n\n\n#include <array>\n#include\
-    \ <complex>\n#include <istream>\n#include <string>\n#include <utility>\n#include\
-    \ <vector>\n\ntemplate<typename Argument, typename... Arguments> bool read(Argument&\
-    \ first, Arguments& ... rest);\n\ntemplate<typename T, std::size_t N> bool read(std::array<T,\
-    \ N>& elements);\n\ntemplate<typename T1, typename T2> bool read(std::pair<T1,\
-    \ T2>& element);\n\ntemplate<typename T> bool read(T& element);\n\ntemplate<typename\
-    \ T> bool read(std::complex<T>& element);\n\ntemplate<typename T> bool read(std::vector<T>&\
-    \ elements);\n\ntemplate<typename Argument, typename... Arguments> bool read(Argument&\
-    \ first, Arguments& ... rest)\n{\n\tbool result{true};\n\tresult &= read(first);\n\
-    \tresult &= read(rest...);\n\treturn result;\n}\n\ntemplate<typename T, std::size_t\
-    \ Size> bool read(std::array<T, Size>& elements)\n{\n\tbool result{true};\n\t\
-    for(T& element : elements)\n\t{ result &= read(element); }\n\treturn result;\n\
-    }\n\ntemplate<typename T1, typename T2> bool read(std::pair<T1, T2>& element)\
-    \ { return read(element.first, element.second); }\n\ntemplate<typename T> bool\
-    \ read(T& element) { return static_cast<bool>(std::cin >> element); }\n\ntemplate<typename\
-    \ T> bool read(std::complex<T>& element)\n{\n\tbool result{true};\n\tT first,\
-    \ second;\n\tresult &= read(first, second);\n\telement = std::complex<T>(first,\
-    \ second);\n\treturn result;\n}\n\ntemplate<typename T> bool read(std::vector<T>&\
-    \ elements)\n{\n\tbool result{true};\n\tfor(T& element : elements)\n\t{ result\
-    \ &= read(element); }\n\treturn result;\n}\n\n\n#line 1 \"library/general/output.hpp\"\
-    \n\n\n\n#line 1 \"library/general/to_string.hpp\"\n\n\n\n#include <bitset>\n#line\
-    \ 9 \"library/general/to_string.hpp\"\n\nnamespace std\n{\n\tinline std::string\
-    \ to_string(const bool& element);\n\n\tinline std::string to_string(const char&\
-    \ element);\n\n\tinline std::string to_string(const char* element);\n\n\tinline\
-    \ std::string to_string(const std::string& element);\n\n\ttemplate<typename T>\
-    \ std::string to_string(const T& elements);\n\n\ttemplate<std::size_t Size> std::string\
-    \ to_string(const std::bitset<Size>& elements);\n\n\ttemplate<typename T> std::string\
-    \ to_string(const std::complex<T>& element);\n\n\ttemplate<typename T1, typename\
-    \ T2> std::string to_string(std::pair<T1, T2> element);\n}  // namespace std\n\
-    \ninline std::string std::to_string(const bool& element) { return std::string{static_cast<char>('0'\
-    \ + element)}; }\n\ninline std::string std::to_string(const char& element) { return\
-    \ std::string(1, element); }\n\ninline std::string std::to_string(const char*\
-    \ element) { return std::string(element); }\n\ninline std::string std::to_string(const\
-    \ std::string& element) { return element; }\n\ntemplate<typename T> std::string\
-    \ std::to_string(const T& elements)\n{\n\tstd::string convert;\n\tbool first =\
-    \ true;\n\tfor(const auto& element : elements)\n\t{\n\t\tif(!first)\n\t\t{ convert\
-    \ += \" \"; }\n\t\tfirst = false;\n\t\tconvert += std::to_string(element);\n\t\
-    }\n\treturn convert;\n}\n\ntemplate<std::size_t Size> std::string std::to_string(const\
-    \ std::bitset<Size>& elements) { return elements.to_string(); }\n\ntemplate<typename\
-    \ T> std::string std::to_string(const std::complex<T>& element)\n{\n\tstd::stringstream\
-    \ convert;\n\tconvert << element;\n\treturn convert.str();\n}\n\ntemplate<typename\
-    \ T1, typename T2> std::string std::to_string(std::pair<T1, T2> element) { return\
-    \ std::to_string(element.ff) + \" \" + std::to_string(element.ss); }\n\n\n#line\
-    \ 5 \"library/general/output.hpp\"\n#include <ostream>\n\ntemplate<typename Argument,\
-    \ typename... Arguments> void print(const Argument& first, const Arguments& ...\
-    \ rest);\n\ntemplate<typename Argument, typename... Arguments> void printn(const\
-    \ Argument& first, const Arguments& ... rest);\n\ntemplate<typename Argument,\
-    \ typename... Arguments> void prints(const Argument& first, const Arguments& ...\
-    \ rest);\n\ntemplate<typename T> void print(const T& element);\n\ninline void\
-    \ printn();\n\ninline void prints();\n\ntemplate<typename T> void print(const\
-    \ T& element) { std::cout << std::to_string(element); }\n\ninline void printn()\
-    \ { print('\\n'); }\n\ninline void prints() { print('\\n'); }\n\ntemplate<typename\
-    \ Argument, typename... Arguments> void print(const Argument& first, const Arguments&\
-    \ ... rest)\n{\n\tprint(first);\n\tprint(rest...);\n}\n\ntemplate<typename Argument,\
-    \ typename... Arguments> void printn(const Argument& first, const Arguments& ...\
-    \ rest)\n{\n\tprint(first);\n\tif(sizeof...(rest))\n\t{ prints(); }\n\tprintn(rest...);\n\
-    }\n\ntemplate<typename Argument, typename... Arguments> void prints(const Argument&\
-    \ first, const Arguments& ... rest)\n{\n\tprint(first);\n\tif(sizeof...(rest))\n\
-    \t{ print(\" \"); }\n\tprints(rest...);\n}\n\n\n#line 1 \"library/general/speed.hpp\"\
-    \n\n\n\n#include <iostream>\n\ninline bool speed()\n{\n\tstd::cin.exceptions(std::cin.failbit);\n\
-    \treturn std::cin.tie(nullptr) && std::ios_base::sync_with_stdio(false);\n}\n\n\
-    \n#line 4 \"verification/numerical/factors/optimized_rho_factorization.test.cpp\"\
+  bundledCode: "#line 1 \"library/general/speed.hpp\"\n\n\n\n#include <iostream>\n\
+    \ninline bool speed()\n{\n\tstd::cin.exceptions(std::cin.failbit);\n\treturn std::cin.tie(nullptr)\
+    \ && std::ios_base::sync_with_stdio(false);\n}\n\n\n#line 2 \"verification/numerical/factors/optimized_rho_factorization.test.cpp\"\
     \n\n#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\n\n#include\
-    \ <algorithm>\n#include <cstdint>\n#line 11 \"verification/numerical/factors/optimized_rho_factorization.test.cpp\"\
-    \n\n#line 1 \"library/numerical/factors/optimized_rho_factorization.hpp\"\n\n\n\
-    \n#include <type_traits>\n#line 6 \"library/numerical/factors/optimized_rho_factorization.hpp\"\
+    \ <algorithm>\n#include <cstdint>\n#line 8 \"verification/numerical/factors/optimized_rho_factorization.test.cpp\"\
+    \n#include <vector>\n\n#line 1 \"library/numerical/factors/optimized_rho_factorization.hpp\"\
+    \n\n\n\n#include <type_traits>\n#line 6 \"library/numerical/factors/optimized_rho_factorization.hpp\"\
     \n\n#line 1 \"library/general/base.hpp\"\n\n\n\n#include <cassert>\n#include <cctype>\n\
     #include <cfloat>\n#include <climits>\n#include <cmath>\n#include <cstdarg>\n\
     #include <cstddef>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n\
     #include <ctime>\n\n#if __cplusplus >= 201103L\n\n#line 19 \"library/general/base.hpp\"\
-    \n\n#endif\n\n#line 25 \"library/general/base.hpp\"\n#include <deque>\n#include\
-    \ <exception>\n#include <fstream>\n#include <functional>\n#include <iomanip>\n\
-    #include <ios>\n#include <iosfwd>\n#line 34 \"library/general/base.hpp\"\n#include\
-    \ <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include <numeric>\n\
-    #line 40 \"library/general/base.hpp\"\n#include <queue>\n#include <set>\n#include\
-    \ <sstream>\n#include <stack>\n#line 45 \"library/general/base.hpp\"\n#include\
-    \ <typeinfo>\n#line 47 \"library/general/base.hpp\"\n#include <valarray>\n#line\
+    \n\n#endif\n\n#line 23 \"library/general/base.hpp\"\n#include <bitset>\n#include\
+    \ <complex>\n#include <deque>\n#include <exception>\n#include <fstream>\n#include\
+    \ <functional>\n#include <iomanip>\n#include <ios>\n#include <iosfwd>\n#line 33\
+    \ \"library/general/base.hpp\"\n#include <istream>\n#include <iterator>\n#include\
+    \ <limits>\n#include <list>\n#include <map>\n#include <numeric>\n#include <ostream>\n\
+    #include <queue>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
+    \ <string>\n#include <typeinfo>\n#include <utility>\n#include <valarray>\n#line\
     \ 49 \"library/general/base.hpp\"\n\n#if __cplusplus >= 201103L\n\n#line 53 \"\
     library/general/base.hpp\"\n#include <chrono>\n#include <initializer_list>\n#include\
-    \ <tuple>\n#line 57 \"library/general/base.hpp\"\n#include <cuchar>\n#line 59\
-    \ \"library/general/base.hpp\"\n#include <forward_list>\n#include <unordered_set>\n\
-    #include <unordered_map>\n#include <random>\n#include <ratio>\n#include <thread>\n\
-    #include <mutex>\n\n#endif\n\n#define ALL(set) std::begin(set), std::end(set)\n\
-    #define RALL(set) std::rbegin(set), std::rend(set)\n\n#define mp std::make_pair\n\
-    #define mt std::make_tuple\n#define pb push_back\n#define eb emplace_back\n#define\
-    \ ff first\n#define ss second\n\nusing ll = long long;\nusing ull = unsigned long\
-    \ long;\nusing ld = long double;\n\n#ifdef __GNUC__\n\n#include <ext/pb_ds/assoc_container.hpp>\n\
-    #include <ext/pb_ds/tree_policy.hpp>\n#include <ext/rope>\n\nusing namespace __gnu_pbds;\n\
-    using namespace __gnu_cxx;\n\ntemplate<typename T> using orderedSet = __gnu_pbds::tree<T,\
-    \ __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
+    \ <tuple>\n#line 57 \"library/general/base.hpp\"\n#include <cuchar>\n#include\
+    \ <array>\n#include <forward_list>\n#include <unordered_set>\n#include <unordered_map>\n\
+    #include <random>\n#include <ratio>\n#include <thread>\n#include <mutex>\n\n#endif\n\
+    \n#define ALL(set) std::begin(set), std::end(set)\n#define RALL(set) std::rbegin(set),\
+    \ std::rend(set)\n\n#define mp std::make_pair\n#define mt std::make_tuple\n#define\
+    \ pb push_back\n#define eb emplace_back\n#define ff first\n#define ss second\n\
+    \nusing ll = long long;\nusing ull = unsigned long long;\nusing ld = long double;\n\
+    \n#ifdef __GNUC__\n\n#include <ext/pb_ds/assoc_container.hpp>\n#include <ext/pb_ds/tree_policy.hpp>\n\
+    #include <ext/rope>\n\nusing namespace __gnu_pbds;\nusing namespace __gnu_cxx;\n\
+    \ntemplate<typename T> using orderedSet = __gnu_pbds::tree<T, __gnu_pbds::null_type,\
+    \ std::less<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
     template<typename T> using orderedMultiset = __gnu_pbds::tree<T, __gnu_pbds::null_type,\
     \ std::less_equal<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
     \n#endif\n\n\n#line 1 \"library/general/prng.hpp\"\n\n\n\n#include <chrono>\n\
@@ -168,11 +100,11 @@ data:
     \ T2& uHigh, std::mt19937_64& device = get_rng())\n{\n\ttypename std::common_type_t<T1,\
     \ T2> low{uLow}, high{uHigh};\n\treturn std::uniform_real_distribution<typename\
     \ std::common_type<T1, T2>::type>(low, high)(device);\n}\n\n\n#line 1 \"library/numerical/list_of_primes.hpp\"\
-    \n\n\n\n#line 5 \"library/numerical/list_of_primes.hpp\"\n\ninline constexpr std::array<std::uint_fast16_t,\
-    \ 16> smallPrimes{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53};\n\
-    inline constexpr std::array<std::uint_fast16_t, 32> mediumPrimes{2, 3, 5, 7, 11,\
-    \ 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89,\
-    \ 97, 101, 103, 107, 109, 113, 127, 131};\ninline constexpr std::array<std::uint_fast16_t,\
+    \n\n\n\n#include <array>\n\ninline constexpr std::array<std::uint_fast16_t, 16>\
+    \ smallPrimes{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53};\ninline\
+    \ constexpr std::array<std::uint_fast16_t, 32> mediumPrimes{2, 3, 5, 7, 11, 13,\
+    \ 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97,\
+    \ 101, 103, 107, 109, 113, 127, 131};\ninline constexpr std::array<std::uint_fast16_t,\
     \ 64> largePrimes{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53,\
     \ 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137,\
     \ 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227,\
@@ -294,15 +226,14 @@ data:
     \ factor)\n\t\t{ return std::vector<T>{n}; }\n\t\tstd::vector<T> original{optimized_rho_factorize(factor,\
     \ false)}, divided{optimized_rho_factorize(n / factor, false)};\n\t\tstd::move(std::begin(divided),\
     \ std::end(divided), std::back_inserter(original));\n\t\treturn original;\n\t\
-    }\n}\n\n\n#line 13 \"verification/numerical/factors/optimized_rho_factorization.test.cpp\"\
+    }\n}\n\n\n#line 11 \"verification/numerical/factors/optimized_rho_factorization.test.cpp\"\
     \n\nint main()\n{\n\tspeed();\n\tstd::int16_t q;\n\tstd::cin >> q;\n\twhile(q--)\n\
     \t{\n\t\tstd::uint64_t a;\n\t\tstd::cin >> a;\n\t\tstd::vector<std::uint64_t>\
     \ factors = factors::optimized_rho_factorize<std::uint64_t>(a);\n\t\tstd::sort(std::begin(factors),\
     \ std::end(factors));\n\t\tstd::cout << std::size(factors);\n\t\tfor(const auto&\
     \ factor : factors)\n\t\t{ std::cout << ' ' << factor; }\n\t\tstd::cout << '\\\
     n';\n\t}\n}\n"
-  code: "#include \"../../../library/general/input.hpp\"\n#include \"../../../library/general/output.hpp\"\
-    \n#include \"../../../library/general/speed.hpp\"\n\n#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\
+  code: "#include \"../../../library/general/speed.hpp\"\n\n#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\
     \n\n#include <algorithm>\n#include <cstdint>\n#include <iostream>\n#include <vector>\n\
     \n#include \"../../../library/numerical/factors/optimized_rho_factorization.hpp\"\
     \n\nint main()\n{\n\tspeed();\n\tstd::int16_t q;\n\tstd::cin >> q;\n\twhile(q--)\n\
@@ -312,9 +243,6 @@ data:
     \ factor : factors)\n\t\t{ std::cout << ' ' << factor; }\n\t\tstd::cout << '\\\
     n';\n\t}\n}\n"
   dependsOn:
-  - library/general/input.hpp
-  - library/general/output.hpp
-  - library/general/to_string.hpp
   - library/general/speed.hpp
   - library/numerical/factors/optimized_rho_factorization.hpp
   - library/general/base.hpp
@@ -332,8 +260,8 @@ data:
   isVerificationFile: true
   path: verification/numerical/factors/optimized_rho_factorization.test.cpp
   requiredBy: []
-  timestamp: '2021-04-12 14:19:14-06:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-04-15 17:40:21-06:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verification/numerical/factors/optimized_rho_factorization.test.cpp
 layout: document
