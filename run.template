@@ -71,9 +71,9 @@ void run_test(JHelper::Test& test, const std::int64_t& stressTestIteration = 0, 
 		auto cout_rdbuf{std::cout.rdbuf()};
 		std::cout.rdbuf(out.rdbuf());
 		std::chrono::time_point<std::chrono::high_resolution_clock> start{std::chrono::high_resolution_clock::now()};
-		%ClassName % solver;
+		%ClassName% solver;
 		solver.setup();
-		%SolverCall % testTime = std::chrono::high_resolution_clock::now() - start;
+		%SolverCall% testTime = std::chrono::high_resolution_clock::now() - start;
 		std::cin.rdbuf(cin_rdbuf);
 		std::cout.rdbuf(cout_rdbuf);
 		std::string output{JHelper::trim(out.str())};

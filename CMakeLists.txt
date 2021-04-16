@@ -5,12 +5,17 @@ cmake_minimum_required(VERSION 3.18)
 set(CMAKE_CXX_STANDARD 17)
 
 file(GLOB TASKS "tasks/*.cpp")
-file(GLOB_RECURSE SOURCES "library/*.cpp")
-file(GLOB_RECURSE HEADERS "library/*.hpp")
 
-add_executable(test ${TASKS} ${SOURCES} ${HEADERS})
+include_directories(library)
+add_subdirectory(library)
+
+add_executable(test ${TASKS})
 add_executable(testrunner testrunner/main.cpp)
 add_executable(output output/main.cpp)
+
+target_link_libraries(test library)
+target_link_libraries(testrunner library)
+target_link_libraries(output library)
 
 add_compile_options(--coverage)
 
@@ -26,3 +31,5 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=float-divide-by-zero -g")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=undefined -g")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-sanitize-recover=all -g")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstack-protector-all -g")
+
+add_subdirectory(tests)
