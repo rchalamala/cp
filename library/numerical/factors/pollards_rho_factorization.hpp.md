@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/general/base.hpp
     title: library/general/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/general/base.hpp
     title: library/general/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/general/prng.hpp
     title: library/general/prng.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/numerical/list_of_primes.hpp
     title: library/numerical/list_of_primes.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/numerical/montgomery.hpp
     title: library/numerical/montgomery.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/numerical/primality/miller_rabin_primality_test.hpp
     title: library/numerical/primality/miller_rabin_primality_test.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/numerical/steins_gcd.hpp
     title: library/numerical/steins_gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: verification/numerical/factors/pollards_rho_factorization.test.cpp
     title: verification/numerical/factors/pollards_rho_factorization.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/numerical/factors/pollards_rho_factorization.hpp\"\
@@ -235,7 +235,7 @@ data:
   path: library/numerical/factors/pollards_rho_factorization.hpp
   requiredBy: []
   timestamp: '2021-04-07 22:54:37-06:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verification/numerical/factors/pollards_rho_factorization.test.cpp
 documentation_of: library/numerical/factors/pollards_rho_factorization.hpp

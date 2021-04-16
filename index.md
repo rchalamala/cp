@@ -28,7 +28,7 @@ data:
       title: library/data_structures/segment_tree/segment_tree_functions/segment_tree_minimum.hpp
   - name: library/general
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/general/base.hpp
       title: library/general/base.hpp
     - icon: ':warning:'
@@ -43,10 +43,10 @@ data:
     - icon: ':warning:'
       path: library/general/output.hpp
       title: library/general/output.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/general/prng.hpp
       title: library/general/prng.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/general/speed.hpp
       title: library/general/speed.hpp
     - icon: ':warning:'
@@ -65,32 +65,32 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/numerical/factors/optimized_rho_factorization.hpp
       title: library/numerical/factors/optimized_rho_factorization.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/numerical/factors/pollards_rho_factorization.hpp
       title: library/numerical/factors/pollards_rho_factorization.hpp
   - name: library/numerical
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/numerical/list_of_primes.hpp
       title: library/numerical/list_of_primes.hpp
     - icon: ':heavy_check_mark:'
       path: library/numerical/modulo.hpp
       title: library/numerical/modulo.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/numerical/montgomery.hpp
       title: library/numerical/montgomery.hpp
     - icon: ':warning:'
       path: library/numerical/power.hpp
       title: library/numerical/power.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/numerical/steins_gcd.hpp
       title: library/numerical/steins_gcd.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/numerical/trailing_zero_bits.hpp
       title: library/numerical/trailing_zero_bits.hpp
   - name: library/numerical/primality
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/numerical/primality/miller_rabin_primality_test.hpp
       title: library/numerical/primality/miller_rabin_primality_test.hpp
   verificationCategories:
@@ -121,7 +121,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: verification/numerical/factors/optimized_rho_factorization.test.cpp
       title: verification/numerical/factors/optimized_rho_factorization.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: verification/numerical/factors/pollards_rho_factorization.test.cpp
       title: verification/numerical/factors/pollards_rho_factorization.test.cpp
 layout: toppage
