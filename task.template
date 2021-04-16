@@ -56,7 +56,7 @@ public:
 		#endif
 		if(bruteForceAllIterations || bruteForceSolveIteration)
 		{
-			brute_force(in, out);
+			brute_force();
 			return;
 		}
 		solve();

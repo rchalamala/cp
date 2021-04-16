@@ -66,13 +66,16 @@ void run_test(JHelper::Test& test, const std::int64_t& stressTestIteration = 0, 
 	{
 		std::istringstream in(test.m_input);
 		std::cin.rdbuf(in.rdbuf());
+		auto cin_rdbuf{std::cin.rdbuf()};
 		std::ostringstream out;
+		auto cout_rdbuf{std::cout.rdbuf()};
 		std::cout.rdbuf(out.rdbuf());
 		std::chrono::time_point<std::chrono::high_resolution_clock> start{std::chrono::high_resolution_clock::now()};
-		%ClassName% solver;
+		%ClassName % solver;
 		solver.setup();
-		%SolverCall%
-		testTime = std::chrono::high_resolution_clock::now() - start;
+		%SolverCall % testTime = std::chrono::high_resolution_clock::now() - start;
+		std::cin.rdbuf(cin_rdbuf);
+		std::cout.rdbuf(cout_rdbuf);
 		std::string output{JHelper::trim(out.str())};
 		if(!stressTestIteration || showAllTestingOutput)
 		{ std::cerr << blue << "Actual output:" << std::endl << original << output << std::endl; }
