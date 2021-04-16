@@ -1,46 +1,46 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/general/base.hpp
     title: library/general/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/general/base.hpp
     title: library/general/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/general/prng.hpp
     title: library/general/prng.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/general/speed.hpp
     title: library/general/speed.hpp
   - icon: ':heavy_check_mark:'
     path: library/numerical/factors/optimized_rho_factorization.hpp
     title: library/numerical/factors/optimized_rho_factorization.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/list_of_primes.hpp
     title: library/numerical/list_of_primes.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/list_of_primes.hpp
     title: library/numerical/list_of_primes.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/montgomery.hpp
     title: library/numerical/montgomery.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/montgomery.hpp
     title: library/numerical/montgomery.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/primality/miller_rabin_primality_test.hpp
     title: library/numerical/primality/miller_rabin_primality_test.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/steins_gcd.hpp
     title: library/numerical/steins_gcd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
   _extendedRequiredBy: []
