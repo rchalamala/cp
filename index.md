@@ -93,6 +93,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/numerical/primality/miller_rabin_primality_test.hpp
       title: library/numerical/primality/miller_rabin_primality_test.hpp
+  - name: library/string
+    pages:
+    - icon: ':warning:'
+      path: library/string/tokenize.hpp
+      title: library/string/tokenize.hpp
   verificationCategories:
   - name: verification/data_structures
     pages:

@@ -52,13 +52,13 @@ data:
   isVerificationFile: false
   path: library/general/prng.hpp
   requiredBy:
-  - library/numerical/factors/pollards_rho_factorization.hpp
   - library/numerical/factors/optimized_rho_factorization.hpp
+  - library/numerical/factors/pollards_rho_factorization.hpp
   timestamp: '2021-04-05 00:55:31-06:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verification/numerical/factors/pollards_rho_factorization.test.cpp
   - verification/numerical/factors/optimized_rho_factorization.test.cpp
+  - verification/numerical/factors/pollards_rho_factorization.test.cpp
 documentation_of: library/general/prng.hpp
 layout: document
 redirect_from:

@@ -214,7 +214,7 @@ data:
     }\n}\n\n\n#line 11 \"verification/numerical/factors/pollards_rho_factorization.test.cpp\"\
     \n\nint main()\n{\n\tspeed();\n\tstd::int16_t q;\n\tstd::cin >> q;\n\twhile(q--)\n\
     \t{\n\t\tstd::uint64_t a;\n\t\tstd::cin >> a;\n\t\tstd::vector<std::uint64_t>\
-    \ factors = factors::pollards_rho_factorize<std::uint64_t>(a);\n\t\tstd::sort(std::begin(factors),\
+    \ factors{factors::pollards_rho_factorize<std::uint64_t>(a)};\n\t\tstd::sort(std::begin(factors),\
     \ std::end(factors));\n\t\tstd::cout << std::size(factors);\n\t\tfor(const auto&\
     \ factor : factors)\n\t\t{ std::cout << ' ' << factor; }\n\t\tstd::cout << '\\\
     n';\n\t}\n}\n"
@@ -223,7 +223,7 @@ data:
     \n#include \"../../../library/numerical/factors/pollards_rho_factorization.hpp\"\
     \n\nint main()\n{\n\tspeed();\n\tstd::int16_t q;\n\tstd::cin >> q;\n\twhile(q--)\n\
     \t{\n\t\tstd::uint64_t a;\n\t\tstd::cin >> a;\n\t\tstd::vector<std::uint64_t>\
-    \ factors = factors::pollards_rho_factorize<std::uint64_t>(a);\n\t\tstd::sort(std::begin(factors),\
+    \ factors{factors::pollards_rho_factorize<std::uint64_t>(a)};\n\t\tstd::sort(std::begin(factors),\
     \ std::end(factors));\n\t\tstd::cout << std::size(factors);\n\t\tfor(const auto&\
     \ factor : factors)\n\t\t{ std::cout << ' ' << factor; }\n\t\tstd::cout << '\\\
     n';\n\t}\n}\n"
@@ -243,7 +243,7 @@ data:
   isVerificationFile: true
   path: verification/numerical/factors/pollards_rho_factorization.test.cpp
   requiredBy: []
-  timestamp: '2021-04-15 17:40:21-06:00'
+  timestamp: '2021-04-23 11:05:35-06:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verification/numerical/factors/pollards_rho_factorization.test.cpp

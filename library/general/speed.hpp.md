@@ -45,14 +45,14 @@ data:
   timestamp: '2021-03-25 18:54:38-06:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verification/data_structures/segment_tree_affine.test.cpp
-  - verification/data_structures/segment_tree_composite.test.cpp
-  - verification/data_structures/segment_tree_add_sum.test.cpp
-  - verification/graph/heavy_light_decomposition_subtree.test.cpp
-  - verification/graph/heavy_light_decomposition_path.test.cpp
-  - verification/graph/heavy_light_decomposition.test.cpp
-  - verification/numerical/factors/pollards_rho_factorization.test.cpp
   - verification/numerical/factors/optimized_rho_factorization.test.cpp
+  - verification/numerical/factors/pollards_rho_factorization.test.cpp
+  - verification/data_structures/segment_tree_add_sum.test.cpp
+  - verification/data_structures/segment_tree_composite.test.cpp
+  - verification/data_structures/segment_tree_affine.test.cpp
+  - verification/graph/heavy_light_decomposition_subtree.test.cpp
+  - verification/graph/heavy_light_decomposition.test.cpp
+  - verification/graph/heavy_light_decomposition_path.test.cpp
 documentation_of: library/general/speed.hpp
 layout: document
 redirect_from:

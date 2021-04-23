@@ -57,13 +57,13 @@ data:
   isVerificationFile: false
   path: library/numerical/steins_gcd.hpp
   requiredBy:
-  - library/numerical/factors/pollards_rho_factorization.hpp
   - library/numerical/factors/optimized_rho_factorization.hpp
+  - library/numerical/factors/pollards_rho_factorization.hpp
   timestamp: '2021-04-07 22:54:37-06:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verification/numerical/factors/pollards_rho_factorization.test.cpp
   - verification/numerical/factors/optimized_rho_factorization.test.cpp
+  - verification/numerical/factors/pollards_rho_factorization.test.cpp
 documentation_of: library/numerical/steins_gcd.hpp
 layout: document
 redirect_from:

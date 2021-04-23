@@ -99,8 +99,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verification/graph/heavy_light_decomposition_subtree.test.cpp
-  - verification/graph/heavy_light_decomposition_path.test.cpp
   - verification/graph/heavy_light_decomposition.test.cpp
+  - verification/graph/heavy_light_decomposition_path.test.cpp
 documentation_of: library/graph/heavy_light_decomposition.hpp
 layout: document
 redirect_from:

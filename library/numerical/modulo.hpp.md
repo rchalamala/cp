@@ -188,8 +188,8 @@ data:
   timestamp: '2021-04-07 22:54:37-06:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verification/data_structures/segment_tree_affine.test.cpp
   - verification/data_structures/segment_tree_composite.test.cpp
+  - verification/data_structures/segment_tree_affine.test.cpp
 documentation_of: library/numerical/modulo.hpp
 layout: document
 redirect_from:

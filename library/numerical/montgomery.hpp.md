@@ -149,16 +149,16 @@ data:
   isVerificationFile: false
   path: library/numerical/montgomery.hpp
   requiredBy:
-  - library/numerical/primality/miller_rabin_primality_test.hpp
+  - library/numerical/factors/optimized_rho_factorization.hpp
+  - library/numerical/factors/optimized_rho_factorization.hpp
   - library/numerical/factors/pollards_rho_factorization.hpp
-  - library/numerical/factors/optimized_rho_factorization.hpp
-  - library/numerical/factors/optimized_rho_factorization.hpp
+  - library/numerical/primality/miller_rabin_primality_test.hpp
   timestamp: '2021-04-07 22:54:37-06:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - verification/numerical/factors/optimized_rho_factorization.test.cpp
+  - verification/numerical/factors/optimized_rho_factorization.test.cpp
   - verification/numerical/factors/pollards_rho_factorization.test.cpp
-  - verification/numerical/factors/optimized_rho_factorization.test.cpp
-  - verification/numerical/factors/optimized_rho_factorization.test.cpp
 documentation_of: library/numerical/montgomery.hpp
 layout: document
 redirect_from:
