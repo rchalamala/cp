@@ -7,8 +7,9 @@
 
 using namespace std;
 
-constexpr long long MAXN = static_cast<long long>(2 * 1e5 + 1);
-constexpr long long INF = static_cast<long long>(1e18 + 1);
+constexpr std::uint32_t MAXN{200001};
+constexpr std::int32_t IINF{1000000001};
+constexpr std::int64_t LLINF{1000000000000000001};
 
 //#define INTERACTIVE
 //#define CODE_JAM
@@ -16,6 +17,7 @@ constexpr long long INF = static_cast<long long>(1e18 + 1);
 
 /*
 #include "numerical/modulo.hpp"
+
 constexpr std::int32_t MODULUS = 1000000007;
 //constexpr std::int32_t MODULUS = 998244353;
 using ModularInteger = Modulo<std::integral_constant<std::decay_t<decltype(MODULUS)>, MODULUS>>;
@@ -30,9 +32,11 @@ public:
 	static constexpr bool showTestingOutput{};
 	static constexpr bool showAllTestingOutput{};
 	static constexpr bool showFalseTestOutput{true};
+	static constexpr bool floatingPointVerification{};
+	static constexpr long double EPSILON{static_cast<long double>(0.000001)};
 	static bool bruteForceSolveIteration;
 
-	void static generate_test(std::ostream& out, const std::uint64_t& seed)
+	void static generate_test(const std::uint64_t& seed)
 	{
 		std::mt19937_64 prng{seed};
 
@@ -46,13 +50,14 @@ public:
 	void setup()
 	{
 		testCase = {};
+		std::cout << std::setprecision(12) << std::fixed;
 
 	}
 
 	void solve(std::istream& in, std::ostream& out)
 	{
 		#if defined(CODE_JAM) || defined(LIGHT_OJ)
-		output_case(out);
+		output_case();
 		#endif
 		if(bruteForceAllIterations || bruteForceSolveIteration)
 		{
@@ -65,8 +70,8 @@ public:
 private:
 
 	static std::uint64_t testCase;
-	
-	static void output_case(std::ostream& out)
+
+	static void output_case()
 	{
 		#if defined(CODE_JAM) || defined(LIGHT_OJ)
 		std::cout << "Case ";
@@ -75,7 +80,7 @@ private:
 		std::cout << '#';
 		#endif
 		#if defined(CODE_JAM) || defined(LIGHT_OJ)
-		std::cout << (testCase += (bruteForceAllIterations || (stressTestIterations || bruteForceEmptyTests) && bruteForceSolveIteration)) << ": ";
+		std::cout << (++testCase += (bruteForceAllIterations || (stressTestIterations || bruteForceEmptyTests) && bruteForceSolveIteration)) << ": ";
 		#endif
 	}
 

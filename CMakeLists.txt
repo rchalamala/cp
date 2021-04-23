@@ -4,12 +4,12 @@ cmake_minimum_required(VERSION 3.18)
 
 set(CMAKE_CXX_STANDARD 17)
 
-file(GLOB TASKS "tasks/*.cpp")
+file(GLOB TASK_FILES "tasks/*.cpp")
 
 include_directories(library)
 add_subdirectory(library)
 
-add_executable(test ${TASKS})
+add_executable(test ${TASK_FILES})
 add_executable(testrunner testrunner/main.cpp)
 add_executable(output output/main.cpp)
 

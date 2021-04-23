@@ -18,7 +18,7 @@ int main()
 	{
 		std::uint64_t a;
 		std::cin >> a;
-		std::vector<std::uint64_t> factors = factors::pollards_rho_factorize<std::uint64_t>(a);
+		std::vector<std::uint64_t> factors{factors::pollards_rho_factorize<std::uint64_t>(a)};
 		std::sort(std::begin(factors), std::end(factors));
 		std::cout << std::size(factors);
 		for(const auto& factor : factors)
