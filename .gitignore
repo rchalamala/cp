@@ -4,3 +4,4 @@
 /output/*
 /tasks/
 /testrunner/*
+/.verify-helper/timestamps.remote.json
