@@ -6,7 +6,6 @@ efficient factorials
 factorial inverses
 matrices
 big integers
+enable output verification for multiples tokens with floating point
 
 convert all others to new format and find problems to verify on
-
-also add anything string based cause nothing there

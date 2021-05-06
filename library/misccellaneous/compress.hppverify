@@ -9,12 +9,12 @@
 #include <set>
 #include <vector>
 
-template<typename T> std::size_t compress(std::vector<T>& elements)
+template<typename T> std::size_t compress(std::vector <T>& elements)
 {
-	std::set<T> orderedElements;
+	std::set <T> orderedElements;
 	for(const auto& element : elements)
 	{ orderedElements.insert(element); }
-	std::map<T, std::size_t> indices;
+	std::map <T, std::size_t> indices;
 	std::size_t index = 0;
 	for(const auto& element : orderedElements)
 	{ indices[element] = index++; }
@@ -23,15 +23,15 @@ template<typename T> std::size_t compress(std::vector<T>& elements)
 	return index;
 }
 
-template<typename T> std::size_t compress(std::vector<std::pair<T, T>>& elements)
+template<typename T> std::size_t compress(std::vector <std::pair<T, T>>& elements)
 {
-	std::set<T> orderedElements;
+	std::set <T> orderedElements;
 	for(const auto& element : elements)
 	{
 		orderedElements.insert(element.first);
 		orderedElements.insert(element.second);
 	}
-	std::map<T, std::size_t> indices;
+	std::map <T, std::size_t> indices;
 	std::size_t index = 0;
 	for(const auto& element : orderedElements)
 	{ indices[element] = index++; }

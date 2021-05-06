@@ -11,10 +11,10 @@
 
 #include "graph.hpp"
 
-template<class Edge> std::vector<std::vector<std::size_t>> kosarajus_sccs(const Graph <Edge>& graph)
+template<class Edge> std::vector <std::vector<std::size_t>> kosarajus_sccs(const Graph <Edge>& graph)
 {
 	std::vector<bool> visited(graph.size());
-	std::stack<std::size_t> order;
+	std::stack <std::size_t> order;
 	std::function<void(std::size_t)> dfs = [&](const std::size_t& at) -> void
 	{
 		visited[at] = true;
@@ -32,9 +32,9 @@ template<class Edge> std::vector<std::vector<std::size_t>> kosarajus_sccs(const 
 		{ dfs(i); }
 		for(const auto& neighbor : graph[i])
 		{ transposed.addEdge(neighbor.to, i); }
-		std::vector<std::vector<std::size_t>> sCCs;
+		std::vector <std::vector<std::size_t>> sCCs;
 	}
-	std::vector<std::vector<std::size_t>> sCCs;
+	std::vector <std::vector<std::size_t>> sCCs;
 	std::function<void(std::size_t)> transposedDFS = [&](const std::size_t& at) -> void
 	{
 		visited[at] = false;

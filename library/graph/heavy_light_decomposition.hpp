@@ -8,11 +8,11 @@
 
 template<class Tree> class HeavyLightDecomposition
 {
-	std::vector<std::size_t> sizes, parent, depths, head;
-	std::vector<std::pair<std::size_t, std::size_t>> times;
+	std::vector <std::size_t> sizes, parent, depths, head;
+	std::vector <std::pair<std::size_t, std::size_t>> times;
 	Tree tree;
 
-	void dfs(std::vector<std::vector<std::size_t>>& graph, const std::size_t& i)
+	void dfs(std::vector <std::vector<std::size_t>>& graph, const std::size_t& i)
 	{
 		sizes[i] = 1;
 		for(auto& child : graph[i])
@@ -31,7 +31,7 @@ template<class Tree> class HeavyLightDecomposition
 
 	std::size_t currentTime = 0;
 
-	void decompose(std::vector<std::vector<std::size_t>>& graph, const std::size_t& i)
+	void decompose(std::vector <std::vector<std::size_t>>& graph, const std::size_t& i)
 	{
 		times[i].first = currentTime++;
 		for(const auto& child : graph[i])
@@ -59,7 +59,7 @@ template<class Tree> class HeavyLightDecomposition
 	}
 
 public:
-	explicit HeavyLightDecomposition(std::vector<std::vector<std::size_t>>& graph, const std::size_t& root = 0) : sizes(graph.size()), parent(graph.size()), depths(graph.size()), head(graph.size()), times(graph.size()), tree{graph.size()}
+	explicit HeavyLightDecomposition(std::vector <std::vector<std::size_t>>& graph, const std::size_t& root = 0) : sizes(graph.size()), parent(graph.size()), depths(graph.size()), head(graph.size()), times(graph.size()), tree{graph.size()}
 	{
 		parent[root] = root;
 		depths[root] = 0;

@@ -13,7 +13,7 @@
 
 template<typename T> class linear_diophantine
 {
-	std::tuple<T, T, T> gcd;
+	std::tuple <T, T, T> gcd;
 	T a, b;
 
 public:
@@ -27,12 +27,12 @@ public:
 		std::get<1>(gcd) *= (c / std::get<2>(gcd));
 	}
 
-	std::pair<T, T> shift(const T& m)
+	std::pair <T, T> shift(const T& m)
 	{
 		return std::make_pair(std::get<0>(gcd) + b * m, std::get<1>(gcd) - a * m);
 	}
 
-	std::pair<T, T> differences()
+	std::pair <T, T> differences()
 	{
 		return std::make_pair(a, b);
 	}

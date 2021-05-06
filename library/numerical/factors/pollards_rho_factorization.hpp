@@ -14,8 +14,8 @@ namespace factors
 {
 	template<typename T> T pollards_rho(const T& n)
 	{
-		static_assert(std::is_integral_v<T>);
-		static_assert(std::is_unsigned_v<T>);
+		static_assert(std::is_integral_v < T > );
+		static_assert(std::is_unsigned_v < T > );
 		assert(n >= 0);
 		if((n & 1) ^ 1)
 		{ return 2; }
@@ -23,9 +23,9 @@ namespace factors
 		{ return n; }
 		auto f{[&n](const T& x, const T& c) -> T
 		       { return static_cast<T>((static_cast<unsigned __int128>(x) * x + c) % n);; }};
-		for(T x0{getUID<T>(0, n - 1)};; x0 = getUID<T>(0, n - 1))
+		for(T x0{getUID < T > (0, n - 1)};; x0 = getUID < T > (0, n - 1))
 		{
-			T c = getUID<T>(0, n - 1), x{f(x0, c)}, y{f(x, c)};
+			T c = getUID < T > (0, n - 1), x{f(x0, c)}, y{f(x, c)};
 			while(true)
 			{
 				T divisor{steins_gcd(std::max(x, y) - std::min(x, y), n)};
@@ -39,16 +39,16 @@ namespace factors
 		}
 	}
 
-	template<typename T> std::vector<T> pollards_rho_factorize(const T& n)
+	template<typename T> std::vector <T> pollards_rho_factorize(const T& n)
 	{
-		static_assert(std::is_integral_v<T>);
+		static_assert(std::is_integral_v < T > );
 		assert(n >= 0);
 		if(n <= 1)
 		{ return {}; }
 		T factor{pollards_rho<T>(n)};
 		if(n == factor)
-		{ return std::vector<T>{n}; }
-		std::vector<T> original{pollards_rho_factorize(factor)}, divided{pollards_rho_factorize(n / factor)};
+		{ return std::vector < T > {n}; }
+		std::vector <T> original{pollards_rho_factorize(factor)}, divided{pollards_rho_factorize(n / factor)};
 		std::move(std::begin(divided), std::end(divided), std::back_inserter(original));
 		return original;
 	}

@@ -1,3 +1,4 @@
+//@formatter:off
 #include "%TaskFile%"
 #include <algorithm>
 #include <cctype>
@@ -7,6 +8,7 @@
 #include <iterator>
 #include <sstream>
 #include <string>
+#include <type_traits>
 #include <utility>
 #include <vector>
 
@@ -99,12 +101,10 @@ void run_test(JHelper::Test& test, const std::int64_t& stressTestIteration = 0, 
 		{
 			if(%ClassName%::floatingPointVerification)
 			{
-				/*
 				assert(std::count(std::begin(test.output()), std::end(test.output()), '.') == 1 && std::count_if(std::begin(test.output()), std::end(test.output()), [](const unsigned char& element) -> bool
-				{ return std::isdigit(element); }) == std::size(test.output()) - 1);
+				{ return std::isdigit(element); }) == static_cast<std::iterator_traits<decltype(std::begin(test.output()))>::difference_type>(std::size(test.output())) - 1);
 				assert(std::count(std::begin(output), std::end(output), '.') == 1 && std::count_if(std::begin(output), std::end(output), [](const unsigned char& element) -> bool
-				{ return std::isdigit(element); }) == std::size(output) - 1);
-				 */
+				{ return std::isdigit(element); }) == static_cast<std::iterator_traits<decltype(std::begin(test.output()))>::difference_type>(std::size(test.output())) - 1);
 				long double testNumber{std::stold(test.output())};
 				long double resultNumber{std::stold(output)};
 				testOK = std::abs(testNumber - resultNumber) <= %ClassName%::EPSILON;
@@ -182,8 +182,8 @@ int main(int argc, char* argv[])
 			run_test(test);
 			solveMaximalTime = std::max(solveMaximalTime, testTime);
 			solveAverageTime += testTime;
-			correctTests += (!test.has_output() || testOK);
-			++totalTests;
+			correctTests += (test.has_output() && testOK);
+			totalTests += test.has_output();
 		}
 	}
 	std::int_fast64_t stressTestIteration{1};
@@ -208,8 +208,8 @@ int main(int argc, char* argv[])
 		run_test(generatedTest, stressTestIteration, %ClassName%::showTestingOutput, %ClassName%::showAllTestingOutput);
 		solveMaximalTime = std::max(solveMaximalTime, testTime);
 		solveAverageTime += testTime;
-		correctTests += (!generatedTest.has_output() || testOK);
-		++totalTests;
+		correctTests += (generatedTest.has_output() & testOK);
+		totalTests += generatedTest.has_output();
 	}
 	solveAverageTime /= (tests.size() + %ClassName%::stressTestIterations);
 	if(stressTestIteration > 1 && (correctTests != totalTests ||( %ClassName%::showTestingOutput && !%ClassName%::showAllTestingOutput)))

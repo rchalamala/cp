@@ -12,7 +12,7 @@
 
 template<class T> class DSU
 {
-	std::vector<T> m_parent_or_sizes;
+	std::vector <T> m_parent_or_sizes;
 	std::size_t m_component_count;
 
 public:
@@ -62,17 +62,17 @@ public:
 		return root(i) == root(j);
 	}
 
-	std::vector<std::vector<std::size_t>> generate_components()
+	std::vector <std::vector<std::size_t>> generate_components()
 	{
-		std::vector<std::size_t> head(m_parent_or_sizes.size(), 0), sizes(m_parent_or_sizes.size(), 0);
+		std::vector <std::size_t> head(m_parent_or_sizes.size(), 0), sizes(m_parent_or_sizes.size(), 0);
 		for(std::size_t i = 0; i < m_parent_or_sizes.size(); ++sizes[(head[i] = root(i))], ++i)
 		{}
-		std::vector<std::vector<std::size_t>> result(m_parent_or_sizes.size());
+		std::vector <std::vector<std::size_t>> result(m_parent_or_sizes.size());
 		for(std::size_t i = 0; i < m_parent_or_sizes.size(); result[i].reserve(sizes[i]), ++i)
 		{}
 		for(std::size_t i = 0; i < m_parent_or_sizes.size(); result[head[i]].push_back(i), ++i)
 		{}
-		result.erase(std::remove_if(result.begin(), result.end(), [](const std::vector<T>& component) -> bool
+		result.erase(std::remove_if(result.begin(), result.end(), [](const std::vector <T>& component) -> bool
 		{
 			return component.empty();
 		}), result.end());

@@ -177,6 +177,14 @@ namespace std
 
 template<typename T> std::string std::to_string(const Modulo<T>& element) { return std::to_string(element()); }
 
+/*
+#include "numerical/modulo.hpp"
+
+constexpr std::int32_t MODULUS = 1000000007;
+//constexpr std::int32_t MODULUS = 998244353;
+using ModularInteger = Modulo<std::integral_constant<std::decay_t<decltype(MODULUS)>, MODULUS>>;
+*/
+
 // DIVISION AND FIX UP GCD WHEN NOT LAZY AND STATIC ASSERTIONS
 
 #endif

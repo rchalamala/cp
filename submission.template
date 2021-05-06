@@ -1,16 +1,23 @@
+//@formatter:off
 /*
 ID: rchalam1
 LANG: C++14
 TASK:
 */
-//#define NDEBUG
+#define NDEBUG
+
+//#pragma GCC optimize("Ofast")
+//#pragma GCC target("avx,avx2,fma")
+//#pragma GCC optimization("unroll-loops")
 
 %Code%
 
 int main(int argc, char* argv[])
 {
 	#ifndef INTERACTIVE
-	speed();
+	std::cin.exceptions(std::cin.failbit);
+	std::ios_base::sync_with_stdio(false);
+	std::cin.tie(nullptr);
 	#endif
 	%ClassName% solver;
 	%Input%

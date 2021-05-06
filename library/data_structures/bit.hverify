@@ -6,7 +6,7 @@
 
 template<class T> class BIT
 {
-	std::vector<T> m_tree;
+	std::vector <T> m_tree;
 
 public:
 	explicit BIT(const std::size_t& size);

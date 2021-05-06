@@ -12,13 +12,13 @@
 
 #include "graph.hpp"
 
-template<typename Edge, typename T> std::pair<std::vector<T>, std::vector<std::size_t>> dijkstra(const Graph <Edge>& graph, const std::size_t& source)
+template<typename Edge, typename T> std::pair <std::vector<T>, std::vector<std::size_t>> dijkstra(const Graph <Edge>& graph, const std::size_t& source)
 {
 	static_assert(std::is_integral<T>::value);
 	assert(0 <= source && source < graph.size());
-	std::vector<T> costs(graph.size(), std::numeric_limits<T>::max());
-	std::vector<std::size_t> parent(graph.size(), std::numeric_limits<std::size_t>::max());
-	std::priority_queue<std::pair<T, std::size_t>, std::vector<std::pair<T, std::size_t>>, std::greater<std::pair<T, std::size_t>>> next;
+	std::vector <T> costs(graph.size(), std::numeric_limits<T>::max());
+	std::vector <std::size_t> parent(graph.size(), std::numeric_limits<std::size_t>::max());
+	std::priority_queue < std::pair < T, std::size_t >, std::vector < std::pair < T, std::size_t >>, std::greater < std::pair < T, std::size_t>>> next;
 	std::vector<bool> visited(graph.size(), false);
 	costs[source] = 0;
 	parent[source] = source;
@@ -44,13 +44,13 @@ template<typename Edge, typename T> std::pair<std::vector<T>, std::vector<std::s
 	return std::make_pair(costs, parent);
 }
 
-template<typename Edge, typename T> void dijkstra(const Graph <Edge>& graph, const std::size_t& source, std::vector<T>& costs, std::vector<std::size_t>& parent)
+template<typename Edge, typename T> void dijkstra(const Graph <Edge>& graph, const std::size_t& source, std::vector <T>& costs, std::vector <std::size_t>& parent)
 {
 	static_assert(std::is_integral<T>::value);
 	assert(costs.size() == graph.size());
 	assert(parent.size() == graph.size());
 	assert(0 <= source && source < graph.size());
-	std::priority_queue<std::pair<T, std::size_t>, std::vector<std::pair<T, std::size_t>>, std::greater<std::pair<T, std::size_t>>> next;
+	std::priority_queue < std::pair < T, std::size_t >, std::vector < std::pair < T, std::size_t >>, std::greater < std::pair < T, std::size_t>>> next;
 	std::vector<bool> visited(graph.size(), false);
 	costs[source] = 0;
 	parent[source] = source;

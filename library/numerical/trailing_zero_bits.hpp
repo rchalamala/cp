@@ -6,7 +6,7 @@
 
 template<typename T> std::uint64_t trailing_zero_bits(const T& element)
 {
-	static_assert(std::is_integral_v<T>);
+	static_assert(std::is_integral_v < T > );
 	return __builtin_ctzll(element);
 }
 

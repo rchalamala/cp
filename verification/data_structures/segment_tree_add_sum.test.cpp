@@ -16,7 +16,7 @@ int main()
 	std::size_t n;
 	std::int32_t q;
 	std::cin >> n >> q;
-	std::vector<std::uint64_t> a(n);
+	std::vector <std::uint64_t> a(n);
 	for(auto& ai : a)
 	{ std::cin >> ai; }
 	SegmentTree<Add<AddNode<std::uint64_t>>> segmentTree(n);

@@ -10,7 +10,7 @@ template<class T> Matrix<T>::Matrix(const std::size_t& n, const std::size_t& m) 
 {
 }
 
-template<class T> Matrix<T>::Matrix(const std::vector<std::vector<T>>& u_matrix) : m_matrix{u_matrix}
+template<class T> Matrix<T>::Matrix(const std::vector <std::vector<T>>& u_matrix) : m_matrix{u_matrix}
 {
 }
 

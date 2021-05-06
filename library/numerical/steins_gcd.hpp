@@ -6,12 +6,13 @@
 #include <utility>
 #include "trailing_zero_bits.hpp"
 
-template<typename T1, typename T2> constexpr typename std::common_type<T1, T2>::type steins_gcd(const T1& u_x, const T2& u_y)
+template<typename T1, typename T2> constexpr typename std::common_type<T1, T2>::type
+steins_gcd(const T1& u_x, const T2& u_y)
 {
-	static_assert(std::is_integral_v<T1>);
-	static_assert(std::is_unsigned_v<T1>);
-	static_assert(std::is_integral_v<T2>);
-	static_assert(std::is_unsigned_v<T2>);
+	static_assert(std::is_integral_v < T1 > );
+	static_assert(std::is_unsigned_v < T1 > );
+	static_assert(std::is_integral_v < T2 > );
+	static_assert(std::is_unsigned_v < T2 > );
 	typename std::common_type<T1, T2>::type x{u_x}, y{u_y};
 	if(x == 0)
 	{ return y; }

@@ -16,7 +16,7 @@ int main()
 	speed();
 	std::size_t n;
 	std::cin >> n;
-	std::vector<std::vector<std::size_t>> graph(n);
+	std::vector <std::vector<std::size_t>> graph(n);
 	for(std::size_t i = 1; i < n; ++i)
 	{
 		std::size_t u, v;

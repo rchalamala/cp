@@ -1,9 +1,6 @@
+//@formatter:on
 #include "general/base.hpp"
-#include "general/common_type.hpp"
-#include "general/input.hpp"
-#include "general/output.hpp"
 #include "general/prng.hpp"
-#include "general/speed.hpp"
 
 using namespace std;
 
@@ -15,21 +12,13 @@ constexpr std::int64_t LLINF{1000000000000000001};
 //#define CODE_JAM
 //#define LIGHT_OJ
 
-/*
-#include "numerical/modulo.hpp"
-
-constexpr std::int32_t MODULUS = 1000000007;
-//constexpr std::int32_t MODULUS = 998244353;
-using ModularInteger = Modulo<std::integral_constant<std::decay_t<decltype(MODULUS)>, MODULUS>>;
-*/
-
 class %ClassName%
 {
 public:
 	static constexpr std::int64_t stressTestIterations{};
 	static constexpr bool bruteForceAllIterations{};
 	static constexpr bool bruteForceEmptyTests{};
-	static constexpr bool showTestingOutput{};
+	static constexpr bool showTestingOutput{true};
 	static constexpr bool showAllTestingOutput{};
 	static constexpr bool showFalseTestOutput{true};
 	static constexpr bool floatingPointVerification{};
@@ -49,7 +38,6 @@ public:
 
 	void setup()
 	{
-		testCase = {};
 		std::cout << std::setprecision(12) << std::fixed;
 
 	}
@@ -67,30 +55,10 @@ public:
 		solve();
 	}
 
-private:
-
-	static std::uint64_t testCase;
-
-	static void output_case()
-	{
-		#if defined(CODE_JAM) || defined(LIGHT_OJ)
-		std::cout << "Case ";
-		#endif
-		#ifdef CODE_JAM
-		std::cout << '#';
-		#endif
-		#if defined(CODE_JAM) || defined(LIGHT_OJ)
-		std::cout << (++testCase += (bruteForceAllIterations || (stressTestIterations || bruteForceEmptyTests) && bruteForceSolveIteration)) << ": ";
-		#endif
-	}
-
-public:
-
 	void solve()
 	{
 
 	}
 };
 
-std::uint64_t %ClassName%::testCase{};
 bool %ClassName%::bruteForceSolveIteration{};

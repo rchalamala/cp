@@ -17,10 +17,10 @@ int main()
 	std::size_t n;
 	std::int32_t q;
 	std::cin >> n >> q;
-	std::vector<std::uint64_t> a(n);
+	std::vector <std::uint64_t> a(n);
 	for(auto& ai : a)
 	{ std::cin >> ai; }
-	std::vector<std::vector<std::size_t>> graph(n);
+	std::vector <std::vector<std::size_t>> graph(n);
 	for(std::size_t i = 1; i < n; ++i)
 	{
 		std::size_t p;

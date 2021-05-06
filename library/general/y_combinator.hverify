@@ -10,10 +10,13 @@ namespace std
 	public:
 		template<class T> explicit y_combinator_result(T&& fun);
 
-		template<class... Args> decltype(auto) operator()(Args&& ... args);
+		template<class... Args> decltype(auto)
+		operator()(Args&& ... args);
 	};
 
-	template<class Fun> decltype(auto) y_combinator(Fun&& fun);
+	template<class Fun> decltype(auto)
+	y_combinator(Fun
+	&& fun);
 }  // namespace std
 
 #endif

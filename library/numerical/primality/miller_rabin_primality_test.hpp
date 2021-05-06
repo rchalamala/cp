@@ -15,8 +15,8 @@ namespace primality
 
 	template<typename T> Montgomery power(const Montgomery& base, T exponent)
 	{
-		static_assert(std::is_integral_v<T>);
-		static_assert(std::is_unsigned_v<T>);
+		static_assert(std::is_integral_v < T > );
+		static_assert(std::is_unsigned_v < T > );
 		Montgomery mBase = base, result(1);
 		while(exponent)
 		{
@@ -28,10 +28,10 @@ namespace primality
 		return result;
 	}
 
-	template<typename T, std::size_t BasesSize = 7> bool miller_rabin(const T& n, const bool& checkBaseCases = true, const std::array<T, BasesSize>& A = {2, 325, 9375, 28178, 450775, 9780504, 1795265022})
+	template<typename T, std::size_t BasesSize = 7> bool miller_rabin(const T& n, const bool& checkBaseCases = true, const std::array <T, BasesSize>& A = {2, 325, 9375, 28178, 450775, 9780504, 1795265022})
 	{
-		static_assert(std::is_integral_v<T>);
-		static_assert(std::is_unsigned_v<T>);
+		static_assert(std::is_integral_v < T > );
+		static_assert(std::is_unsigned_v < T > );
 		if(checkBaseCases)
 		{
 			if(n <= 1)
