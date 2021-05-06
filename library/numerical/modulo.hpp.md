@@ -2,16 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verification/data_structures/segment_tree_affine.test.cpp
-    title: verification/data_structures/segment_tree_affine.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verification/data_structures/segment_tree_composite.test.cpp
-    title: verification/data_structures/segment_tree_composite.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://github.com/the-tourist/algo/blob/master/numeric/mint.cpp
@@ -96,8 +90,11 @@ data:
     \ out, const Modulo<T>& element) { return out << element(); }\n\nnamespace std\n\
     {\n\ttemplate<typename T> std::string to_string(const Modulo<T>& element);\n}\
     \  // namespace std\n\ntemplate<typename T> std::string std::to_string(const Modulo<T>&\
-    \ element) { return std::to_string(element()); }\n\n// DIVISION AND FIX UP GCD\
-    \ WHEN NOT LAZY AND STATIC ASSERTIONS\n\n\n"
+    \ element) { return std::to_string(element()); }\n\n/*\n#include \"numerical/modulo.hpp\"\
+    \n\nconstexpr std::int32_t MODULUS = 1000000007;\n//constexpr std::int32_t MODULUS\
+    \ = 998244353;\nusing ModularInteger = Modulo<std::integral_constant<std::decay_t<decltype(MODULUS)>,\
+    \ MODULUS>>;\n*/\n\n// DIVISION AND FIX UP GCD WHEN NOT LAZY AND STATIC ASSERTIONS\n\
+    \n\n"
   code: "#ifndef MODULAR_HPP\n#define MODULAR_HPP\n\n#include <algorithm>\n#include\
     \ <cstdint>\n#include <type_traits>\n\ntemplate<typename T> T inverse(T a, T m)\n\
     {\n\tif(a == 1)\n\t{ return 1; }\n\tT u = 0, v = 1;\n\twhile(a != 0)\n\t{\n\t\t\
@@ -179,17 +176,18 @@ data:
     \ out, const Modulo<T>& element) { return out << element(); }\n\nnamespace std\n\
     {\n\ttemplate<typename T> std::string to_string(const Modulo<T>& element);\n}\
     \  // namespace std\n\ntemplate<typename T> std::string std::to_string(const Modulo<T>&\
-    \ element) { return std::to_string(element()); }\n\n// DIVISION AND FIX UP GCD\
-    \ WHEN NOT LAZY AND STATIC ASSERTIONS\n\n#endif"
+    \ element) { return std::to_string(element()); }\n\n/*\n#include \"numerical/modulo.hpp\"\
+    \n\nconstexpr std::int32_t MODULUS = 1000000007;\n//constexpr std::int32_t MODULUS\
+    \ = 998244353;\nusing ModularInteger = Modulo<std::integral_constant<std::decay_t<decltype(MODULUS)>,\
+    \ MODULUS>>;\n*/\n\n// DIVISION AND FIX UP GCD WHEN NOT LAZY AND STATIC ASSERTIONS\n\
+    \n#endif"
   dependsOn: []
   isVerificationFile: false
   path: library/numerical/modulo.hpp
   requiredBy: []
-  timestamp: '2021-04-07 22:54:37-06:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verification/data_structures/segment_tree_composite.test.cpp
-  - verification/data_structures/segment_tree_affine.test.cpp
+  timestamp: '2021-05-06 17:00:48-06:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: library/numerical/modulo.hpp
 layout: document
 redirect_from:

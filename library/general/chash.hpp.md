@@ -17,7 +17,7 @@ data:
     \t\treturn x ^ (x >> static_cast<std::uint64_t>(31));\n\t}\n\n\tstd::size_t operator()(const\
     \ std::uint64_t x) const\n\t{\n\t\tstatic const std::uint64_t FIXED_RANDOM = static_cast<std::uint64_t>(std::chrono::steady_clock::now().time_since_epoch().count());\n\
     \t\treturn splitmix64(x + FIXED_RANDOM);\n\t}\n\n\tstd::size_t operator()(const\
-    \ std::pair<std::uint64_t, std::uint64_t> x) const\n\t{\n\t\tstatic const std::uint64_t\
+    \ std::pair <std::uint64_t, std::uint64_t> x) const\n\t{\n\t\tstatic const std::uint64_t\
     \ FIXED_RANDOM = static_cast<std::uint64_t>(std::chrono::steady_clock::now().time_since_epoch().count());\n\
     \t\treturn splitmix64(x.first + FIXED_RANDOM) ^ (splitmix64(x.second + FIXED_RANDOM)\
     \ >> static_cast<std::uint64_t>(1));\n\t}\n};\n\n\n"
@@ -29,7 +29,7 @@ data:
     \t\treturn x ^ (x >> static_cast<std::uint64_t>(31));\n\t}\n\n\tstd::size_t operator()(const\
     \ std::uint64_t x) const\n\t{\n\t\tstatic const std::uint64_t FIXED_RANDOM = static_cast<std::uint64_t>(std::chrono::steady_clock::now().time_since_epoch().count());\n\
     \t\treturn splitmix64(x + FIXED_RANDOM);\n\t}\n\n\tstd::size_t operator()(const\
-    \ std::pair<std::uint64_t, std::uint64_t> x) const\n\t{\n\t\tstatic const std::uint64_t\
+    \ std::pair <std::uint64_t, std::uint64_t> x) const\n\t{\n\t\tstatic const std::uint64_t\
     \ FIXED_RANDOM = static_cast<std::uint64_t>(std::chrono::steady_clock::now().time_since_epoch().count());\n\
     \t\treturn splitmix64(x.first + FIXED_RANDOM) ^ (splitmix64(x.second + FIXED_RANDOM)\
     \ >> static_cast<std::uint64_t>(1));\n\t}\n};\n\n#endif"
@@ -37,7 +37,7 @@ data:
   isVerificationFile: false
   path: library/general/chash.hpp
   requiredBy: []
-  timestamp: '2021-04-05 00:55:31-06:00'
+  timestamp: '2021-05-06 17:00:48-06:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/general/chash.hpp

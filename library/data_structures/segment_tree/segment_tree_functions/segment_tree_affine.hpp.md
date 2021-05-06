@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verification/data_structures/segment_tree_affine.test.cpp
-    title: verification/data_structures/segment_tree_affine.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/data_structures/segment_tree/segment_tree_functions/segment_tree_affine.hpp\"\
@@ -56,9 +53,8 @@ data:
   path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_affine.hpp
   requiredBy: []
   timestamp: '2021-04-07 23:26:06-06:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verification/data_structures/segment_tree_affine.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: library/data_structures/segment_tree/segment_tree_functions/segment_tree_affine.hpp
 layout: document
 redirect_from:

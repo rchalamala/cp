@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp
     title: library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp
   _extendedRequiredBy: []

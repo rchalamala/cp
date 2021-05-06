@@ -1,19 +1,13 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':warning:'
-    path: library/general/gcc_extensions.hpp
-    title: library/general/gcc_extensions.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: library/numerical/factors/optimized_rho_factorization.hpp
-    title: library/numerical/factors/optimized_rho_factorization.hpp
+    path: library/general/base.hpp
+    title: library/general/base.hpp
   - icon: ':warning:'
     path: library/numerical/factors/optimized_rho_factorization.hpp
     title: library/numerical/factors/optimized_rho_factorization.hpp
-  - icon: ':warning:'
-    path: library/numerical/factors/pollards_rho_factorization.hpp
-    title: library/numerical/factors/pollards_rho_factorization.hpp
   - icon: ':warning:'
     path: library/numerical/factors/pollards_rho_factorization.hpp
     title: library/numerical/factors/pollards_rho_factorization.hpp
@@ -26,14 +20,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: '#line 1 "library/general/base.hpp"
-
-
-
-
-    #include <bits/stdc++.h>
-
-    #line 1 "library/general/gcc_extensions.hpp"
+  bundledCode: '#line 1 "library/general/gcc_extensions.hpp"
 
 
 
@@ -64,79 +51,53 @@ data:
 
 
 
-    #line 6 "library/general/base.hpp"
-
-
-    #define mp std::make_pair
-
-    #define mt std::make_tuple
-
-    #define pb push_back
-
-    #define eb emplace_back
-
-    #define ff first
-
-    #define ss second
-
-
-    using ll = long long;
-
-    using ull = unsigned long long;
-
-    using ld = long double;
-
-
-
     '
-  code: '#ifndef BASE_HPP
+  code: '#ifndef GCC_EXTENSIONS_HPP
 
-    #define BASE_HPP
-
-
-    #include <bits/stdc++.h>
-
-    #include "gcc_extensions.hpp"
+    #define GCC_EXTENSIONS_HPP
 
 
-    #define mp std::make_pair
-
-    #define mt std::make_tuple
-
-    #define pb push_back
-
-    #define eb emplace_back
-
-    #define ff first
-
-    #define ss second
+    #ifdef __GNUC__
 
 
-    using ll = long long;
+    #include <ext/pb_ds/assoc_container.hpp>
 
-    using ull = unsigned long long;
+    #include <ext/pb_ds/tree_policy.hpp>
 
-    using ld = long double;
+    #include <ext/rope>
+
+
+    using namespace __gnu_pbds;
+
+    using namespace __gnu_cxx;
+
+
+    template<typename T> using orderedSet = __gnu_pbds::tree<T, __gnu_pbds::null_type,
+    std::less<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;
+
+    template<typename T> using orderedMultiset = __gnu_pbds::tree<T, __gnu_pbds::null_type,
+    std::less_equal<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;
+
+
+    #endif
 
 
     #endif'
-  dependsOn:
-  - library/general/gcc_extensions.hpp
+  dependsOn: []
   isVerificationFile: false
-  path: library/general/base.hpp
+  path: library/general/gcc_extensions.hpp
   requiredBy:
   - library/numerical/factors/optimized_rho_factorization.hpp
-  - library/numerical/factors/optimized_rho_factorization.hpp
-  - library/numerical/factors/pollards_rho_factorization.hpp
   - library/numerical/factors/pollards_rho_factorization.hpp
   - library/numerical/primality/miller_rabin_primality_test.hpp
+  - library/general/base.hpp
   timestamp: '2021-05-06 17:00:48-06:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: library/general/base.hpp
+documentation_of: library/general/gcc_extensions.hpp
 layout: document
 redirect_from:
-- /library/library/general/base.hpp
-- /library/library/general/base.hpp.html
-title: library/general/base.hpp
+- /library/library/general/gcc_extensions.hpp
+- /library/library/general/gcc_extensions.hpp.html
+title: library/general/gcc_extensions.hpp
 ---

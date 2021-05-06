@@ -2,34 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verification/data_structures/segment_tree_add_sum.test.cpp
-    title: verification/data_structures/segment_tree_add_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verification/data_structures/segment_tree_affine.test.cpp
-    title: verification/data_structures/segment_tree_affine.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verification/data_structures/segment_tree_composite.test.cpp
-    title: verification/data_structures/segment_tree_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verification/graph/heavy_light_decomposition.test.cpp
-    title: verification/graph/heavy_light_decomposition.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verification/graph/heavy_light_decomposition_path.test.cpp
-    title: verification/graph/heavy_light_decomposition_path.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: verification/graph/heavy_light_decomposition_subtree.test.cpp
-    title: verification/graph/heavy_light_decomposition_subtree.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/data_structures/segment_tree/segment_tree.hpp\"\n\
     \n\n\n#include <cstddef>\n#include <vector>\n\ntemplate<class uF> class SegmentTree\n\
     {\npublic:\n\tusing F = uF;\n\tusing Node = typename F::Node;\n\tF f;\nprivate:\n\
-    \tconst std::size_t size;\n\tstd::vector<Node> tree;\n\n\tvoid propagate(const\
+    \tconst std::size_t size;\n\tstd::vector <Node> tree;\n\n\tvoid propagate(const\
     \ std::size_t& i, const std::size_t& treeLeft, const std::size_t& treeRight, const\
     \ std::size_t& left, const std::size_t& right)\n\t{\n\t\tif(treeLeft != treeRight)\n\
     \t\t{ f.propagate_update(tree[i], tree[i << 1], tree[(i << 1) ^ 1], treeLeft,\
@@ -68,9 +50,9 @@ data:
   code: "#ifndef SEGMENT_TREE_HPP\n#define SEGMENT_TREE_HPP\n\n#include <cstddef>\n\
     #include <vector>\n\ntemplate<class uF> class SegmentTree\n{\npublic:\n\tusing\
     \ F = uF;\n\tusing Node = typename F::Node;\n\tF f;\nprivate:\n\tconst std::size_t\
-    \ size;\n\tstd::vector<Node> tree;\n\n\tvoid propagate(const std::size_t& i, const\
-    \ std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& left,\
-    \ const std::size_t& right)\n\t{\n\t\tif(treeLeft != treeRight)\n\t\t{ f.propagate_update(tree[i],\
+    \ size;\n\tstd::vector <Node> tree;\n\n\tvoid propagate(const std::size_t& i,\
+    \ const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t&\
+    \ left, const std::size_t& right)\n\t{\n\t\tif(treeLeft != treeRight)\n\t\t{ f.propagate_update(tree[i],\
     \ tree[i << 1], tree[(i << 1) ^ 1], treeLeft, treeRight, left, right, size); }\n\
     \t\telse\n\t\t{ f.propagate_update(tree[i], tree[i], tree[i], treeLeft, treeRight,\
     \ left, right, size); }\n\t}\n\n\ttemplate<typename Iterable> void build(const\
@@ -108,15 +90,9 @@ data:
   isVerificationFile: false
   path: library/data_structures/segment_tree/segment_tree.hpp
   requiredBy: []
-  timestamp: '2021-04-07 22:54:37-06:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verification/data_structures/segment_tree_add_sum.test.cpp
-  - verification/data_structures/segment_tree_composite.test.cpp
-  - verification/data_structures/segment_tree_affine.test.cpp
-  - verification/graph/heavy_light_decomposition_subtree.test.cpp
-  - verification/graph/heavy_light_decomposition.test.cpp
-  - verification/graph/heavy_light_decomposition_path.test.cpp
+  timestamp: '2021-05-06 17:00:48-06:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: library/data_structures/segment_tree/segment_tree.hpp
 layout: document
 redirect_from:

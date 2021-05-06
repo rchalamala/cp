@@ -1,17 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp
     title: library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: verification/graph/heavy_light_decomposition.test.cpp
-    title: verification/graph/heavy_light_decomposition.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/data_structures/segment_tree/segment_tree_functions/segment_tree_maximum.hpp\"\
@@ -83,9 +80,8 @@ data:
   path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_maximum.hpp
   requiredBy: []
   timestamp: '2021-04-07 22:54:37-06:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - verification/graph/heavy_light_decomposition.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: library/data_structures/segment_tree/segment_tree_functions/segment_tree_maximum.hpp
 layout: document
 redirect_from:
