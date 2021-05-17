@@ -1,62 +1,52 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: library/general/base.hpp
     title: library/general/base.hpp
-  - icon: ':warning:'
-    path: library/general/base.hpp
-    title: library/general/base.hpp
-  - icon: ':warning:'
-    path: library/general/gcc_extensions.hpp
-    title: library/general/gcc_extensions.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: library/general/prng.hpp
     title: library/general/prng.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: library/numerical/list_of_primes.hpp
     title: library/numerical/list_of_primes.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
+    path: library/numerical/list_of_primes.hpp
+    title: library/numerical/list_of_primes.hpp
+  - icon: ':x:'
     path: library/numerical/montgomery.hpp
     title: library/numerical/montgomery.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: library/numerical/primality/miller_rabin_primality_test.hpp
     title: library/numerical/primality/miller_rabin_primality_test.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: library/numerical/steins_gcd.hpp
     title: library/numerical/steins_gcd.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: verification/numerical/factors/pollards_rho_factorization.test.cpp
+    title: verification/numerical/factors/pollards_rho_factorization.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/numerical/factors/pollards_rho_factorization.hpp\"\
     \n\n\n\n#include <algorithm>\n#include <type_traits>\n#include <vector>\n\n#line\
-    \ 1 \"library/general/base.hpp\"\n\n\n\n#include <bits/stdc++.h>\n#line 1 \"library/general/gcc_extensions.hpp\"\
-    \n\n\n\n#ifdef __GNUC__\n\n#include <ext/pb_ds/assoc_container.hpp>\n#include\
-    \ <ext/pb_ds/tree_policy.hpp>\n#include <ext/rope>\n\nusing namespace __gnu_pbds;\n\
-    using namespace __gnu_cxx;\n\ntemplate<typename T> using orderedSet = __gnu_pbds::tree<T,\
-    \ __gnu_pbds::null_type, std::less<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
-    template<typename T> using orderedMultiset = __gnu_pbds::tree<T, __gnu_pbds::null_type,\
-    \ std::less_equal<T>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
-    \n#endif\n\n\n#line 6 \"library/general/base.hpp\"\n\n#define mp std::make_pair\n\
-    #define mt std::make_tuple\n#define pb push_back\n#define eb emplace_back\n#define\
-    \ ff first\n#define ss second\n\nusing ll = long long;\nusing ull = unsigned long\
-    \ long;\nusing ld = long double;\n\n\n#line 1 \"library/general/prng.hpp\"\n\n\
-    \n\n#line 7 \"library/general/prng.hpp\"\n\ninline std::mt19937_64& get_rng()\n\
-    {\n\t#ifdef LOCAL\n\tstatic std::mt19937_64 rng{};\n\t#else\n\tstatic std::mt19937_64\
-    \ rng{static_cast<std::uint64_t>( std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now().time_since_epoch()).count())};\n\
+    \ 1 \"library/general/prng.hpp\"\n\n\n\n#include <chrono>\n#line 6 \"library/general/prng.hpp\"\
+    \n#include <random>\n\ninline std::mt19937_64& get_rng()\n{\n\t#ifdef LOCAL\n\t\
+    static std::mt19937_64 rng{};\n\t#else\n\tstatic std::mt19937_64 rng{static_cast<std::uint64_t>(\
+    \ std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now().time_since_epoch()).count())};\n\
     \t#endif\n\treturn rng;\n}\n\ntemplate<typename T1, typename T2, std::enable_if_t<std::is_integral_v<T1>\
     \ && std::is_integral_v<T2>, bool> = true> typename std::common_type_t<T1, T2>\
     \ getUID(const T1& uLow, const T2& uHigh, std::mt19937_64& device = get_rng())\n\
@@ -66,18 +56,22 @@ data:
     \ bool> = true> typename std::common_type_t<T1, T2> getURD(const T1& uLow, const\
     \ T2& uHigh, std::mt19937_64& device = get_rng())\n{\n\ttypename std::common_type_t<T1,\
     \ T2> low{uLow}, high{uHigh};\n\treturn std::uniform_real_distribution<typename\
-    \ std::common_type<T1, T2>::type>(low, high)(device);\n}\n\n\n#line 1 \"library/numerical/primality/miller_rabin_primality_test.hpp\"\
-    \n\n\n\n#line 7 \"library/numerical/primality/miller_rabin_primality_test.hpp\"\
-    \n\n#line 1 \"library/numerical/list_of_primes.hpp\"\n\n\n\n#line 5 \"library/numerical/list_of_primes.hpp\"\
-    \n\ninline constexpr std::array<std::uint_fast16_t, 16>\nsmallPrimes{\n2, 3, 5,\
-    \ 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53};\ninline constexpr std::array<std::uint_fast16_t,\
-    \ 32>\nmediumPrimes{\n2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47,\
-    \ 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131};\n\
-    inline constexpr std::array<std::uint_fast16_t, 64>\nlargePrimes{\n2, 3, 5, 7,\
-    \ 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83,\
-    \ 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167,\
-    \ 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257,\
-    \ 263, 269, 271, 277, 281, 283, 293, 307, 311};\n\n\n#line 1 \"library/numerical/montgomery.hpp\"\
+    \ std::common_type<T1, T2>::type>(low, high)(device);\n}\n\n\n#line 1 \"library/numerical/list_of_primes.hpp\"\
+    \n\n\n\n#include <array>\n\ninline constexpr std::array<std::uint_fast16_t, 16>\n\
+    smallPrimes{\n2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53};\ninline\
+    \ constexpr std::array<std::uint_fast16_t, 32>\nmediumPrimes{\n2, 3, 5, 7, 11,\
+    \ 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89,\
+    \ 97, 101, 103, 107, 109, 113, 127, 131};\ninline constexpr std::array<std::uint_fast16_t,\
+    \ 64>\nlargePrimes{\n2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53,\
+    \ 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137,\
+    \ 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227,\
+    \ 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311};\n\
+    \n\n#line 1 \"library/numerical/primality/miller_rabin_primality_test.hpp\"\n\n\
+    \n\n#include <limits>\n#line 7 \"library/numerical/primality/miller_rabin_primality_test.hpp\"\
+    \n\n#line 1 \"library/general/base.hpp\"\n\n\n\n#include <bits/stdc++.h>\n\n#define\
+    \ mp std::make_pair\n#define mt std::make_tuple\n#define pb push_back\n#define\
+    \ eb emplace_back\n#define ff first\n#define ss second\n\nusing ll = long long;\n\
+    using ull = unsigned long long;\nusing ld = long double;\n\n\n\n\n#line 1 \"library/numerical/montgomery.hpp\"\
     \n\n\n\n#line 7 \"library/numerical/montgomery.hpp\"\n\n#line 1 \"library/numerical/trailing_zero_bits.hpp\"\
     \n\n\n\n#line 6 \"library/numerical/trailing_zero_bits.hpp\"\n\ntemplate<typename\
     \ T> std::uint64_t trailing_zero_bits(const T& element)\n{\n\tstatic_assert(std::is_integral_v\
@@ -168,48 +162,64 @@ data:
     if(x < y)\n\t\t{ std::swap(x, y); }\n\t\tx -= y;\n\t\tif(!x)\n\t\t{ return y <<\
     \ std::min(a, b); }\n\t\tx >>= trailing_zero_bits(x);\n\t}\n}\n\n\n#line 12 \"\
     library/numerical/factors/pollards_rho_factorization.hpp\"\n\nnamespace factors\n\
-    {\n\ttemplate<typename T> T pollards_rho(const T& n)\n\t{\n\t\tstatic_assert(std::is_integral_v\
-    \ < T > );\n\t\tstatic_assert(std::is_unsigned_v < T > );\n\t\tassert(n >= 0);\n\
-    \t\tif((n & 1) ^ 1)\n\t\t{ return 2; }\n\t\tif(primality::miller_rabin(n))\n\t\
-    \t{ return n; }\n\t\tauto f{[&n](const T& x, const T& c) -> T\n\t\t       { return\
-    \ static_cast<T>((static_cast<unsigned __int128>(x) * x + c) % n);; }};\n\t\t\
-    for(T x0{getUID < T > (0, n - 1)};; x0 = getUID < T > (0, n - 1))\n\t\t{\n\t\t\
-    \tT c = getUID < T > (0, n - 1), x{f(x0, c)}, y{f(x, c)};\n\t\t\twhile(true)\n\
-    \t\t\t{\n\t\t\t\tT divisor{steins_gcd(std::max(x, y) - std::min(x, y), n)};\n\t\
-    \t\t\tif(divisor == n)\n\t\t\t\t{ break; }\n\t\t\t\tif(divisor != 1)\n\t\t\t\t\
-    { return divisor; }\n\t\t\t\tx = f(x, c);\n\t\t\t\ty = f(f(y, c), c);\n\t\t\t\
-    }\n\t\t}\n\t}\n\n\ttemplate<typename T> std::vector <T> pollards_rho_factorize(const\
-    \ T& n)\n\t{\n\t\tstatic_assert(std::is_integral_v < T > );\n\t\tassert(n >= 0);\n\
-    \t\tif(n <= 1)\n\t\t{ return {}; }\n\t\tT factor{pollards_rho<T>(n)};\n\t\tif(n\
-    \ == factor)\n\t\t{ return std::vector < T > {n}; }\n\t\tstd::vector <T> original{pollards_rho_factorize(factor)},\
-    \ divided{pollards_rho_factorize(n / factor)};\n\t\tstd::move(std::begin(divided),\
-    \ std::end(divided), std::back_inserter(original));\n\t\treturn original;\n\t\
-    }\n}\n\n\n"
+    {\n\ttemplate<typename T> T pollards_rho(const T& n)\n\t{\n\t\tstatic_assert(std::is_integral_v<T>);\n\
+    \t\tstatic_assert(std::is_unsigned_v<T>);\n\t\tassert(n >= 0);\n\t\tif((n & 1)\
+    \ ^ 1)\n\t\t{ return 2; }\n\t\tif(primality::miller_rabin(n))\n\t\t{ return n;\
+    \ }\n\t\tauto f{[&n](const T& x, const T& c) -> T\n\t\t       { return static_cast<T>((static_cast<unsigned\
+    \ __int128>(x) * x + c) % n);; }};\n\t\tfor(T x0{getUID<T>(0, n - 1)};; x0 = getUID<T>(0,\
+    \ n - 1))\n\t\t{\n\t\t\tT c = getUID<T>(0, n - 1), x{f(x0, c)}, y{f(x, c)};\n\t\
+    \t\twhile(true)\n\t\t\t{\n\t\t\t\tT divisor{steins_gcd(std::max(x, y) - std::min(x,\
+    \ y), n)};\n\t\t\t\tif(divisor == n)\n\t\t\t\t{ break; }\n\t\t\t\tif(divisor !=\
+    \ 1)\n\t\t\t\t{ return divisor; }\n\t\t\t\tx = f(x, c);\n\t\t\t\ty = f(f(y, c),\
+    \ c);\n\t\t\t}\n\t\t}\n\t}\n\n\ttemplate<typename T> std::vector<T> pollards_rho_factorize(T\
+    \ n, const bool& checkBaseCases = true)\n\t{\n\t\tstatic_assert(std::is_integral_v<T>);\n\
+    \t\tassert(n >= 0);\n\t\tif(n <= 1)\n\t\t{ return {}; }\n\t\tif(checkBaseCases)\n\
+    \t\t{\n\t\t\tT start{n};\n\t\t\tstd::vector<T> original{};\n\t\t\tfor(const auto&\
+    \ a : largePrimes)\n\t\t\t{\n\t\t\t\tif(a > start)\n\t\t\t\t{ break; }\n\t\t\t\
+    \twhile(start % a == 0)\n\t\t\t\t{\n\t\t\t\t\toriginal.push_back(a);\n\t\t\t\t\
+    \tstart /= a;\n\t\t\t\t}\n\t\t\t}\n\t\t\tstd::vector<T> divided{pollards_rho_factorize(start,\
+    \ false)};\n\t\t\tstd::move(std::begin(divided), std::end(divided), std::back_inserter(original));\n\
+    \t\t\treturn original;\n\t\t}\n\t\tT factor = pollards_rho<T>(n);\n\t\tif(n ==\
+    \ factor)\n\t\t{ return std::vector<T>{n}; }\n\t\tn /= factor;\n\t\tstd::vector<T>\
+    \ original{pollards_rho_factorize(factor, false)};\n\t\tstd::size_t bound = original.size();\n\
+    \t\tfor(std::size_t i{}; i < bound && n > 1; ++i)\n\t\t{\n\t\t\twhile(n % original[i]\
+    \ == 0)\n\t\t\t{\n\t\t\t\toriginal.push_back(original[i]);\n\t\t\t\tn /= original[i];\n\
+    \t\t\t}\n\t\t}\n\t\tif(n > 1)\n\t\t{\n\t\t\tstd::vector<T> divided{pollards_rho_factorize(n,\
+    \ false)};\n\t\t\tstd::move(std::begin(divided), std::end(divided), std::back_inserter(original));\n\
+    \t\t}\n\t\treturn original;\n\t}\n}\n\n\n"
   code: "#ifndef POLLARDS_RHO_FACTORIZATION_HPP\n#define POLLARDS_RHO_FACTORIZATION_HPP\n\
     \n#include <algorithm>\n#include <type_traits>\n#include <vector>\n\n#include\
-    \ \"../../general/base.hpp\"\n#include \"../../general/prng.hpp\"\n#include \"\
+    \ \"../../general/prng.hpp\"\n#include \"../list_of_primes.hpp\"\n#include \"\
     ../primality/miller_rabin_primality_test.hpp\"\n#include \"../steins_gcd.hpp\"\
     \n\nnamespace factors\n{\n\ttemplate<typename T> T pollards_rho(const T& n)\n\t\
-    {\n\t\tstatic_assert(std::is_integral_v < T > );\n\t\tstatic_assert(std::is_unsigned_v\
-    \ < T > );\n\t\tassert(n >= 0);\n\t\tif((n & 1) ^ 1)\n\t\t{ return 2; }\n\t\t\
-    if(primality::miller_rabin(n))\n\t\t{ return n; }\n\t\tauto f{[&n](const T& x,\
-    \ const T& c) -> T\n\t\t       { return static_cast<T>((static_cast<unsigned __int128>(x)\
-    \ * x + c) % n);; }};\n\t\tfor(T x0{getUID < T > (0, n - 1)};; x0 = getUID < T\
-    \ > (0, n - 1))\n\t\t{\n\t\t\tT c = getUID < T > (0, n - 1), x{f(x0, c)}, y{f(x,\
-    \ c)};\n\t\t\twhile(true)\n\t\t\t{\n\t\t\t\tT divisor{steins_gcd(std::max(x, y)\
-    \ - std::min(x, y), n)};\n\t\t\t\tif(divisor == n)\n\t\t\t\t{ break; }\n\t\t\t\
-    \tif(divisor != 1)\n\t\t\t\t{ return divisor; }\n\t\t\t\tx = f(x, c);\n\t\t\t\t\
-    y = f(f(y, c), c);\n\t\t\t}\n\t\t}\n\t}\n\n\ttemplate<typename T> std::vector\
-    \ <T> pollards_rho_factorize(const T& n)\n\t{\n\t\tstatic_assert(std::is_integral_v\
-    \ < T > );\n\t\tassert(n >= 0);\n\t\tif(n <= 1)\n\t\t{ return {}; }\n\t\tT factor{pollards_rho<T>(n)};\n\
-    \t\tif(n == factor)\n\t\t{ return std::vector < T > {n}; }\n\t\tstd::vector <T>\
-    \ original{pollards_rho_factorize(factor)}, divided{pollards_rho_factorize(n /\
-    \ factor)};\n\t\tstd::move(std::begin(divided), std::end(divided), std::back_inserter(original));\n\
-    \t\treturn original;\n\t}\n}\n\n#endif"
+    {\n\t\tstatic_assert(std::is_integral_v<T>);\n\t\tstatic_assert(std::is_unsigned_v<T>);\n\
+    \t\tassert(n >= 0);\n\t\tif((n & 1) ^ 1)\n\t\t{ return 2; }\n\t\tif(primality::miller_rabin(n))\n\
+    \t\t{ return n; }\n\t\tauto f{[&n](const T& x, const T& c) -> T\n\t\t       {\
+    \ return static_cast<T>((static_cast<unsigned __int128>(x) * x + c) % n);; }};\n\
+    \t\tfor(T x0{getUID<T>(0, n - 1)};; x0 = getUID<T>(0, n - 1))\n\t\t{\n\t\t\tT\
+    \ c = getUID<T>(0, n - 1), x{f(x0, c)}, y{f(x, c)};\n\t\t\twhile(true)\n\t\t\t\
+    {\n\t\t\t\tT divisor{steins_gcd(std::max(x, y) - std::min(x, y), n)};\n\t\t\t\t\
+    if(divisor == n)\n\t\t\t\t{ break; }\n\t\t\t\tif(divisor != 1)\n\t\t\t\t{ return\
+    \ divisor; }\n\t\t\t\tx = f(x, c);\n\t\t\t\ty = f(f(y, c), c);\n\t\t\t}\n\t\t\
+    }\n\t}\n\n\ttemplate<typename T> std::vector<T> pollards_rho_factorize(T n, const\
+    \ bool& checkBaseCases = true)\n\t{\n\t\tstatic_assert(std::is_integral_v<T>);\n\
+    \t\tassert(n >= 0);\n\t\tif(n <= 1)\n\t\t{ return {}; }\n\t\tif(checkBaseCases)\n\
+    \t\t{\n\t\t\tT start{n};\n\t\t\tstd::vector<T> original{};\n\t\t\tfor(const auto&\
+    \ a : largePrimes)\n\t\t\t{\n\t\t\t\tif(a > start)\n\t\t\t\t{ break; }\n\t\t\t\
+    \twhile(start % a == 0)\n\t\t\t\t{\n\t\t\t\t\toriginal.push_back(a);\n\t\t\t\t\
+    \tstart /= a;\n\t\t\t\t}\n\t\t\t}\n\t\t\tstd::vector<T> divided{pollards_rho_factorize(start,\
+    \ false)};\n\t\t\tstd::move(std::begin(divided), std::end(divided), std::back_inserter(original));\n\
+    \t\t\treturn original;\n\t\t}\n\t\tT factor = pollards_rho<T>(n);\n\t\tif(n ==\
+    \ factor)\n\t\t{ return std::vector<T>{n}; }\n\t\tn /= factor;\n\t\tstd::vector<T>\
+    \ original{pollards_rho_factorize(factor, false)};\n\t\tstd::size_t bound = original.size();\n\
+    \t\tfor(std::size_t i{}; i < bound && n > 1; ++i)\n\t\t{\n\t\t\twhile(n % original[i]\
+    \ == 0)\n\t\t\t{\n\t\t\t\toriginal.push_back(original[i]);\n\t\t\t\tn /= original[i];\n\
+    \t\t\t}\n\t\t}\n\t\tif(n > 1)\n\t\t{\n\t\t\tstd::vector<T> divided{pollards_rho_factorize(n,\
+    \ false)};\n\t\t\tstd::move(std::begin(divided), std::end(divided), std::back_inserter(original));\n\
+    \t\t}\n\t\treturn original;\n\t}\n}\n\n#endif"
   dependsOn:
-  - library/general/base.hpp
-  - library/general/gcc_extensions.hpp
   - library/general/prng.hpp
+  - library/numerical/list_of_primes.hpp
   - library/numerical/primality/miller_rabin_primality_test.hpp
   - library/general/base.hpp
   - library/numerical/list_of_primes.hpp
@@ -221,9 +231,10 @@ data:
   isVerificationFile: false
   path: library/numerical/factors/pollards_rho_factorization.hpp
   requiredBy: []
-  timestamp: '2021-05-06 17:00:48-06:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2021-05-17 10:40:36-06:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - verification/numerical/factors/pollards_rho_factorization.test.cpp
 documentation_of: library/numerical/factors/pollards_rho_factorization.hpp
 layout: document
 redirect_from:

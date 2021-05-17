@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: verification/data_structures/segment_tree_composite.test.cpp
+    title: verification/data_structures/segment_tree_composite.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/data_structures/segment_tree/segment_tree_functions/segment_tree_composite.hpp\"\
@@ -63,8 +66,9 @@ data:
   path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_composite.hpp
   requiredBy: []
   timestamp: '2021-04-07 22:54:37-06:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - verification/data_structures/segment_tree_composite.test.cpp
 documentation_of: library/data_structures/segment_tree/segment_tree_functions/segment_tree_composite.hpp
 layout: document
 redirect_from:

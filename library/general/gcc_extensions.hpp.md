@@ -1,19 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: library/general/base.hpp
-    title: library/general/base.hpp
-  - icon: ':warning:'
-    path: library/numerical/factors/optimized_rho_factorization.hpp
-    title: library/numerical/factors/optimized_rho_factorization.hpp
-  - icon: ':warning:'
-    path: library/numerical/factors/pollards_rho_factorization.hpp
-    title: library/numerical/factors/pollards_rho_factorization.hpp
-  - icon: ':warning:'
-    path: library/numerical/primality/miller_rabin_primality_test.hpp
-    title: library/numerical/primality/miller_rabin_primality_test.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -86,11 +74,7 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: library/general/gcc_extensions.hpp
-  requiredBy:
-  - library/numerical/factors/optimized_rho_factorization.hpp
-  - library/numerical/factors/pollards_rho_factorization.hpp
-  - library/numerical/primality/miller_rabin_primality_test.hpp
-  - library/general/base.hpp
+  requiredBy: []
   timestamp: '2021-05-06 17:00:48-06:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
