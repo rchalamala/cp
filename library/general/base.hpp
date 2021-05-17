@@ -2,7 +2,6 @@
 #define BASE_HPP
 
 #include <bits/stdc++.h>
-#include "gcc_extensions.hpp"
 
 #define mp std::make_pair
 #define mt std::make_tuple
@@ -14,5 +13,7 @@
 using ll = long long;
 using ull = unsigned long long;
 using ld = long double;
+
+
 
 #endif

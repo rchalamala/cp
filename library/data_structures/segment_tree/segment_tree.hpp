@@ -12,7 +12,7 @@ public:
 	F f;
 private:
 	const std::size_t size;
-	std::vector <Node> tree;
+	std::vector<Node> tree;
 
 	void propagate(const std::size_t& i, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t& left, const std::size_t& right)
 	{

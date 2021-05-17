@@ -1,16 +1,11 @@
 //@formatter:on
 #include "general/base.hpp"
 #include "general/prng.hpp"
+#include "general/speed.hpp"
 
 using namespace std;
 
-constexpr std::uint32_t MAXN{200001};
-constexpr std::int32_t IINF{1000000001};
-constexpr std::int64_t LLINF{1000000000000000001};
-
 //#define INTERACTIVE
-//#define CODE_JAM
-//#define LIGHT_OJ
 
 class %ClassName%
 {
@@ -22,6 +17,7 @@ public:
 	static constexpr bool showAllTestingOutput{};
 	static constexpr bool showFalseTestOutput{true};
 	static constexpr bool floatingPointVerification{};
+	static constexpr std::uint32_t MAXN{static_cast<std::uint32_t>(2e5)};
 	static constexpr long double EPSILON{static_cast<long double>(0.000001)};
 	static bool bruteForceSolveIteration;
 
@@ -59,6 +55,7 @@ public:
 	{
 
 	}
+	// You're bad and probably overflowed. If you're being extra bad, you may have underflowed taking modulo or something stupid like that. Fix that.
 };
 
 bool %ClassName%::bruteForceSolveIteration{};
