@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/general/base.hpp
     title: library/general/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/general/prng.hpp
     title: library/general/prng.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/general/speed.hpp
     title: library/general/speed.hpp
   - icon: ':heavy_check_mark:'
     path: library/numerical/factors/pollards_rho_factorization.hpp
     title: library/numerical/factors/pollards_rho_factorization.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/list_of_primes.hpp
     title: library/numerical/list_of_primes.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/list_of_primes.hpp
     title: library/numerical/list_of_primes.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/montgomery.hpp
     title: library/numerical/montgomery.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/primality/miller_rabin_primality_test.hpp
     title: library/numerical/primality/miller_rabin_primality_test.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/steins_gcd.hpp
     title: library/numerical/steins_gcd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
   _extendedRequiredBy: []
@@ -85,14 +85,14 @@ data:
     \ mp std::make_pair\n#define mt std::make_tuple\n#define pb push_back\n#define\
     \ eb emplace_back\n#define ff first\n#define ss second\n\nusing ll = long long;\n\
     using ull = unsigned long long;\nusing ld = long double;\n\n\n\n\n#line 1 \"library/numerical/montgomery.hpp\"\
-    \n\n\n\n#line 7 \"library/numerical/montgomery.hpp\"\n\n#line 1 \"library/numerical/trailing_zero_bits.hpp\"\
+    \n\n\n\n#line 8 \"library/numerical/montgomery.hpp\"\n\n#line 1 \"library/numerical/trailing_zero_bits.hpp\"\
     \n\n\n\n#line 6 \"library/numerical/trailing_zero_bits.hpp\"\n\ntemplate<typename\
     \ T> std::uint64_t trailing_zero_bits(const T& element)\n{\n\tstatic_assert(std::is_integral_v\
     \ < T > );\n\treturn __builtin_ctzll(element);\n}\n\n/*\ntemplate<typename T>\
     \ T trailing_zero_bits(T element)\n{\n\tstatic_assert(std::is_integral_v<T>);\n\
     \tstatic_assert(std::is_unsigned_v<T>);\n\tT result{};\n\tfor(; (element & 1)\
     \ ^ 1; ++result)\n\t{\n\t\telement >>= 1;\n\t}\n\treturn result;\n}\n*/\n\n\n\
-    #line 9 \"library/numerical/montgomery.hpp\"\n\n/*//https://cp-algorithms.com/algebra/montgomery_multiplication.html\n\
+    #line 10 \"library/numerical/montgomery.hpp\"\n\n/*//https://cp-algorithms.com/algebra/montgomery_multiplication.html\n\
     template<typename T1, typename T2, std::size_t Bits> struct BigMultiplication\n\
     {\n\tstatic_assert(std::is_integral_v<T1>);\n\tstatic_assert(std::is_integral_v<T2>);\n\
     \tstatic_assert(std::is_unsigned_v<T1>);\n\tstatic_assert(std::is_unsigned_v<T2>);\n\
@@ -231,7 +231,7 @@ data:
   isVerificationFile: true
   path: verification/numerical/factors/pollards_rho_factorization.test.cpp
   requiredBy: []
-  timestamp: '2021-05-17 10:40:36-06:00'
+  timestamp: '2021-05-25 23:11:35-06:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verification/numerical/factors/pollards_rho_factorization.test.cpp

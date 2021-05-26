@@ -1,47 +1,47 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/general/base.hpp
     title: library/general/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/general/prng.hpp
     title: library/general/prng.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/list_of_primes.hpp
     title: library/numerical/list_of_primes.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/list_of_primes.hpp
     title: library/numerical/list_of_primes.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/montgomery.hpp
     title: library/numerical/montgomery.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/montgomery.hpp
     title: library/numerical/montgomery.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/primality/miller_rabin_primality_test.hpp
     title: library/numerical/primality/miller_rabin_primality_test.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/steins_gcd.hpp
     title: library/numerical/steins_gcd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verification/numerical/factors/optimized_rho_factorization.test.cpp
     title: verification/numerical/factors/optimized_rho_factorization.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/numerical/factors/optimized_rho_factorization.hpp\"\
@@ -68,15 +68,15 @@ data:
     \ 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137,\
     \ 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227,\
     \ 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311};\n\
-    \n\n#line 1 \"library/numerical/montgomery.hpp\"\n\n\n\n#include <cstdint>\n#include\
-    \ <limits>\n#line 7 \"library/numerical/montgomery.hpp\"\n\n#line 1 \"library/numerical/trailing_zero_bits.hpp\"\
-    \n\n\n\n#line 6 \"library/numerical/trailing_zero_bits.hpp\"\n\ntemplate<typename\
-    \ T> std::uint64_t trailing_zero_bits(const T& element)\n{\n\tstatic_assert(std::is_integral_v\
-    \ < T > );\n\treturn __builtin_ctzll(element);\n}\n\n/*\ntemplate<typename T>\
-    \ T trailing_zero_bits(T element)\n{\n\tstatic_assert(std::is_integral_v<T>);\n\
+    \n\n#line 1 \"library/numerical/montgomery.hpp\"\n\n\n\n#include <cassert>\n#include\
+    \ <cstdint>\n#include <limits>\n#line 8 \"library/numerical/montgomery.hpp\"\n\
+    \n#line 1 \"library/numerical/trailing_zero_bits.hpp\"\n\n\n\n#line 6 \"library/numerical/trailing_zero_bits.hpp\"\
+    \n\ntemplate<typename T> std::uint64_t trailing_zero_bits(const T& element)\n\
+    {\n\tstatic_assert(std::is_integral_v < T > );\n\treturn __builtin_ctzll(element);\n\
+    }\n\n/*\ntemplate<typename T> T trailing_zero_bits(T element)\n{\n\tstatic_assert(std::is_integral_v<T>);\n\
     \tstatic_assert(std::is_unsigned_v<T>);\n\tT result{};\n\tfor(; (element & 1)\
     \ ^ 1; ++result)\n\t{\n\t\telement >>= 1;\n\t}\n\treturn result;\n}\n*/\n\n\n\
-    #line 9 \"library/numerical/montgomery.hpp\"\n\n/*//https://cp-algorithms.com/algebra/montgomery_multiplication.html\n\
+    #line 10 \"library/numerical/montgomery.hpp\"\n\n/*//https://cp-algorithms.com/algebra/montgomery_multiplication.html\n\
     template<typename T1, typename T2, std::size_t Bits> struct BigMultiplication\n\
     {\n\tstatic_assert(std::is_integral_v<T1>);\n\tstatic_assert(std::is_integral_v<T2>);\n\
     \tstatic_assert(std::is_unsigned_v<T1>);\n\tstatic_assert(std::is_unsigned_v<T2>);\n\
@@ -243,8 +243,8 @@ data:
   isVerificationFile: false
   path: library/numerical/factors/optimized_rho_factorization.hpp
   requiredBy: []
-  timestamp: '2021-05-17 10:40:36-06:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-05-25 23:11:35-06:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verification/numerical/factors/optimized_rho_factorization.test.cpp
 documentation_of: library/numerical/factors/optimized_rho_factorization.hpp
