@@ -1,47 +1,47 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/general/base.hpp
     title: library/general/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/general/prng.hpp
     title: library/general/prng.hpp
   - icon: ':question:'
     path: library/general/speed.hpp
     title: library/general/speed.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/factors/pollards_rho_factorization.hpp
     title: library/numerical/factors/pollards_rho_factorization.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/numerical/list_of_primes.hpp
     title: library/numerical/list_of_primes.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/numerical/list_of_primes.hpp
     title: library/numerical/list_of_primes.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/numerical/montgomery.hpp
     title: library/numerical/montgomery.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/numerical/primality/miller_rabin_primality_test.hpp
     title: library/numerical/primality/miller_rabin_primality_test.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/numerical/steins_gcd.hpp
     title: library/numerical/steins_gcd.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/factorize
@@ -232,7 +232,7 @@ data:
   path: verification/numerical/factors/pollards_rho_factorization.test.cpp
   requiredBy: []
   timestamp: '2021-05-17 10:40:36-06:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verification/numerical/factors/pollards_rho_factorization.test.cpp
 layout: document

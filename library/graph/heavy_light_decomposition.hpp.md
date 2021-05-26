@@ -97,8 +97,8 @@ data:
   timestamp: '2021-05-06 17:00:48-06:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verification/graph/heavy_light_decomposition_path.test.cpp
   - verification/graph/heavy_light_decomposition_subtree.test.cpp
+  - verification/graph/heavy_light_decomposition_path.test.cpp
 documentation_of: library/graph/heavy_light_decomposition.hpp
 layout: document
 redirect_from:

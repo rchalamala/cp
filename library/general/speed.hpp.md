@@ -21,7 +21,7 @@ data:
   - icon: ':x:'
     path: verification/numerical/factors/optimized_rho_factorization.test.cpp
     title: verification/numerical/factors/optimized_rho_factorization.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verification/numerical/factors/pollards_rho_factorization.test.cpp
     title: verification/numerical/factors/pollards_rho_factorization.test.cpp
   _isVerificationFailed: true
@@ -43,13 +43,13 @@ data:
   timestamp: '2021-05-17 10:40:36-06:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verification/numerical/factors/pollards_rho_factorization.test.cpp
   - verification/numerical/factors/optimized_rho_factorization.test.cpp
-  - verification/data_structures/segment_tree_affine.test.cpp
+  - verification/numerical/factors/pollards_rho_factorization.test.cpp
+  - verification/graph/heavy_light_decomposition_subtree.test.cpp
+  - verification/graph/heavy_light_decomposition_path.test.cpp
   - verification/data_structures/segment_tree_composite.test.cpp
   - verification/data_structures/segment_tree_add_sum.test.cpp
-  - verification/graph/heavy_light_decomposition_path.test.cpp
-  - verification/graph/heavy_light_decomposition_subtree.test.cpp
+  - verification/data_structures/segment_tree_affine.test.cpp
 documentation_of: library/general/speed.hpp
 layout: document
 redirect_from:

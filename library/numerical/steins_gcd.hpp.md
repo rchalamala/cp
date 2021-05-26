@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
   _extendedRequiredBy:
   - icon: ':x:'
     path: library/numerical/factors/optimized_rho_factorization.hpp
     title: library/numerical/factors/optimized_rho_factorization.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/numerical/factors/pollards_rho_factorization.hpp
     title: library/numerical/factors/pollards_rho_factorization.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: verification/numerical/factors/optimized_rho_factorization.test.cpp
     title: verification/numerical/factors/optimized_rho_factorization.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: verification/numerical/factors/pollards_rho_factorization.test.cpp
     title: verification/numerical/factors/pollards_rho_factorization.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/numerical/steins_gcd.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -60,10 +60,10 @@ data:
   - library/numerical/factors/optimized_rho_factorization.hpp
   - library/numerical/factors/pollards_rho_factorization.hpp
   timestamp: '2021-05-06 17:00:48-06:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - verification/numerical/factors/pollards_rho_factorization.test.cpp
   - verification/numerical/factors/optimized_rho_factorization.test.cpp
+  - verification/numerical/factors/pollards_rho_factorization.test.cpp
 documentation_of: library/numerical/steins_gcd.hpp
 layout: document
 redirect_from:
