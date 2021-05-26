@@ -1,6 +1,7 @@
 #ifndef MONTGOMERY_HPP
 #define MONTGOMERY_HPP
 
+#include <cassert>
 #include <cstdint>
 #include <limits>
 #include <type_traits>
