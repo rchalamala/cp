@@ -18,7 +18,7 @@ public:
 	static constexpr bool showFalseTestOutput{true};
 	static constexpr bool floatingPointVerification{};
 	static constexpr std::uint32_t MAXN{static_cast<std::uint32_t>(2e5)};
-	static constexpr long double EPSILON{static_cast<long double>(0.000001)};
+	static constexpr long double EPSILON{static_cast<long double>(1e-7)};
 	static bool bruteForceSolveIteration;
 
 	void static generate_test(const std::uint64_t& seed)
