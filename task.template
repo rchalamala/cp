@@ -15,6 +15,7 @@ namespace rahul
 	constexpr std::uint32_t MAXN{static_cast<std::uint32_t>(4e5 + 7)};
 	constexpr std::int32_t IINF{static_cast<std::int32_t>(2e9 + 7)};
 	constexpr std::int64_t LLINF{static_cast<std::int64_t>(2e18 + 7)};
+	constexpr long double EPSILON{static_cast<long double>(1e-7)};
 
 	void static generate_test(const std::uint64_t& seed)
 	{
