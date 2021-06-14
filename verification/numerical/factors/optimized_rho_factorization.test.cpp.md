@@ -1,62 +1,55 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/general/base.hpp
     title: library/general/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/general/prng.hpp
     title: library/general/prng.hpp
-  - icon: ':heavy_check_mark:'
-    path: library/general/speed.hpp
-    title: library/general/speed.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/numerical/factors/optimized_rho_factorization.hpp
     title: library/numerical/factors/optimized_rho_factorization.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/numerical/list_of_primes.hpp
     title: library/numerical/list_of_primes.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/numerical/list_of_primes.hpp
     title: library/numerical/list_of_primes.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/numerical/montgomery.hpp
     title: library/numerical/montgomery.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/numerical/montgomery.hpp
     title: library/numerical/montgomery.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/numerical/primality/miller_rabin_primality_test.hpp
     title: library/numerical/primality/miller_rabin_primality_test.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/numerical/steins_gcd.hpp
     title: library/numerical/steins_gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/numerical/trailing_zero_bits.hpp
     title: library/numerical/trailing_zero_bits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/factorize
     links:
     - https://judge.yosupo.jp/problem/factorize
-  bundledCode: "#line 1 \"library/general/speed.hpp\"\n\n\n\n#include <ios>\n#include\
-    \ <iostream>\n\ninline bool speed()\n{\n\tstd::cin.exceptions(std::istream::failbit);\n\
-    \tstd::cin.tie(nullptr);\n\treturn std::ios_base::sync_with_stdio(false);\n}\n\
-    \n\n#line 2 \"verification/numerical/factors/optimized_rho_factorization.test.cpp\"\
-    \n\n#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\n\n#include\
-    \ <algorithm>\n#include <cstdint>\n#line 8 \"verification/numerical/factors/optimized_rho_factorization.test.cpp\"\
-    \n#include <vector>\n\n#line 1 \"library/numerical/factors/optimized_rho_factorization.hpp\"\
+  bundledCode: "#line 1 \"verification/numerical/factors/optimized_rho_factorization.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\n\n#include <algorithm>\n\
+    #include <cstdint>\n#include <iostream>\n#include <vector>\n\n#line 1 \"library/numerical/factors/optimized_rho_factorization.hpp\"\
     \n\n\n\n#include <type_traits>\n#line 6 \"library/numerical/factors/optimized_rho_factorization.hpp\"\
     \n\n#line 1 \"library/general/prng.hpp\"\n\n\n\n#include <chrono>\n#line 6 \"\
     library/general/prng.hpp\"\n#include <random>\n\ninline std::mt19937_64& get_rng()\n\
@@ -189,16 +182,15 @@ data:
     {\n\t\t\tif(x.n == y.n)\n\t\t\t{\n\t\t\t\tc = getUID<T>(0, n - 1);\n\t\t\t\tx\
     \ = Montgomery(getUID<T>(0, n - 1));\n\t\t\t\ty = f(x, c);\n\t\t\t}\n\t\t\tMontgomery\
     \ combined{product};\n\t\t\tcombined *= Montgomery{std::max(x.n, y.n) - std::min(x.n,\
-    \ y.n)};\n\t\t\tif(combined.n && combined.n != product.n)\n\t\t\t{\n\t\t\t\t++trials;\n\
-    \t\t\t\tproduct = combined;\n\t\t\t}\n\t\t}\n\t\treturn factor;\n\t}\n\n\ttemplate<typename\
-    \ T> std::vector<T> optimized_rho_factorize(T n, const bool& checkBaseCases =\
-    \ true)\n\t{\n\t\tstatic_assert(std::is_integral_v<T>);\n\t\tassert(n >= 0);\n\
-    \t\tif(n <= 1)\n\t\t{ return {}; }\n\t\tif(checkBaseCases)\n\t\t{\n\t\t\tT start{n};\n\
-    \t\t\tstd::vector<T> original{};\n\t\t\tfor(const auto& a : largePrimes)\n\t\t\
-    \t{\n\t\t\t\tif(a > start)\n\t\t\t\t{ break; }\n\t\t\t\twhile(start % a == 0)\n\
-    \t\t\t\t{\n\t\t\t\t\toriginal.push_back(a);\n\t\t\t\t\tstart /= a;\n\t\t\t\t}\n\
-    \t\t\t}\n\t\t\tstd::vector<T> divided{optimized_rho_factorize(start, false)};\n\
-    \t\t\tstd::move(std::begin(divided), std::end(divided), std::back_inserter(original));\n\
+    \ y.n)};\n\t\t\t++trials;\n\t\t\tif(combined.n)\n\t\t\t{ product = combined; }\n\
+    \t\t}\n\t\treturn factor;\n\t}\n\n\ttemplate<typename T> std::vector<T> optimized_rho_factorize(T\
+    \ n, const bool& checkBaseCases = true)\n\t{\n\t\tstatic_assert(std::is_integral_v<T>);\n\
+    \t\tassert(n >= 0);\n\t\tif(n <= 1)\n\t\t{ return {}; }\n\t\tif(checkBaseCases)\n\
+    \t\t{\n\t\t\tT start{n};\n\t\t\tstd::vector<T> original{};\n\t\t\tfor(const auto&\
+    \ a : largePrimes)\n\t\t\t{\n\t\t\t\tif(a > start)\n\t\t\t\t{ break; }\n\t\t\t\
+    \twhile(start % a == 0)\n\t\t\t\t{\n\t\t\t\t\toriginal.push_back(a);\n\t\t\t\t\
+    \tstart /= a;\n\t\t\t\t}\n\t\t\t}\n\t\t\tstd::vector<T> divided{optimized_rho_factorize(start,\
+    \ false)};\n\t\t\tstd::move(std::begin(divided), std::end(divided), std::back_inserter(original));\n\
     \t\t\treturn original;\n\t\t}\n\t\tT factor = optimized_rho<T>(n);\n\t\tif(n ==\
     \ factor)\n\t\t{ return std::vector<T>{n}; }\n\t\tn /= factor;\n\t\tstd::vector<T>\
     \ original{optimized_rho_factorize(factor, false)};\n\t\tstd::size_t bound = original.size();\n\
@@ -206,24 +198,21 @@ data:
     \ == 0)\n\t\t\t{\n\t\t\t\toriginal.push_back(original[i]);\n\t\t\t\tn /= original[i];\n\
     \t\t\t}\n\t\t}\n\t\tif(n > 1)\n\t\t{\n\t\t\tstd::vector<T> divided{optimized_rho_factorize(n,\
     \ false)};\n\t\t\tstd::move(std::begin(divided), std::end(divided), std::back_inserter(original));\n\
-    \t\t}\n\t\treturn original;\n\t}\n}\n\n\n#line 11 \"verification/numerical/factors/optimized_rho_factorization.test.cpp\"\
-    \n\nint main()\n{\n\tspeed();\n\tstd::int16_t q;\n\tstd::cin >> q;\n\twhile(q--)\n\
-    \t{\n\t\tstd::uint64_t a;\n\t\tstd::cin >> a;\n\t\tstd::vector <std::uint64_t>\
-    \ factors{factors::optimized_rho_factorize<std::uint64_t>(a)};\n\t\tstd::sort(std::begin(factors),\
-    \ std::end(factors));\n\t\tstd::cout << std::size(factors);\n\t\tfor(const auto&\
-    \ factor : factors)\n\t\t{ std::cout << ' ' << factor; }\n\t\tstd::cout << '\\\
-    n';\n\t}\n}\n"
-  code: "#include \"../../../library/general/speed.hpp\"\n\n#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\
-    \n\n#include <algorithm>\n#include <cstdint>\n#include <iostream>\n#include <vector>\n\
-    \n#include \"../../../library/numerical/factors/optimized_rho_factorization.hpp\"\
-    \n\nint main()\n{\n\tspeed();\n\tstd::int16_t q;\n\tstd::cin >> q;\n\twhile(q--)\n\
-    \t{\n\t\tstd::uint64_t a;\n\t\tstd::cin >> a;\n\t\tstd::vector <std::uint64_t>\
-    \ factors{factors::optimized_rho_factorize<std::uint64_t>(a)};\n\t\tstd::sort(std::begin(factors),\
-    \ std::end(factors));\n\t\tstd::cout << std::size(factors);\n\t\tfor(const auto&\
-    \ factor : factors)\n\t\t{ std::cout << ' ' << factor; }\n\t\tstd::cout << '\\\
-    n';\n\t}\n}\n"
+    \t\t}\n\t\treturn original;\n\t}\n}\n\n\n#line 9 \"verification/numerical/factors/optimized_rho_factorization.test.cpp\"\
+    \n\nint main()\n{\n\tstd::int16_t q;\n\tstd::cin >> q;\n\twhile(q--)\n\t{\n\t\t\
+    std::uint64_t a;\n\t\tstd::cin >> a;\n\t\tstd::vector <std::uint64_t> factors{factors::optimized_rho_factorize<std::uint64_t>(a)};\n\
+    \t\tstd::sort(std::begin(factors), std::end(factors));\n\t\tstd::cout << std::size(factors);\n\
+    \t\tfor(const auto& factor : factors)\n\t\t{ std::cout << ' ' << factor; }\n\t\
+    \tstd::cout << '\\n';\n\t}\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\n\n#include\
+    \ <algorithm>\n#include <cstdint>\n#include <iostream>\n#include <vector>\n\n\
+    #include \"../../../library/numerical/factors/optimized_rho_factorization.hpp\"\
+    \n\nint main()\n{\n\tstd::int16_t q;\n\tstd::cin >> q;\n\twhile(q--)\n\t{\n\t\t\
+    std::uint64_t a;\n\t\tstd::cin >> a;\n\t\tstd::vector <std::uint64_t> factors{factors::optimized_rho_factorize<std::uint64_t>(a)};\n\
+    \t\tstd::sort(std::begin(factors), std::end(factors));\n\t\tstd::cout << std::size(factors);\n\
+    \t\tfor(const auto& factor : factors)\n\t\t{ std::cout << ' ' << factor; }\n\t\
+    \tstd::cout << '\\n';\n\t}\n}\n"
   dependsOn:
-  - library/general/speed.hpp
   - library/numerical/factors/optimized_rho_factorization.hpp
   - library/general/prng.hpp
   - library/numerical/list_of_primes.hpp
@@ -239,8 +228,8 @@ data:
   isVerificationFile: true
   path: verification/numerical/factors/optimized_rho_factorization.test.cpp
   requiredBy: []
-  timestamp: '2021-05-25 23:11:35-06:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-06-13 21:38:13-06:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: verification/numerical/factors/optimized_rho_factorization.test.cpp
 layout: document

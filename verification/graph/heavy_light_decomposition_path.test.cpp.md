@@ -8,9 +8,6 @@ data:
     path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp
     title: library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp
   - icon: ':heavy_check_mark:'
-    path: library/general/speed.hpp
-    title: library/general/speed.hpp
-  - icon: ':heavy_check_mark:'
     path: library/graph/heavy_light_decomposition.hpp
     title: library/graph/heavy_light_decomposition.hpp
   _extendedRequiredBy: []
@@ -23,23 +20,20 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
     links:
     - https://judge.yosupo.jp/problem/vertex_add_path_sum
-  bundledCode: "#line 1 \"library/general/speed.hpp\"\n\n\n\n#include <ios>\n#include\
-    \ <iostream>\n\ninline bool speed()\n{\n\tstd::cin.exceptions(std::istream::failbit);\n\
-    \tstd::cin.tie(nullptr);\n\treturn std::ios_base::sync_with_stdio(false);\n}\n\
-    \n\n#line 2 \"verification/graph/heavy_light_decomposition_path.test.cpp\"\n\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n\n#include\
-    \ <cstddef>\n#include <cstdint>\n#line 8 \"verification/graph/heavy_light_decomposition_path.test.cpp\"\
-    \n#include <vector>\n\n#line 1 \"library/graph/heavy_light_decomposition.hpp\"\
-    \n\n\n\n#line 5 \"library/graph/heavy_light_decomposition.hpp\"\n#include <type_traits>\n\
-    #include <utility>\n#include <array>\n\ntemplate<class Tree> class HeavyLightDecomposition\n\
-    {\n\tstd::vector <std::size_t> sizes, parent, depths, head;\n\tstd::vector <std::pair<std::size_t,\
-    \ std::size_t>> times;\n\tTree tree;\n\n\tvoid dfs(std::vector <std::vector<std::size_t>>&\
-    \ graph, const std::size_t& i)\n\t{\n\t\tsizes[i] = 1;\n\t\tfor(auto& child :\
-    \ graph[i])\n\t\t{\n\t\t\tif(child != parent[i])\n\t\t\t{\n\t\t\t\tparent[child]\
-    \ = i;\n\t\t\t\tdepths[child] = depths[i] + 1;\n\t\t\t\tdfs(graph, child);\n\t\
-    \t\t\tsizes[i] += sizes[child];\n\t\t\t\tif(graph[i][0] == parent[i] || sizes[child]\
-    \ > sizes[graph[i][0]])\n\t\t\t\t{ std::swap(graph[i][0], child); }\n\t\t\t}\n\
-    \t\t}\n\t}\n\n\tstd::size_t currentTime = 0;\n\n\tvoid decompose(std::vector <std::vector<std::size_t>>&\
+  bundledCode: "#line 1 \"verification/graph/heavy_light_decomposition_path.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n\n\
+    #include <cstddef>\n#include <cstdint>\n#include <iostream>\n#include <vector>\n\
+    \n#line 1 \"library/graph/heavy_light_decomposition.hpp\"\n\n\n\n#line 5 \"library/graph/heavy_light_decomposition.hpp\"\
+    \n#include <type_traits>\n#include <utility>\n#include <array>\n\ntemplate<class\
+    \ Tree> class HeavyLightDecomposition\n{\n\tstd::vector <std::size_t> sizes, parent,\
+    \ depths, head;\n\tstd::vector <std::pair<std::size_t, std::size_t>> times;\n\t\
+    Tree tree;\n\n\tvoid dfs(std::vector <std::vector<std::size_t>>& graph, const\
+    \ std::size_t& i)\n\t{\n\t\tsizes[i] = 1;\n\t\tfor(auto& child : graph[i])\n\t\
+    \t{\n\t\t\tif(child != parent[i])\n\t\t\t{\n\t\t\t\tparent[child] = i;\n\t\t\t\
+    \tdepths[child] = depths[i] + 1;\n\t\t\t\tdfs(graph, child);\n\t\t\t\tsizes[i]\
+    \ += sizes[child];\n\t\t\t\tif(graph[i][0] == parent[i] || sizes[child] > sizes[graph[i][0]])\n\
+    \t\t\t\t{ std::swap(graph[i][0], child); }\n\t\t\t}\n\t\t}\n\t}\n\n\tstd::size_t\
+    \ currentTime = 0;\n\n\tvoid decompose(std::vector <std::vector<std::size_t>>&\
     \ graph, const std::size_t& i)\n\t{\n\t\ttimes[i].first = currentTime++;\n\t\t\
     for(const auto& child : graph[i])\n\t\t{\n\t\t\tif(child != parent[i])\n\t\t\t\
     {\n\t\t\t\thead[child] = (graph[i][0] == child ? head[i] : child);\n\t\t\t\tdecompose(graph,\
@@ -131,40 +125,39 @@ data:
     \ const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t&\
     \ queryLeft, const std::size_t& queryRight, const std::size_t& treeSize, const\
     \ T& set, const bool& notDelta)\n\t{\n\t\telement.delta = 0;\n\t\telement.set\
-    \ = set;\n\t\telement.validSet = true;\n\t}\n};\n\n\n#line 13 \"verification/graph/heavy_light_decomposition_path.test.cpp\"\
-    \n\nint main()\n{\n\tspeed();\n\tstd::size_t n;\n\tstd::int32_t q;\n\tstd::cin\
-    \ >> n >> q;\n\tstd::vector <std::uint64_t> a(n);\n\tfor(auto& ai : a)\n\t{ std::cin\
-    \ >> ai; }\n\tstd::vector <std::vector<std::size_t>> graph(n);\n\tfor(std::size_t\
-    \ i = 1; i < n; ++i)\n\t{\n\t\tstd::size_t u, v;\n\t\tstd::cin >> u >> v;\n\t\t\
-    graph[u].push_back(v);\n\t\tgraph[v].push_back(u);\n\t}\n\tHeavyLightDecomposition<SegmentTree<Add<AddNode<std::uint64_t>>>>\
+    \ = set;\n\t\telement.validSet = true;\n\t}\n};\n\n\n#line 11 \"verification/graph/heavy_light_decomposition_path.test.cpp\"\
+    \n\nint main()\n{\n\tstd::size_t n;\n\tstd::int32_t q;\n\tstd::cin >> n >> q;\n\
+    \tstd::vector <std::uint64_t> a(n);\n\tfor(auto& ai : a)\n\t{ std::cin >> ai;\
+    \ }\n\tstd::vector <std::vector<std::size_t>> graph(n);\n\tfor(std::size_t i =\
+    \ 1; i < n; ++i)\n\t{\n\t\tstd::size_t u, v;\n\t\tstd::cin >> u >> v;\n\t\tgraph[u].push_back(v);\n\
+    \t\tgraph[v].push_back(u);\n\t}\n\tHeavyLightDecomposition<SegmentTree<Add<AddNode<std::uint64_t>>>>\
     \ hld(graph);\n\thld.build(a);\n\twhile(q--)\n\t{\n\t\tbool queryType;\n\t\tstd::cin\
     \ >> queryType;\n\t\tif(queryType)\n\t\t{\n\t\t\tstd::size_t u, v;\n\t\t\tstd::cin\
     \ >> u >> v;\n\t\t\tstd::cout << hld.range(u, v) << '\\n';\n\t\t}\n\t\telse\n\t\
     \t{\n\t\t\tstd::size_t p;\n\t\t\tstd::uint64_t x;\n\t\t\tstd::cin >> p >> x;\n\
     \t\t\thld.update_path(p, p, x);\n\t\t}\n\t}\n}\n"
-  code: "#include \"../../library/general/speed.hpp\"\n\n#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\
-    \n\n#include <cstddef>\n#include <cstdint>\n#include <iostream>\n#include <vector>\n\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n\
+    \n#include <cstddef>\n#include <cstdint>\n#include <iostream>\n#include <vector>\n\
     \n#include \"../../library/graph/heavy_light_decomposition.hpp\"\n#include \"\
     ../../library/data_structures/segment_tree/segment_tree.hpp\"\n#include \"../../library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp\"\
-    \n\nint main()\n{\n\tspeed();\n\tstd::size_t n;\n\tstd::int32_t q;\n\tstd::cin\
-    \ >> n >> q;\n\tstd::vector <std::uint64_t> a(n);\n\tfor(auto& ai : a)\n\t{ std::cin\
-    \ >> ai; }\n\tstd::vector <std::vector<std::size_t>> graph(n);\n\tfor(std::size_t\
-    \ i = 1; i < n; ++i)\n\t{\n\t\tstd::size_t u, v;\n\t\tstd::cin >> u >> v;\n\t\t\
-    graph[u].push_back(v);\n\t\tgraph[v].push_back(u);\n\t}\n\tHeavyLightDecomposition<SegmentTree<Add<AddNode<std::uint64_t>>>>\
+    \n\nint main()\n{\n\tstd::size_t n;\n\tstd::int32_t q;\n\tstd::cin >> n >> q;\n\
+    \tstd::vector <std::uint64_t> a(n);\n\tfor(auto& ai : a)\n\t{ std::cin >> ai;\
+    \ }\n\tstd::vector <std::vector<std::size_t>> graph(n);\n\tfor(std::size_t i =\
+    \ 1; i < n; ++i)\n\t{\n\t\tstd::size_t u, v;\n\t\tstd::cin >> u >> v;\n\t\tgraph[u].push_back(v);\n\
+    \t\tgraph[v].push_back(u);\n\t}\n\tHeavyLightDecomposition<SegmentTree<Add<AddNode<std::uint64_t>>>>\
     \ hld(graph);\n\thld.build(a);\n\twhile(q--)\n\t{\n\t\tbool queryType;\n\t\tstd::cin\
     \ >> queryType;\n\t\tif(queryType)\n\t\t{\n\t\t\tstd::size_t u, v;\n\t\t\tstd::cin\
     \ >> u >> v;\n\t\t\tstd::cout << hld.range(u, v) << '\\n';\n\t\t}\n\t\telse\n\t\
     \t{\n\t\t\tstd::size_t p;\n\t\t\tstd::uint64_t x;\n\t\t\tstd::cin >> p >> x;\n\
     \t\t\thld.update_path(p, p, x);\n\t\t}\n\t}\n}\n"
   dependsOn:
-  - library/general/speed.hpp
   - library/graph/heavy_light_decomposition.hpp
   - library/data_structures/segment_tree/segment_tree.hpp
   - library/data_structures/segment_tree/segment_tree_functions/segment_tree_add.hpp
   isVerificationFile: true
   path: verification/graph/heavy_light_decomposition_path.test.cpp
   requiredBy: []
-  timestamp: '2021-05-17 10:40:36-06:00'
+  timestamp: '2021-06-13 21:38:13-06:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verification/graph/heavy_light_decomposition_path.test.cpp

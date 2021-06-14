@@ -8,9 +8,6 @@ data:
     path: library/data_structures/segment_tree/segment_tree_functions/segment_tree_composite.hpp
     title: library/data_structures/segment_tree/segment_tree_functions/segment_tree_composite.hpp
   - icon: ':heavy_check_mark:'
-    path: library/general/speed.hpp
-    title: library/general/speed.hpp
-  - icon: ':heavy_check_mark:'
     path: library/numerical/modulo.hpp
     title: library/numerical/modulo.hpp
   _extendedRequiredBy: []
@@ -23,52 +20,48 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
     links:
     - https://judge.yosupo.jp/problem/point_set_range_composite
-  bundledCode: "#line 1 \"library/general/speed.hpp\"\n\n\n\n#include <ios>\n#include\
-    \ <iostream>\n\ninline bool speed()\n{\n\tstd::cin.exceptions(std::istream::failbit);\n\
-    \tstd::cin.tie(nullptr);\n\treturn std::ios_base::sync_with_stdio(false);\n}\n\
-    \n\n#line 2 \"verification/data_structures/segment_tree_composite.test.cpp\"\n\
+  bundledCode: "#line 1 \"verification/data_structures/segment_tree_composite.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
-    \n\n#include <cstddef>\n#include <cstdint>\n#line 8 \"verification/data_structures/segment_tree_composite.test.cpp\"\
-    \n#include <vector>\n\n#line 1 \"library/data_structures/segment_tree/segment_tree.hpp\"\
-    \n\n\n\n#line 6 \"library/data_structures/segment_tree/segment_tree.hpp\"\n\n\
-    template<class uF> class SegmentTree\n{\npublic:\n\tusing F = uF;\n\tusing Node\
-    \ = typename F::Node;\n\tF f;\nprivate:\n\tconst std::size_t size;\n\tstd::vector<Node>\
-    \ tree;\n\n\tvoid propagate(const std::size_t& i, const std::size_t& treeLeft,\
-    \ const std::size_t& treeRight, const std::size_t& left, const std::size_t& right)\n\
-    \t{\n\t\tif(treeLeft != treeRight)\n\t\t{ f.propagate_update(tree[i], tree[i <<\
-    \ 1], tree[(i << 1) ^ 1], treeLeft, treeRight, left, right, size); }\n\t\telse\n\
-    \t\t{ f.propagate_update(tree[i], tree[i], tree[i], treeLeft, treeRight, left,\
-    \ right, size); }\n\t}\n\n\ttemplate<typename Iterable> void build(const std::size_t&\
-    \ i, const std::size_t& left, const std::size_t& right, const Iterable& elements)\n\
-    \t{\n\t\tif(left == right)\n\t\t{\n\t\t\ttree[i] = Node{elements[left]};\n\t\t\
-    \treturn;\n\t\t}\n\t\tconst std::size_t midpoint = left + ((right - left) >> 1);\n\
-    \t\tbuild(i << 1, left, midpoint, elements);\n\t\tbuild((i << 1) ^ 1, midpoint\
-    \ + 1, right, elements);\n\t\ttree[i] = f.merge(tree[i << 1], tree[(i << 1) ^\
-    \ 1]);\n\t}\n\n\ttemplate<typename... Arguments> void change(const std::size_t&\
+    \n\n#include <cstddef>\n#include <cstdint>\n#include <iostream>\n#include <vector>\n\
+    \n#line 1 \"library/data_structures/segment_tree/segment_tree.hpp\"\n\n\n\n#line\
+    \ 6 \"library/data_structures/segment_tree/segment_tree.hpp\"\n\ntemplate<class\
+    \ uF> class SegmentTree\n{\npublic:\n\tusing F = uF;\n\tusing Node = typename\
+    \ F::Node;\n\tF f;\nprivate:\n\tconst std::size_t size;\n\tstd::vector<Node> tree;\n\
+    \n\tvoid propagate(const std::size_t& i, const std::size_t& treeLeft, const std::size_t&\
+    \ treeRight, const std::size_t& left, const std::size_t& right)\n\t{\n\t\tif(treeLeft\
+    \ != treeRight)\n\t\t{ f.propagate_update(tree[i], tree[i << 1], tree[(i << 1)\
+    \ ^ 1], treeLeft, treeRight, left, right, size); }\n\t\telse\n\t\t{ f.propagate_update(tree[i],\
+    \ tree[i], tree[i], treeLeft, treeRight, left, right, size); }\n\t}\n\n\ttemplate<typename\
+    \ Iterable> void build(const std::size_t& i, const std::size_t& left, const std::size_t&\
+    \ right, const Iterable& elements)\n\t{\n\t\tif(left == right)\n\t\t{\n\t\t\t\
+    tree[i] = Node{elements[left]};\n\t\t\treturn;\n\t\t}\n\t\tconst std::size_t midpoint\
+    \ = left + ((right - left) >> 1);\n\t\tbuild(i << 1, left, midpoint, elements);\n\
+    \t\tbuild((i << 1) ^ 1, midpoint + 1, right, elements);\n\t\ttree[i] = f.merge(tree[i\
+    \ << 1], tree[(i << 1) ^ 1]);\n\t}\n\n\ttemplate<typename... Arguments> void change(const\
+    \ std::size_t& i, const std::size_t& treeLeft, const std::size_t& treeRight, const\
+    \ std::size_t& left, const std::size_t& right, const Arguments& ... rest)\n\t\
+    {\n\t\tpropagate(i, treeLeft, treeRight, left, right);\n\t\tif(left > treeRight\
+    \ || treeLeft > right)\n\t\t{ return; }\n\t\tif(left <= treeLeft && treeRight\
+    \ <= right)\n\t\t{\n\t\t\tf.change(tree[i], treeLeft, treeRight, left, right,\
+    \ size, rest...);\n\t\t\tpropagate(i, treeLeft, treeRight, left, right);\n\t\t\
+    \treturn;\n\t\t}\n\t\tconst std::size_t midpoint = treeLeft + ((treeRight - treeLeft)\
+    \ >> 1);\n\t\tchange(i << 1, treeLeft, midpoint, left, right, rest...);\n\t\t\
+    change((i << 1) ^ 1, midpoint + 1, treeRight, left, right, rest...);\n\t\ttree[i]\
+    \ = f.merge(tree[i << 1], tree[(i << 1) ^ 1]);\n\t}\n\n\tNode range(const std::size_t&\
     \ i, const std::size_t& treeLeft, const std::size_t& treeRight, const std::size_t&\
-    \ left, const std::size_t& right, const Arguments& ... rest)\n\t{\n\t\tpropagate(i,\
-    \ treeLeft, treeRight, left, right);\n\t\tif(left > treeRight || treeLeft > right)\n\
-    \t\t{ return; }\n\t\tif(left <= treeLeft && treeRight <= right)\n\t\t{\n\t\t\t\
-    f.change(tree[i], treeLeft, treeRight, left, right, size, rest...);\n\t\t\tpropagate(i,\
-    \ treeLeft, treeRight, left, right);\n\t\t\treturn;\n\t\t}\n\t\tconst std::size_t\
-    \ midpoint = treeLeft + ((treeRight - treeLeft) >> 1);\n\t\tchange(i << 1, treeLeft,\
-    \ midpoint, left, right, rest...);\n\t\tchange((i << 1) ^ 1, midpoint + 1, treeRight,\
-    \ left, right, rest...);\n\t\ttree[i] = f.merge(tree[i << 1], tree[(i << 1) ^\
-    \ 1]);\n\t}\n\n\tNode range(const std::size_t& i, const std::size_t& treeLeft,\
-    \ const std::size_t& treeRight, const std::size_t& left, const std::size_t& right)\n\
-    \t{\n\t\tif(left > treeRight || treeLeft > right)\n\t\t{ return f.identity; }\n\
-    \t\tpropagate(i, treeLeft, treeRight, left, right);\n\t\tif(left <= treeLeft &&\
-    \ treeRight <= right)\n\t\t{ return tree[i]; }\n\t\tconst std::size_t midpoint\
-    \ = treeLeft + ((treeRight - treeLeft) >> 1);\n\t\treturn f.merge(range(i << 1,\
-    \ treeLeft, midpoint, left, right), range((i << 1) ^ 1, midpoint + 1, treeRight,\
-    \ left, right));\n\t}\n\npublic:\n\texplicit SegmentTree(const std::size_t& uSize)\
-    \ : size{uSize} { tree.assign(size << 2, Node{}); }\n\n\ttemplate<typename Iterable>\
-    \ void build(const Iterable& uElements) { build(1, 0, size - 1, uElements); }\n\
-    \n\ttemplate<typename... Arguments> void change(const std::size_t& left, const\
-    \ std::size_t& right, const Arguments& ... rest) { change(1, 0, size - 1, left,\
-    \ right, rest...); }\n\n\tauto range(const std::size_t& left, const std::size_t&\
-    \ right) { return f.return_value(range(1, 0, size - 1, left, right)); }\n};\n\n\
-    \n#line 1 \"library/data_structures/segment_tree/segment_tree_functions/segment_tree_composite.hpp\"\
+    \ left, const std::size_t& right)\n\t{\n\t\tif(left > treeRight || treeLeft >\
+    \ right)\n\t\t{ return f.identity; }\n\t\tpropagate(i, treeLeft, treeRight, left,\
+    \ right);\n\t\tif(left <= treeLeft && treeRight <= right)\n\t\t{ return tree[i];\
+    \ }\n\t\tconst std::size_t midpoint = treeLeft + ((treeRight - treeLeft) >> 1);\n\
+    \t\treturn f.merge(range(i << 1, treeLeft, midpoint, left, right), range((i <<\
+    \ 1) ^ 1, midpoint + 1, treeRight, left, right));\n\t}\n\npublic:\n\texplicit\
+    \ SegmentTree(const std::size_t& uSize) : size{uSize} { tree.assign(size << 2,\
+    \ Node{}); }\n\n\ttemplate<typename Iterable> void build(const Iterable& uElements)\
+    \ { build(1, 0, size - 1, uElements); }\n\n\ttemplate<typename... Arguments> void\
+    \ change(const std::size_t& left, const std::size_t& right, const Arguments& ...\
+    \ rest) { change(1, 0, size - 1, left, right, rest...); }\n\n\tauto range(const\
+    \ std::size_t& left, const std::size_t& right) { return f.return_value(range(1,\
+    \ 0, size - 1, left, right)); }\n};\n\n\n#line 1 \"library/data_structures/segment_tree/segment_tree_functions/segment_tree_composite.hpp\"\
     \n\n\n\n#line 5 \"library/data_structures/segment_tree/segment_tree_functions/segment_tree_composite.hpp\"\
     \n\ntemplate<typename T1, typename T2> T1 power(T1 base, T2 exponent)\n{\n\tT1\
     \ result{1};\n\twhile(exponent)\n\t{\n\t\tif(exponent & 1)\n\t\t{ result *= base;\
@@ -179,9 +172,9 @@ data:
     \n\nconstexpr std::int32_t MODULUS = 1000000007;\n//constexpr std::int32_t MODULUS\
     \ = 998244353;\nusing ModularInteger = Modulo<std::integral_constant<std::decay_t<decltype(MODULUS)>,\
     \ MODULUS>>;\n*/\n\n// DIVISION AND FIX UP GCD WHEN NOT LAZY AND STATIC ASSERTIONS\n\
-    \n\n#line 13 \"verification/data_structures/segment_tree_composite.test.cpp\"\n\
-    \nint main()\n{\n\tspeed();\n\tstd::size_t n;\n\tstd::int32_t q;\n\tstd::cin >>\
-    \ n >> q;\n\tstd::vector<CompositeNode<Modulo<std::integral_constant<std::decay_t<decltype(998244353)>,\
+    \n\n#line 11 \"verification/data_structures/segment_tree_composite.test.cpp\"\n\
+    \nint main()\n{\n\tstd::size_t n;\n\tstd::int32_t q;\n\tstd::cin >> n >> q;\n\t\
+    std::vector<CompositeNode<Modulo<std::integral_constant<std::decay_t<decltype(998244353)>,\
     \ 998244353>>>> elements(n);\n\tfor(std::size_t i = 0; i < n; ++i)\n\t{ std::cin\
     \ >> elements[i].a >> elements[i].b; }\n\tSegmentTree<Composite<CompositeNode<Modulo<std::integral_constant<std::decay_t<decltype(998244353)>,\
     \ 998244353>>>, false>> segmentTree(n);\n\tsegmentTree.build(elements);\n\twhile(q--)\n\
@@ -191,12 +184,12 @@ data:
     \ * x + result.b << '\\n';\n\t\t}\n\t\telse\n\t\t{\n\t\t\tstd::size_t p;\n\t\t\
     \tstd::uint64_t c, d;\n\t\t\tstd::cin >> p >> c >> d;\n\t\t\tsegmentTree.change(p,\
     \ p, c, d);\n\t\t}\n\t}\n}\n"
-  code: "#include \"../../library/general/speed.hpp\"\n\n#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
     \n\n#include <cstddef>\n#include <cstdint>\n#include <iostream>\n#include <vector>\n\
     \n#include \"../../library/data_structures/segment_tree/segment_tree.hpp\"\n#include\
     \ \"../../library/data_structures/segment_tree/segment_tree_functions/segment_tree_composite.hpp\"\
-    \n#include \"../../library/numerical/modulo.hpp\"\n\nint main()\n{\n\tspeed();\n\
-    \tstd::size_t n;\n\tstd::int32_t q;\n\tstd::cin >> n >> q;\n\tstd::vector<CompositeNode<Modulo<std::integral_constant<std::decay_t<decltype(998244353)>,\
+    \n#include \"../../library/numerical/modulo.hpp\"\n\nint main()\n{\n\tstd::size_t\
+    \ n;\n\tstd::int32_t q;\n\tstd::cin >> n >> q;\n\tstd::vector<CompositeNode<Modulo<std::integral_constant<std::decay_t<decltype(998244353)>,\
     \ 998244353>>>> elements(n);\n\tfor(std::size_t i = 0; i < n; ++i)\n\t{ std::cin\
     \ >> elements[i].a >> elements[i].b; }\n\tSegmentTree<Composite<CompositeNode<Modulo<std::integral_constant<std::decay_t<decltype(998244353)>,\
     \ 998244353>>>, false>> segmentTree(n);\n\tsegmentTree.build(elements);\n\twhile(q--)\n\
@@ -207,14 +200,13 @@ data:
     \tstd::uint64_t c, d;\n\t\t\tstd::cin >> p >> c >> d;\n\t\t\tsegmentTree.change(p,\
     \ p, c, d);\n\t\t}\n\t}\n}\n"
   dependsOn:
-  - library/general/speed.hpp
   - library/data_structures/segment_tree/segment_tree.hpp
   - library/data_structures/segment_tree/segment_tree_functions/segment_tree_composite.hpp
   - library/numerical/modulo.hpp
   isVerificationFile: true
   path: verification/data_structures/segment_tree_composite.test.cpp
   requiredBy: []
-  timestamp: '2021-05-17 10:40:36-06:00'
+  timestamp: '2021-06-13 21:38:13-06:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verification/data_structures/segment_tree_composite.test.cpp
