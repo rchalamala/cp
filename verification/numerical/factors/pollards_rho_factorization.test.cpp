@@ -1,5 +1,3 @@
-#include "../../../library/general/speed.hpp"
-
 #define PROBLEM "https://judge.yosupo.jp/problem/factorize"
 
 #include <algorithm>
@@ -11,7 +9,6 @@
 
 int main()
 {
-	speed();
 	std::int16_t q;
 	std::cin >> q;
 	while(q--)

@@ -40,11 +40,9 @@ namespace factors
 			}
 			Montgomery combined{product};
 			combined *= Montgomery{std::max(x.n, y.n) - std::min(x.n, y.n)};
-			if(combined.n && combined.n != product.n)
-			{
-				++trials;
-				product = combined;
-			}
+			++trials;
+			if(combined.n)
+			{ product = combined; }
 		}
 		return factor;
 	}

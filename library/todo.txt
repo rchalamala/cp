@@ -1,11 +1,13 @@
-numbers:
-
 binomial coefficients
 derangements
 efficient factorials
 factorial inverses
 matrices
 big integers
+big decimals
 enable output verification for multiples tokens with floating point
+
+random ez things like dsu
+
 
 convert all others to new format and find problems to verify on

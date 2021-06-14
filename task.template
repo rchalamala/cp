@@ -1,27 +1,20 @@
-//@formatter:on
+//@formatter:off
 #include "general/base.hpp"
 #include "general/prng.hpp"
-#include "general/speed.hpp"
 
 using namespace std;
-
-//#define INTERACTIVE
-
-class %ClassName%
+// figure out interactive stuff
+namespace rahul
 {
-public:
-	static constexpr std::int64_t stressTestIterations{};
-	static constexpr bool bruteForceAllIterations{};
-	static constexpr bool bruteForceEmptyTests{};
-	static constexpr bool showTestingOutput{true};
-	static constexpr bool showAllTestingOutput{};
-	static constexpr bool showFalseTestOutput{true};
-	static constexpr bool floatingPointVerification{};
-	static constexpr std::uint32_t MAXN{static_cast<std::uint32_t>(2e5 + 7)};
-	static constexpr std::int32_t IINF{static_cast<std::int32_t>(2e9 + 7)};
-	static constexpr std::int64_t LLINF{static_cast<std::int64_t>(2e18 + 7)};
-	static constexpr long double EPSILON{static_cast<long double>(1e-7)};
-	static bool bruteForceSolveIteration;
+	bool bruteForceSolveCurrentIteration;
+
+	constexpr std::int64_t stressTestIterations{};
+	constexpr array<bool, 6> environment{false, true, true, true, false, false};
+	// brute force all tests, bruteforce empty tests, show test numbers, show false test output, show all test output, verify single (as of now) floating point token
+
+	constexpr std::uint32_t MAXN{static_cast<std::uint32_t>(4e5 + 7)};
+	constexpr std::int32_t IINF{static_cast<std::int32_t>(2e9 + 7)};
+	constexpr std::int64_t LLINF{static_cast<std::int64_t>(2e18 + 7)};
 
 	void static generate_test(const std::uint64_t& seed)
 	{
@@ -29,10 +22,9 @@ public:
 
 	}
 
-	int brute_force()
+	void brute_force()
 	{
 
-		return 0;
 	}
 
 	void setup()
@@ -41,20 +33,16 @@ public:
 
 	}
 
-	int solve(std::istream& in, std::ostream& out)
-	{
-		#if defined(CODE_JAM) || defined(LIGHT_OJ)
-		output_case();
-		#endif
-		return bruteForceAllIterations || bruteForceSolveIteration ? brute_force() : solve();
-	}
-
-	int solve()
+	void solve()
 	{
 
-		return 0;
 	}
 	// You're bad and probably overflowed. If you're being extra bad, you may have underflowed taking modulo or something stupid like that. Fix that.
-};
+}
 
-bool %ClassName%::bruteForceSolveIteration{};
+
+class %ClassName%
+{
+public:
+	void solve(std::istream& in, std::ostream& out) { rahul::environment[0] || rahul::bruteForceSolveCurrentIteration ? brute_force() : solve(); }
+};

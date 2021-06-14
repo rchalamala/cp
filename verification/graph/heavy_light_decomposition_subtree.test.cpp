@@ -1,5 +1,3 @@
-#include "../../library/general/speed.hpp"
-
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_subtree_sum"
 
 #include <cstddef>
@@ -13,7 +11,6 @@
 
 int main()
 {
-	speed();
 	std::size_t n;
 	std::int32_t q;
 	std::cin >> n >> q;

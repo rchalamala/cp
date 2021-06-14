@@ -5,13 +5,19 @@
 
 int main(int argc, char* argv[])
 {
-	#ifndef INTERACTIVE
-	speed();
-	#endif
+	std::cin.exceptions(std::istream::failbit);
+	std::cin.tie(nullptr);
+	std::ios_base::sync_with_stdio(false);
+	rahul::setup();
 	%ClassName% solver;
 	%Input%
 	%Output%
-	solver.setup();
+	std::streambuf* cin_rdbuf{std::cin.rdbuf()};
+	std::streambuf* cout_rdbuf{std::cout.rdbuf()};
+	std::cin.rdbuf(in.rdbuf());
+	std::cout.rdbuf(out.rdbuf());
 	%SolverCall%
+	std::cin.rdbuf(cin_rdbuf);
+	std::cout.rdbuf(cout_rdbuf);
 	return 0;
 }
