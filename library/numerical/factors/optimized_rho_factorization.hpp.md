@@ -127,58 +127,57 @@ data:
     \ }\n};\n\nuint64_t Montgomery::modulus{1}, Montgomery::inverse, Montgomery::r2;\n\
     \n\n#line 1 \"library/numerical/primality/miller_rabin_primality_test.hpp\"\n\n\
     \n\n#line 7 \"library/numerical/primality/miller_rabin_primality_test.hpp\"\n\n\
-    #line 1 \"library/general/base.hpp\"\n\n\n\n#include <bits/stdc++.h>\n\n#define\
-    \ mp std::make_pair\n#define mt std::make_tuple\n#define pb push_back\n#define\
-    \ eb emplace_back\n#define ff first\n#define ss second\n\nusing ll = long long;\n\
-    using ull = unsigned long long;\nusing ld = long double;\n\n\n\n\n#line 12 \"\
-    library/numerical/primality/miller_rabin_primality_test.hpp\"\n\nnamespace primality\n\
-    {\n\n\ttemplate<typename T> Montgomery power(const Montgomery& base, T exponent)\n\
-    \t{\n\t\tstatic_assert(std::is_integral_v < T > );\n\t\tstatic_assert(std::is_unsigned_v\
-    \ < T > );\n\t\tMontgomery mBase = base, result(1);\n\t\twhile(exponent)\n\t\t\
-    {\n\t\t\tif(exponent & 1)\n\t\t\t{ result *= mBase; }\n\t\t\tmBase *= mBase;\n\
-    \t\t\texponent >>= 1;\n\t\t}\n\t\treturn result;\n\t}\n\n\ttemplate<typename T,\
-    \ std::size_t BasesSize = 7> bool miller_rabin(const T& n, const bool& checkBaseCases\
-    \ = true, const std::array <T, BasesSize>& A = {2, 325, 9375, 28178, 450775, 9780504,\
-    \ 1795265022})\n\t{\n\t\tstatic_assert(std::is_integral_v < T > );\n\t\tstatic_assert(std::is_unsigned_v\
-    \ < T > );\n\t\tif(checkBaseCases)\n\t\t{\n\t\t\tif(n <= 1)\n\t\t\t{ return false;\
-    \ }\n\t\t\tfor(const auto& a : largePrimes)\n\t\t\t{\n\t\t\t\tif(a > n)\n\t\t\t\
-    \t{ break; }\n\t\t\t\tif(n == a)\n\t\t\t\t{\n\t\t\t\t\treturn true;\n\t\t\t\t\
-    }\n\t\t\t\tif(n % a == 0)\n\t\t\t\t{ return false; }\n\t\t\t}\n\t\t}\n\t\tif(Montgomery::modulus\
-    \ != n)\n\t\t{ Montgomery::set_modulus(n); }\n\t\tT bits{trailing_zero_bits(n\
-    \ - 1)}, d{(n - 1) >> bits};\n\t\tMontgomery one{1}, negativeOne{n - 1};\n\t\t\
-    for(const T& a : A)\n\t\t{\n\t\t\tMontgomery mA{a};\n\t\t\tif(mA.n)\n\t\t\t{\n\
-    \t\t\t\tT i{};\n\t\t\t\tMontgomery x{power(mA, d)};\n\t\t\t\tif(x.n == one.n ||\
-    \ x.n == negativeOne.n)\n\t\t\t\t{ continue; }\n\t\t\t\tfor(; x.n != one.n &&\
-    \ x.n != negativeOne.n && i < bits; ++i)\n\t\t\t\t{\n\t\t\t\t\tif(x.n == one.n)\n\
-    \t\t\t\t\t{ return false; }\n\t\t\t\t\tif(x.n == negativeOne.n)\n\t\t\t\t\t{ break;\
-    \ }\n\t\t\t\t\tx *= x;\n\t\t\t\t}\n\t\t\t\tif((i == bits) ^ (x.n == one.n))\n\t\
-    \t\t\t{ return false; }\n\t\t\t}\n\t\t\telse\n\t\t\t{ return true; }\n\t\t}\n\t\
-    \treturn true;\n\t}\n}\n\n\n#line 1 \"library/numerical/steins_gcd.hpp\"\n\n\n\
-    \n#line 8 \"library/numerical/steins_gcd.hpp\"\n\ntemplate<typename T1, typename\
-    \ T2> constexpr typename std::common_type<T1, T2>::type\nsteins_gcd(const T1&\
-    \ u_x, const T2& u_y)\n{\n\tstatic_assert(std::is_integral_v < T1 > );\n\tstatic_assert(std::is_unsigned_v\
-    \ < T1 > );\n\tstatic_assert(std::is_integral_v < T2 > );\n\tstatic_assert(std::is_unsigned_v\
-    \ < T2 > );\n\ttypename std::common_type<T1, T2>::type x{u_x}, y{u_y};\n\tif(x\
-    \ == 0)\n\t{ return y; }\n\tif(y == 0)\n\t{ return x; }\n\ttypename std::common_type<T1,\
-    \ T2>::type a{trailing_zero_bits(x)}, b{trailing_zero_bits(y)};\n\tx >>= a;\n\t\
-    y >>= b;\n\twhile(true)\n\t{\n\t\tif(x < y)\n\t\t{ std::swap(x, y); }\n\t\tx -=\
-    \ y;\n\t\tif(!x)\n\t\t{ return y << std::min(a, b); }\n\t\tx >>= trailing_zero_bits(x);\n\
-    \t}\n}\n\n\n#line 13 \"library/numerical/factors/optimized_rho_factorization.hpp\"\
-    \n\nnamespace factors\n{\n\ttemplate<typename T> T optimized_rho(const T& n)\n\
-    \t{\n\t\tstatic_assert(std::is_integral_v<T>);\n\t\tassert(n >= 0);\n\t\tif(primality::miller_rabin(n,\
-    \ false))\n\t\t{ return n; }\n\t\tauto f{[&n](const Montgomery& x, const T& c)\
-    \ -> Montgomery\n\t\t       {\n\t\t\t       Montgomery result = x;\n\t\t\t   \
-    \    (result *= result);\n\t\t\t       result.n += c;\n\t\t\t       if(result.n\
-    \ >= n)\n\t\t\t       { result.n -= n; }\n\t\t\t       return result;\n\t\t  \
-    \     }};\n\t\tT factor, c{getUID<T>(0, n - 1)};\n\t\tMontgomery x{getUID<T>(0,\
-    \ n - 1)}, y{f(x, c)}, product{1};\n\t\tfor(T trials{}; trials % 128 || (factor\
-    \ = steins_gcd(product.value(), n)) == 1; x = f(x, c), y = f(f(y, c), c))\n\t\t\
-    {\n\t\t\tif(x.n == y.n)\n\t\t\t{\n\t\t\t\tc = getUID<T>(0, n - 1);\n\t\t\t\tx\
-    \ = Montgomery(getUID<T>(0, n - 1));\n\t\t\t\ty = f(x, c);\n\t\t\t}\n\t\t\tMontgomery\
-    \ combined{product};\n\t\t\tcombined *= Montgomery{std::max(x.n, y.n) - std::min(x.n,\
-    \ y.n)};\n\t\t\t++trials;\n\t\t\tif(combined.n)\n\t\t\t{ product = combined; }\n\
-    \t\t}\n\t\treturn factor;\n\t}\n\n\ttemplate<typename T> std::vector<T> optimized_rho_factorize(T\
-    \ n, const bool& checkBaseCases = true)\n\t{\n\t\tstatic_assert(std::is_integral_v<T>);\n\
+    #line 1 \"library/general/base.hpp\"\n\n\n\n#include <bits/stdc++.h>\n\nusing\
+    \ ll = long long;\nusing ull = unsigned long long;\nusing ld = long double;\n\n\
+    \n#line 12 \"library/numerical/primality/miller_rabin_primality_test.hpp\"\n\n\
+    namespace primality\n{\n\n\ttemplate<typename T> Montgomery power(const Montgomery&\
+    \ base, T exponent)\n\t{\n\t\tstatic_assert(std::is_integral_v < T > );\n\t\t\
+    static_assert(std::is_unsigned_v < T > );\n\t\tMontgomery mBase = base, result(1);\n\
+    \t\twhile(exponent)\n\t\t{\n\t\t\tif(exponent & 1)\n\t\t\t{ result *= mBase; }\n\
+    \t\t\tmBase *= mBase;\n\t\t\texponent >>= 1;\n\t\t}\n\t\treturn result;\n\t}\n\
+    \n\ttemplate<typename T, std::size_t BasesSize = 7> bool miller_rabin(const T&\
+    \ n, const bool& checkBaseCases = true, const std::array <T, BasesSize>& A = {2,\
+    \ 325, 9375, 28178, 450775, 9780504, 1795265022})\n\t{\n\t\tstatic_assert(std::is_integral_v\
+    \ < T > );\n\t\tstatic_assert(std::is_unsigned_v < T > );\n\t\tif(checkBaseCases)\n\
+    \t\t{\n\t\t\tif(n <= 1)\n\t\t\t{ return false; }\n\t\t\tfor(const auto& a : largePrimes)\n\
+    \t\t\t{\n\t\t\t\tif(a > n)\n\t\t\t\t{ break; }\n\t\t\t\tif(n == a)\n\t\t\t\t{\n\
+    \t\t\t\t\treturn true;\n\t\t\t\t}\n\t\t\t\tif(n % a == 0)\n\t\t\t\t{ return false;\
+    \ }\n\t\t\t}\n\t\t}\n\t\tif(Montgomery::modulus != n)\n\t\t{ Montgomery::set_modulus(n);\
+    \ }\n\t\tT bits{trailing_zero_bits(n - 1)}, d{(n - 1) >> bits};\n\t\tMontgomery\
+    \ one{1}, negativeOne{n - 1};\n\t\tfor(const T& a : A)\n\t\t{\n\t\t\tMontgomery\
+    \ mA{a};\n\t\t\tif(mA.n)\n\t\t\t{\n\t\t\t\tT i{};\n\t\t\t\tMontgomery x{power(mA,\
+    \ d)};\n\t\t\t\tif(x.n == one.n || x.n == negativeOne.n)\n\t\t\t\t{ continue;\
+    \ }\n\t\t\t\tfor(; x.n != one.n && x.n != negativeOne.n && i < bits; ++i)\n\t\t\
+    \t\t{\n\t\t\t\t\tif(x.n == one.n)\n\t\t\t\t\t{ return false; }\n\t\t\t\t\tif(x.n\
+    \ == negativeOne.n)\n\t\t\t\t\t{ break; }\n\t\t\t\t\tx *= x;\n\t\t\t\t}\n\t\t\t\
+    \tif((i == bits) ^ (x.n == one.n))\n\t\t\t\t{ return false; }\n\t\t\t}\n\t\t\t\
+    else\n\t\t\t{ return true; }\n\t\t}\n\t\treturn true;\n\t}\n}\n\n\n#line 1 \"\
+    library/numerical/steins_gcd.hpp\"\n\n\n\n#line 8 \"library/numerical/steins_gcd.hpp\"\
+    \n\ntemplate<typename T1, typename T2> constexpr typename std::common_type<T1,\
+    \ T2>::type\nsteins_gcd(const T1& u_x, const T2& u_y)\n{\n\tstatic_assert(std::is_integral_v\
+    \ < T1 > );\n\tstatic_assert(std::is_unsigned_v < T1 > );\n\tstatic_assert(std::is_integral_v\
+    \ < T2 > );\n\tstatic_assert(std::is_unsigned_v < T2 > );\n\ttypename std::common_type<T1,\
+    \ T2>::type x{u_x}, y{u_y};\n\tif(x == 0)\n\t{ return y; }\n\tif(y == 0)\n\t{\
+    \ return x; }\n\ttypename std::common_type<T1, T2>::type a{trailing_zero_bits(x)},\
+    \ b{trailing_zero_bits(y)};\n\tx >>= a;\n\ty >>= b;\n\twhile(true)\n\t{\n\t\t\
+    if(x < y)\n\t\t{ std::swap(x, y); }\n\t\tx -= y;\n\t\tif(!x)\n\t\t{ return y <<\
+    \ std::min(a, b); }\n\t\tx >>= trailing_zero_bits(x);\n\t}\n}\n\n\n#line 13 \"\
+    library/numerical/factors/optimized_rho_factorization.hpp\"\n\nnamespace factors\n\
+    {\n\ttemplate<typename T> T optimized_rho(const T& n)\n\t{\n\t\tstatic_assert(std::is_integral_v<T>);\n\
+    \t\tassert(n >= 0);\n\t\tif(primality::miller_rabin(n, false))\n\t\t{ return n;\
+    \ }\n\t\tauto f{[&n](const Montgomery& x, const T& c) -> Montgomery\n\t\t    \
+    \   {\n\t\t\t       Montgomery result = x;\n\t\t\t       (result *= result);\n\
+    \t\t\t       result.n += c;\n\t\t\t       if(result.n >= n)\n\t\t\t       { result.n\
+    \ -= n; }\n\t\t\t       return result;\n\t\t       }};\n\t\tT factor, c{getUID<T>(0,\
+    \ n - 1)};\n\t\tMontgomery x{getUID<T>(0, n - 1)}, y{f(x, c)}, product{1};\n\t\
+    \tfor(T trials{}; trials % 128 || (factor = steins_gcd(product.value(), n)) ==\
+    \ 1; x = f(x, c), y = f(f(y, c), c))\n\t\t{\n\t\t\tif(x.n == y.n)\n\t\t\t{\n\t\
+    \t\t\tc = getUID<T>(0, n - 1);\n\t\t\t\tx = Montgomery(getUID<T>(0, n - 1));\n\
+    \t\t\t\ty = f(x, c);\n\t\t\t}\n\t\t\tMontgomery combined{product};\n\t\t\tcombined\
+    \ *= Montgomery{std::max(x.n, y.n) - std::min(x.n, y.n)};\n\t\t\t++trials;\n\t\
+    \t\tif(combined.n)\n\t\t\t{ product = combined; }\n\t\t}\n\t\treturn factor;\n\
+    \t}\n\n\ttemplate<typename T> std::vector<T> optimized_rho_factorize(T n, const\
+    \ bool& checkBaseCases = true)\n\t{\n\t\tstatic_assert(std::is_integral_v<T>);\n\
     \t\tassert(n >= 0);\n\t\tif(n <= 1)\n\t\t{ return {}; }\n\t\tif(checkBaseCases)\n\
     \t\t{\n\t\t\tT start{n};\n\t\t\tstd::vector<T> original{};\n\t\t\tfor(const auto&\
     \ a : largePrimes)\n\t\t\t{\n\t\t\t\tif(a > start)\n\t\t\t\t{ break; }\n\t\t\t\
@@ -242,7 +241,7 @@ data:
   isVerificationFile: false
   path: library/numerical/factors/optimized_rho_factorization.hpp
   requiredBy: []
-  timestamp: '2021-06-13 21:38:13-06:00'
+  timestamp: '2021-08-29 19:17:11-06:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - verification/numerical/factors/optimized_rho_factorization.test.cpp

@@ -37,24 +37,23 @@ data:
     links: []
   bundledCode: "#line 1 \"library/numerical/primality/miller_rabin_primality_test.hpp\"\
     \n\n\n\n#include <limits>\n#include <type_traits>\n#include <vector>\n\n#line\
-    \ 1 \"library/general/base.hpp\"\n\n\n\n#include <bits/stdc++.h>\n\n#define mp\
-    \ std::make_pair\n#define mt std::make_tuple\n#define pb push_back\n#define eb\
-    \ emplace_back\n#define ff first\n#define ss second\n\nusing ll = long long;\n\
-    using ull = unsigned long long;\nusing ld = long double;\n\n\n\n\n#line 1 \"library/numerical/list_of_primes.hpp\"\
-    \n\n\n\n#line 5 \"library/numerical/list_of_primes.hpp\"\n\ninline constexpr std::array<std::uint_fast16_t,\
-    \ 16>\nsmallPrimes{\n2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53};\n\
-    inline constexpr std::array<std::uint_fast16_t, 32>\nmediumPrimes{\n2, 3, 5, 7,\
+    \ 1 \"library/general/base.hpp\"\n\n\n\n#include <bits/stdc++.h>\n\nusing ll =\
+    \ long long;\nusing ull = unsigned long long;\nusing ld = long double;\n\n\n#line\
+    \ 1 \"library/numerical/list_of_primes.hpp\"\n\n\n\n#line 5 \"library/numerical/list_of_primes.hpp\"\
+    \n\ninline constexpr std::array<std::uint_fast16_t, 16>\nsmallPrimes{\n2, 3, 5,\
+    \ 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53};\ninline constexpr std::array<std::uint_fast16_t,\
+    \ 32>\nmediumPrimes{\n2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47,\
+    \ 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131};\n\
+    inline constexpr std::array<std::uint_fast16_t, 64>\nlargePrimes{\n2, 3, 5, 7,\
     \ 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83,\
-    \ 89, 97, 101, 103, 107, 109, 113, 127, 131};\ninline constexpr std::array<std::uint_fast16_t,\
-    \ 64>\nlargePrimes{\n2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53,\
-    \ 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137,\
-    \ 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227,\
-    \ 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311};\n\
-    \n\n#line 1 \"library/numerical/montgomery.hpp\"\n\n\n\n#line 8 \"library/numerical/montgomery.hpp\"\
-    \n\n#line 1 \"library/numerical/trailing_zero_bits.hpp\"\n\n\n\n#line 6 \"library/numerical/trailing_zero_bits.hpp\"\
-    \n\ntemplate<typename T> std::uint64_t trailing_zero_bits(const T& element)\n\
-    {\n\tstatic_assert(std::is_integral_v < T > );\n\treturn __builtin_ctzll(element);\n\
-    }\n\n/*\ntemplate<typename T> T trailing_zero_bits(T element)\n{\n\tstatic_assert(std::is_integral_v<T>);\n\
+    \ 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167,\
+    \ 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257,\
+    \ 263, 269, 271, 277, 281, 283, 293, 307, 311};\n\n\n#line 1 \"library/numerical/montgomery.hpp\"\
+    \n\n\n\n#line 8 \"library/numerical/montgomery.hpp\"\n\n#line 1 \"library/numerical/trailing_zero_bits.hpp\"\
+    \n\n\n\n#line 6 \"library/numerical/trailing_zero_bits.hpp\"\n\ntemplate<typename\
+    \ T> std::uint64_t trailing_zero_bits(const T& element)\n{\n\tstatic_assert(std::is_integral_v\
+    \ < T > );\n\treturn __builtin_ctzll(element);\n}\n\n/*\ntemplate<typename T>\
+    \ T trailing_zero_bits(T element)\n{\n\tstatic_assert(std::is_integral_v<T>);\n\
     \tstatic_assert(std::is_unsigned_v<T>);\n\tT result{};\n\tfor(; (element & 1)\
     \ ^ 1; ++result)\n\t{\n\t\telement >>= 1;\n\t}\n\treturn result;\n}\n*/\n\n\n\
     #line 10 \"library/numerical/montgomery.hpp\"\n\n/*//https://cp-algorithms.com/algebra/montgomery_multiplication.html\n\
@@ -166,11 +165,11 @@ data:
   requiredBy:
   - library/numerical/factors/optimized_rho_factorization.hpp
   - library/numerical/factors/pollards_rho_factorization.hpp
-  timestamp: '2021-05-25 23:11:35-06:00'
+  timestamp: '2021-08-29 19:17:11-06:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verification/numerical/factors/optimized_rho_factorization.test.cpp
   - verification/numerical/factors/pollards_rho_factorization.test.cpp
+  - verification/numerical/factors/optimized_rho_factorization.test.cpp
 documentation_of: library/numerical/primality/miller_rabin_primality_test.hpp
 layout: document
 redirect_from:

@@ -108,11 +108,11 @@ data:
   timestamp: '2021-05-17 10:40:36-06:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verification/graph/heavy_light_decomposition_subtree.test.cpp
-  - verification/graph/heavy_light_decomposition_path.test.cpp
-  - verification/data_structures/segment_tree_composite.test.cpp
   - verification/data_structures/segment_tree_add_sum.test.cpp
+  - verification/data_structures/segment_tree_composite.test.cpp
   - verification/data_structures/segment_tree_affine.test.cpp
+  - verification/graph/heavy_light_decomposition_path.test.cpp
+  - verification/graph/heavy_light_decomposition_subtree.test.cpp
 documentation_of: library/data_structures/segment_tree/segment_tree.hpp
 layout: document
 redirect_from:

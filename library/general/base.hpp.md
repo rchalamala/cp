@@ -31,26 +31,11 @@ data:
     #include <bits/stdc++.h>
 
 
-    #define mp std::make_pair
-
-    #define mt std::make_tuple
-
-    #define pb push_back
-
-    #define eb emplace_back
-
-    #define ff first
-
-    #define ss second
-
-
     using ll = long long;
 
     using ull = unsigned long long;
 
     using ld = long double;
-
-
 
 
 
@@ -63,19 +48,6 @@ data:
     #include <bits/stdc++.h>
 
 
-    #define mp std::make_pair
-
-    #define mt std::make_tuple
-
-    #define pb push_back
-
-    #define eb emplace_back
-
-    #define ff first
-
-    #define ss second
-
-
     using ll = long long;
 
     using ull = unsigned long long;
@@ -83,21 +55,19 @@ data:
     using ld = long double;
 
 
-
-
     #endif'
   dependsOn: []
   isVerificationFile: false
   path: library/general/base.hpp
   requiredBy:
+  - library/numerical/primality/miller_rabin_primality_test.hpp
   - library/numerical/factors/optimized_rho_factorization.hpp
   - library/numerical/factors/pollards_rho_factorization.hpp
-  - library/numerical/primality/miller_rabin_primality_test.hpp
-  timestamp: '2021-05-17 10:40:36-06:00'
+  timestamp: '2021-08-29 19:17:11-06:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verification/numerical/factors/optimized_rho_factorization.test.cpp
   - verification/numerical/factors/pollards_rho_factorization.test.cpp
+  - verification/numerical/factors/optimized_rho_factorization.test.cpp
 documentation_of: library/general/base.hpp
 layout: document
 redirect_from:

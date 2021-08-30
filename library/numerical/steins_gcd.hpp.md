@@ -62,8 +62,8 @@ data:
   timestamp: '2021-05-06 17:00:48-06:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - verification/numerical/factors/optimized_rho_factorization.test.cpp
   - verification/numerical/factors/pollards_rho_factorization.test.cpp
+  - verification/numerical/factors/optimized_rho_factorization.test.cpp
 documentation_of: library/numerical/steins_gcd.hpp
 layout: document
 redirect_from:
