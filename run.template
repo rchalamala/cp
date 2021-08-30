@@ -155,6 +155,14 @@ int main(int argc, char* argv[])
 {
 	static_assert(!rahul::stressTestIterations || (rahul::stressTestIterations && !rahul::environment[0]));
 	std::chrono::time_point <std::chrono::high_resolution_clock> start{std::chrono::high_resolution_clock::now()};
+	#ifdef INTERACTIVE
+	std::cerr << fixed << original << "TEST" << std::endl;
+	rahul::setup();
+	std::istringstream in;
+	std::ostringstream out;
+	%ClassName% solver;
+	%SolverCall%
+	#else
 	std::vector <JHelper::Test> tests{%Tests%};
 	std::cerr << std::fixed;
 	std::chrono::duration<long double, std::milli> solveMaximalTime{}, solveAverageTime{}, bruteForceMaximalTime{}, bruteForceAverageTime{};
@@ -162,6 +170,7 @@ int main(int argc, char* argv[])
 	rahul::bruteForceSolveCurrentIteration = rahul::environment[0];
 	for(JHelper::Test& test : tests)
 	{
+		rahul::TESTCASE = 1;
 		if(!test.has_output())
 		{ assert(!(rahul::environment[1] && rahul::environment[0]));	}
 		if(!test.has_output() && rahul::environment[1])
@@ -178,6 +187,7 @@ int main(int argc, char* argv[])
 				++bruteForceEmptyTestIterations;
 			}
 		}
+		rahul::TESTCASE = 1;
 		if(test.active())
 		{
 			run_test(test);
@@ -188,6 +198,7 @@ int main(int argc, char* argv[])
 		}
 	}
 	std::int_fast64_t stressTestIteration{1};
+	rahul::TESTCASE = 1;
 	for(; (stressTestIteration <= rahul::stressTestIterations || rahul::stressTestIterations == -1) && correctTests == totalTests; ++stressTestIteration)
 	{
 		std::ostringstream generatedTestInput;
@@ -237,4 +248,5 @@ int main(int argc, char* argv[])
 	}
 	else
 	{ std::cerr << yellow << "NO TESTS RAN (at least with output to compare against)" << original << std::endl; }
+	#endif
 }
